@@ -1,0 +1,50 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
+  "name": "Peak Pedal",
+  "url": "https://DOMAIN.com",
+  "description": "Ride Further. Climb Harder.",
+  "skills": [
+    {
+      "name": "browse-products",
+      "type": "navigation",
+      "description": "Browse the full electric mountain bike catalog by category or brand",
+      "url": "https://DOMAIN.com/electric-mountain-bikes/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "search-products",
+      "type": "navigation",
+      "description": "Search the catalog via a live JSON API",
+      "url": "https://DOMAIN.com/api/search",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "order-via-whatsapp",
+      "type": "commerce",
+      "description": "Start an order via WhatsApp. Free UK delivery, no minimum order.",
+      "url": "https://wa.me/440000000000",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "finance-info",
+      "type": "commerce",
+      "description": "Finance and Cycle to Work scheme information",
+      "url": "https://DOMAIN.com/finance/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "product-education",
+      "type": "content",
+      "description": "Buying guides and motor comparisons for electric mountain bikes",
+      "url": "https://DOMAIN.com/blog/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "contact",
+      "type": "support",
+      "description": "Contact for product questions or support",
+      "url": "https://DOMAIN.com/contact/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

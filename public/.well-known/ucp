@@ -1,0 +1,48 @@
+{
+  "ucp": "1.0",
+  "protocol_version": "1.0",
+  "spec": "https://ucp.dev/specification/overview/",
+  "schema": "https://ucp.dev/schema/v1.json",
+  "site": "https://DOMAIN.com",
+  "name": "Peak Pedal",
+  "description": "UK electric mountain bike specialists — 78 eMTBs from 15+ leading brands, expert advice, UK-wide delivery.",
+  "services": [
+    {
+      "id": "product-catalog",
+      "type": "catalog",
+      "url": "https://DOMAIN.com/api/products",
+      "description": "Full product catalog (JSON)"
+    },
+    {
+      "id": "order",
+      "type": "commerce",
+      "url": "https://wa.me/440000000000",
+      "description": "Start an order via WhatsApp"
+    }
+  ],
+  "capabilities": [
+    "browse",
+    "search",
+    "inquiry",
+    "content"
+  ],
+  "endpoints": {
+    "catalog": "https://DOMAIN.com/api/products",
+    "search": "https://DOMAIN.com/api/search",
+    "contact": "https://DOMAIN.com/contact/",
+    "agent_skills": "https://DOMAIN.com/.well-known/agent-skills/index.json",
+    "mcp_server_card": "https://DOMAIN.com/.well-known/mcp/server-card.json",
+    "api_catalog": "https://DOMAIN.com/.well-known/api-catalog",
+    "llms_txt": "https://DOMAIN.com/llms.txt"
+  },
+  "currency": "GBP",
+  "minimum_order_gbp": 0,
+  "payment_methods": [
+    "bank-transfer"
+  ],
+  "legal": {
+    "age_restriction": "none (min rider age 14 under UK EAPC law)",
+    "product_type": "Electric mountain bikes",
+    "compliance": "Electrically Assisted Pedal Cycles Regulations 1983 (as amended 2015)"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "protocol": {
+    "name": "acp",
+    "version": "0.1.0"
+  },
+  "name": "Peak Pedal",
+  "description": "UK electric mountain bike specialists — 78 eMTBs from 15+ leading brands, expert advice, UK-wide delivery.",
+  "api_base_url": "https://DOMAIN.com",
+  "homepage": "https://DOMAIN.com",
+  "transports": [
+    "https"
+  ],
+  "capabilities": {
+    "services": [
+      "product-catalog",
+      "blog",
+      "faq"
+    ],
+    "ordering": "human-assisted-whatsapp",
+    "payment_methods": [
+      "bank-transfer"
+    ],
+    "currency": "GBP",
+    "minimum_order_gbp": 0,
+    "free_shipping_threshold_gbp": 0
+  },
+  "contact": {
+    "whatsapp": "https://wa.me/440000000000",
+    "email": "info@DOMAIN.com"
+  },
+  "legal": {
+    "age_restriction": "none (min rider age 14 under UK EAPC law)",
+    "region": "GB",
+    "ships_to": "United Kingdom",
+    "product_type": "Electric mountain bikes",
+    "compliance": "Electrically Assisted Pedal Cycles Regulations 1983 (as amended 2015)"
+  }
+}

@@ -1,0 +1,13 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1200" fill="#ffffff" />
+  <g transform="translate(400,380)" opacity="0.9">
+    <circle cx="120" cy="360" r="150" fill="none" stroke="#14432A" stroke-width="18" />
+    <circle cx="680" cy="360" r="150" fill="none" stroke="#14432A" stroke-width="18" />
+    <path d="M120 360 L340 150 L460 360 L680 360" fill="none" stroke="#14432A" stroke-width="18" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M340 150 L400 150" stroke="#14432A" stroke-width="18" stroke-linecap="round" />
+    <circle cx="340" cy="150" r="26" fill="#A8FF3E" />
+  </g>
+  <text x="800" y="1050" font-family="system-ui, sans-serif" font-size="34" fill="#8b9186" text-anchor="middle">
+    Product photo coming soon — Peak Pedal
+  </text>
+</svg>

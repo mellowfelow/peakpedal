@@ -1,0 +1,22 @@
+{
+  "name": "peakpedal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "node scripts/gen-agent-files.mjs",
+    "build": "next build",
+    "start": "next start",
+    "images": "node scripts/images.mjs",
+    "crosscheck": "node scripts/crosscheck.mjs"
+  },
+  "dependencies": {
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}
