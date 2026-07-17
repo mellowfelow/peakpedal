@@ -56,7 +56,11 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(storeSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <section className="hero">
+      <section className={`hero ${SITE.heroImage ? 'hero-has-image' : ''}`}>
+        {SITE.heroImage && (
+          <img src={SITE.heroImage} alt="" className="hero-bg" loading="eager" fetchPriority="high" aria-hidden="true" />
+        )}
+        <div className="hero-overlay" />
         <div className="container hero-inner">
           <div>
             <span className="hero-tag">UK eMTB Specialists</span>

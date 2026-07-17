@@ -9,6 +9,7 @@ export const SITE = {
     'UK electric mountain bike specialists — 78 eMTBs from 15+ leading brands, expert advice, UK-wide delivery.',
   domain: 'DOMAIN.com', // PENDING — change this ONE line, rebuild, push. Never find-and-replace.
   target: 'vercel',
+  heroImage: null, // set to e.g. '/images/hero.jpg' once a real hero photo is supplied — see README "Live placeholders"
   colors: { primary: '#14432A', accent: '#A8FF3E', dark: '#14181C', bg: '#F7F8F5' },
   founding: {
     // Not supplied by client this session — left blank rather than fabricated. Fill in only with real facts.

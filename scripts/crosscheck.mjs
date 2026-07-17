@@ -85,6 +85,14 @@ async function checkConfig() {
   if (SITE.domain === 'DOMAIN.com') {
     warn('SITE.domain is still the pending placeholder "DOMAIN.com" — expected while no domain is live. Update before final production deploy.');
   }
+
+  if (SITE.heroImage) {
+    const full = path.join(ROOT, 'public', SITE.heroImage);
+    if (await exists(full)) pass(`Hero image file exists: public${SITE.heroImage}`);
+    else fail(`SITE.heroImage is set to "${SITE.heroImage}" but public${SITE.heroImage} does not exist`);
+  } else {
+    warn('SITE.heroImage is not set — homepage hero uses the plain gradient fallback until a hero image is supplied.');
+  }
 }
 
 // ---------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import ProductCard from '@/components/ProductCard';
+import ShopGrid from '@/components/ShopGrid';
 import Breadcrumbs, { breadcrumbSchema } from '@/components/Breadcrumbs';
 import { SITE, CONTACT, CATEGORY_PAGES, PRODUCTS, findCategoryPage } from '@/config/site';
 
@@ -63,19 +63,10 @@ export default async function CategoryPage({ params }) {
               </Link>
             </div>
           </div>
+        ) : products.length > 0 ? (
+          <ShopGrid products={products} defaultSort={page.sort === 'price-asc' ? 'price-asc' : 'featured'} />
         ) : (
-          <>
-            <p className="muted">{products.length} bike{products.length === 1 ? '' : 's'}</p>
-            {products.length > 0 ? (
-              <div className="grid grid-4">
-                {products.map((p, i) => (
-                  <ProductCard key={p.slug} product={p} eager={i === 0} />
-                ))}
-              </div>
-            ) : (
-              <p className="muted">No bikes currently match this page — check back soon or browse the full range.</p>
-            )}
-          </>
+          <p className="muted">No bikes currently match this page — check back soon or browse the full range.</p>
         )}
       </section>
     </>
