@@ -7,6 +7,7 @@ import {
   PRODUCTS,
   CATEGORY_PAGES,
   FORMS,
+  HERO_SLIDES,
 } from '../src/config/site.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
@@ -86,12 +87,10 @@ async function checkConfig() {
     warn('SITE.domain is still the pending placeholder "DOMAIN.com" — expected while no domain is live. Update before final production deploy.');
   }
 
-  if (SITE.heroImage) {
-    const full = path.join(ROOT, 'public', SITE.heroImage);
-    if (await exists(full)) pass(`Hero image file exists: public${SITE.heroImage}`);
-    else fail(`SITE.heroImage is set to "${SITE.heroImage}" but public${SITE.heroImage} does not exist`);
-  } else {
-    warn('SITE.heroImage is not set — homepage hero uses the plain gradient fallback until a hero image is supplied.');
+  for (const slide of HERO_SLIDES) {
+    const full = path.join(ROOT, 'public', slide.image);
+    if (await exists(full)) pass(`Hero slide image exists: public${slide.image}`);
+    else fail(`Hero slide references public${slide.image} which does not exist — add the file or remove/replace this slide in HERO_SLIDES (a missing file shows a broken image, not a fallback).`);
   }
 }
 

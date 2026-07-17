@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
-import { SITE, CONTACT, PRODUCTS, BRANDS, FAQS, COMPLIANCE } from '@/config/site';
+import HeroSlider from '@/components/HeroSlider';
+import { SITE, CONTACT, PRODUCTS, BRANDS, FAQS, COMPLIANCE, HERO_SLIDES } from '@/config/site';
 
 export const metadata = {
   title: `Electric Mountain Bikes UK | eMTB Specialists | ${SITE.name}`,
@@ -56,29 +57,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(storeSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <section className={`hero ${SITE.heroImage ? 'hero-has-image' : ''}`}>
-        {SITE.heroImage && (
-          <img src={SITE.heroImage} alt="" className="hero-bg" loading="eager" fetchPriority="high" aria-hidden="true" />
-        )}
-        <div className="hero-overlay" />
-        <div className="container hero-inner">
-          <div>
-            <span className="hero-tag">UK eMTB Specialists</span>
-            <h1>Electric Mountain Bikes for Every Trail</h1>
-            <p style={{ fontSize: '1.1rem', maxWidth: 640 }}>
-              {SITE.description} From entry-level hardtails to premium enduro full-suspension builds — we'll help you find the right motor, travel and geometry for where you ride.
-            </p>
-            <div className="hero-cta">
-              <Link href="/electric-mountain-bikes/" className="btn btn-accent">
-                Shop All Bikes
-              </Link>
-              <a href={`https://wa.me/${CONTACT.whatsapp}`} className="btn btn-outline" style={{ borderColor: '#fff', color: '#fff' }}>
-                Ask on WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSlider slides={HERO_SLIDES} />
 
       <section className="container trust-bar">
         <div>🚚 Free UK Delivery</div>

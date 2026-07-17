@@ -9,7 +9,6 @@ export const SITE = {
     'UK electric mountain bike specialists — 78 eMTBs from 15+ leading brands, expert advice, UK-wide delivery.',
   domain: 'DOMAIN.com', // PENDING — change this ONE line, rebuild, push. Never find-and-replace.
   target: 'vercel',
-  heroImage: null, // set to e.g. '/images/hero.jpg' once a real hero photo is supplied — see README "Live placeholders"
   colors: { primary: '#14432A', accent: '#A8FF3E', dark: '#14181C', bg: '#F7F8F5' },
   founding: {
     // Not supplied by client this session — left blank rather than fabricated. Fill in only with real facts.
@@ -24,6 +23,23 @@ export const SITE = {
     sameAs: [],
   },
 };
+
+// Homepage hero slider. Rule: <h1> lives on slide 1 only — other slides use styled
+// text, never a second <h1> (see HeroSlider.jsx). Images live in public/images/.
+export const HERO_SLIDES = [
+  {
+    image: '/images/hero-1.webp',
+    tag: 'UK eMTB Specialists',
+    heading: 'Electric Mountain Bikes for Every Trail',
+    body: `${SITE.description} From entry-level hardtails to premium enduro full-suspension builds — we'll help you find the right motor, travel and geometry for where you ride.`,
+  },
+  {
+    image: '/images/hero-2.webp',
+    tag: 'Ride With Confidence',
+    heading: 'Built For Every Rider, Every Trail',
+    body: `From first-timers to seasoned riders — 78 eMTBs across 15+ brands, matched to how and where you ride.`,
+  },
+];
 
 export const CONTACT = {
   email: 'info@DOMAIN.com', // placeholder — entity-encode wherever rendered

@@ -6,4 +6,6 @@ out/
 .DS_Store
 assets/product-photos/*
 !assets/product-photos/.gitkeep
+assets/hero-photos/*
+!assets/hero-photos/.gitkeep
 docs/_contact-sheet.png
