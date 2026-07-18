@@ -28,6 +28,8 @@ export default function Footer() {
             <Link href="/full-suspension-electric-mountain-bikes/">Full Suspension</Link>
             <Link href="/hardtail-electric-mountain-bikes/">Hardtail</Link>
             <Link href="/lightweight-electric-mountain-bikes/">Lightweight SL</Link>
+            <Link href="/womens-electric-mountain-bikes/">Women's</Link>
+            <Link href="/kids-electric-mountain-bike/">Kids & Teens</Link>
             <Link href="/electric-mountain-bike-deals/">Deals</Link>
           </div>
           <div className="footer-col">

@@ -9,6 +9,8 @@ const TYPE_LINKS = [
   ['Hardtail', '/hardtail-electric-mountain-bikes/'],
   ['Lightweight SL', '/lightweight-electric-mountain-bikes/'],
   ['Enduro', '/enduro-electric-mountain-bikes/'],
+  ["Women's", '/womens-electric-mountain-bikes/'],
+  ['Kids & Teens', '/kids-electric-mountain-bike/'],
 ];
 
 export default function Nav() {
