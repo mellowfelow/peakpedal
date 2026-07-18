@@ -13,7 +13,21 @@ const TYPE_LINKS = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [shopOpen, setShopOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+
+  function closeAll() {
+    setOpen(false);
+    setShopOpen(false);
+  }
+
+  function toggleMenu() {
+    setOpen((v) => {
+      const next = !v;
+      if (!next) setShopOpen(false);
+      return next;
+    });
+  }
 
   useEffect(() => {
     function readCart() {
@@ -85,7 +99,7 @@ export default function Nav() {
             className="nav-icon-btn hamburger"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
+            onClick={toggleMenu}
           >
             <MenuIcon />
           </button>
@@ -93,16 +107,35 @@ export default function Nav() {
       </div>
 
       <div className={`mobile-menu ${open ? 'open' : ''}`}>
-        <Link href="/electric-mountain-bikes/" onClick={() => setOpen(false)}>Shop All Bikes</Link>
-        {TYPE_LINKS.map(([label, href]) => (
-          <Link key={href} href={href} onClick={() => setOpen(false)}>{label}</Link>
-        ))}
-        <Link href="/electric-mountain-bike-deals/" onClick={() => setOpen(false)}>Deals</Link>
-        <Link href="/finance/" onClick={() => setOpen(false)}>Finance</Link>
-        <Link href="/cycle-to-work/" onClick={() => setOpen(false)}>Cycle to Work</Link>
-        <Link href="/blog/" onClick={() => setOpen(false)}>Blog</Link>
-        <Link href="/about/" onClick={() => setOpen(false)}>About</Link>
-        <Link href="/contact/" onClick={() => setOpen(false)}>Contact</Link>
+        <button
+          type="button"
+          className="mobile-menu-toggle"
+          aria-expanded={shopOpen}
+          onClick={() => setShopOpen((v) => !v)}
+        >
+          Shop
+          <ChevronIcon className={shopOpen ? 'is-open' : ''} />
+        </button>
+        {shopOpen && (
+          <div className="mobile-submenu">
+            <Link href="/electric-mountain-bikes/" onClick={closeAll}>All Electric Mountain Bikes</Link>
+            <span className="mobile-submenu-label">By Type</span>
+            {TYPE_LINKS.map(([label, href]) => (
+              <Link key={href} href={href} onClick={closeAll}>{label}</Link>
+            ))}
+            <span className="mobile-submenu-label">By Brand</span>
+            {BRANDS.slice(0, 6).map((b) => (
+              <Link key={b.slug} href={`/${b.slug}-electric-mountain-bikes/`} onClick={closeAll}>
+                {b.name}
+              </Link>
+            ))}
+          </div>
+        )}
+        <Link href="/electric-mountain-bike-deals/" onClick={closeAll}>Deals</Link>
+        <Link href="/finance/" onClick={closeAll}>Finance</Link>
+        <Link href="/blog/" onClick={closeAll}>Blog</Link>
+        <Link href="/about/" onClick={closeAll}>About</Link>
+        <Link href="/contact/" onClick={closeAll}>Contact</Link>
       </div>
     </header>
   );
@@ -115,6 +148,23 @@ function LogoMark() {
       <path d="M6 22 L13 10 L17 17 L21 10 L27 22" stroke="#A8FF3E" strokeWidth="2.4" fill="none" strokeLinejoin="round" strokeLinecap="round" />
       <circle cx="10" cy="23" r="2.6" fill="#A8FF3E" />
       <circle cx="23" cy="23" r="2.6" fill="#A8FF3E" />
+    </svg>
+  );
+}
+
+function ChevronIcon({ className = '' }) {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      aria-hidden="true"
+      className={`chevron-icon ${className}`}
+    >
+      <path d="M6 9l6 6 6-6" />
     </svg>
   );
 }
