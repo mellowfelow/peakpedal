@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Breadcrumbs, { breadcrumbSchema } from '@/components/Breadcrumbs';
+import PostBody, { postFaqSchema } from '@/components/PostBody';
 import { SITE, POSTS, findPost } from '@/config/site';
 import { POST_BODIES } from '@/content/posts';
 
@@ -23,13 +24,15 @@ export default async function BlogPost({ params }) {
   const { slug } = await params;
   const post = findPost(slug);
   if (!post) notFound();
-  const sections = POST_BODIES[post.slug] || [];
+  const body = POST_BODIES[post.slug];
 
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Blog', href: '/blog/' },
     { label: post.title },
   ];
+
+  const faqSchema = postFaqSchema(body?.faqs);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -43,6 +46,7 @@ export default async function BlogPost({ params }) {
         publisher: { '@type': 'Organization', name: SITE.name },
         mainEntityOfPage: `https://${SITE.domain}/blog/${post.slug}/`,
       },
+      ...(faqSchema ? [faqSchema] : []),
     ],
   };
 
@@ -52,14 +56,7 @@ export default async function BlogPost({ params }) {
       <Breadcrumbs items={breadcrumbItems} />
       <article className="section container" style={{ maxWidth: 760 }}>
         <h1>{post.title}</h1>
-        {sections.map((section) => (
-          <div key={section.heading}>
-            <h2>{section.heading}</h2>
-            {section.paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-        ))}
+        <PostBody body={body} />
       </article>
     </>
   );
