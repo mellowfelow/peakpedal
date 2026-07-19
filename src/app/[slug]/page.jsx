@@ -68,6 +68,15 @@ export default async function CategoryPage({ params }) {
         ) : (
           <p className="muted">No bikes currently match this page — check back soon or browse the full range.</p>
         )}
+
+        {page.extraHeading && (
+          <div style={{ maxWidth: 760, marginTop: '2rem' }}>
+            <h2>{page.extraHeading}</h2>
+            {page.extraParagraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        )}
       </section>
     </>
   );

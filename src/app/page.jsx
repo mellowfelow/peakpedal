@@ -116,9 +116,9 @@ export default function HomePage() {
         </p>
         <p>
           Our focus is matching each rider to the right motor, travel and geometry for their terrain — whether that's an entry-level
-          hardtail for trail-centre laps or a long-travel enduro full-suspension build for demanding descents. Every bike we stock is
-          a legal electrically assisted pedal cycle (EAPC) under UK law: motor power capped at {COMPLIANCE.eapc.maxPowerWatts}W,
-          assistance cutting out at {COMPLIANCE.eapc.maxAssistSpeedMph}mph.
+          hardtail for trail-centre laps or a long-travel enduro full-suspension build for demanding descents. Whether you call them
+          eMTBs or emtb bikes, every one we stock is a legal electrically assisted pedal cycle (EAPC) under UK law: motor power
+          capped at {COMPLIANCE.eapc.maxPowerWatts}W, assistance cutting out at {COMPLIANCE.eapc.maxAssistSpeedMph}mph.
         </p>
         <p>
           <Link href="/about/">Read more about Peak Pedal &rarr;</Link>

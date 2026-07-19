@@ -88,20 +88,123 @@ export const COMPLIANCE = {
 // dedicated page yet — see docs/keyword-map.md Phase 2.
 // ---------------------------------------------------------------------------
 export const BRANDS = [
-  { slug: 'cube', name: 'Cube', keyword: 'cube electric bike', description: 'Cube is a German bicycle manufacturer whose Stereo Hybrid and Reaction Hybrid ranges pair full-suspension and hardtail eMTB frames with Bosch Performance CX motors.' },
-  { slug: 'trek', name: 'Trek', keyword: 'trek electric mountain bike', description: 'Trek is one of the world’s largest bike manufacturers, building its Rail, Fuel EXe and Marlin+ eMTB ranges around Bosch and Shimano motor platforms.' },
-  { slug: 'orbea', name: 'Orbea', keyword: 'orbea wild', description: 'Orbea is a Spanish bicycle co-operative known for the Wild enduro eMTB and the Rise lightweight SL platform, plus the Urrun electric hardtail.' },
-  { slug: 'whyte', name: 'Whyte', keyword: 'whyte electric bicycle', description: 'Whyte is a UK-designed bike brand producing the Kado trail eMTB range, the E-Lyte lightweight SL platform, and the Karve electric hardtail.' },
-  { slug: 'haibike', name: 'Haibike', keyword: 'haibike e bike', description: 'Haibike is a German brand widely credited as an early pioneer of the eMTB category, with AllMtn, AllTrack, AllTrail and NDURO ranges spanning Yamaha, Bosch and Pinion motor systems.' },
-  { slug: 'giant', name: 'Giant', keyword: 'giant electric bike', description: 'Giant is a Taiwanese manufacturer and one of the largest bike makers globally, with the Stance E+, Reign E+, Fathom E+ and Talon E+ ranges built on Yamaha SyncDrive motors.' },
-  { slug: 'mondraker', name: 'Mondraker', keyword: 'mondraker e bike', description: 'Mondraker is a Spanish brand known for its Forward Geometry design philosophy, applied across the Crafty enduro eMTB range and the Prime hardtail.' },
-  { slug: 'merida', name: 'Merida', keyword: 'merida electric bicycle', description: 'Merida is a Taiwanese manufacturer producing the eOne-Sixty and eOne-Eighty eMTB ranges, both built around Shimano EP8-series motors.' },
-  { slug: 'santa-cruz', name: 'Santa Cruz', keyword: 'santa cruz vala', description: 'Santa Cruz is a California-based brand known for premium full-suspension engineering, with the Vala trail eMTB, Bullit enduro eMTB and Heckler SL lightweight platform.' },
+  {
+    slug: 'cube', name: 'Cube', keyword: 'cube electric bike',
+    description: 'Cube is a German bicycle manufacturer whose Stereo Hybrid and Reaction Hybrid ranges pair full-suspension and hardtail eMTB frames with Bosch Performance CX motors.',
+    extraHeading: 'Cube Electric Mountain Bikes — Stereo Hybrid and Reaction Hybrid',
+    extraParagraphs: [
+      "Cube splits its range cleanly in two. The Stereo Hybrid is Cube's cube full suspension bike platform — a cube full sus build available in both trail (ONE44) and enduro-travel (160 HPC) versions, plus the carbon AMS Hybrid for riders who want a lighter cube full suspension mountain bike. The Reaction Hybrid covers the other half as Cube's cube hardtail mountain bike line: a simpler, lighter cube mtb built as a cube hardtail mtb around the same motor platform used across the cube electric mountain bikes range.",
+      'Whether you\'re searching for a cube mountain bike generally, a specific cube e bike or cube ebike, or want to compare cube hardtail mountain bikes side by side, every cube electric mountain bike and cube e mtb we stock is listed below — all part of our cube electric bikes uk range with UK-wide delivery.',
+    ],
+  },
+  {
+    slug: 'trek', name: 'Trek', keyword: 'trek electric mountain bike',
+    description: 'Trek is one of the world’s largest bike manufacturers, building its Rail, Fuel EXe and Marlin+ eMTB ranges around Bosch and Shimano motor platforms.',
+    extraHeading: 'Trek Electric Mountain Bikes UK — Full Suspension and Hardtail',
+    extraParagraphs: [
+      "Trek electric mountain bikes at Peak Pedal span three ranges built for different riding styles. If you're after trek full suspension capability, the Rail and Rail+ are proper trek full suspension mountain bikes — long-travel, Bosch-powered builds that double as a genuine trek enduro bike for UK trail centres. Prefer something lighter? The Fuel EXe trades outright power for a more natural ride using a compact TQ motor, while the Marlin+ is Trek's affordable hardtail entry point.",
+      "Across the catalogue, these trek mountain bikes uk riders search for most — trek full sus builds, a lightweight trek ebike, or a simple electric trek bikes hardtail — are all here from one of the world's largest trek bikes e bike manufacturers.",
+    ],
+  },
+  {
+    slug: 'orbea', name: 'Orbea', keyword: 'orbea wild',
+    description: 'Orbea is a Spanish bicycle co-operative known for the Wild enduro eMTB and the Rise lightweight SL platform, plus the Urrun electric hardtail.',
+    extraHeading: 'Orbea Electric Mountain Bikes — Wild, Rise and Urrun Explained',
+    extraParagraphs: [
+      "As orbea dealers uk shoppers increasingly search for, Peak Pedal stocks the full Orbea range across two very different platforms. The Wild is our orbea full suspension pick for enduro riders — a proper orbea electric mountain bike built for long descents — while the Rise strips weight down into a lighter orbea emtb, and the Urrun covers the hardtail end as an accessible orbea e bike.",
+      "Whether you're comparing an orbea ebike against rivals, searching for an orbea electric bike with adjustable geometry, or just want orbea bikes electric options in one place, every model in our orbea electric bikes range ships UK-wide — one of the more distinctive ebikes orbea makes, thanks to its co-operative ownership structure.",
+    ],
+  },
+  {
+    slug: 'whyte', name: 'Whyte', keyword: 'whyte electric bicycle',
+    description: 'Whyte is a UK-designed bike brand producing the Kado trail eMTB range, the E-Lyte lightweight SL platform, and the Karve electric hardtail.',
+    extraHeading: 'Whyte Electric Mountain Bikes — UK-Designed eMTBs',
+    extraParagraphs: [
+      "Whyte is one of the few genuinely UK-designed whyte mountain bikes brands in our range, and it shows in the geometry choices across its lineup. The Kado is Whyte's whyte full suspension trail platform, the newer Rheo and E-160 RSX push further into enduro territory, and the E-Lyte trims weight down into a lightweight whyte emtb built around a smaller Bosch motor. For a simpler, more affordable whyte hardtail, the Karve 150 covers that end of the range.",
+      'Whether you\'re after a whyte e bike, whyte ebike or whyte electric bicycle specifically, or just browsing whyte electric bikes generally, every whyte electric bike and whyte e bikes model we stock ships UK-wide.',
+    ],
+  },
+  {
+    slug: 'haibike', name: 'Haibike', keyword: 'haibike e bike',
+    description: 'Haibike is a German brand widely credited as an early pioneer of the eMTB category, with AllMtn, AllTrack, AllTrail and NDURO ranges spanning Yamaha, Bosch and Pinion motor systems.',
+    extraHeading: 'Haibike Electric Mountain Bikes UK — AllMtn, AllTrack and AllTrail',
+    extraParagraphs: [
+      "As a haibike uk stockist, Peak Pedal carries three core Haibike families that cover most riding styles. The AllMtn is our full-suspension haibike electric mountain bike range, spanning Yamaha, Bosch and Pinion motor platforms; the AllTrack and AllTrail are Haibike's haibike electric bicycles for the hardtail crowd, built as a simpler, lighter haibike e bike for trail-centre riding; and the NDURO pushes travel further for descent-focused riders. Haibike's wider line-up also includes the HardSeven hardtail series — haibike hardseven isn't in our current range, but the AllTrack and AllTrail cover similar ground.",
+      "Every haibike electric bike we stock runs a Bosch or Yamaha PowerTube-style battery, with haibike battery capacity typically in the 500-750Wh range depending on motor and frame size. Whether you search for Haibike or the common variant hai electric bikes, check our haibike sale page for current best-value picks across the haibike mountain bike and haibike emtb range.",
+    ],
+  },
+  {
+    slug: 'giant', name: 'Giant', keyword: 'giant electric bike',
+    description: 'Giant is a Taiwanese manufacturer and one of the largest bike makers globally, with the Stance E+, Reign E+, Fathom E+ and Talon E+ ranges built on Yamaha SyncDrive motors.',
+    extraHeading: 'Giant Electric Mountain Bikes — Stance, Reign, Fathom and Talon',
+    extraParagraphs: [
+      "Giant's range covers every travel bracket. The Stance E+ and Reign E+ are full-suspension giant electric mountain bikes — the Reign built specifically as an enduro-travel giant e mountain bike for bigger terrain — while the Fathom E+ and Talon E+ bring the same Yamaha SyncDrive motors to a lighter, more affordable giant mountain bike hardtail.",
+      "Whether you call it a giant electric bike, giant ebike or giant e bike, every model runs the same well-proven Yamaha platform Giant has used across its giant e bikes range for years. As one of the largest giant bikes e bike manufacturers in the world, Giant's giant electric bikes are built at a scale few competitors can match, which shows up in consistent build quality across the range.",
+    ],
+  },
+  {
+    slug: 'mondraker', name: 'Mondraker', keyword: 'mondraker e bike',
+    description: 'Mondraker is a Spanish brand known for its Forward Geometry design philosophy, applied across the Crafty enduro eMTB range and the Prime hardtail.',
+    extraHeading: 'Mondraker Electric Mountain Bikes — Crafty, Level and Neat',
+    extraParagraphs: [
+      "Mondraker built its reputation on Forward Geometry, and that same long-front-centre design carries through every mondraker electric mountain bike in our range. The Crafty is the enduro-focused mondraker emtb with the most travel; the newer Level R and XR sit in the trail category as a slightly more versatile mondraker electric mtb; and the Neat R is Mondraker's lightweight hardtail, running a Mahle X20 motor rather than the Bosch units used elsewhere.",
+      'Whether you search for a mondraker e bike, mondraker ebike, mondraker e mtb or simply e bike mondraker, every mondraker electric bike here shares that same distinctive handling.',
+    ],
+  },
+  {
+    slug: 'merida', name: 'Merida', keyword: 'merida electric bicycle',
+    description: 'Merida is a Taiwanese manufacturer producing the eOne-Sixty and eOne-Eighty eMTB ranges, both built around Shimano EP8-series motors.',
+    extraHeading: 'Merida Electric Mountain Bikes — eOne-Sixty and eOne-Eighty',
+    extraParagraphs: [
+      "Merida's eOne-Sixty is the backbone of our merida electric bikes range — a full-suspension merida electric mountain bike available in an accessible 875 Lite build and a lighter SL 7000 version for riders who want a more responsive merida e bike. The eOne-Eighty pushes travel further for an enduro-capable merida electric bicycle built to handle bigger terrain.",
+      "As one of Taiwan's largest merida bikes e bike manufacturers, Merida applies the same manufacturing scale to its merida e bikes as it does to its acoustic bike range, and every merida ebike and merida electric bike here reflects that build quality.",
+    ],
+  },
+  {
+    slug: 'santa-cruz', name: 'Santa Cruz', keyword: 'santa cruz vala',
+    description: 'Santa Cruz is a California-based brand known for premium full-suspension engineering, with the Vala trail eMTB, Bullit enduro eMTB and Heckler SL lightweight platform.',
+    extraHeading: 'Santa Cruz Electric Mountain Bikes — Vala, Bullit and Heckler SL',
+    extraParagraphs: [
+      "Santa Cruz is known for premium full-suspension engineering, and every santa cruz electric mountain bike we stock reflects that — there's no hardtail in the range. The Vala is the trail-focused santa cruz e bike, the Bullit is the enduro-travel santa cruz emtb built for bigger terrain, and the santa cruz bicycles heckler name lives on in the Heckler SL, a lightweight santa cruz e mountain bike that trades some power for a livelier ride.",
+      "Whether you're comparing full suspension santa cruz builds, searching for a santa cruz ebike or santa cruz electric bike generally, or want a proper santa cruz full sus platform without the weight of a full-power motor, the santa cruz e bikes range here covers trail through enduro — a genuinely electric santa cruz line-up built to the same engineering standard as the rest of the brand.",
+    ],
+  },
   { slug: 'amflow', name: 'Amflow', keyword: 'amflow bikes', description: 'Amflow is an eMTB brand built around DJI’s Avinox motor system, offering the PL Carbon lightweight platform and the PX Carbon enduro platform.' },
-  { slug: 'cannondale', name: 'Cannondale', keyword: 'cannondale electric bike', description: 'Cannondale is a US bike brand producing the Moterra Neo full-power eMTB and the Moterra Neo SL lightweight platform, both on Bosch and Shimano motors respectively.' },
-  { slug: 'specialized', name: 'Specialized', keyword: 'specialized mountain bike', description: 'Specialized is a US bike brand and developer of the Turbo Levo, one of the best-known eMTB platforms, alongside the lighter-weight Turbo Levo SL.' },
-  { slug: 'lapierre', name: 'Lapierre', keyword: 'lapierre electric bike', description: 'Lapierre is a French bike brand producing the Overvolt AM all-mountain eMTB and the E-Zesty trail eMTB, both built on Bosch and Shimano motors.' },
-  { slug: 'transition', name: 'Transition', keyword: 'transition e bike', description: 'Transition is a US brand known for aggressive trail and enduro geometry, applied to its carbon Relay eMTB built around the Bosch Performance CX motor.' },
+  {
+    slug: 'cannondale', name: 'Cannondale', keyword: 'cannondale electric bike',
+    description: 'Cannondale is a US bike brand producing the Moterra Neo full-power eMTB and the Moterra Neo SL lightweight platform, both on Bosch and Shimano motors respectively.',
+    extraHeading: 'Cannondale Electric Mountain Bikes — Moterra Neo Range',
+    extraParagraphs: [
+      "Cannondale's eMTB range is officially badged Moterra Neo, though it's commonly searched for as simply a cannondale electric bike or cannondale ebike. The Moterra Neo 3 is our full-power cannondale electric mountain bike — a proper cannondale full suspension build on a Bosch Performance CX motor — while the Moterra Neo SL 2 swaps to a lighter Shimano EP801 setup for a more agile cannondale e mtb.",
+      'Whether you\'re after a cannondale e bike specifically or browsing cannondale electric bikes generally, both cannondale emtb builds here are genuine full-suspension platforms, not a hardtail with a motor bolted on.',
+    ],
+  },
+  {
+    slug: 'specialized', name: 'Specialized', keyword: 'specialized mountain bike',
+    description: 'Specialized is a US bike brand and developer of the Turbo Levo, one of the best-known eMTB platforms, alongside the lighter-weight Turbo Levo SL.',
+    extraHeading: 'Specialized Electric Mountain Bikes — Turbo Levo Range',
+    extraParagraphs: [
+      "Specialized builds one of the best-known eMTB platforms in the Turbo Levo, and our range covers both ends of it. The Turbo Levo 4 Comp Alloy is the accessible full-power specialized mountain bike, built around Specialized's own S3 Full Power motor, while the Expert Carbon trims weight with a carbon frame. For riders comparing specialised full sus options more broadly, the Turbo Levo SL swaps to the lighter SL 1.1 motor for a livelier feel.",
+      'However you search — specialized mountain bike, specialised mtb, or specialised e bikes — check our specialized sale page for current best-value picks across the range.',
+    ],
+  },
+  {
+    slug: 'lapierre', name: 'Lapierre', keyword: 'lapierre electric bike',
+    description: 'Lapierre is a French bike brand producing the Overvolt AM all-mountain eMTB and the E-Zesty trail eMTB, both built on Bosch and Shimano motors.',
+    extraHeading: 'Lapierre Electric Mountain Bikes — Overvolt Range',
+    extraParagraphs: [
+      'Every lapierre electric bike in our range carries the Overvolt name — lapierre overvolt is the umbrella under which Lapierre builds both its all-mountain and trail platforms. The Overvolt AM 4.6 is the full-suspension lapierre electric mountain bike built for all-mountain riding on a Bosch Performance CX motor, while the E-Zesty 4.9 is the more trail-oriented option on a lighter Shimano EP801 setup.',
+      'Whether you know it as overvolt lapierre, search for a lapierre ebike or lapierre e bike specifically, or just want to compare lapierre electric bikes generally, this lapierre mountain bike range covers both ends of the trail spectrum.',
+    ],
+  },
+  {
+    slug: 'transition', name: 'Transition', keyword: 'transition e bike',
+    description: 'Transition is a US brand known for aggressive trail and enduro geometry, applied to its carbon Relay eMTB built around the Bosch Performance CX motor.',
+    extraHeading: 'Transition Electric Mountain Bikes — Relay Carbon',
+    extraParagraphs: [
+      "Transition built its reputation on aggressive trail and enduro geometry with its unassisted transition bikes, and the Relay Carbon carries that same handling into a transition e bike. It's the only transition ebike in our current range — a carbon-framed, Bosch Performance CX-powered transition mountain bike built for riders who want a proper transition mtb rather than a more conservative geometry compromise.",
+    ],
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -357,6 +460,10 @@ export const CATEGORY_PAGES = [
     metaDescription: 'Shop 78 electric mountain bikes from 15+ leading brands. Full suspension, hardtail and lightweight SL eMTBs, UK-wide delivery.',
     h1: 'Electric Mountain Bikes',
     intro: `Browse Peak Pedal's full range of ${PRODUCTS.length} electric mountain bikes — full suspension, hardtail and lightweight SL, from Bosch, Shimano, Yamaha and DJI Avinox-powered platforms.`,
+    extraHeading: 'Full Suspension Electric Mountain Bikes Under £2000?',
+    extraParagraphs: [
+      "If you're searching for full suspension electric mountain bikes under 2000 pounds, we'll be upfront: nothing in our range, or realistically on the UK market from an established brand, hits that price point with genuine full suspension and a proper mid-drive motor. Our most affordable full-suspension model starts at £2,800; under £2,200 you're looking at a well-specced hardtail instead. We'd rather tell you that directly than list something misleading.",
+    ],
     filter: () => true,
   },
   {
@@ -367,6 +474,11 @@ export const CATEGORY_PAGES = [
     metaDescription: 'Full suspension electric mountain bikes for trail, enduro and all-mountain riding. Compare travel, motor and price across every brand we stock.',
     h1: 'Full Suspension Electric Mountain Bikes',
     intro: 'Full suspension eMTBs pair rear travel with a mid-drive motor for control over rough, technical trails. Compare travel, motor platform and price across our full-suspension range.',
+    extraHeading: 'Choosing a Full Suspension eMTB',
+    extraParagraphs: [
+      "A full suspension emtb pairs rear travel with a mid-drive motor, trading some weight and cost against a hardtail for genuinely more comfort and control on rough ground. If you're comparing a full sus emtb against a hardtail for the first time, the short version is: more travel means more forgiveness on rocky, root-strewn trails, at the cost of some pedalling efficiency and a higher price.",
+      'Every full sus electric mountain bike in this range spans 140mm up to 175mm of travel, so whether you want a trail-focused electric full suspension mtb or a long-travel enduro build, you can filter by travel and motor below.',
+    ],
     filter: (p) => p.category === 'Full Suspension',
   },
   {
@@ -377,6 +489,10 @@ export const CATEGORY_PAGES = [
     metaDescription: 'Electric hardtail mountain bikes — simpler, lighter and typically more affordable than full suspension, ideal for trail centres and fire roads.',
     h1: 'Hardtail Electric Mountain Bikes',
     intro: 'Hardtail eMTBs skip rear suspension for a lighter, lower-maintenance bike that’s typically more affordable than full suspension — a strong entry point into electric mountain biking.',
+    extraHeading: 'Why Choose a Hardtail eMTB',
+    extraParagraphs: [
+      "A hardtail emtb skips rear suspension entirely, which keeps weight down, maintenance simpler, and the purchase price lower than an equivalent full-suspension build. For UK trail centres and fire roads, an electric hardtail mtb is often the more practical choice — there's less to service, and the stiffer rear end can even feel more efficient on smoother climbs. If you're new to electric mountain biking, a hardtail e mtb is usually the sensible starting point before stepping up to full suspension.",
+    ],
     filter: (p) => p.category === 'Hardtail',
   },
   {
@@ -387,6 +503,11 @@ export const CATEGORY_PAGES = [
     metaDescription: 'Lightweight SL electric mountain bikes with smaller, lighter motor systems for a more natural ride feel — from Orbea Rise to Specialized Turbo Levo SL.',
     h1: 'Lightweight Electric Mountain Bikes (SL)',
     intro: 'Lightweight SL eMTBs use smaller, lighter motor and battery systems for a ride feel closer to an unassisted mountain bike, while still giving you assistance on the climbs.',
+    extraHeading: 'What Makes a Lightweight SL eMTB Different',
+    extraParagraphs: [
+      "A lightweight emtb — sometimes just called a light emtb — swaps a full-power motor and battery for a smaller, lighter system that trades outright torque for a ride feel closer to an unassisted bike. If you're after the lightest emtb in our range, the Orbea Rise and Trek Fuel EXe both come in well under the weight of a full-power equivalent.",
+      "We wouldn't claim to stock the single best lightweight emtb on the UK market, since that depends entirely on your terrain and budget, but across motor platforms — Shimano EP801-RS, TQ HPR50, Specialized SL 1.1 — this is where you'll find some of the best lightweight electric mountain bikes currently available here.",
+    ],
     filter: (p) => p.category === 'Lightweight SL',
   },
   {
@@ -397,6 +518,10 @@ export const CATEGORY_PAGES = [
     metaDescription: 'Enduro electric mountain bikes with long travel and aggressive geometry for demanding descents — from Orbea Wild to Santa Cruz Bullit.',
     h1: 'Enduro Electric Mountain Bikes',
     intro: 'Enduro eMTBs bring long-travel suspension and descent-focused geometry to electric mountain biking, for riders who prioritise capability on demanding terrain.',
+    extraHeading: 'What Counts as an Enduro eMTB',
+    extraParagraphs: [
+      "An e enduro bike prioritises descending capability above all else — long travel, slack head angles and stronger brakes, built for riders who spend more time pointed downhill than climbing. Every enduro e bike in this range runs 160mm or more of travel front and rear, powered by a full-power motor rather than a lightweight SL system, since enduro riding puts more sustained demand on the motor and battery than cross-country or trail use.",
+    ],
     filter: (p) => p.type === 'Enduro',
   },
   {
@@ -417,6 +542,10 @@ export const CATEGORY_PAGES = [
     metaDescription: "Buying an electric mountain bike as a woman? Our range is unisex with adjustable geometry — here's how to get the frame size and fit right.",
     h1: "Electric Mountain Bikes for Women",
     intro: 'Our eMTB range is unisex — every model is available across multiple frame sizes, and several (Orbea, Whyte, Trek) offer a smaller-frame option down to XS. The right size comes down to standover height and reach rather than a separate "women’s" model — get in touch and we’ll help you match a frame to your height.',
+    extraHeading: 'Finding the Right Womens eMTB',
+    extraParagraphs: [
+      "A womens emtb doesn't need to be a separate product line — the frame size and standover height matter far more than any gendered marketing label. Every womens electric bike question we get usually comes down to reach and seat height rather than colour or graphics, which is why our range sticks to genuinely unisex frames across multiple sizes rather than a cosmetically different \"women's\" version of the same bike.",
+    ],
     filter: () => true,
   },
   {
@@ -427,6 +556,10 @@ export const CATEGORY_PAGES = [
     metaDescription: "We don't currently stock a dedicated kids eMTB range. Here's what UK law requires and which of our smaller-frame, entry-level bikes suit teen riders.",
     h1: 'Electric Mountain Bikes for Kids & Teens',
     intro: `Peak Pedal doesn't currently stock a dedicated kids electric mountain bike range. Under UK law (${COMPLIANCE.eapc.statute}), the minimum rider age for a pedal-assist eMTB is ${COMPLIANCE.eapc.minRiderAge}. For teen riders at or above that age, our entry-level hardtails with the smallest available frame sizes are the best starting point — contact us and we'll help you find the right fit.`,
+    extraHeading: 'Kids eBike Options at Peak Pedal',
+    extraParagraphs: [
+      "We don't stock a dedicated kids ebike or kids e bike range — every model here is designed and sized for adult and teen riders at or above the UK's 14-year minimum EAPC age. If you're specifically looking for a genuine kids ebike sized for a younger rider, that's outside what we currently carry, and we'd rather say so directly than stretch the definition.",
+    ],
     filter: () => false,
   },
   {
@@ -498,6 +631,10 @@ export const CATEGORY_PAGES = [
     metaDescription: 'Electric mountain bikes powered by Bosch Performance CX and Active Line motors — our largest motor category by SKU count.',
     h1: 'Bosch Electric Mountain Bikes',
     intro: 'The Bosch Performance CX is the most widely used mid-drive motor in our range, found across full-suspension, hardtail and enduro models.',
+    extraHeading: 'Bosch-Powered eMTBs at Peak Pedal',
+    extraParagraphs: [
+      "A Bosch emtb is the safest of safe choices in this range — Bosch's Performance Line and Performance Line CX motors power more of our catalogue than any other brand, from entry-level hardtails through to long-travel enduro builds. If you're comparing a bosch e mountain bike against Shimano or Yamaha equivalents, the practical difference usually comes down to which specific bike and geometry you prefer rather than the bosch motor ebike itself, since all three platforms are mature, well-supported systems with wide UK dealer networks for servicing.",
+    ],
     filter: (p) => Boolean(p.motor) && p.motor.includes('Bosch'),
   },
   {
@@ -528,6 +665,8 @@ export const CATEGORY_PAGES = [
     metaDescription: `Shop the full ${brand.name} electric mountain bike range at Peak Pedal, with UK-wide delivery and expert buying advice.`,
     h1: `${brand.name} Electric Mountain Bikes`,
     intro: brand.description,
+    extraHeading: brand.extraHeading,
+    extraParagraphs: brand.extraParagraphs,
     filter: (p) => p.brand === brand.name,
   })),
 ];
