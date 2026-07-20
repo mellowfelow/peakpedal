@@ -1,4 +1,4 @@
-import { SITE, CATEGORY_PAGES, PRODUCTS, POSTS } from '@/config/site';
+import { SITE, CATEGORY_PAGES, PRODUCTS, POSTS, ACCESSORIES } from '@/config/site';
 
 export default function sitemap() {
   const base = `https://${SITE.domain}`;
@@ -16,6 +16,7 @@ export default function sitemap() {
     { url: `${base}/privacy/`, lastModified: now, changeFrequency: 'yearly', priority: 0.2 },
     { url: `${base}/terms/`, lastModified: now, changeFrequency: 'yearly', priority: 0.2 },
     { url: `${base}/search/`, lastModified: now, changeFrequency: 'yearly', priority: 0.2 },
+    { url: `${base}/accessories/`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
   ];
 
   const categoryPages = CATEGORY_PAGES.map((c) => ({
@@ -39,5 +40,12 @@ export default function sitemap() {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...categoryPages, ...productPages, ...postPages];
+  const accessoryPages = ACCESSORIES.map((a) => ({
+    url: `${base}/accessories/${a.slug}/`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...categoryPages, ...productPages, ...postPages, ...accessoryPages];
 }

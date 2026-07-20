@@ -8,6 +8,7 @@ import {
   CATEGORY_PAGES,
   FORMS,
   HERO_SLIDES,
+  ACCESSORIES,
 } from '../src/config/site.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
@@ -54,7 +55,7 @@ async function checkConfig() {
   if (dupCats.length) fail(`Duplicate category-page slugs: ${[...new Set(dupCats)].join(', ')}`);
   else pass(`${CATEGORY_PAGES.length} category-page slugs are unique`);
 
-  const RESERVED = ['about', 'contact', 'faq', 'cart', 'order', 'blog', 'search', 'thank-you-contact', 'thank-you-order', 'shipping', 'refund', 'privacy', 'terms', 'products', 'api'];
+  const RESERVED = ['about', 'contact', 'faq', 'cart', 'order', 'blog', 'search', 'thank-you-contact', 'thank-you-order', 'shipping', 'refund', 'privacy', 'terms', 'products', 'api', 'accessories'];
   const collisions = catSlugs.filter((s) => RESERVED.includes(s));
   if (collisions.length) fail(`Category-page slug(s) collide with a reserved static route: ${collisions.join(', ')}`);
   else pass('No category-page slug collides with a reserved static route');
@@ -72,6 +73,25 @@ async function checkConfig() {
     }
   }
   pass('All referenced product image files exist on disk');
+
+  const accessorySlugs = ACCESSORIES.map((a) => a.slug);
+  const dupAccessories = accessorySlugs.filter((s, i) => accessorySlugs.indexOf(s) !== i);
+  if (dupAccessories.length) fail(`Duplicate accessory slugs: ${[...new Set(dupAccessories)].join(', ')}`);
+  else pass(`${ACCESSORIES.length} accessory slugs are unique`);
+
+  const accessoryNoImage = ACCESSORIES.filter((a) => !a.images || a.images.length === 0);
+  if (accessoryNoImage.length) fail(`${accessoryNoImage.length} accessory(ies) have no image entry: ${accessoryNoImage.map((a) => a.slug).join(', ')}`);
+  else pass('Every accessory has at least one image entry');
+
+  for (const a of ACCESSORIES) {
+    for (const img of a.images) {
+      if (img.startsWith('/')) {
+        const full = path.join(ROOT, 'public', img);
+        if (!(await exists(full))) fail(`Accessory "${a.slug}" references missing image file: public${img}`);
+      }
+    }
+  }
+  pass('All referenced accessory image files exist on disk');
 
   if (FORMS.provider === 'resend') {
     fail('FORMS.provider is "resend" but this build has no static-export constraint check — confirm /api/contact exists (Vercel only).');

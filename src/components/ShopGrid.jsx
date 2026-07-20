@@ -3,12 +3,20 @@
 import { useMemo, useState } from 'react';
 import ProductCard from './ProductCard';
 
-const PRICE_BANDS = [
+const BIKE_PRICE_BANDS = [
   { label: 'Any price', test: () => true },
   { label: 'Under £2,500', test: (p) => p.priceLow < 2500 },
   { label: '£2,500 – £4,000', test: (p) => p.priceLow >= 2500 && p.priceLow < 4000 },
   { label: '£4,000 – £6,000', test: (p) => p.priceLow >= 4000 && p.priceLow < 6000 },
   { label: '£6,000+', test: (p) => p.priceLow >= 6000 },
+];
+
+const ACCESSORY_PRICE_BANDS = [
+  { label: 'Any price', test: () => true },
+  { label: 'Under £50', test: (p) => p.priceLow < 50 },
+  { label: '£50 – £150', test: (p) => p.priceLow >= 50 && p.priceLow < 150 },
+  { label: '£150 – £400', test: (p) => p.priceLow >= 150 && p.priceLow < 400 },
+  { label: '£400+', test: (p) => p.priceLow >= 400 },
 ];
 
 const SORTS = {
@@ -18,7 +26,9 @@ const SORTS = {
   name: { label: 'Name: A to Z', fn: (a, b) => a.name.localeCompare(b.name) },
 };
 
-export default function ShopGrid({ products, defaultSort = 'featured' }) {
+export default function ShopGrid({ products, defaultSort = 'featured', itemLabel = 'bike', itemLabelPlural, basePath = '/products' }) {
+  const plural = itemLabelPlural || `${itemLabel}s`;
+  const PRICE_BANDS = itemLabel === 'accessory' ? ACCESSORY_PRICE_BANDS : BIKE_PRICE_BANDS;
   const [brand, setBrand] = useState('all');
   const [category, setCategory] = useState('all');
   const [motor, setMotor] = useState('all');
@@ -116,18 +126,18 @@ export default function ShopGrid({ products, defaultSort = 'featured' }) {
       )}
 
       <p className="muted" style={{ marginTop: filtersActive || products.length > 1 ? '1rem' : 0 }}>
-        {filtered.length} bike{filtered.length === 1 ? '' : 's'}
+        {filtered.length} {filtered.length === 1 ? itemLabel : plural}
       </p>
 
       {filtered.length > 0 ? (
         <div className="grid grid-4">
           {filtered.map((p, i) => (
-            <ProductCard key={p.slug} product={p} eager={i === 0} />
+            <ProductCard key={p.slug} product={p} eager={i === 0} basePath={basePath} />
           ))}
         </div>
       ) : (
         <div className="card text-center">
-          <p style={{ marginBottom: '1rem' }}>No bikes match these filters.</p>
+          <p style={{ marginBottom: '1rem' }}>No {plural} match these filters.</p>
           <button type="button" className="btn btn-primary" onClick={clearFilters}>
             Clear filters
           </button>

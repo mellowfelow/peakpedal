@@ -83,6 +83,7 @@ export default function Nav() {
             </div>
           </div>
           <Link href="/electric-mountain-bike-deals/">Deals</Link>
+          <Link href="/accessories/">Accessories</Link>
           <Link href="/finance/">Finance</Link>
           <Link href="/blog/">Blog</Link>
           <Link href="/about/">About</Link>
@@ -134,6 +135,7 @@ export default function Nav() {
           </div>
         )}
         <Link href="/electric-mountain-bike-deals/" onClick={closeAll}>Deals</Link>
+        <Link href="/accessories/" onClick={closeAll}>Accessories</Link>
         <Link href="/finance/" onClick={closeAll}>Finance</Link>
         <Link href="/blog/" onClick={closeAll}>Blog</Link>
         <Link href="/about/" onClick={closeAll}>About</Link>

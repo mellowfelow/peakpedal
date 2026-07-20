@@ -8,4 +8,6 @@ assets/product-photos/*
 !assets/product-photos/.gitkeep
 assets/hero-photos/*
 !assets/hero-photos/.gitkeep
+assets/accessory-photos/*
+!assets/accessory-photos/.gitkeep
 docs/_contact-sheet.png

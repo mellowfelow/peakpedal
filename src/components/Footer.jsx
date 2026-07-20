@@ -31,6 +31,7 @@ export default function Footer() {
             <Link href="/womens-electric-mountain-bikes/">Women's</Link>
             <Link href="/kids-electric-mountain-bike/">Kids & Teens</Link>
             <Link href="/electric-mountain-bike-deals/">Deals</Link>
+            <Link href="/accessories/">Accessories</Link>
           </div>
           <div className="footer-col">
             <h4>Company</h4>

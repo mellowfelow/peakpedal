@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { CONTACT } from '@/config/site';
 
-export default function ProductCard({ product, eager = false }) {
+export default function ProductCard({ product, eager = false, basePath = '/products' }) {
   return (
-    <Link href={`/products/${product.slug}/`} className="product-card">
+    <Link href={`${basePath}/${product.slug}/`} className="product-card">
       {product.badge && <span className="product-card-badge">{product.badge}</span>}
       <div className="product-frame">
         <img
@@ -18,8 +18,8 @@ export default function ProductCard({ product, eager = false }) {
         <span className="product-brand">{product.brand}</span>
         <strong className="product-name">{product.name}</strong>
         <div className="product-tags">
-          <span className="tag">{product.category}</span>
-          <span className="tag">{product.type}</span>
+          {product.category && <span className="tag">{product.category}</span>}
+          {product.type && <span className="tag">{product.type}</span>}
           {product.motor && <span className="tag tag-motor">{product.motor}</span>}
         </div>
         <div className="product-card-footer">

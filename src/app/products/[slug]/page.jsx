@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
   if (!product) return {};
   const title = `${product.name} | ${product.brand} Electric Mountain Bike`;
   const spec = product.motor || product.type;
-  const description = `${product.name} — ${spec} ${product.category === 'Accessory' ? 'accessory' : 'eMTB'}, from ${CONTACT.currencySymbol}${product.priceLow.toLocaleString('en-GB')}. UK-wide delivery, expert advice.`;
+  const description = `${product.name} — ${spec} eMTB, from ${CONTACT.currencySymbol}${product.priceLow.toLocaleString('en-GB')}. UK-wide delivery, expert advice.`;
   return {
     title,
     description,

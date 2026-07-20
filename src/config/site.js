@@ -288,8 +288,6 @@ const RAW_PRODUCTS = [
   ['Mondraker Prime R', 'Mondraker', 'Hardtail', 'Trail', 3000, 3600, 'Bosch Performance CX', '120mm front', 'mondraker-prime-r', null],
   ['Canyon Grand Canyon:ON CF 7', 'Canyon', 'Hardtail', 'XC-Trail', 2800, 3500, 'Shimano EP801', '120mm front', 'canyon-grand-canyon-on-cf-7', 'D2C brand'],
   ['Whyte Karve 150', 'Whyte', 'Hardtail', 'Trail', 2500, 3000, 'Bosch Performance CX', '120mm front', 'whyte-karve-150', 'UK brand'],
-  ['Bosch PowerMore 250Wh Range Extender', 'Bosch', 'Accessory', 'Range Extender', 350, 450, null, null, 'bosch-powermore-range-extender', null],
-  ['Bosch Kiox 300 Display Unit', 'Bosch', 'Accessory', 'Display', 80, 120, null, null, 'bosch-kiox-300-display', null],
 
   // --- Added in second content pass (98-SKU catalog) ---
   ['Trek Fuel EXe 9.5', 'Trek', 'Lightweight SL', 'Trail', 6500, 7200, 'TQ HPR50', '140/130mm', 'trek-fuel-exe-9-5', null],
@@ -316,9 +314,9 @@ const RAW_PRODUCTS = [
 
 // Real product photos, processed (trim + white 4:3 canvas + WebP) from client-
 // supplied images. Slugs not listed here still use the shared placeholder.
-// 2 uploads (canyon-grand-canyon-on-cf-7, haibike-nduro-6) were corrupt AVIF
-// files our image pipeline couldn't decode — see docs/PROJECT.md.
 const PRODUCT_IMAGES = {
+  'canyon-grand-canyon-on-cf-7': '/images/canyon-grand-canyon-on-cf-7.webp',
+  'haibike-nduro-6': '/images/haibike-nduro-6.webp',
   'cube-stereo-hybrid-one44-race': '/images/cube-stereo-hybrid-one44-race.webp',
   'cube-stereo-hybrid-one44-slx': '/images/cube-stereo-hybrid-one44-slx.webp',
   'cube-stereo-hybrid-160-hpc-race': '/images/cube-stereo-hybrid-160-hpc-race.webp',
@@ -394,8 +392,6 @@ const PRODUCT_IMAGES = {
   'haibike-alltrail-3': '/images/haibike-alltrail-3.webp',
   'mondraker-prime-r': '/images/mondraker-prime-r.webp',
   'whyte-karve-150': '/images/whyte-karve-150.webp',
-  'bosch-powermore-range-extender': '/images/bosch-powermore-range-extender.webp',
-  'bosch-kiox-300-display': '/images/bosch-kiox-300-display.webp',
   'trek-fuel-exe-9-5': '/images/trek-fuel-exe-9-5.webp',
   'trek-fuel-exe-9-7': '/images/trek-fuel-exe-9-7.webp',
   'trek-fuel-exe-8': '/images/trek-fuel-exe-8.webp',
@@ -418,11 +414,6 @@ const PRODUCT_IMAGES = {
 };
 
 function describe(name, brand, category, type, motor, travel) {
-  if (category === 'Accessory') {
-    return type === 'Range Extender'
-      ? `The ${name} adds extra on-bike battery capacity for longer rides without needing to plan around a single charge.`
-      : `The ${name} is a handlebar-mounted display for real-time ride data — speed, assistance level and remaining range.`;
-  }
   const travelText = travel ? ` with ${travel} of travel` : '';
   const categoryText = category === 'Hardtail' ? 'hardtail' : category === 'Lightweight SL' ? 'lightweight SL' : 'full-suspension';
   return `The ${name} is a ${categoryText} ${type.toLowerCase()} eMTB from ${brand}, running a ${motor} motor${travelText}.`;
@@ -444,6 +435,149 @@ export const PRODUCTS = RAW_PRODUCTS.map(
     description: describe(name, brand, category, type, motor, travel),
     imageAlt: `${name} electric mountain bike${motor ? ` — ${motor}` : ''}`,
     images: [PRODUCT_IMAGES[slug] || '/images/placeholder.svg'],
+  })
+);
+
+// ---------------------------------------------------------------------------
+// ACCESSORIES — 33 SKUs (10 sub-categories). Own dynamic route
+// (`app/accessories/[slug]/page.jsx`), separate from bike PRODUCTS above.
+// Bosch PowerMore and Bosch Kiox 300 previously lived in PRODUCTS as
+// category "Accessory" — moved here under their proper section.
+// ---------------------------------------------------------------------------
+export const ACCESSORY_CATEGORIES = [
+  { slug: 'batteries-range', name: 'Batteries & Range' },
+  { slug: 'chargers', name: 'Chargers' },
+  { slug: 'displays-controls', name: 'Displays & Controls' },
+  { slug: 'motor-spares', name: 'Motor Spares' },
+  { slug: 'protection-safety', name: 'Protection & Safety' },
+  { slug: 'maintenance-tools', name: 'Maintenance & Tools' },
+  { slug: 'tyres', name: 'Tyres' },
+  { slug: 'storage-transport', name: 'Storage & Transport' },
+  { slug: 'lighting', name: 'Lighting' },
+  { slug: 'apparel', name: 'Apparel' },
+];
+
+function accessoryCategoryName(categorySlug) {
+  return ACCESSORY_CATEGORIES.find((c) => c.slug === categorySlug)?.name || categorySlug;
+}
+
+// [name, categorySlug, price, compatibility, slug, keyword, brand]
+const RAW_ACCESSORIES = [
+  ['Bosch PowerMore 250Wh Range Extender', 'batteries-range', 400, 'Bosch Performance Line/CX', 'bosch-powermore-250-range-extender', 'electric bike range extender', 'Bosch'],
+  ['Bosch PowerTube 750 Battery', 'batteries-range', 850, 'Bosch Performance Line/CX', 'bosch-powertube-750-battery', 'bosch powertube 750', 'Bosch'],
+  ['Bosch PowerTube 500 Battery', 'batteries-range', 600, 'Bosch Performance Line/CX', 'bosch-powertube-500-battery', 'bosch powertube 500', 'Bosch'],
+  ['Shimano BT-E8036 630Wh Battery', 'batteries-range', 700, 'Shimano EP8/EP801', 'shimano-bt-e8036-630wh-battery', 'shimano e-bike battery', 'Shimano'],
+  ['DJI Avinox 800Wh Battery', 'batteries-range', 650, 'DJI Avinox', 'dji-avinox-800wh-battery', 'dji avinox battery', 'DJI'],
+  ['Fazua Ride 60 Battery', 'batteries-range', 480, 'Fazua Ride 60', 'fazua-ride-60-battery', 'fazua battery', 'Fazua'],
+  ['Bosch 4A Fast Charger', 'chargers', 120, 'Bosch', 'bosch-4a-fast-charger', 'bosch fast charger', 'Bosch'],
+  ['Bosch 2A Compact Charger', 'chargers', 80, 'Bosch', 'bosch-2a-compact-charger', 'bosch ebike charger', 'Bosch'],
+  ['Shimano STEPS Charger EC-E6002', 'chargers', 70, 'Shimano', 'shimano-steps-charger-ec-e6002', 'shimano ebike charger', 'Shimano'],
+  ['DJI Avinox Fast Charger', 'chargers', 90, 'DJI Avinox', 'dji-avinox-fast-charger', 'dji avinox charger', 'DJI'],
+  ['Bosch Kiox 300 Display', 'displays-controls', 220, 'Bosch', 'bosch-kiox-300-display', 'bosch kiox 300', 'Bosch'],
+  ['Bosch Purion 200 Display', 'displays-controls', 120, 'Bosch', 'bosch-purion-200-display', 'bosch purion display', 'Bosch'],
+  ['Shimano SC-EM800 Display', 'displays-controls', 140, 'Shimano', 'shimano-sc-em800-display', 'shimano di2 display', 'Shimano'],
+  ['Bosch Performance Line CX Motor Unit', 'motor-spares', 500, 'Bosch', 'bosch-performance-line-cx-motor-unit', 'bosch motor replacement', 'Bosch'],
+  ['eBike Torque Arm Kit', 'motor-spares', 25, 'Universal', 'ebike-torque-arm-kit', 'ebike torque arm', 'Universal'],
+  ['MTB Full-Face Helmet', 'protection-safety', 180, 'Universal', 'mtb-full-face-helmet', 'mtb full face helmet', 'Universal'],
+  ['MTB Open-Face Trail Helmet', 'protection-safety', 120, 'Universal', 'mtb-trail-helmet', 'mtb helmet uk', 'Universal'],
+  ['MTB Knee & Elbow Pad Set', 'protection-safety', 70, 'Universal', 'mtb-knee-elbow-pad-set', 'mtb knee elbow pads', 'Universal'],
+  ['MTB Gloves', 'protection-safety', 35, 'Universal', 'mtb-gloves', 'mtb gloves', 'Universal'],
+  ['eBike-Rated Lock', 'protection-safety', 90, 'Universal', 'ebike-rated-lock', 'ebike lock', 'Universal'],
+  ['Torque Wrench Set (Carbon-Safe)', 'maintenance-tools', 45, 'Universal', 'torque-wrench-set', 'bike torque wrench', 'Universal'],
+  ['Chain Wear Indicator Tool', 'maintenance-tools', 15, 'Universal', 'chain-wear-indicator-tool', 'chain wear indicator', 'Universal'],
+  ['eMTB Cleaning Kit', 'maintenance-tools', 35, 'Universal', 'emtb-cleaning-kit', 'ebike cleaning kit', 'Universal'],
+  ['MTB Puncture Repair Kit', 'maintenance-tools', 20, 'Universal', 'mtb-puncture-repair-kit', 'mtb puncture repair kit', 'Universal'],
+  ['Schwalbe Magic Mary Evo (E-Bike Rated)', 'tyres', 90, 'Universal', 'schwalbe-magic-mary-evo', 'schwalbe magic mary emtb', 'Schwalbe'],
+  ['Schwalbe Nobby Nic Evo (E-Bike Rated)', 'tyres', 75, 'Universal', 'schwalbe-nobby-nic-evo', 'schwalbe nobby nic', 'Schwalbe'],
+  ['Maxxis Minion DHF/DHR (E-Bike Rated)', 'tyres', 85, 'Universal', 'maxxis-minion-dhf-dhr', 'maxxis minion emtb', 'Maxxis'],
+  ['eMTB-Rated Bike Rack', 'storage-transport', 550, 'Universal', 'emtb-rated-bike-rack', 'ebike bike rack', 'Universal'],
+  ['Waterproof eMTB Bike Cover', 'storage-transport', 45, 'Universal', 'waterproof-emtb-bike-cover', 'ebike cover', 'Universal'],
+  ['Frame Bag / Top Tube Bag', 'storage-transport', 50, 'Universal', 'frame-top-tube-bag', 'mtb frame bag', 'Universal'],
+  ['Front + Rear Light Set (Trail-Rated)', 'lighting', 90, 'Universal', 'front-rear-light-set', 'mtb bike lights', 'Universal'],
+  ['eMTB Baggy Shorts', 'apparel', 80, 'Universal', 'emtb-baggy-shorts', 'mtb baggy shorts', 'Universal'],
+  ['MTB Jersey', 'apparel', 50, 'Universal', 'mtb-jersey', 'mtb jersey', 'Universal'],
+];
+
+// Real accessory photos processed the same way as PRODUCT_IMAGES (see
+// scripts/import-accessory-photos.mjs). Slugs not listed here use the
+// shared placeholder.
+const ACCESSORY_IMAGES = {
+  'bosch-powertube-750-battery': '/images/bosch-powertube-750-battery.webp',
+  'bosch-powertube-500-battery': '/images/bosch-powertube-500-battery.webp',
+  'shimano-bt-e8036-630wh-battery': '/images/shimano-bt-e8036-630wh-battery.webp',
+  'dji-avinox-800wh-battery': '/images/dji-avinox-800wh-battery.webp',
+  'fazua-ride-60-battery': '/images/fazua-ride-60-battery.webp',
+  'bosch-4a-fast-charger': '/images/bosch-4a-fast-charger.webp',
+  'bosch-2a-compact-charger': '/images/bosch-2a-compact-charger.webp',
+  'shimano-steps-charger-ec-e6002': '/images/shimano-steps-charger-ec-e6002.webp',
+  'dji-avinox-fast-charger': '/images/dji-avinox-fast-charger.webp',
+  'bosch-purion-200-display': '/images/bosch-purion-200-display.webp',
+  'shimano-sc-em800-display': '/images/shimano-sc-em800-display.webp',
+  'bosch-performance-line-cx-motor-unit': '/images/bosch-performance-line-cx-motor-unit.webp',
+  'ebike-torque-arm-kit': '/images/ebike-torque-arm-kit.webp',
+  'mtb-full-face-helmet': '/images/mtb-full-face-helmet.webp',
+  'mtb-trail-helmet': '/images/mtb-trail-helmet.webp',
+  'mtb-knee-elbow-pad-set': '/images/mtb-knee-elbow-pad-set.webp',
+  'mtb-gloves': '/images/mtb-gloves.webp',
+  'ebike-rated-lock': '/images/ebike-rated-lock.webp',
+  'torque-wrench-set': '/images/torque-wrench-set.webp',
+  'chain-wear-indicator-tool': '/images/chain-wear-indicator-tool.webp',
+  'emtb-cleaning-kit': '/images/emtb-cleaning-kit.webp',
+  'mtb-puncture-repair-kit': '/images/mtb-puncture-repair-kit.webp',
+  'schwalbe-magic-mary-evo': '/images/schwalbe-magic-mary-evo.webp',
+  'schwalbe-nobby-nic-evo': '/images/schwalbe-nobby-nic-evo.webp',
+  'maxxis-minion-dhf-dhr': '/images/maxxis-minion-dhf-dhr.webp',
+  'emtb-rated-bike-rack': '/images/emtb-rated-bike-rack.webp',
+  'waterproof-emtb-bike-cover': '/images/waterproof-emtb-bike-cover.webp',
+  'frame-top-tube-bag': '/images/frame-top-tube-bag.webp',
+  'front-rear-light-set': '/images/front-rear-light-set.webp',
+  'emtb-baggy-shorts': '/images/emtb-baggy-shorts.webp',
+  'mtb-jersey': '/images/mtb-jersey.webp',
+  'bosch-powermore-250-range-extender': '/images/bosch-powermore-250-range-extender.webp',
+  'bosch-kiox-300-display': '/images/bosch-kiox-300-display.webp',
+};
+
+function compatibleBikes(compatibility, limit = 3) {
+  const keyword = compatibility.split(' ')[0];
+  const matches = PRODUCTS.filter((p) => p.motor && p.motor.includes(keyword));
+  const seenBrands = new Set();
+  const varied = [];
+  for (const p of matches) {
+    if (!seenBrands.has(p.brand)) {
+      varied.push(p);
+      seenBrands.add(p.brand);
+      if (varied.length >= limit) return varied;
+    }
+  }
+  for (const p of matches) {
+    if (varied.length >= limit) break;
+    if (!varied.includes(p)) varied.push(p);
+  }
+  return varied;
+}
+
+function accessoryBlurb(name, categorySlug, compatibility) {
+  const categoryName = accessoryCategoryName(categorySlug);
+  const fit = compatibility === 'Universal' ? 'a universal fit' : `${compatibility} compatibility`;
+  return `The ${name} is a ${categoryName.toLowerCase()} accessory with ${fit}, available with UK-wide delivery from Peak Pedal.`;
+}
+
+export const ACCESSORIES = RAW_ACCESSORIES.map(
+  ([name, categorySlug, price, compatibility, slug, keyword, brand]) => ({
+    name,
+    categorySlug,
+    category: accessoryCategoryName(categorySlug),
+    brand,
+    price,
+    priceLow: price,
+    priceHigh: price,
+    compatibility,
+    slug,
+    keyword,
+    description: accessoryBlurb(name, categorySlug, compatibility),
+    imageAlt: `${name} — ${accessoryCategoryName(categorySlug)} eMTB accessory`,
+    images: [ACCESSORY_IMAGES[slug] || '/images/placeholder.svg'],
+    compatibleWith: compatibleBikes(compatibility),
   })
 );
 
@@ -843,6 +977,16 @@ export const POSTS = [
 
 export function findProduct(slug) {
   return PRODUCTS.find((p) => p.slug === slug);
+}
+
+export function findAccessory(slug) {
+  return ACCESSORIES.find((a) => a.slug === slug);
+}
+
+export function relatedAccessories(accessory, limit = 4) {
+  return ACCESSORIES.filter(
+    (a) => a.slug !== accessory.slug && (a.categorySlug === accessory.categorySlug || a.brand === accessory.brand)
+  ).slice(0, limit);
 }
 
 export function findCategoryPage(slug) {

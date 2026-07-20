@@ -46,7 +46,7 @@ export const POST_BODIES = {
         heading: 'Battery Range: What to Realistically Expect',
         paragraphs: [
           'Battery capacity across our range typically runs in the 500-800Wh bracket depending on motor platform and frame size, though exact figures vary by model — check the specific product page or ask us before assuming. In real-world terms, that generally translates to somewhere between 30-50km of assisted riding on higher support settings, or considerably further on lower assistance levels, though terrain, rider weight, tyre pressure and outside temperature all affect this meaningfully.',
-          'If range anxiety is a genuine concern for the rides you have planned, ask us about which specific models support the largest battery option, or consider a range-extender like the [Bosch PowerMore 250Wh](/products/bosch-powermore-range-extender/) accessory, which bolts onto compatible Bosch-motor bikes for extra capacity on longer days out.',
+          'If range anxiety is a genuine concern for the rides you have planned, ask us about which specific models support the largest battery option, or consider a range-extender like the [Bosch PowerMore 250Wh](/accessories/bosch-powermore-250-range-extender/) accessory, which bolts onto compatible Bosch-motor bikes for extra capacity on longer days out.',
         ],
       },
       {
@@ -135,7 +135,7 @@ export const POST_BODIES = {
         heading: 'Battery Range and Charging',
         paragraphs: [
           'Battery capacity across our range typically sits in the 500-800Wh bracket, translating to roughly 30-50km on higher assistance settings or considerably further on lower support — though terrain, rider weight and temperature all affect this in practice. A full charge from empty commonly takes 3-5 hours on the charger supplied with the bike.',
-          'If you plan long days out regularly, ask us about range-extender options like the [Bosch PowerMore 250Wh](/products/bosch-powermore-range-extender/) for compatible bikes, which adds meaningful extra capacity without needing to carry a second charger.',
+          'If you plan long days out regularly, ask us about range-extender options like the [Bosch PowerMore 250Wh](/accessories/bosch-powermore-250-range-extender/) for compatible bikes, which adds meaningful extra capacity without needing to carry a second charger.',
         ],
       },
       {
