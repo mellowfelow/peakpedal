@@ -10,4 +10,8 @@ assets/hero-photos/*
 !assets/hero-photos/.gitkeep
 assets/accessory-photos/*
 !assets/accessory-photos/.gitkeep
+assets/brand-logos/*
+!assets/brand-logos/.gitkeep
+assets/category-photos/*
+!assets/category-photos/.gitkeep
 docs/_contact-sheet.png

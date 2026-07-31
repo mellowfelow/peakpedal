@@ -10,26 +10,14 @@ export const metadata = {
   openGraph: { url: `https://${SITE.domain}/`, images: ['/images/placeholder.svg'] },
 };
 
-// Representative product photo per type — picked live from the catalog (real, already-licensed
-// product photography), never a stock/scraped image, so this never goes stale as products change.
-function typeTileImage(categorySlug) {
-  const page = CATEGORY_PAGES.find((c) => c.slug === categorySlug);
-  const p = page && (PRODUCTS.find((pr) => page.filter(pr) && pr.featured) || PRODUCTS.find(page.filter));
-  return p ? { src: p.images[0], alt: p.name } : null;
-}
-
+// Real category lifestyle photos, supplied by the client and processed via
+// `npm run images:brand-assets` into public/images/categories/<slug>.webp.
 const TYPE_TILES = [
-  ['Full Suspension', '/full-suspension-electric-mountain-bikes/', 'Front & rear travel for rough terrain', <FullSuspensionIcon key="fs" />, typeTileImage('full-suspension-electric-mountain-bikes')],
-  ['Hardtail', '/hardtail-electric-mountain-bikes/', 'Efficient climbing, lower maintenance', <HardtailIcon key="ht" />, typeTileImage('hardtail-electric-mountain-bikes')],
-  ['Lightweight SL', '/lightweight-electric-mountain-bikes/', 'Natural ride feel, less bulk', <LightweightIcon key="lw" />, typeTileImage('lightweight-electric-mountain-bikes')],
-  ['Enduro', '/enduro-electric-mountain-bikes/', 'Built for demanding descents', <EnduroIcon key="en" />, typeTileImage('enduro-electric-mountain-bikes')],
+  ['Full Suspension', '/full-suspension-electric-mountain-bikes/', 'Front & rear travel for rough terrain', <FullSuspensionIcon key="fs" />, '/images/categories/full-suspension-electric-mountain-bikes.webp'],
+  ['Hardtail', '/hardtail-electric-mountain-bikes/', 'Efficient climbing, lower maintenance', <HardtailIcon key="ht" />, '/images/categories/hardtail-electric-mountain-bikes.webp'],
+  ['Lightweight SL', '/lightweight-electric-mountain-bikes/', 'Natural ride feel, less bulk', <LightweightIcon key="lw" />, '/images/categories/lightweight-electric-mountain-bikes.webp'],
+  ['Enduro', '/enduro-electric-mountain-bikes/', 'Built for demanding descents', <EnduroIcon key="en" />, '/images/categories/enduro-electric-mountain-bikes.webp'],
 ];
-
-// Representative product photo per brand — same principle: real catalog photography, not a logo.
-function brandTileImage(brandName) {
-  const p = PRODUCTS.find((pr) => pr.brand === brandName && pr.featured) || PRODUCTS.find((pr) => pr.brand === brandName);
-  return p ? { src: p.images[0], alt: p.name } : null;
-}
 
 const storeSchema = {
   '@context': 'https://schema.org',
@@ -86,8 +74,8 @@ export default function HomePage() {
         <div className="grid grid-4">
           {TYPE_TILES.map(([label, href, sub, icon, image]) => (
             <Link key={href} href={href} className="tile">
-              <span className="tile-photo">
-                {image && <img src={image.src} alt={image.alt} width={400} height={300} loading="lazy" />}
+              <span className="tile-photo tile-photo-cover">
+                <img src={image} alt={`${label} electric mountain bikes`} width={400} height={300} loading="lazy" />
                 <span className="tile-icon-badge">{icon}</span>
               </span>
               <span className="tile-body">
@@ -102,9 +90,9 @@ export default function HomePage() {
       <section className="section section-tint container">
         <span className="section-eyebrow">Best Sellers</span>
         <h2>Featured Electric Mountain Bikes</h2>
-        <div className="grid grid-4 featured-grid">
+        <div className="grid grid-4">
           {featured.map((p, i) => (
-            <ProductCard key={p.slug} product={p} eager={i === 0} featured={i === 0} />
+            <ProductCard key={p.slug} product={p} eager={i === 0} />
           ))}
         </div>
         <p className="text-center" style={{ marginTop: '1.5rem' }}>
@@ -117,22 +105,18 @@ export default function HomePage() {
       <section className="section container">
         <span className="section-eyebrow">{BRANDS.length}+ Brands Stocked</span>
         <h2>Shop by Brand</h2>
-        <div className="grid grid-4">
-          {BRANDS.map((b) => {
-            const image = brandTileImage(b.name);
-            return (
-              <Link key={b.slug} href={`/${b.slug}-electric-mountain-bikes/`} className="tile">
-                <span className="tile-photo">
-                  {image && <img src={image.src} alt={image.alt} width={400} height={300} loading="lazy" />}
-                  <span className="tile-icon-badge tile-icon-badge-text">{b.name.slice(0, 2).toUpperCase()}</span>
-                </span>
-                <span className="tile-body">
-                  <strong className="tile-label">{b.name}</strong>
-                  <span className="tile-sub">Shop eMTBs</span>
-                </span>
-              </Link>
-            );
-          })}
+        <div className="brand-carousel">
+          {BRANDS.map((b) => (
+            <Link key={b.slug} href={`/${b.slug}-electric-mountain-bikes/`} className="tile brand-tile">
+              <span className="tile-photo">
+                <img src={`/images/brands/${b.slug}.webp`} alt={`${b.name} logo`} width={400} height={200} loading="lazy" />
+              </span>
+              <span className="tile-body">
+                <strong className="tile-label">{b.name}</strong>
+                <span className="tile-sub">Shop eMTBs</span>
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 

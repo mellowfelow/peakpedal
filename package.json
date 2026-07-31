@@ -9,6 +9,7 @@
     "build": "next build",
     "start": "next start",
     "images": "node scripts/images.mjs",
+    "images:brand-assets": "node scripts/brand-assets.mjs",
     "crosscheck": "node scripts/crosscheck.mjs"
   },
   "dependencies": {

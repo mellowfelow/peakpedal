@@ -643,23 +643,62 @@ p {
   color: var(--color-text-muted);
 }
 
-.tile-icon-badge-text {
-  font-weight: 800;
-  font-size: 0.85rem;
+.tile-photo-cover img {
+  object-fit: cover;
 }
 
-/* --- Featured hero product card --- */
-.product-card-featured {
-  grid-column: span 2;
+/* --- Brand logo carousel (Shop by Brand) --- */
+.brand-carousel {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.25rem 0.25rem 0.75rem;
+  margin: 0 -0.25rem;
 }
 
-.product-card-featured .product-name {
-  font-size: 1.2rem;
+.brand-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.brand-carousel::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+.brand-tile {
+  flex: 0 0 auto;
+  width: 128px;
+  scroll-snap-align: start;
+}
+
+.brand-tile .tile-photo {
+  aspect-ratio: 3 / 2;
+  background: #fff;
+  padding: 0.9rem;
+}
+
+.brand-tile .tile-photo img {
+  object-fit: contain;
+}
+
+.brand-tile .tile-body {
+  padding: 0.55rem 0.5rem 0.75rem;
+  gap: 0.15rem;
+}
+
+.brand-tile .tile-label {
+  font-size: 0.82rem;
+}
+
+.brand-tile .tile-sub {
+  font-size: 0.68rem;
 }
 
 @media (max-width: 600px) {
-  .product-card-featured {
-    grid-column: span 1;
+  .brand-tile {
+    width: 110px;
   }
 }
 
