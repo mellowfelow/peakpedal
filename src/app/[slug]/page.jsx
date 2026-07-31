@@ -46,11 +46,17 @@ export default async function CategoryPage({ params }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <Breadcrumbs items={breadcrumbItems} />
+      <div className="category-hero">
+        <Breadcrumbs items={breadcrumbItems} />
+        <div className="container">
+          <span className="category-hero-icon">
+            <CategoryIcon />
+          </span>
+          <h1>{page.h1}</h1>
+          <p style={{ maxWidth: 720 }}>{page.intro}</p>
+        </div>
+      </div>
       <section className="section container">
-        <h1>{page.h1}</h1>
-        <p style={{ maxWidth: 720 }}>{page.intro}</p>
-
         {isInfoPage ? (
           <div className="card" style={{ maxWidth: 480, marginTop: '1.5rem' }}>
             <p style={{ marginBottom: '1rem' }}>Get in touch and we'll talk you through the details for the bike you're interested in.</p>
@@ -79,5 +85,15 @@ export default async function CategoryPage({ params }) {
         )}
       </section>
     </>
+  );
+}
+
+function CategoryIcon() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+      <circle cx="5.5" cy="18.5" r="3.5" />
+      <circle cx="18.5" cy="18.5" r="3.5" />
+      <path d="M5.5 18.5L10 8h4l4.5 10.5M10 8L8 5h3M12 12l3 6.5" />
+    </svg>
   );
 }

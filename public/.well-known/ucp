@@ -5,7 +5,7 @@
   "schema": "https://ucp.dev/schema/v1.json",
   "site": "https://DOMAIN.com",
   "name": "Peak Pedal",
-  "description": "UK electric mountain bike specialists — 78 eMTBs from 15+ leading brands, expert advice, UK-wide delivery.",
+  "description": "UK electric mountain bike specialists — 96 eMTBs from 14+ leading brands, expert advice, UK-wide delivery.",
   "services": [
     {
       "id": "product-catalog",

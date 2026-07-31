@@ -46,6 +46,8 @@ export default async function ProductPage({ params }) {
         name: product.name,
         description: product.description,
         image: product.images.map((img) => `https://${SITE.domain}${img}`),
+        sku: product.slug,
+        mpn: product.slug,
         brand: { '@type': 'Brand', name: product.brand },
         category: product.category,
         offers: {

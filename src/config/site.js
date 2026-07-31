@@ -6,7 +6,7 @@ export const SITE = {
   name: 'Peak Pedal',
   tagline: 'Ride Further. Climb Harder.',
   description:
-    'UK electric mountain bike specialists — 78 eMTBs from 15+ leading brands, expert advice, UK-wide delivery.',
+    'UK electric mountain bike specialists — 96 eMTBs from 14+ leading brands, expert advice, UK-wide delivery.',
   domain: 'DOMAIN.com', // PENDING — change this ONE line, rebuild, push. Never find-and-replace.
   target: 'vercel',
   colors: { primary: '#14432A', accent: '#A8FF3E', dark: '#14181C', bg: '#F7F8F5' },
@@ -37,7 +37,7 @@ export const HERO_SLIDES = [
     image: '/images/hero-2.webp',
     tag: 'Ride With Confidence',
     heading: 'Built For Every Rider, Every Trail',
-    body: `From first-timers to seasoned riders — 78 eMTBs across 15+ brands, matched to how and where you ride.`,
+    body: `From first-timers to seasoned riders — 96 eMTBs across 14+ brands, matched to how and where you ride.`,
   },
 ];
 
@@ -591,7 +591,7 @@ export const CATEGORY_PAGES = [
     kind: 'main',
     keyword: 'electric mountain bikes',
     metaTitle: 'Electric Mountain Bikes UK | Shop the Full Range',
-    metaDescription: 'Shop 78 electric mountain bikes from 15+ leading brands. Full suspension, hardtail and lightweight SL eMTBs, UK-wide delivery.',
+    metaDescription: 'Shop 96 electric mountain bikes from 14+ leading brands. Full suspension, hardtail and lightweight SL eMTBs, UK-wide delivery.',
     h1: 'Electric Mountain Bikes',
     intro: `Browse Peak Pedal's full range of ${PRODUCTS.length} electric mountain bikes — full suspension, hardtail and lightweight SL, from Bosch, Shimano, Yamaha and DJI Avinox-powered platforms.`,
     extraHeading: 'Full Suspension Electric Mountain Bikes Under £2000?',
@@ -811,7 +811,7 @@ export const CATEGORY_PAGES = [
 export const FAQS = [
   {
     q: 'What is Peak Pedal?',
-    a: 'Peak Pedal is a UK-based online retailer of electric mountain bikes, stocking 78 models across 15+ brands including Cube, Trek, Orbea, Santa Cruz, Whyte and Amflow, with UK-wide delivery.',
+    a: 'Peak Pedal is a UK-based online retailer of electric mountain bikes, stocking 96 models across 14+ brands including Cube, Trek, Orbea, Santa Cruz, Whyte and Amflow, with UK-wide delivery.',
   },
   {
     q: 'Are electric mountain bikes legal in the UK?',

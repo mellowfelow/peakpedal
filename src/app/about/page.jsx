@@ -3,7 +3,7 @@ import { SITE, PRODUCTS, BRANDS, COMPLIANCE, CONTACT } from '@/config/site';
 
 export const metadata = {
   title: 'About — UK eMTB Specialists',
-  description: 'Peak Pedal is a UK-based electric mountain bike specialist stocking 78 eMTBs across 15+ brands, with expert buying advice and UK-wide delivery.',
+  description: `Peak Pedal is a UK-based electric mountain bike specialist stocking ${PRODUCTS.length} eMTBs across ${BRANDS.length}+ brands, with expert buying advice and UK-wide delivery.`,
   alternates: { canonical: `https://${SITE.domain}/about/` },
 };
 
