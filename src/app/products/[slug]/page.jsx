@@ -67,7 +67,7 @@ export default async function ProductPage({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <Breadcrumbs items={breadcrumbItems} />
       <section className="section container">
-        <div className="grid two-col" style={{ gridTemplateColumns: '1fr 1fr', alignItems: 'start' }}>
+        <div className="grid product-detail-grid">
           <div>
             <div className="gallery-main">
               <img src={product.images[0]} alt={product.imageAlt} width={800} height={600} loading="eager" />
@@ -77,14 +77,14 @@ export default async function ProductPage({ params }) {
             <span className="product-brand">{product.brand}</span>
             <h1>{product.name}</h1>
             {product.badge && <span className="badge">{product.badge}</span>}
-            <p style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.5rem 0' }}>
+            <p className="product-detail-price">
               From {CONTACT.currencySymbol}
               {product.priceLow.toLocaleString('en-GB')}–{CONTACT.currencySymbol}
               {product.priceHigh.toLocaleString('en-GB')}
             </p>
             <p>{product.description}</p>
 
-            <div className="table-wrap" style={{ margin: '1rem 0' }}>
+            <div className="table-wrap product-spec-table">
               <table>
                 <tbody>
                   <tr><th>Category</th><td>{product.category}</td></tr>

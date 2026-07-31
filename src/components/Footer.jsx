@@ -13,14 +13,20 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer-top">
-          <div className="footer-col" style={{ maxWidth: 280 }}>
-            <h4>{SITE.name}</h4>
+          <div className="footer-col footer-brand-col">
+            <span className="footer-logo">
+              <FooterLogoMark /> {SITE.name}
+            </span>
             <p className="muted" style={{ color: '#b7bdb2', fontSize: '0.9rem' }}>{SITE.tagline}</p>
             <p style={{ fontSize: '0.85rem' }}>
               <span dangerouslySetInnerHTML={{ __html: encodeEmail(CONTACT.email) }} />
               <br />
               WhatsApp: <a href={`https://wa.me/${CONTACT.whatsapp}`} style={{ color: '#b7bdb2' }}>Message us</a>
             </p>
+            <div className="footer-payments">
+              <span className="footer-payment-chip">Bank Transfer</span>
+              <span className="footer-payment-chip footer-payment-chip-soon">Card (Coming Soon)</span>
+            </div>
           </div>
           <div className="footer-col">
             <h4>Shop</h4>
@@ -56,5 +62,16 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterLogoMark() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="16" fill="#A8FF3E" />
+      <path d="M6 22 L13 10 L17 17 L21 10 L27 22" stroke="#14432A" strokeWidth="2.4" fill="none" strokeLinejoin="round" strokeLinecap="round" />
+      <circle cx="10" cy="23" r="2.6" fill="#14432A" />
+      <circle cx="23" cy="23" r="2.6" fill="#14432A" />
+    </svg>
   );
 }
