@@ -58,6 +58,17 @@ async function processLogos() {
   }
 }
 
+// Per-slug crop anchor for cover-fitting portrait source photos onto the 4:3 tile canvas.
+// 'attention' (sharp's saliency auto-crop) works for close-up/detail shots but guesses wrong on
+// wide action shots where the rider/bike sits low in a tall frame — 'south' anchors to the
+// bottom there instead so the bike isn't cropped out. Checked visually per image; not a formula.
+const CATEGORY_CROP_POSITION = {
+  'full-suspension-electric-mountain-bikes': 'attention',
+  'hardtail-electric-mountain-bikes': 'attention',
+  'lightweight-electric-mountain-bikes': 'south',
+  'enduro-electric-mountain-bikes': 'south',
+};
+
 async function processCategoryPhotos() {
   const files = await listImages(CATEGORY_SRC);
   if (!files) return console.log('No assets/category-photos directory found — skipping category photos.');
@@ -71,8 +82,9 @@ async function processCategoryPhotos() {
     const slug = path.basename(file, path.extname(file));
     const src = path.join(CATEGORY_SRC, file);
     const out = path.join(CATEGORY_OUT, `${slug}.webp`);
-    await sharp(src).resize(CANVAS_W, CANVAS_H, { fit: 'cover', position: 'attention' }).webp({ quality: 82 }).toFile(out);
-    console.log(`  category-photos/${file} -> images/categories/${slug}.webp`);
+    const position = CATEGORY_CROP_POSITION[slug] || 'attention';
+    await sharp(src).resize(CANVAS_W, CANVAS_H, { fit: 'cover', position }).webp({ quality: 82 }).toFile(out);
+    console.log(`  category-photos/${file} -> images/categories/${slug}.webp (${position})`);
   }
 }
 

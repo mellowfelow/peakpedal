@@ -654,8 +654,7 @@ p {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding: 0.25rem 0.25rem 0.75rem;
-  margin: 0 -0.25rem;
+  padding: 0.25rem 0 0.75rem;
 }
 
 .brand-carousel::-webkit-scrollbar {
