@@ -205,6 +205,30 @@ export const BRANDS = [
       "Transition built its reputation on aggressive trail and enduro geometry with its unassisted transition bikes, and the Relay Carbon carries that same handling into a transition e bike. It's the only transition ebike in our current range — a carbon-framed, Bosch Performance CX-powered transition mountain bike built for riders who want a proper transition mtb rather than a more conservative geometry compromise.",
     ],
   },
+  {
+    slug: 'scott', name: 'Scott', keyword: 'scott electric mountain bike',
+    metaTitle: 'Scott Electric Mountain Bikes UK',
+    metaDescription: 'Scott electric mountain bikes — Patron ST enduro with Bosch CX and Lumen eRide lightweight SL with TQ HPR50. Compare both at Peak Pedal. UK-wide delivery.',
+    h1: 'Scott Electric Mountain Bikes',
+    description: 'Scott is a Swiss bike brand producing the Patron ST enduro eMTB range and the Lumen eRide lightweight SL platform, built on Bosch Performance CX and TQ HPR50 motors respectively.',
+    extraHeading: 'Scott Electric Mountain Bikes — Patron ST and Lumen eRide',
+    extraParagraphs: [
+      "Scott's eMTB range splits between two very different platforms. The Patron ST is Scott's enduro-travel full-suspension build, powered by a Bosch Performance CX motor for long climbs and demanding descents. The Lumen eRide takes the opposite approach — a lightweight SL platform built around a compact TQ HPR50 motor for a ride feel closer to an unassisted mountain bike.",
+      "Scott's wider range also includes the Genius eRide (trail-focused full suspension on Shimano EP801) and the Ransom eRide (a longer-travel enduro LT build) — check with us via WhatsApp for current availability across the full Scott line-up.",
+    ],
+  },
+  {
+    slug: 'canyon', name: 'Canyon', keyword: 'canyon electric mountain bike',
+    metaTitle: 'Canyon Electric Mountain Bikes — D2C Range',
+    metaDescription: 'Canyon electric mountain bikes — Spectral:ON trail, Grand Canyon:ON hardtail and Torque:ON enduro. D2C brand with expert UK support from Peak Pedal.',
+    h1: 'Canyon Electric Mountain Bikes',
+    description: 'Canyon is a German direct-to-consumer bike brand producing the Spectral:ON and Neuron:ON trail eMTBs, the Grand Canyon:ON hardtail, and the Strive:ON and Torque:ON enduro platforms, all built on Shimano EP801 motors.',
+    extraHeading: 'Canyon Electric Mountain Bikes — D2C Range',
+    extraParagraphs: [
+      'Canyon operates as a direct-to-consumer brand. Peak Pedal lists Canyon eMTBs and provides expert guidance on spec and sizing before you purchase.',
+      "The Spectral:ON and Neuron:ON cover full-suspension trail riding, the Grand Canyon:ON is Canyon's hardtail, and the Strive:ON and Torque:ON step up to enduro-travel builds — every model in the range runs a Shimano EP801 motor.",
+    ],
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -908,9 +932,11 @@ export const CATEGORY_PAGES = [
     slug: `${brand.slug}-electric-mountain-bikes`,
     kind: 'brand',
     keyword: brand.keyword,
-    metaTitle: `${brand.name} Electric Mountain Bikes UK — Full Range`,
-    metaDescription: `Shop the full ${brand.name} electric mountain bike range at Peak Pedal, with UK-wide delivery and expert buying advice.`,
-    h1: `${brand.name} Electric Mountain Bikes`,
+    // metaTitle/metaDescription/h1 default to the generic formula but can be overridden
+    // per-brand (see Scott/Canyon, which have client-specified copy).
+    metaTitle: brand.metaTitle || `${brand.name} Electric Mountain Bikes UK — Full Range`,
+    metaDescription: brand.metaDescription || `Shop the full ${brand.name} electric mountain bike range at Peak Pedal, with UK-wide delivery and expert buying advice.`,
+    h1: brand.h1 || `${brand.name} Electric Mountain Bikes`,
     intro: brand.description,
     extraHeading: brand.extraHeading,
     extraParagraphs: brand.extraParagraphs,
