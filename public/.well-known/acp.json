@@ -5,8 +5,8 @@
   },
   "name": "Peak Pedal",
   "description": "UK electric mountain bike specialists — 124 eMTBs from 16+ leading brands, expert advice, UK-wide delivery.",
-  "api_base_url": "https://DOMAIN.com",
-  "homepage": "https://DOMAIN.com",
+  "api_base_url": "https://peakpedal.org",
+  "homepage": "https://peakpedal.org",
   "transports": [
     "https"
   ],
@@ -25,8 +25,8 @@
     "free_shipping_threshold_gbp": 0
   },
   "contact": {
-    "whatsapp": "https://wa.me/440000000000",
-    "email": "info@DOMAIN.com"
+    "whatsapp": "https://wa.me/447838207659",
+    "email": "info@peakpedal.org"
   },
   "legal": {
     "age_restriction": "none (min rider age 14 under UK EAPC law)",

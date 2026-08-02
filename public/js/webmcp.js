@@ -8,7 +8,7 @@
         description: 'Browse electric mountain bikes by category or brand',
         inputSchema: { type: 'object', properties: { category: { type: 'string', description: 'Category or brand slug' } } },
         execute: async ({ category }) => {
-          const url = category ? `https://DOMAIN.com/${category}/` : `https://DOMAIN.com/electric-mountain-bikes/`;
+          const url = category ? `https://peakpedal.org/${category}/` : `https://peakpedal.org/electric-mountain-bikes/`;
           window.location.href = url;
           return { url };
         },
@@ -19,8 +19,8 @@
         inputSchema: { type: 'object', properties: { message: { type: 'string', description: 'Pre-filled order message' } } },
         execute: async ({ message }) => {
           const url = message
-            ? `https://wa.me/440000000000?text=${encodeURIComponent(message)}`
-            : `https://wa.me/440000000000`;
+            ? `https://wa.me/447838207659?text=${encodeURIComponent(message)}`
+            : `https://wa.me/447838207659`;
           window.open(url, '_blank');
           return { url };
         },
@@ -30,8 +30,8 @@
         description: 'Get finance and Cycle to Work scheme information',
         inputSchema: { type: 'object', properties: {} },
         execute: async () => {
-          window.location.href = 'https://DOMAIN.com/finance/';
-          return { url: 'https://DOMAIN.com/finance/' };
+          window.location.href = 'https://peakpedal.org/finance/';
+          return { url: 'https://peakpedal.org/finance/' };
         },
       },
       {
@@ -39,8 +39,8 @@
         description: 'Contact for product questions or support',
         inputSchema: { type: 'object', properties: {} },
         execute: async () => {
-          window.location.href = 'https://DOMAIN.com/contact/';
-          return { url: 'https://DOMAIN.com/contact/' };
+          window.location.href = 'https://peakpedal.org/contact/';
+          return { url: 'https://peakpedal.org/contact/' };
         },
       },
     ],

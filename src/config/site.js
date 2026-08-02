@@ -7,7 +7,7 @@ export const SITE = {
   tagline: 'Ride Further. Climb Harder.',
   description:
     'UK electric mountain bike specialists — 124 eMTBs from 16+ leading brands, expert advice, UK-wide delivery.',
-  domain: 'DOMAIN.com', // PENDING — change this ONE line, rebuild, push. Never find-and-replace.
+  domain: 'peakpedal.org',
   target: 'vercel',
   colors: { primary: '#14432A', accent: '#A8FF3E', dark: '#14181C', bg: '#F7F8F5' },
   founding: {
@@ -16,8 +16,8 @@ export const SITE = {
     location: 'United Kingdom',
     hq: 'United Kingdom',
   },
-  gscCode: 'PENDING-GSC-VERIFICATION-CODE',
-  indexNowKey: 'pending-indexnow-key-00000000000000000000000000000000',
+  gscCode: 'gCKl261Iq-7m5qLR1DzHXCfKmkQv8gomq_a-u7jBv8s',
+  indexNowKey: '2b9665d59fefb51aecc603a7dceae7f8',
   social: {
     // No real profiles supplied — omit sameAs entries until real ones exist (never fabricate).
     sameAs: [],
@@ -42,9 +42,9 @@ export const HERO_SLIDES = [
 ];
 
 export const CONTACT = {
-  email: 'info@DOMAIN.com', // placeholder — entity-encode wherever rendered
-  phone: '+44 0000 000000', // placeholder
-  whatsapp: '440000000000', // placeholder, digits only for wa.me links
+  email: 'info@peakpedal.org', // entity-encode wherever rendered
+  phone: '+44 7838 207659',
+  whatsapp: '447838207659', // digits only, for wa.me links
   country: 'United Kingdom',
   currency: 'GBP',
   currencySymbol: '£',

@@ -3,20 +3,20 @@
   "protocol_version": "1.0",
   "spec": "https://ucp.dev/specification/overview/",
   "schema": "https://ucp.dev/schema/v1.json",
-  "site": "https://DOMAIN.com",
+  "site": "https://peakpedal.org",
   "name": "Peak Pedal",
   "description": "UK electric mountain bike specialists — 124 eMTBs from 16+ leading brands, expert advice, UK-wide delivery.",
   "services": [
     {
       "id": "product-catalog",
       "type": "catalog",
-      "url": "https://DOMAIN.com/api/products",
+      "url": "https://peakpedal.org/api/products",
       "description": "Full product catalog (JSON)"
     },
     {
       "id": "order",
       "type": "commerce",
-      "url": "https://wa.me/440000000000",
+      "url": "https://wa.me/447838207659",
       "description": "Start an order via WhatsApp"
     }
   ],
@@ -27,13 +27,13 @@
     "content"
   ],
   "endpoints": {
-    "catalog": "https://DOMAIN.com/api/products",
-    "search": "https://DOMAIN.com/api/search",
-    "contact": "https://DOMAIN.com/contact/",
-    "agent_skills": "https://DOMAIN.com/.well-known/agent-skills/index.json",
-    "mcp_server_card": "https://DOMAIN.com/.well-known/mcp/server-card.json",
-    "api_catalog": "https://DOMAIN.com/.well-known/api-catalog",
-    "llms_txt": "https://DOMAIN.com/llms.txt"
+    "catalog": "https://peakpedal.org/api/products",
+    "search": "https://peakpedal.org/api/search",
+    "contact": "https://peakpedal.org/contact/",
+    "agent_skills": "https://peakpedal.org/.well-known/agent-skills/index.json",
+    "mcp_server_card": "https://peakpedal.org/.well-known/mcp/server-card.json",
+    "api_catalog": "https://peakpedal.org/.well-known/api-catalog",
+    "llms_txt": "https://peakpedal.org/llms.txt"
   },
   "currency": "GBP",
   "minimum_order_gbp": 0,

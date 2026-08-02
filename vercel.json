@@ -7,10 +7,10 @@
       "has": [
         {
           "type": "host",
-          "value": "www.DOMAIN.com"
+          "value": "www.peakpedal.org"
         }
       ],
-      "destination": "https://DOMAIN.com/:path*",
+      "destination": "https://peakpedal.org/:path*",
       "permanent": true
     }
   ],

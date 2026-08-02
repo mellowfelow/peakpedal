@@ -2,20 +2,20 @@
 
 ## Peak Pedal — Agent Registration
 
-No authentication is required to access any public resource on DOMAIN.com. All catalog, category, blog and API data is openly accessible.
+No authentication is required to access any public resource on peakpedal.org. All catalog, category, blog and API data is openly accessible.
 
 ## Public resources
 
 | Resource | URL |
 |---|---|
-| Homepage | https://DOMAIN.com/ |
-| Full catalog | https://DOMAIN.com/electric-mountain-bikes/ |
-| Product API | https://DOMAIN.com/api/products |
-| Search API | https://DOMAIN.com/api/search?q= |
-| llms.txt | https://DOMAIN.com/llms.txt |
-| API catalog | https://DOMAIN.com/.well-known/api-catalog |
-| Agent skills | https://DOMAIN.com/.well-known/agent-skills/index.json |
-| MCP server card | https://DOMAIN.com/.well-known/mcp/server-card.json |
+| Homepage | https://peakpedal.org/ |
+| Full catalog | https://peakpedal.org/electric-mountain-bikes/ |
+| Product API | https://peakpedal.org/api/products |
+| Search API | https://peakpedal.org/api/search?q= |
+| llms.txt | https://peakpedal.org/llms.txt |
+| API catalog | https://peakpedal.org/.well-known/api-catalog |
+| Agent skills | https://peakpedal.org/.well-known/agent-skills/index.json |
+| MCP server card | https://peakpedal.org/.well-known/mcp/server-card.json |
 
 ```json
 {
@@ -30,7 +30,7 @@ No authentication is required to access any public resource on DOMAIN.com. All c
 
 ## Ordering
 
-Agents may search the catalog and prepare an order summary, but a human must complete checkout — Peak Pedal does not accept payment or order confirmation from an automated agent. Direct agents to https://DOMAIN.com/order/ or WhatsApp for a human to finish the purchase.
+Agents may search the catalog and prepare an order summary, but a human must complete checkout — Peak Pedal does not accept payment or order confirmation from an automated agent. Direct agents to https://peakpedal.org/order/ or WhatsApp for a human to finish the purchase.
 
 ## Age restriction
 
