@@ -38,7 +38,21 @@ export default async function CategoryPage({ params }) {
 
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [breadcrumbSchema(breadcrumbItems, SITE.domain)],
+    '@graph': [
+      breadcrumbSchema(breadcrumbItems, SITE.domain),
+      ...(page.faqs
+        ? [
+            {
+              '@type': 'FAQPage',
+              mainEntity: page.faqs.map((f) => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            },
+          ]
+        : []),
+    ],
   };
 
   const isInfoPage = page.kind === 'info' || page.kind === 'guidance-no-stock';
@@ -81,6 +95,20 @@ export default async function CategoryPage({ params }) {
             {page.extraParagraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
+          </div>
+        )}
+
+        {page.faqs && (
+          <div style={{ maxWidth: 760, marginTop: '2rem' }}>
+            <h2>Frequently Asked Questions</h2>
+            <div className="stack">
+              {page.faqs.map((f) => (
+                <div key={f.q} className="card">
+                  <h3 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>{f.q}</h3>
+                  <p style={{ marginBottom: 0 }}>{f.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </section>

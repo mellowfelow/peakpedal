@@ -1,4 +1,4 @@
-import { SITE, FAQS } from '@/config/site';
+import { SITE, FAQ_PAGE_FAQS } from '@/config/site';
 
 export const metadata = {
   title: { absolute: `Electric Mountain Bike FAQ — ${SITE.name}` },
@@ -9,24 +9,37 @@ export const metadata = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: FAQS.map((f) => ({
+  mainEntity: FAQ_PAGE_FAQS.map((f) => ({
     '@type': 'Question',
     name: f.q,
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
 
+const speakableSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['.faq-answer-speakable'],
+  },
+  url: `https://${SITE.domain}/faq/`,
+};
+
 export default function FaqPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
       <section className="section container" style={{ maxWidth: 720 }}>
         <h1>Electric Mountain Bike FAQs</h1>
         <div className="stack">
-          {FAQS.map((f) => (
+          {FAQ_PAGE_FAQS.map((f) => (
             <div key={f.q} className="card">
               <h2 style={{ fontSize: '1.1rem', marginBottom: '0.4rem' }}>{f.q}</h2>
-              <p style={{ marginBottom: 0 }}>{f.a}</p>
+              <p className={f.speakable ? 'faq-answer-speakable' : undefined} style={{ marginBottom: 0 }}>
+                {f.a}
+              </p>
             </div>
           ))}
         </div>

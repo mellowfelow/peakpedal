@@ -582,6 +582,113 @@ export const ACCESSORIES = RAW_ACCESSORIES.map(
 );
 
 // ---------------------------------------------------------------------------
+// CATEGORY_FAQS — pulled verbatim from docs/faq-bank.md (Q19-Q35). Rendered as
+// visible cards + FAQPage JSON-LD on the matching category page by [slug]/page.jsx.
+// ---------------------------------------------------------------------------
+const CATEGORY_FAQS = {
+  'full-suspension-electric-mountain-bikes': [
+    {
+      q: 'What is a full suspension electric mountain bike?',
+      a: 'A full suspension electric mountain bike (eMTB) has both front and rear suspension — typically 120–180mm of travel — combined with a mid-drive motor system. Full suspension improves traction, control and rider comfort on rough and technical terrain compared to hardtail eMTBs.',
+    },
+    {
+      q: 'How much travel do I need on a full suspension eMTB?',
+      a: '120–140mm suits trail and all-mountain riding on typical UK singletrack. 150–160mm handles technical enduro terrain and steeper descents. 170–180mm is reserved for dedicated enduro racing. Most riders on UK trails are well served by 140mm of travel front and rear.',
+    },
+    {
+      q: 'Is full suspension worth the extra cost over hardtail?',
+      a: 'For most UK trail riding, yes. Full suspension significantly improves rear wheel traction on loose or rocky ground, reduces rider fatigue on longer rides and provides better control on descents. The cost premium over hardtail is typically £500–£1,500 depending on brand and spec.',
+    },
+  ],
+  'hardtail-electric-mountain-bikes': [
+    {
+      q: 'Is a hardtail eMTB good for beginners?',
+      a: 'Yes — hardtail eMTBs are an excellent first electric mountain bike. Lower weight, simpler maintenance and a lower purchase price make them accessible. The rigid rear also provides direct feedback, which helps newer riders develop technique. Many experienced riders choose hardtails for smoother cross-country trails too.',
+    },
+    {
+      q: 'Are hardtail electric mountain bikes cheaper than full suspension?',
+      a: 'Generally, yes. At equivalent spec levels, hardtail eMTBs typically cost £500–£1,500 less than full suspension models from the same brand. This is because hardtail frames are simpler to manufacture and have fewer components. The entry price for hardtail eMTBs at Peak Pedal starts from around £2,100.',
+    },
+    {
+      q: 'Can I ride a hardtail eMTB on technical trails?',
+      a: 'Yes, though with more physical effort than full suspension. Hardtail eMTBs lack rear shock absorption, so rough or rocky terrain requires more active rider input. They perform well on smoother singletrack, cross-country routes and gravel trails. Many UK trail centres suit hardtail eMTBs well.',
+    },
+  ],
+  'lightweight-electric-mountain-bikes': [
+    {
+      q: 'What is a lightweight SL electric mountain bike?',
+      a: 'An SL (Super Light) electric mountain bike uses a smaller, lighter motor — typically 1.8–2.1kg and 50–60Nm torque — compared to a full-power system at 2.9–3.5kg and 85Nm. The result is a lighter, more natural-feeling ride. Common SL motors include Bosch Performance SX, TQ HPR50, and Fazua Ride 60.',
+    },
+    {
+      q: 'Is a lightweight eMTB better than a full-power eMTB?',
+      a: 'Neither is universally better — they suit different riders. Lightweight SL eMTBs feel closer to an unassisted mountain bike, are accepted on more trail networks and are easier to transport. Full-power eMTBs provide significantly more climbing assistance. For fit riders on technical climbs, SL. For max assist, full-power.',
+    },
+    {
+      q: 'What is the lightest electric mountain bike you sell?',
+      a: 'The lightest eMTBs in our range are SL (Super Light) models from Trek, Orbea and Specialized — typically 17–19kg. The Trek Fuel EXe and Orbea Rise LT are among our lightest options. Exact weights vary by frame size and are listed in each product specification.',
+    },
+  ],
+  'enduro-electric-mountain-bikes': [
+    {
+      q: 'What is an enduro electric mountain bike?',
+      a: 'An enduro eMTB is a long-travel full suspension electric mountain bike designed for technical descents and steep terrain. Enduro eMTBs typically have 150–175mm of suspension travel, slack geometry and robust componentry — they are ridden up climbs under motor assist, then raced or ridden hard on the descents.',
+    },
+    {
+      q: 'What travel do enduro eMTBs have?',
+      a: 'Enduro electric mountain bikes typically have 150–170mm of front and rear suspension travel. This range provides enough compliance for aggressive descending while retaining climbing efficiency. Models at 175mm+ cross into e-downhill territory. Our enduro eMTB range starts at 150mm travel with Bosch Performance CX and Shimano EP801 motor options.',
+    },
+    {
+      q: 'Can I use an enduro eMTB for everyday trail riding?',
+      a: 'Yes — enduro eMTBs are versatile. The long travel and slack geometry that excels on technical terrain still performs on standard singletrack. The main trade-off is additional weight (typically 25–28kg) and higher purchase cost versus a trail-focused eMTB. If you ride technical terrain occasionally, an enduro eMTB is a sound choice.',
+    },
+  ],
+  'womens-electric-mountain-bikes': [
+    {
+      q: "Are women's electric mountain bikes different from standard bikes?",
+      a: "Women's specific eMTBs may offer adjusted geometry for a broader range of rider heights, and are sometimes available in smaller frame sizes. Motor, battery and performance specifications are identical to equivalent standard models. Not all brands offer women's-specific versions — many women ride standard geometry eMTBs with no issues.",
+    },
+    {
+      q: 'What size electric mountain bike do I need as a woman?',
+      a: 'eMTB sizing is based on height, not gender. Most brands use S/M/L/XL sizing: S suits riders approximately 155–165cm, M suits 165–175cm, L suits 175–185cm. We recommend using each brand’s geometry chart as a starting point. Contact us via WhatsApp for personalised sizing advice.',
+    },
+  ],
+  'kids-electric-mountain-bike': [
+    {
+      q: 'What age can a child ride an electric mountain bike in the UK?',
+      a: 'Under UK law, the minimum age to ride an EAPC-compliant electric mountain bike on public roads and trails is 14. Children under 14 can ride eMTBs on private land only. For younger riders, non-electric mountain bikes are the recommended option for trail riding.',
+    },
+    {
+      q: 'Are kids electric mountain bikes safe?',
+      a: 'Yes — kids and youth eMTBs from brands like Cube and Trek are designed with age-appropriate geometry, lower stand-over heights and reduced motor output settings. EAPC compliance ensures the motor cuts out at 15.5mph. As with any mountain bike, appropriate protective gear is strongly recommended.',
+    },
+    {
+      q: 'What size electric mountain bike does my child need?',
+      a: 'Youth eMTB sizing is primarily based on rider height and inside leg. Junior eMTBs typically use 24 or 27.5 inch wheel sizes. Most manufacturers publish youth sizing guides — contact us via WhatsApp with your child’s height and we will recommend the right size.',
+    },
+  ],
+};
+
+// Data-driven brand FAQs (2 per brand) — derived from real PRODUCTS data only.
+// The faq-bank.md brand template's 3rd question (warranty terms) is intentionally
+// omitted: no real per-brand warranty data was supplied, and CLAUDE.md prohibits
+// inventing specs. Add it once real warranty terms are confirmed.
+function brandFaqs(brand) {
+  const brandProducts = PRODUCTS.filter((p) => p.brand === brand.name);
+  const motors = [...new Set(brandProducts.map((p) => p.motor))];
+  const examples = brandProducts.slice(0, 3).map((p) => p.name);
+  return [
+    {
+      q: `Are ${brand.name} electric mountain bikes available in the UK?`,
+      a: `Yes — ${brand.name} electric mountain bikes are available at Peak Pedal with UK-wide delivery. We stock ${brandProducts.length} model${brandProducts.length === 1 ? '' : 's'} including ${examples.join(', ')}. Contact us via WhatsApp for availability and pricing on specific models.`,
+    },
+    {
+      q: `What motors do ${brand.name} eMTBs use?`,
+      a: `${brand.name} electric mountain bikes at Peak Pedal use ${motors.join(', ')}${motors.length > 1 ? ' motors' : ' motor'}, depending on the model.`,
+    },
+  ];
+}
+
+// ---------------------------------------------------------------------------
 // CATEGORY_PAGES — every non-product, non-brand landing page. One dynamic
 // route (`app/[slug]/page.jsx`) serves all of these from this single array.
 // ---------------------------------------------------------------------------
@@ -614,6 +721,7 @@ export const CATEGORY_PAGES = [
       'Every full sus electric mountain bike in this range spans 140mm up to 175mm of travel, so whether you want a trail-focused electric full suspension mtb or a long-travel enduro build, you can filter by travel and motor below.',
     ],
     filter: (p) => p.category === 'Full Suspension',
+    faqs: CATEGORY_FAQS['full-suspension-electric-mountain-bikes'],
   },
   {
     slug: 'hardtail-electric-mountain-bikes',
@@ -628,6 +736,7 @@ export const CATEGORY_PAGES = [
       "A hardtail emtb skips rear suspension entirely, which keeps weight down, maintenance simpler, and the purchase price lower than an equivalent full-suspension build. For UK trail centres and fire roads, an electric hardtail mtb is often the more practical choice — there's less to service, and the stiffer rear end can even feel more efficient on smoother climbs. If you're new to electric mountain biking, a hardtail e mtb is usually the sensible starting point before stepping up to full suspension.",
     ],
     filter: (p) => p.category === 'Hardtail',
+    faqs: CATEGORY_FAQS['hardtail-electric-mountain-bikes'],
   },
   {
     slug: 'lightweight-electric-mountain-bikes',
@@ -643,6 +752,7 @@ export const CATEGORY_PAGES = [
       "We wouldn't claim to stock the single best lightweight emtb on the UK market, since that depends entirely on your terrain and budget, but across motor platforms — Shimano EP801-RS, TQ HPR50, Specialized SL 1.1 — this is where you'll find some of the best lightweight electric mountain bikes currently available here.",
     ],
     filter: (p) => p.category === 'Lightweight SL',
+    faqs: CATEGORY_FAQS['lightweight-electric-mountain-bikes'],
   },
   {
     slug: 'enduro-electric-mountain-bikes',
@@ -657,6 +767,7 @@ export const CATEGORY_PAGES = [
       "An e enduro bike prioritises descending capability above all else — long travel, slack head angles and stronger brakes, built for riders who spend more time pointed downhill than climbing. Every enduro e bike in this range runs 160mm or more of travel front and rear, powered by a full-power motor rather than a lightweight SL system, since enduro riding puts more sustained demand on the motor and battery than cross-country or trail use.",
     ],
     filter: (p) => p.type === 'Enduro',
+    faqs: CATEGORY_FAQS['enduro-electric-mountain-bikes'],
   },
   {
     slug: 'off-road-electric-bikes',
@@ -681,6 +792,7 @@ export const CATEGORY_PAGES = [
       "A womens emtb doesn't need to be a separate product line — the frame size and standover height matter far more than any gendered marketing label. Every womens electric bike question we get usually comes down to reach and seat height rather than colour or graphics, which is why our range sticks to genuinely unisex frames across multiple sizes rather than a cosmetically different \"women's\" version of the same bike.",
     ],
     filter: () => true,
+    faqs: CATEGORY_FAQS['womens-electric-mountain-bikes'],
   },
   {
     slug: 'kids-electric-mountain-bike',
@@ -695,6 +807,7 @@ export const CATEGORY_PAGES = [
       "We don't stock a dedicated kids ebike or kids e bike range — every model here is designed and sized for adult and teen riders at or above the UK's 14-year minimum EAPC age. If you're specifically looking for a genuine kids ebike sized for a younger rider, that's outside what we currently carry, and we'd rather say so directly than stretch the definition.",
     ],
     filter: () => false,
+    faqs: CATEGORY_FAQS['kids-electric-mountain-bike'],
   },
   {
     slug: 'electric-mountain-bike-deals',
@@ -802,32 +915,91 @@ export const CATEGORY_PAGES = [
     extraHeading: brand.extraHeading,
     extraParagraphs: brand.extraParagraphs,
     filter: (p) => p.brand === brand.name,
+    faqs: brandFaqs(brand),
   })),
 ];
 
 // ---------------------------------------------------------------------------
-// FAQS — homepage + /faq/, direct-answer format for AI-visibility.
+// HOME_FAQS / FAQ_PAGE_FAQS — pulled verbatim from docs/faq-bank.md (Q1-Q6 for
+// the homepage, Q7-Q18 for the dedicated /faq/ page). Different question sets
+// per WebForge's "never duplicate the same question across two pages" rule.
 // ---------------------------------------------------------------------------
-export const FAQS = [
+export const HOME_FAQS = [
   {
     q: 'What is Peak Pedal?',
-    a: 'Peak Pedal is a UK-based online retailer of electric mountain bikes, stocking 96 models across 14+ brands including Cube, Trek, Orbea, Santa Cruz, Whyte and Amflow, with UK-wide delivery.',
+    a: 'Peak Pedal is a UK specialist retailer of electric mountain bikes, stocking 96 eMTBs from 14+ brands including Cube, Trek, Orbea, Santa Cruz, Specialized and Amflow. We offer expert advice, UK-wide delivery and a WhatsApp-first ordering process for riders who want to talk before they buy.',
   },
   {
     q: 'Are electric mountain bikes legal in the UK?',
-    a: `Yes. An electrically assisted pedal cycle (EAPC) is legal to ride without a licence, tax or insurance in the UK provided the motor is rated at no more than ${COMPLIANCE.eapc.maxPowerWatts}W continuous power, assistance cuts out at ${COMPLIANCE.eapc.maxAssistSpeedMph}mph, and the rider is at least ${COMPLIANCE.eapc.minRiderAge} years old.`,
+    a: 'Yes. All eMTBs sold by Peak Pedal comply with UK EAPC (Electrically Assisted Pedal Cycle) regulations — motor output no greater than 250W continuous power, assistance cutting out at 15.5mph. They are classified as bicycles: no licence, registration or insurance required. Riders must be aged 14 or over.',
   },
   {
-    q: 'What motor brands do Peak Pedal’s bikes use?',
-    a: 'Our range spans Bosch Performance CX and Active Line motors, Shimano EP8 and EP801-series motors, Yamaha SyncDrive and PW-X3 motors, DJI’s Avinox system, plus TQ and Pinion motors on select lightweight models.',
+    q: 'How much do electric mountain bikes cost?',
+    a: 'Electric mountain bikes at Peak Pedal range from approximately £2,100 for an entry-level hardtail to over £9,000 for a premium full suspension enduro build. The majority of our full suspension range with Bosch Performance CX motors falls between £2,800 and £5,000. Finance options are available.',
   },
   {
-    q: 'Do you offer finance or Cycle to Work?',
-    a: 'We can discuss finance options and Cycle to Work scheme eligibility for any bike in our range — contact us and we’ll confirm what’s available for the specific model and your employer’s scheme.',
+    q: 'Do you offer UK-wide delivery?',
+    a: 'Yes — Peak Pedal delivers electric mountain bikes across the UK. All bikes are professionally built, inspected and boxed before despatch. Delivery timescales and costs are confirmed at the point of order. Contact us via WhatsApp to discuss delivery for your specific postcode.',
   },
   {
-    q: 'How do I check out?',
-    a: 'You can order via WhatsApp for a fast, direct response, or use our online order form. We accept payment by bank transfer, with card payment coming soon.',
+    q: 'Can I buy an electric mountain bike on finance?',
+    a: 'Finance options for electric mountain bikes are coming soon at Peak Pedal. In the meantime, the Cycle to Work scheme can reduce the purchase cost of an eligible eMTB by 25–47% through salary sacrifice — see our Cycle to Work guide for details.',
+  },
+  {
+    q: 'Who are electric mountain bikes suitable for?',
+    a: 'Electric mountain bikes are suitable for all adult riders — those returning to cycling, riders tackling bigger climbs, commuters wanting trail capability, and experienced mountain bikers looking for more time at the top. At Peak Pedal we stock everything from entry hardtails to elite enduro builds.',
+  },
+];
+
+export const FAQ_PAGE_FAQS = [
+  {
+    q: 'Can I ride an electric mountain bike on any trail in the UK?',
+    a: 'EAPC-compliant eMTBs are classified as bicycles under UK law, so they are permitted on any trail open to regular mountain bikes. Most trail centres in the UK accept eMTBs. However, some privately managed venues or specific trail features may have their own policies — always confirm with the trail centre before your visit.',
+  },
+  {
+    q: 'Do I need a licence to ride an electric mountain bike?',
+    a: 'No licence, registration or insurance is required to ride an EAPC-compliant electric mountain bike in the UK. The minimum legal age is 14. All eMTBs at Peak Pedal are EAPC-compliant — 250W continuous motor power, pedal assistance only, and assistance cutting out at 15.5mph.',
+  },
+  {
+    q: 'What age can you ride an electric mountain bike in the UK?',
+    a: "The minimum age to ride an EAPC-compliant electric mountain bike on public roads and trails in the UK is 14 years old. There is no upper age limit. For riders under 14, electric mountain bikes may only be used on private land with the landowner's permission.",
+  },
+  {
+    q: 'How much should I spend on my first electric mountain bike?',
+    a: 'For a first eMTB with reliable motor support and serviceable components, £2,500–£3,500 is a practical starting range. This buys a hardtail or entry full suspension with a Bosch, Shimano or Yamaha motor. Below £2,000, motor quality and long-term parts availability become less consistent.',
+  },
+  {
+    q: 'Can I use the Cycle to Work scheme for an electric mountain bike?',
+    a: 'Yes — most EAPC-compliant electric mountain bikes qualify for the Cycle to Work scheme, which allows employees to purchase bikes through salary sacrifice at a gross saving of 25–47% depending on tax band. Peak Pedal can support Cycle to Work orders — see our guide for details or contact us via WhatsApp.',
+  },
+  {
+    q: 'Who sells electric mountain bikes in the UK?',
+    a: 'Electric mountain bikes are sold by specialist retailers like Peak Pedal, brand-direct websites, and some large cycling chains. Specialist retailers offer expertise across multiple brands and can advise on fitting, spec and aftersales — Peak Pedal stocks 14+ brands with UK-wide delivery and WhatsApp support.',
+    speakable: true,
+  },
+  {
+    q: 'What is the best motor for an electric mountain bike?',
+    a: 'The right motor depends on your priorities. Bosch Performance CX (85Nm) is the most widely supported and suited to demanding terrain. Shimano EP801 is quieter and lighter for a more natural feel. DJI Avinox M1 offers the highest peak torque (105Nm) with smart features. Lightweight SL riders prefer TQ HPR50 or Bosch SX.',
+  },
+  {
+    q: 'How far can I ride on an electric mountain bike?',
+    a: 'Range depends on motor mode, terrain, rider weight and battery size. On a typical 750Wh battery with Bosch Performance CX in Trail mode, expect 50–90km of trail riding. Lightweight SL systems with smaller batteries (250–400Wh) typically offer 30–60km. Range estimates from manufacturers assume flat ground — factor in 20–30% reduction for hilly terrain.',
+  },
+  {
+    q: 'How long does an eMTB battery last before it needs replacing?',
+    a: 'Modern eMTB batteries (Bosch, Shimano, Yamaha) typically retain over 60% capacity after 500–1,000 full charge cycles — equivalent to several years of regular riding. Battery replacement is available through authorised service centres. Avoid fully discharging the battery and store it at 30–60% charge to maximise lifespan.',
+  },
+  {
+    q: 'How heavy are electric mountain bikes?',
+    a: 'Full-power eMTBs typically weigh 22–27kg depending on frame material, motor and battery. Lightweight SL models (Trek Fuel EXe, Orbea Rise LT, Specialized Turbo Levo SL) weigh 17–21kg. Carbon framed models are generally 1–2kg lighter than equivalent alloy builds. Weight is listed in each product spec at Peak Pedal.',
+  },
+  {
+    q: 'What is the difference between hardtail and full suspension eMTBs?',
+    a: 'A hardtail eMTB has front suspension only — lower weight, lower maintenance cost and better climbing efficiency. A full suspension eMTB adds rear suspension, improving comfort, control and traction on rough or technical terrain. For beginners or cross-country riders, hardtail. For trail, enduro and technical riding, full suspension.',
+  },
+  {
+    q: 'Should I buy a full suspension or hardtail electric mountain bike?',
+    a: "Buy full suspension if you ride technical or rocky terrain, prioritise control on descents, or tackle enduro trails. Buy a hardtail if you predominantly ride smoother cross-country trails, want lower running costs, or are newer to mountain biking. Both types are excellent for general trail use at Peak Pedal's price points.",
   },
 ];
 

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import HeroSlider from '@/components/HeroSlider';
-import { SITE, CONTACT, PRODUCTS, BRANDS, FAQS, COMPLIANCE, HERO_SLIDES, CATEGORY_PAGES } from '@/config/site';
+import { SITE, CONTACT, PRODUCTS, BRANDS, HOME_FAQS, COMPLIANCE, HERO_SLIDES, CATEGORY_PAGES } from '@/config/site';
 
 const brandCount = new Set(PRODUCTS.map((p) => p.brand)).size;
 
@@ -31,7 +31,23 @@ const storeSchema = {
   areaServed: 'GB',
   address: { '@type': 'PostalAddress', addressCountry: 'GB' },
   numberOfItems: PRODUCTS.length,
-  knowsAbout: ['Electric mountain bikes', 'eMTB motors', 'Bosch Performance CX', 'Shimano EP8', 'UK EAPC regulations'],
+  // knowsAbout merged with docs/keyword-map.md's Organization schema section (same entity —
+  // kept as one combined Store/Organization block rather than a second, competing Organization
+  // schema on the same page).
+  knowsAbout: [
+    'Electric mountain bikes',
+    'eMTB motors',
+    'Bosch Performance CX',
+    'Shimano EP8',
+    'UK EAPC regulations',
+    'Shimano EP801',
+    'Yamaha PW-X3',
+    'DJI Avinox',
+    'TQ HPR50',
+    'Full suspension eMTB',
+    'Hardtail eMTB',
+    'Lightweight SL eMTB',
+  ],
   priceRange: '££-£££',
   sameAs: SITE.social.sameAs,
   makesOffer: {
@@ -46,11 +62,21 @@ const storeSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: FAQS.map((f) => ({
+  mainEntity: HOME_FAQS.map((f) => ({
     '@type': 'Question',
     name: f.q,
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
+};
+
+const speakableSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['.brand-statement'],
+  },
+  url: `https://${SITE.domain}/`,
 };
 
 export default function HomePage() {
@@ -60,6 +86,7 @@ export default function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(storeSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
 
       <HeroSlider slides={HERO_SLIDES} />
 
@@ -131,7 +158,7 @@ export default function HomePage() {
             brands including Cube, Trek, Orbea, Santa Cruz, Whyte and Amflow. We ship UK-wide and specialise in full-suspension,
             hardtail and lightweight SL electric mountain bikes built around Bosch, Shimano, Yamaha and DJI Avinox motor platforms.
           </p>
-          <p>
+          <p className="brand-statement">
             Our focus is matching each rider to the right motor, travel and geometry for their terrain — whether that's an entry-level
             hardtail for trail-centre laps or a long-travel enduro full-suspension build for demanding descents. Whether you call them
             eMTBs or emtb bikes, every one we stock is a legal electrically assisted pedal cycle (EAPC) under UK law: motor power
@@ -149,7 +176,7 @@ export default function HomePage() {
         <span className="section-eyebrow">Got Questions?</span>
         <h2>Frequently Asked Questions</h2>
         <div className="stack">
-          {FAQS.map((f) => (
+          {HOME_FAQS.map((f) => (
             <div key={f.q} className="card">
               <h3 style={{ marginBottom: '0.4rem' }}>{f.q}</h3>
               <p style={{ marginBottom: 0 }}>{f.a}</p>
