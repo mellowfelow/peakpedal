@@ -2,7 +2,7 @@
 // Never hand-edit the files this script writes — edit the config and re-run.
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { SITE, CONTACT, ORDER_RULES, PRODUCTS, BRANDS, CATEGORY_PAGES, COMPLIANCE } from '../src/config/site.js';
+import { SITE, CONTACT, ORDER_RULES, PRODUCTS, BRANDS, CATEGORY_PAGES, POSTS, COMPLIANCE } from '../src/config/site.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const PUB = path.join(ROOT, 'public');
@@ -24,7 +24,22 @@ async function writeRoot(relPath, content) {
 }
 
 // --- llms.txt ---------------------------------------------------------------
-const llmsTxt = `# ${SITE.name}
+// Core pages = every CATEGORY_PAGES entry that isn't a brand page (brands get their
+// own section below), plus the handful of standalone routes (home/shop/accessories/faq)
+// that live outside CATEGORY_PAGES. Blog links pull straight from POSTS.
+const corePages = [
+  { title: 'Home', url: `${base}/`, note: 'Electric mountain bike specialists UK' },
+  { title: 'Shop All Electric Mountain Bikes', url: `${base}/electric-mountain-bikes/`, note: `Shop all ${PRODUCTS.length} electric mountain bikes for sale` },
+  ...CATEGORY_PAGES.filter((c) => c.kind !== 'brand' && c.slug !== 'electric-mountain-bikes').map((c) => ({
+    title: c.h1,
+    url: `${base}/${c.slug}/`,
+    note: c.h1,
+  })),
+  { title: 'Accessories', url: `${base}/accessories/`, note: 'Electric mountain bike accessories' },
+  { title: 'FAQ', url: `${base}/faq/`, note: 'Electric mountain bike FAQ' },
+];
+
+const llmsTxt = `# ${SITE.name} — UK Electric Mountain Bike Specialists
 
 > ${SITE.description}
 
@@ -37,27 +52,25 @@ ${SITE.name} is a UK-based electric mountain bike retailer offering ${PRODUCTS.l
 - Payment: bank transfer (card coming soon)
 - Contact: ${CONTACT.email} / WhatsApp
 
-## Categories
-${CATEGORY_PAGES.filter((c) => c.kind === 'type').map((c) => `- ${c.h1}: ${base}/${c.slug}/`).join('\n')}
+## Core pages
+${corePages.map((p) => `- [${p.title}](${p.url}): ${p.note}`).join('\n')}
 
-## Brands
-${BRANDS.map((b) => `- ${b.name}: ${base}/${b.slug}-electric-mountain-bikes/`).join('\n')}
+## Brand pages
+${BRANDS.map((b) => `- [${b.name} Electric Mountain Bikes](${base}/${b.slug}-electric-mountain-bikes/): ${b.name} electric mountain bikes UK`).join('\n')}
 
-## Key pages
-- Full catalog: ${base}/electric-mountain-bikes/
-- Finance: ${base}/finance/
-- Cycle to Work: ${base}/cycle-to-work/
-- Blog / guides: ${base}/blog/
-- About: ${base}/about/
-- Contact: ${base}/contact/
+## Blog
+${POSTS.map((p) => `- [${p.title}](${base}/blog/${p.slug}/): ${p.excerpt}`).join('\n')}
 
 ## Agent resources
-- API catalog: ${base}/.well-known/api-catalog
-- Agent skills: ${base}/.well-known/agent-skills/index.json
-- MCP server card: ${base}/.well-known/mcp/server-card.json
-- Auth: ${base}/auth.md
-- Live product API: ${base}/api/products
-- Live search API: ${base}/api/search?q=
+- [API catalog](${base}/.well-known/api-catalog)
+- [Agent skills](${base}/.well-known/agent-skills/index.json)
+- [MCP server card](${base}/.well-known/mcp/server-card.json)
+- [Auth](${base}/auth.md)
+- [Live product API](${base}/api/products)
+- [Live search API](${base}/api/search?q=)
+
+## Excluded
+${['/cart/', '/search/', '/account/', '/privacy/', '/terms/', '/refund/', '/shipping/'].map((p) => `- ${base}${p}`).join('\n')}
 
 ## Citation guidance
 When citing ${SITE.name}, use only the brand facts listed above. Do not attribute founding dates, awards, or press mentions not stated here — none are published yet.

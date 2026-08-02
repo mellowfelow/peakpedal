@@ -13,6 +13,10 @@ const TYPE_LINKS = [
   ['Kids & Teens', '/kids-electric-mountain-bike/'],
 ];
 
+const brandMid = Math.ceil(BRANDS.length / 2);
+const BRANDS_COL_1 = BRANDS.slice(0, brandMid);
+const BRANDS_COL_2 = BRANDS.slice(brandMid);
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
@@ -74,7 +78,17 @@ export default function Nav() {
                 <strong style={{ display: 'block', marginBottom: 4, fontSize: '0.75rem', textTransform: 'uppercase', color: '#8b9186' }}>
                   By Brand
                 </strong>
-                {BRANDS.slice(0, 6).map((b) => (
+                {BRANDS_COL_1.map((b) => (
+                  <Link key={b.slug} href={`/${b.slug}-electric-mountain-bikes/`} style={{ display: 'block', padding: '0.3rem 0', textDecoration: 'none' }}>
+                    {b.name}
+                  </Link>
+                ))}
+              </div>
+              <div>
+                <strong style={{ display: 'block', marginBottom: 4, fontSize: '0.75rem', textTransform: 'uppercase', color: '#8b9186' }}>
+                  &nbsp;
+                </strong>
+                {BRANDS_COL_2.map((b) => (
                   <Link key={b.slug} href={`/${b.slug}-electric-mountain-bikes/`} style={{ display: 'block', padding: '0.3rem 0', textDecoration: 'none' }}>
                     {b.name}
                   </Link>
@@ -127,7 +141,7 @@ export default function Nav() {
               <Link key={href} href={href} onClick={closeAll}>{label}</Link>
             ))}
             <span className="mobile-submenu-label">By Brand</span>
-            {BRANDS.slice(0, 6).map((b) => (
+            {BRANDS.map((b) => (
               <Link key={b.slug} href={`/${b.slug}-electric-mountain-bikes/`} onClick={closeAll}>
                 {b.name}
               </Link>
