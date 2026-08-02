@@ -64,13 +64,13 @@ export const FORMS = {
   resendFrom: '',
   turnstileSiteKey: '',
   destinations: {
-    contact: 'info@DOMAIN.com',
-    order: 'info@DOMAIN.com',
+    contact: 'info@peakpedal.org',
+    order: 'info@peakpedal.org',
   },
 };
 
 export const CHAT = {
-  channels: [{ type: 'whatsapp', value: '440000000000' }],
+  channels: [{ type: 'whatsapp', value: '447838207659' }],
 };
 
 export const COMPLIANCE = {

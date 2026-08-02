@@ -82,7 +82,7 @@ export const POST_BODIES = {
       { q: 'What is the cheapest genuinely good electric mountain bike UK stores sell?', a: 'In our range, that is the Trek Marlin+ 6 at around £2,100 — see our full breakdown in the [best electric mountain bike under £2000](/blog/best-electric-mountain-bikes-under-2000/) post for what that budget realistically gets you and why genuine eMTBs rarely go much lower.' },
     ],
     closing:
-      "Every bike mentioned here is available to browse in full on our [electric mountain bikes](/electric-mountain-bikes/) shop page, where you can filter by brand, motor and price. If you're still not sure which is right for you, [message us on WhatsApp](https://wa.me/440000000000) and we'll help you narrow it down based on where you actually ride, your budget, and how much bike weight you're comfortable carrying uphill.",
+      "Every bike mentioned here is available to browse in full on our [electric mountain bikes](/electric-mountain-bikes/) shop page, where you can filter by brand, motor and price. If you're still not sure which is right for you, [message us on WhatsApp](https://wa.me/447838207659) and we'll help you narrow it down based on where you actually ride, your budget, and how much bike weight you're comfortable carrying uphill.",
   },
 
   'electric-mountain-bike-buying-guide': {
@@ -175,7 +175,7 @@ export const POST_BODIES = {
       { q: 'What is the minimum age to ride an electric mountain bike in the UK?', a: '14 years old, under the Electrically Assisted Pedal Cycles Regulations 1983 as amended in 2015.' },
     ],
     closing:
-      "If you've read this far and still want a second opinion on which motor, travel and size suits you, [message us on WhatsApp](https://wa.me/440000000000) — we'd rather talk you through it than have you guess.",
+      "If you've read this far and still want a second opinion on which motor, travel and size suits you, [message us on WhatsApp](https://wa.me/447838207659) — we'd rather talk you through it than have you guess.",
   },
 
   'best-electric-mountain-bikes-under-3000': {
@@ -397,7 +397,7 @@ export const POST_BODIES = {
       { q: 'Should I buy a second-hand eMTB to hit a lower budget?', a: 'It can work, but check battery health and remaining warranty carefully first — battery and motor repairs are the most expensive part of owning an eMTB, and a void warranty removes your safety net.' },
     ],
     closing:
-      "If £2,100 works for you, the [Trek Marlin+ 6 product page](/products/trek-marlin-plus-6/) has full specs, or [message us on WhatsApp](https://wa.me/440000000000) if you want to talk through whether stretching to £2,500-£3,000 makes sense for how you ride.",
+      "If £2,100 works for you, the [Trek Marlin+ 6 product page](/products/trek-marlin-plus-6/) has full specs, or [message us on WhatsApp](https://wa.me/447838207659) if you want to talk through whether stretching to £2,500-£3,000 makes sense for how you ride.",
   },
 
   'bosch-vs-shimano-emtb-motor': {
@@ -516,7 +516,7 @@ export const POST_BODIES = {
       { q: 'Is a Bosch motor ebike easier to get serviced in the UK?', a: 'Bosch has one of the largest dealer networks in the UK, though Shimano is also well-established — check with your local bike shop for which they service most often.' },
     ],
     closing:
-      "Browse our [Bosch electric mountain bikes](/bosch-electric-mountain-bikes/) or [Shimano electric mountain bikes](/shimano-electric-mountain-bikes/) filters to compare specific models side by side, or [ask us on WhatsApp](https://wa.me/440000000000) if you want a recommendation based on your riding style.",
+      "Browse our [Bosch electric mountain bikes](/bosch-electric-mountain-bikes/) or [Shimano electric mountain bikes](/shimano-electric-mountain-bikes/) filters to compare specific models side by side, or [ask us on WhatsApp](https://wa.me/447838207659) if you want a recommendation based on your riding style.",
   },
 
   'cycle-to-work-scheme-emtb': {
@@ -561,7 +561,7 @@ export const POST_BODIES = {
       {
         heading: 'How to Apply Through Peak Pedal',
         paragraphs: [
-          "Check with your employer or HR team which scheme provider they use and what value cap applies. Once you know that, [get in touch](/contact/) or [message us on WhatsApp](https://wa.me/440000000000) and we'll confirm which bikes in our range fit within it and how to place the order through your provider — see our [Cycle to Work](/cycle-to-work/) page for the general process.",
+          "Check with your employer or HR team which scheme provider they use and what value cap applies. Once you know that, [get in touch](/contact/) or [message us on WhatsApp](https://wa.me/447838207659) and we'll confirm which bikes in our range fit within it and how to place the order through your provider — see our [Cycle to Work](/cycle-to-work/) page for the general process.",
         ],
       },
       {
@@ -685,7 +685,7 @@ export const POST_BODIES = {
       {
         heading: 'What We\'d Want to Know Before Buying',
         paragraphs: [
-          "As a newer platform, Avinox has a shorter UK service track record than Bosch or Shimano. If that matters to you, it's a fair question to raise with us directly before ordering — [message us on WhatsApp](https://wa.me/440000000000) and we'll give you a straight answer on what we currently know about parts and servicing, rather than a sales pitch designed to close the deal regardless of your concerns.",
+          "As a newer platform, Avinox has a shorter UK service track record than Bosch or Shimano. If that matters to you, it's a fair question to raise with us directly before ordering — [message us on WhatsApp](https://wa.me/447838207659) and we'll give you a straight answer on what we currently know about parts and servicing, rather than a sales pitch designed to close the deal regardless of your concerns.",
         ],
       },
       {
@@ -865,7 +865,7 @@ export const POST_BODIES = {
       { q: 'Should I buy an enduro bike if I only ride trail centres?', a: 'Probably not — you\'ll be carrying extra weight and cost for capability you rarely use. A trail or all-mountain bike will likely be more enjoyable for everyday trail-centre riding.' },
     ],
     closing:
-      "Browse our full [full suspension electric mountain bikes](/full-suspension-electric-mountain-bikes/) range to filter by travel, motor and price, or [message us on WhatsApp](https://wa.me/440000000000) if you're unsure which travel bracket suits your terrain.",
+      "Browse our full [full suspension electric mountain bikes](/full-suspension-electric-mountain-bikes/) range to filter by travel, motor and price, or [message us on WhatsApp](https://wa.me/447838207659) if you're unsure which travel bracket suits your terrain.",
   },
 
   'best-hardtail-electric-mountain-bike-uk': {
@@ -1130,7 +1130,7 @@ export const POST_BODIES = {
       { q: 'Should I choose lightweight SL or a full-power motor?', a: 'Choose lightweight SL if you want assistance that feels like a boost to your own effort; choose full power if you want maximum assistance and longer range with less regard for weight.' },
     ],
     closing:
-      "Compare the full range on our [lightweight electric mountain bikes](/lightweight-electric-mountain-bikes/) page, or [ask us on WhatsApp](https://wa.me/440000000000) if you're deciding between lightweight SL and a full-power motor.",
+      "Compare the full range on our [lightweight electric mountain bikes](/lightweight-electric-mountain-bikes/) page, or [ask us on WhatsApp](https://wa.me/447838207659) if you're deciding between lightweight SL and a full-power motor.",
   },
 
   'best-enduro-emtb-uk': {
@@ -1247,7 +1247,7 @@ export const POST_BODIES = {
       {
         heading: 'Getting Advice Before Committing to Enduro',
         paragraphs: [
-          'Given the meaningful weight, price and capability step up that enduro bikes represent over trail or all-mountain alternatives, it\'s worth a direct conversation with us about your typical terrain before committing — [contact us](/contact/) or [message us on WhatsApp](https://wa.me/440000000000) with a description of your local trails, and we can tell you honestly whether this category or a lighter all-mountain bike would serve you better.',
+          'Given the meaningful weight, price and capability step up that enduro bikes represent over trail or all-mountain alternatives, it\'s worth a direct conversation with us about your typical terrain before committing — [contact us](/contact/) or [message us on WhatsApp](https://wa.me/447838207659) with a description of your local trails, and we can tell you honestly whether this category or a lighter all-mountain bike would serve you better.',
         ],
       },
       {
@@ -1271,7 +1271,7 @@ export const POST_BODIES = {
       { q: 'Do I need an enduro bike if I mostly ride trail centres?', a: 'Probably not — an enduro bike\'s extra weight and reduced climbing efficiency are only worth it if your riding genuinely includes steep, technical descents or bike-park terrain.' },
     ],
     closing:
-      "See the full [enduro electric mountain bikes](/enduro-electric-mountain-bikes/) range, or [message us on WhatsApp](https://wa.me/440000000000) if you want help choosing the right travel and geometry for your local trails.",
+      "See the full [enduro electric mountain bikes](/enduro-electric-mountain-bikes/) range, or [message us on WhatsApp](https://wa.me/447838207659) if you want help choosing the right travel and geometry for your local trails.",
   },
 
   'trek-fuel-exe-review': {
@@ -1535,7 +1535,7 @@ export const POST_BODIES = {
       { q: 'Is Powerfly or Rail better value?', a: 'Neither is strictly better value — the Rail 5 offers more travel at a similar price to the Powerfly 5, but the Powerfly is lighter and more efficient for trail-centre riding where you don\'t need the extra capability.' },
     ],
     closing:
-      "See both models on our [Trek brand page](/trek-electric-mountain-bikes/), or [message us on WhatsApp](https://wa.me/440000000000) if you're deciding between Powerfly and Rail.",
+      "See both models on our [Trek brand page](/trek-electric-mountain-bikes/), or [message us on WhatsApp](https://wa.me/447838207659) if you're deciding between Powerfly and Rail.",
   },
 
   'santa-cruz-electric-mountain-bike-range-explained': {
@@ -1776,7 +1776,7 @@ export const POST_BODIES = {
       {
         heading: 'Getting Hold of a Whyte Rheo 1',
         paragraphs: [
-          'If the Rheo 1 sounds like the right fit based on this review, [get in touch](/contact/) or [message us on WhatsApp](https://wa.me/440000000000) to check current stock and, where possible, arrange a test ride — given the meaningful price step up over the Kado range, we\'d always rather you ride before you buy on a purchase at this level, even if that means a short wait to arrange it.',
+          'If the Rheo 1 sounds like the right fit based on this review, [get in touch](/contact/) or [message us on WhatsApp](https://wa.me/447838207659) to check current stock and, where possible, arrange a test ride — given the meaningful price step up over the Kado range, we\'d always rather you ride before you buy on a purchase at this level, even if that means a short wait to arrange it.',
         ],
       },
       {
@@ -1799,7 +1799,7 @@ export const POST_BODIES = {
       { q: 'Is Whyte a good brand for UK trail riding?', a: 'Whyte designs its bikes specifically in the UK, which some riders value for geometry tuned to typical UK trail-centre terrain, though this is a preference rather than a measurable spec advantage.' },
     ],
     closing:
-      "See the full Whyte range on our [Whyte brand page](/whyte-electric-mountain-bikes/), or [message us on WhatsApp](https://wa.me/440000000000) if you want help choosing between the Kado, Rheo and E-160 RSX.",
+      "See the full Whyte range on our [Whyte brand page](/whyte-electric-mountain-bikes/), or [message us on WhatsApp](https://wa.me/447838207659) if you want help choosing between the Kado, Rheo and E-160 RSX.",
   },
 
   'haibike-allmtn-vs-alltrail-vs-alltrack': {
@@ -2043,7 +2043,7 @@ export const POST_BODIES = {
       {
         heading: 'Getting in Touch for Sizing Help',
         paragraphs: [
-          'If anything in this guide leaves you unsure which frame size or bike suits you, [message us on WhatsApp](https://wa.me/440000000000) with your height, inseam and typical riding, and we\'ll give you a straight recommendation rather than a generic size chart — fit is the single most important factor in how much you\'ll enjoy a bike, and it\'s worth getting right before you buy rather than after.',
+          'If anything in this guide leaves you unsure which frame size or bike suits you, [message us on WhatsApp](https://wa.me/447838207659) with your height, inseam and typical riding, and we\'ll give you a straight recommendation rather than a generic size chart — fit is the single most important factor in how much you\'ll enjoy a bike, and it\'s worth getting right before you buy rather than after.',
           'Every bike mentioned in this guide, along with our full size charts, is available to browse on our [women\'s electric mountain bikes](/womens-electric-mountain-bikes/) page. Whatever your height, build or experience level, we\'d always rather have this conversation with you directly than leave you to guess from a chart alone, since getting fit right at the outset makes a genuine, lasting difference to how much you enjoy the bike over its entire lifetime, from your very first ride onward through many seasons of riding to come.',
         ],
       },
@@ -2055,6 +2055,6 @@ export const POST_BODIES = {
       { q: 'Should a lighter rider consider a lightweight SL bike?', a: 'It can be worth considering regardless of gender — a lighter overall bike is easier to manoeuvre at low speed and when lifting it over obstacles, which some lighter riders specifically value.' },
     ],
     closing:
-      "See our full [women's electric mountain bikes](/womens-electric-mountain-bikes/) sizing page, or [message us on WhatsApp](https://wa.me/440000000000) with your height and we'll help you find the right frame size.",
+      "See our full [women's electric mountain bikes](/womens-electric-mountain-bikes/) sizing page, or [message us on WhatsApp](https://wa.me/447838207659) with your height and we'll help you find the right frame size.",
   },
 };
