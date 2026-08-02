@@ -14,8 +14,19 @@ export async function generateMetadata({ params }) {
   const product = findProduct(slug);
   if (!product) return {};
   const title = `${product.name} | ${product.brand} Electric Mountain Bike`;
-  const spec = product.motor || product.type;
-  const description = `${product.name} — ${spec} eMTB, from ${CONTACT.currencySymbol}${product.priceLow.toLocaleString('en-GB')}. UK-wide delivery, expert advice.`;
+  const price = `${CONTACT.currencySymbol}${product.priceLow.toLocaleString('en-GB')}`;
+  // Two candidate lengths (short/long delivery phrasing) — pick whichever lands closest to
+  // the 130-155 char target. Model names/motors vary too widely for one fixed template to fit.
+  const shortDesc = `${product.name} — ${product.travel} ${product.type} eMTB with ${product.motor}. From ${price} with UK-wide delivery from Peak Pedal.`;
+  const longDesc = `${product.name} — ${product.travel} ${product.type} eMTB with ${product.motor}. From ${price}, with UK-wide delivery and expert buying advice from Peak Pedal.`;
+  const inBand = (s) => s.length >= 130 && s.length <= 155;
+  const description = inBand(longDesc)
+    ? longDesc
+    : inBand(shortDesc)
+      ? shortDesc
+      : Math.abs(longDesc.length - 142) < Math.abs(shortDesc.length - 142)
+        ? longDesc
+        : shortDesc;
   return {
     title,
     description,

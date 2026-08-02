@@ -591,8 +591,8 @@ export const CATEGORY_PAGES = [
     kind: 'main',
     keyword: 'electric mountain bikes',
     metaTitle: 'Electric Mountain Bikes UK | Shop the Full Range',
-    metaDescription: 'Shop 96 electric mountain bikes from 14+ leading brands. Full suspension, hardtail and lightweight SL eMTBs, UK-wide delivery.',
-    h1: 'Electric Mountain Bikes',
+    metaDescription: `Browse ${PRODUCTS.length} electric mountain bikes — full suspension, hardtail and lightweight SL from Cube, Trek, Orbea, Canyon, Specialized +11 more brands. UK-wide delivery.`,
+    h1: 'Electric Mountain Bikes UK — Full Range',
     intro: `Browse Peak Pedal's full range of ${PRODUCTS.length} electric mountain bikes — full suspension, hardtail and lightweight SL, from Bosch, Shimano, Yamaha and DJI Avinox-powered platforms.`,
     extraHeading: 'Full Suspension Electric Mountain Bikes Under £2000?',
     extraParagraphs: [

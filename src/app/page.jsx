@@ -3,9 +3,11 @@ import ProductCard from '@/components/ProductCard';
 import HeroSlider from '@/components/HeroSlider';
 import { SITE, CONTACT, PRODUCTS, BRANDS, FAQS, COMPLIANCE, HERO_SLIDES, CATEGORY_PAGES } from '@/config/site';
 
+const brandCount = new Set(PRODUCTS.map((p) => p.brand)).size;
+
 export const metadata = {
-  title: `Electric Mountain Bikes UK | eMTB Specialists — ${SITE.name}`,
-  description: `Shop ${PRODUCTS.length} electric mountain bikes from ${BRANDS.length}+ leading brands. Full suspension, hardtail and lightweight SL eMTBs, UK-wide delivery.`,
+  title: `Electric Mountain Bike Specialists UK — ${SITE.name} | ${PRODUCTS.length} eMTBs, ${brandCount} Brands`,
+  description: `Peak Pedal — UK electric mountain bike specialists stocking ${PRODUCTS.length} eMTBs from Cube, Trek, Orbea, Santa Cruz, Specialized, Canyon + 10 more brands. UK-wide delivery.`,
   alternates: { canonical: `https://${SITE.domain}/` },
   openGraph: { url: `https://${SITE.domain}/`, images: ['/images/placeholder.svg'] },
 };

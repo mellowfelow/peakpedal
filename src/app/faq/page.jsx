@@ -1,8 +1,8 @@
 import { SITE, FAQS } from '@/config/site';
 
 export const metadata = {
-  title: 'FAQ',
-  description: 'Answers to common questions about buying an electric mountain bike from Peak Pedal — legality, motors, finance and checkout.',
+  title: { absolute: `Electric Mountain Bike FAQ — ${SITE.name}` },
+  description: 'Common questions about buying an electric mountain bike in the UK — legality, cost, motors, battery range and delivery, answered by Peak Pedal.',
   alternates: { canonical: `https://${SITE.domain}/faq/` },
 };
 
@@ -21,7 +21,7 @@ export default function FaqPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <section className="section container" style={{ maxWidth: 720 }}>
-        <h1>Frequently Asked Questions</h1>
+        <h1>Electric Mountain Bike FAQs</h1>
         <div className="stack">
           {FAQS.map((f) => (
             <div key={f.q} className="card">

@@ -1,0 +1,96 @@
+# keyword-cluster-final.txt — Peak Pedal (UK)
+# Version: Final | August 2026 | Pre-launch
+# WebForge: pull next [UNUSED], mark [USED] after each build session
+# FORMAT: [STATUS]\tprimary keyword\tURL\tIntent\tTier\tWordcount\tSchema
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIRMED LIVE — 17 posts (mark [USED], do not rebuild)
+# ─────────────────────────────────────────────────────────────────
+[USED]	best electric mountain bikes uk	/blog/best-electric-mountain-bikes-uk/	Commercial	T1	2500w	Article+FAQPage
+[USED]	electric mountain bike buying guide uk	/blog/electric-mountain-bike-buying-guide/	Informational	T1	3000w	Article+HowTo+FAQPage
+[USED]	best electric mountain bike under 3000 uk	/blog/best-electric-mountain-bikes-under-3000/	Commercial	T1	1800w	Article+FAQPage
+[USED]	best electric mountain bike under 2000	/blog/best-electric-mountain-bikes-under-2000/	Commercial	T1	1800w	Article+FAQPage
+[USED]	bosch vs shimano emtb motor	/blog/bosch-vs-shimano-emtb-motor/	Commercial	T1	2000w	Article+FAQPage
+[USED]	cycle to work scheme electric mountain bike	/blog/cycle-to-work-scheme-emtb/	Informational	T1	1500w	Article+FAQPage
+[USED]	amflow pl carbon review	/blog/amflow-dji-avinox-review/	Commercial	T2	1800w	Article+Review
+[USED]	best full suspension electric mountain bike uk	/blog/best-full-suspension-electric-mountain-bike-uk/	Commercial	T1	2000w	Article+FAQPage
+[USED]	best hardtail electric mountain bike uk	/blog/best-hardtail-electric-mountain-bike-uk/	Commercial	T1	1800w	Article+FAQPage
+[USED]	best lightweight electric mountain bikes uk	/blog/best-lightweight-electric-mountain-bikes-uk/	Commercial	T1	1800w	Article+FAQPage
+[USED]	best enduro emtb uk	/blog/best-enduro-emtb-uk/	Commercial	T1	2000w	Article+FAQPage
+[USED]	trek fuel exe review	/blog/trek-fuel-exe-review/	Commercial	T2	2000w	Article+Review+FAQPage
+[USED]	trek powerfly review	/blog/trek-powerfly-review/	Commercial	T2	1500w	Article+Review
+[USED]	santa cruz electric mountain bike range	/blog/santa-cruz-electric-mountain-bike-range-explained/	Commercial	T1	1800w	Article+FAQPage
+[USED]	whyte rheo review	/blog/whyte-rheo-review/	Commercial	T2	1500w	Article+Review
+[USED]	haibike allmtn vs alltrail vs alltrack	/blog/haibike-allmtn-vs-alltrail-vs-alltrack/	Commercial	T1	1800w	Article+FAQPage
+[USED]	womens electric mountain bike buying guide	/blog/womens-electric-mountain-bike-buying-guide/	Informational	T1	1500w	Article+FAQPage
+
+# ─────────────────────────────────────────────────────────────────
+# PRIORITY 1 — Build first (highest volume + product now live)
+# ─────────────────────────────────────────────────────────────────
+[UNUSED]	best electric mountain bike under 4000	/blog/best-electric-mountain-bikes-under-4000/	Commercial	T1	2000w	Article+FAQPage
+[UNUSED]	electric mountain bike motor comparison	/blog/electric-mountain-bike-motor-comparison/	Informational	T1	3500w	Article+FAQPage
+[UNUSED]	what is an emtb	/blog/what-is-an-emtb/	Informational	T1	3000w	Article+FAQPage
+[UNUSED]	are electric mountain bikes legal uk	/blog/electric-mountain-bikes-legal-uk/	Informational	T1	1500w	Article+FAQPage
+[UNUSED]	cube stereo hybrid review	/blog/cube-stereo-hybrid-review/	Commercial	T1	2200w	Article+Review+FAQPage
+[UNUSED]	specialized turbo levo review	/blog/specialized-turbo-levo-review/	Commercial	T1	2200w	Article+Review+FAQPage
+[UNUSED]	giant trance x e plus review	/blog/giant-trance-x-e-plus-review/	Commercial	T1	2000w	Article+Review+FAQPage
+[UNUSED]	best electric mountain bikes for beginners uk	/blog/best-electric-mountain-bikes-beginners/	Commercial	T1	2000w	Article+FAQPage
+[UNUSED]	emtb battery range uk	/blog/emtb-battery-range-guide/	Informational	T1	1800w	Article+FAQPage
+[UNUSED]	emtb vs regular mountain bike	/blog/emtb-vs-regular-mountain-bike/	Commercial	T1	2000w	Article+FAQPage
+
+# ─────────────────────────────────────────────────────────────────
+# PRIORITY 2 — Motor comparisons + finance + legal
+# ─────────────────────────────────────────────────────────────────
+[UNUSED]	bosch performance cx vs active line	/blog/bosch-performance-cx-vs-active-line/	Commercial	T1	1800w	Article+FAQPage
+[UNUSED]	dji avinox vs bosch performance cx	/blog/dji-avinox-vs-bosch-performance-cx/	Commercial	T1	2000w	Article+FAQPage
+[UNUSED]	shimano ep801 vs ep8	/blog/shimano-ep801-vs-ep8/	Informational	T1	1500w	Article+FAQPage
+[UNUSED]	tq hpr50 electric mountain bike guide	/blog/tq-hpr50-emtb-guide/	Informational	T2	1500w	Article+FAQPage
+[UNUSED]	bosch performance sx guide	/blog/bosch-performance-sx-guide/	Informational	T2	1500w	Article+FAQPage
+[UNUSED]	emtb trail vs enduro	/blog/emtb-trail-vs-enduro/	Commercial	T1	1800w	Article+FAQPage
+[UNUSED]	electric mountain bike finance uk	/blog/electric-mountain-bike-finance-guide/	Informational	T1	1500w	Article+FAQPage
+[UNUSED]	how much does an electric mountain bike cost uk	/blog/electric-mountain-bike-cost-uk/	Informational	T1	1800w	Article+FAQPage
+
+# ─────────────────────────────────────────────────────────────────
+# PRIORITY 3 — Brand reviews (products now live)
+# ─────────────────────────────────────────────────────────────────
+[UNUSED]	orbea rise lt review	/blog/orbea-rise-lt-review/	Commercial	T1	1800w	Article+Review+FAQPage
+[UNUSED]	orbea wild review	/blog/orbea-wild-review/	Commercial	T2	1800w	Article+Review+FAQPage
+[UNUSED]	specialized turbo levo 4 alloy review	/blog/specialized-turbo-levo-4-alloy-review/	Commercial	T1	1800w	Article+Review+FAQPage
+[UNUSED]	specialized turbo levo sl vs full power	/blog/specialized-turbo-levo-sl-vs-full-power/	Commercial	T2	1800w	Article+FAQPage
+[UNUSED]	specialized turbo kenevo sl review	/blog/specialized-turbo-kenevo-sl-review/	Commercial	T2	1800w	Article+Review+FAQPage
+[UNUSED]	scott electric mountain bike range	/blog/scott-electric-mountain-bike-range/	Commercial	T1	1800w	Article+FAQPage
+[UNUSED]	scott patron vs lumen eride	/blog/scott-patron-vs-lumen-eride/	Commercial	T2	1500w	Article+FAQPage
+[UNUSED]	scott ransom eride vs patron st	/blog/scott-ransom-eride-vs-patron-st/	Commercial	T2	1500w	Article+FAQPage
+[UNUSED]	canyon electric mountain bike range	/blog/canyon-electric-mountain-bike-range/	Commercial	T2	1800w	Article+FAQPage
+[UNUSED]	canyon spectral on vs neuron on	/blog/canyon-spectral-on-vs-neuron-on/	Commercial	T2	1500w	Article+FAQPage
+[UNUSED]	trek rail vs trek fuel exe	/blog/trek-rail-vs-trek-fuel-exe/	Commercial	T2	1800w	Article+FAQPage
+[UNUSED]	trek slash plus review	/blog/trek-slash-plus-review/	Commercial	T2	1800w	Article+Review+FAQPage
+[UNUSED]	cube reaction hybrid review	/blog/cube-reaction-hybrid-review/	Commercial	T2	1500w	Article+Review
+[UNUSED]	haibike allmtn review	/blog/haibike-allmtn-review/	Commercial	T2	1800w	Article+Review+FAQPage
+[UNUSED]	giant stance e plus review	/blog/giant-stance-e-plus-review/	Commercial	T2	1800w	Article+Review+FAQPage
+[UNUSED]	mondraker crafty review	/blog/mondraker-crafty-review/	Commercial	T2	1500w	Article+Review
+[UNUSED]	whyte kado review	/blog/whyte-kado-review/	Commercial	T2	1500w	Article+Review
+[UNUSED]	merida eone sixty review	/blog/merida-eone-sixty-review/	Commercial	T2	1500w	Article+Review
+[UNUSED]	santa cruz vala vs bullit	/blog/santa-cruz-vala-vs-bullit/	Commercial	T2	1500w	Article+FAQPage
+
+# ─────────────────────────────────────────────────────────────────
+# PRIORITY 4 — Competitor comparisons
+# ─────────────────────────────────────────────────────────────────
+[UNUSED]	yt capra vs orbea wild	/blog/yt-capra-vs-orbea-wild/	Commercial	T2	1500w	Article+FAQPage
+[UNUSED]	canyon spectral on vs cube stereo hybrid	/blog/canyon-spectral-on-vs-cube-stereo-hybrid/	Commercial	T2	1500w	Article+FAQPage
+[UNUSED]	commencal meta power vs mondraker crafty	/blog/commencal-meta-power-vs-mondraker-crafty/	Commercial	T2	1500w	Article+FAQPage
+[UNUSED]	raleigh electric mountain bike alternatives	/blog/raleigh-electric-mountain-bike-alternatives/	Commercial	T2	1200w	Article+FAQPage
+[UNUSED]	decathlon electric mountain bike alternatives	/blog/decathlon-electric-mountain-bike-alternatives/	Commercial	T2	1200w	Article+FAQPage
+
+# ─────────────────────────────────────────────────────────────────
+# PRIORITY 5 — Informational / top funnel
+# ─────────────────────────────────────────────────────────────────
+[UNUSED]	how to choose an electric mountain bike uk	/blog/how-to-choose-electric-mountain-bike/	Informational	T1	2500w	Article+HowTo+FAQPage
+[UNUSED]	what is enduro mountain biking	/blog/what-is-enduro-mountain-biking/	Informational	T1	1800w	Article+FAQPage
+[UNUSED]	hardtail vs full suspension mountain bike	/blog/hardtail-vs-full-suspension-mountain-bike/	Informational	T1	2000w	Article+FAQPage
+[UNUSED]	electric mountain bike maintenance guide	/blog/electric-mountain-bike-maintenance/	Informational	T1	2000w	Article+HowTo
+[UNUSED]	best electric mountain bike trails uk	/blog/best-electric-mountain-bike-trails-uk/	Informational	T1	2500w	Article+FAQPage
+[UNUSED]	kids electric mountain bike buying guide	/blog/kids-electric-mountain-bike-buying-guide/	Informational	T1	1800w	Article+FAQPage
+[UNUSED]	emtb insurance uk	/blog/emtb-insurance-uk/	Informational	T2	1200w	Article+FAQPage
+[UNUSED]	how to transport an electric mountain bike uk	/blog/how-to-transport-electric-mountain-bike/	Informational	T2	1200w	Article+HowTo
+[UNUSED]	emtb tyre pressure guide	/blog/emtb-tyre-pressure-guide/	Informational	T2	1200w	Article+HowTo
