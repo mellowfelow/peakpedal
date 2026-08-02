@@ -6,7 +6,7 @@ export const SITE = {
   name: 'Peak Pedal',
   tagline: 'Ride Further. Climb Harder.',
   description:
-    'UK electric mountain bike specialists — 96 eMTBs from 14+ leading brands, expert advice, UK-wide delivery.',
+    'UK electric mountain bike specialists — 124 eMTBs from 16+ leading brands, expert advice, UK-wide delivery.',
   domain: 'DOMAIN.com', // PENDING — change this ONE line, rebuild, push. Never find-and-replace.
   target: 'vercel',
   colors: { primary: '#14432A', accent: '#A8FF3E', dark: '#14181C', bg: '#F7F8F5' },
@@ -37,7 +37,7 @@ export const HERO_SLIDES = [
     image: '/images/hero-2.webp',
     tag: 'Ride With Confidence',
     heading: 'Built For Every Rider, Every Trail',
-    body: `From first-timers to seasoned riders — 96 eMTBs across 14+ brands, matched to how and where you ride.`,
+    body: `From first-timers to seasoned riders — 124 eMTBs across 16+ brands, matched to how and where you ride.`,
   },
 ];
 
@@ -334,6 +334,42 @@ const RAW_PRODUCTS = [
   ['Mondraker Level R', 'Mondraker', 'Full Suspension', 'Trail', 5200, 5800, 'Bosch Performance Line CX', '150/150mm', 'mondraker-level-r', null],
   ['Mondraker Level XR', 'Mondraker', 'Full Suspension', 'Trail', 6800, 7400, 'Bosch Performance Line CX', '150/150mm', 'mondraker-level-xr', null],
   ['Mondraker Neat R', 'Mondraker', 'Hardtail', 'Trail', 3200, 3600, 'Mahle X20', '130mm front', 'mondraker-neat-r', null],
+
+  // --- Phase 4 additions (docs/keyword-map.md product inventory) ---
+  // Prices marked ~£ in keyword-map.md are estimates pending confirmation before launch —
+  // priceLow/priceHigh set equal (single figure) rather than inventing a spread.
+  // Travel for products sharing an existing platform is inferred from that sibling's real
+  // spec (same frame, different build kit). Travel for the 9 genuinely new platforms (no
+  // sibling on site) was verified via web search against published manufacturer/review specs
+  // — see chat for sources — not invented.
+  ['Cube Stereo Hybrid ONE44 Race 625', 'Cube', 'Full Suspension', 'Trail', 2800, 2800, 'Bosch Performance CX', '140/140mm', 'cube-stereo-hybrid-one44-race-625', null],
+  ['Cube Reaction Hybrid Pro 500', 'Cube', 'Hardtail', 'Trail', 2200, 2200, 'Bosch Performance CX', '120mm front', 'cube-reaction-hybrid-pro-500', null],
+  ['Trek Slash+', 'Trek', 'Full Suspension', 'Enduro', 5500, 5500, 'Bosch Performance CX', '170/170mm', 'trek-slash-plus', null],
+  ['Orbea Urrun 10', 'Orbea', 'Hardtail', 'Trail', 1900, 1900, 'Shimano EP8', '120mm front', 'orbea-urrun-10', null],
+  ['Whyte Rheo 2', 'Whyte', 'Full Suspension', 'Trail', 4500, 4500, 'Bosch Performance Line CX', '150/140mm', 'whyte-rheo-2', null],
+  ['Haibike AllTrail 9', 'Haibike', 'Hardtail', 'Trail', 3800, 3800, 'Yamaha PW-X3', '130mm front', 'haibike-alltrail-9', null],
+  ['Giant Trance X E+ 2', 'Giant', 'Full Suspension', 'Trail', 3500, 3500, 'Yamaha SyncDrive Sport', '150/140mm', 'giant-trance-x-e-plus-2', null],
+  ['Giant Trance X E+ 1', 'Giant', 'Full Suspension', 'Trail', 4500, 4500, 'Yamaha SyncDrive Pro', '150/140mm', 'giant-trance-x-e-plus-1', null],
+  ['Giant Trance X E+ 0 Elite', 'Giant', 'Full Suspension', 'Trail', 6500, 6500, 'Yamaha SyncDrive Pro2', '150/140mm', 'giant-trance-x-e-plus-0-elite', null],
+  ['Mondraker Crafty Carbon RR', 'Mondraker', 'Full Suspension', 'Enduro', 7000, 7000, 'Bosch Performance CX', '170/160mm', 'mondraker-crafty-carbon-rr', null],
+  ['Merida eOne-Sixty 5000', 'Merida', 'Full Suspension', 'Enduro', 3000, 3000, 'Shimano EP801', '174/150mm', 'merida-eone-sixty-5000', null],
+  ['Santa Cruz Bullit 3 CC R', 'Santa Cruz', 'Full Suspension', 'Enduro', 8000, 8000, 'Bosch Performance CX', '175/165mm', 'santa-cruz-bullit-3-cc-r', null],
+  ['Cannondale Moterra Neo 2', 'Cannondale', 'Full Suspension', 'Trail', 5000, 5000, 'Bosch Performance CX', '150/140mm', 'cannondale-moterra-neo-2', null],
+  ['Lapierre Overvolt AM 3.6 Gen 5', 'Lapierre', 'Full Suspension', 'All-Mountain', 2800, 2800, 'Bosch Performance CX', '150/140mm', 'lapierre-overvolt-am-3-6', null],
+  ['Specialized Turbo Levo 4 Alloy', 'Specialized', 'Full Suspension', 'Trail', 3500, 3500, 'Specialized S3 Full Power', '150/160mm', 'specialized-turbo-levo-4-alloy', null],
+  ['Specialized Turbo Levo SL Comp Alloy', 'Specialized', 'Lightweight SL', 'Trail', 4000, 4000, 'Specialized SL 1.1', '150/160mm', 'specialized-turbo-levo-sl-comp-alloy', null],
+  ['Specialized Turbo Levo SL Comp Carbon', 'Specialized', 'Lightweight SL', 'Trail', 5000, 5000, 'Specialized SL 1.1', '150/160mm', 'specialized-turbo-levo-sl-comp-carbon', null],
+  ['Specialized Turbo Kenevo SL 2 Expert', 'Specialized', 'Full Suspension', 'Enduro', 7000, 7000, 'Specialized SL 1.1', '170/170mm', 'specialized-turbo-kenevo-sl-2-expert', null],
+  ['Scott Patron ST 910', 'Scott', 'Full Suspension', 'Enduro', 3800, 3800, 'Bosch Performance CX', '160/145mm', 'scott-patron-st-910', null],
+  ['Scott Patron ST 930', 'Scott', 'Full Suspension', 'Enduro', 5500, 5500, 'Bosch Performance CX', '160/145mm', 'scott-patron-st-930', null],
+  ['Scott Patron ST eRide 900', 'Scott', 'Full Suspension', 'Enduro', 7000, 7000, 'Bosch Performance CX', '160/145mm', 'scott-patron-st-eride-900', null],
+  ['Scott Ransom eRide 910', 'Scott', 'Full Suspension', 'Enduro', 5000, 5000, 'Bosch Performance CX', '180/180mm', 'scott-ransom-eride-910', null],
+  ['Scott Genius eRide 910', 'Scott', 'Full Suspension', 'Trail', 4500, 4500, 'Shimano EP801', '150/150mm', 'scott-genius-eride-910', null],
+  ['Scott Lumen eRide 920', 'Scott', 'Lightweight SL', 'XC-Trail', 6000, 6000, 'TQ HPR50', '130/120mm', 'scott-lumen-eride-920', null],
+  ['Canyon Spectral:ON CF 5', 'Canyon', 'Full Suspension', 'Trail', 2800, 2800, 'Shimano EP801', '150/140mm', 'canyon-spectral-on-cf-5', null],
+  ['Canyon Neuron:ON CF 7', 'Canyon', 'Full Suspension', 'Trail', 3200, 3200, 'Shimano EP801', '150/140mm', 'canyon-neuron-on-cf-7', null],
+  ['Canyon Grand Canyon:ON CF 9', 'Canyon', 'Hardtail', 'XC-Trail', 3500, 3500, 'Shimano EP801', '120mm front', 'canyon-grand-canyon-on-cf-9', null],
+  ['Canyon Strive:ON CF 7', 'Canyon', 'Full Suspension', 'Enduro', 4200, 4200, 'Shimano EP801', '170/160mm', 'canyon-strive-on-cf-7', null],
 ];
 
 // Real product photos, processed (trim + white 4:3 canvas + WebP) from client-
@@ -435,6 +471,36 @@ const PRODUCT_IMAGES = {
   'mondraker-level-r': '/images/mondraker-level-r.webp',
   'mondraker-level-xr': '/images/mondraker-level-xr.webp',
   'mondraker-neat-r': '/images/mondraker-neat-r.webp',
+
+  // Phase 4 additions
+  'cube-stereo-hybrid-one44-race-625': '/images/cube-stereo-hybrid-one44-race-625.webp',
+  'cube-reaction-hybrid-pro-500': '/images/cube-reaction-hybrid-pro-500.webp',
+  'trek-slash-plus': '/images/trek-slash-plus.webp',
+  'orbea-urrun-10': '/images/orbea-urrun-10.webp',
+  'whyte-rheo-2': '/images/whyte-rheo-2.webp',
+  'haibike-alltrail-9': '/images/haibike-alltrail-9.webp',
+  'giant-trance-x-e-plus-2': '/images/giant-trance-x-e-plus-2.webp',
+  'giant-trance-x-e-plus-1': '/images/giant-trance-x-e-plus-1.webp',
+  'giant-trance-x-e-plus-0-elite': '/images/giant-trance-x-e-plus-0-elite.webp',
+  'mondraker-crafty-carbon-rr': '/images/mondraker-crafty-carbon-rr.webp',
+  'merida-eone-sixty-5000': '/images/merida-eone-sixty-5000.webp',
+  'santa-cruz-bullit-3-cc-r': '/images/santa-cruz-bullit-3-cc-r.webp',
+  'cannondale-moterra-neo-2': '/images/cannondale-moterra-neo-2.webp',
+  'lapierre-overvolt-am-3-6': '/images/lapierre-overvolt-am-3-6.webp',
+  'specialized-turbo-levo-4-alloy': '/images/specialized-turbo-levo-4-alloy.webp',
+  'specialized-turbo-levo-sl-comp-alloy': '/images/specialized-turbo-levo-sl-comp-alloy.webp',
+  'specialized-turbo-levo-sl-comp-carbon': '/images/specialized-turbo-levo-sl-comp-carbon.webp',
+  'specialized-turbo-kenevo-sl-2-expert': '/images/specialized-turbo-kenevo-sl-2-expert.webp',
+  'scott-patron-st-910': '/images/scott-patron-st-910.webp',
+  'scott-patron-st-930': '/images/scott-patron-st-930.webp',
+  'scott-patron-st-eride-900': '/images/scott-patron-st-eride-900.webp',
+  'scott-ransom-eride-910': '/images/scott-ransom-eride-910.webp',
+  'scott-genius-eride-910': '/images/scott-genius-eride-910.webp',
+  'scott-lumen-eride-920': '/images/scott-lumen-eride-920.webp',
+  'canyon-spectral-on-cf-5': '/images/canyon-spectral-on-cf-5.webp',
+  'canyon-neuron-on-cf-7': '/images/canyon-neuron-on-cf-7.webp',
+  'canyon-grand-canyon-on-cf-9': '/images/canyon-grand-canyon-on-cf-9.webp',
+  'canyon-strive-on-cf-7': '/images/canyon-strive-on-cf-7.webp',
 };
 
 function describe(name, brand, category, type, motor, travel) {
@@ -953,7 +1019,7 @@ export const CATEGORY_PAGES = [
 export const HOME_FAQS = [
   {
     q: 'What is Peak Pedal?',
-    a: 'Peak Pedal is a UK specialist retailer of electric mountain bikes, stocking 96 eMTBs from 14+ brands including Cube, Trek, Orbea, Santa Cruz, Specialized and Amflow. We offer expert advice, UK-wide delivery and a WhatsApp-first ordering process for riders who want to talk before they buy.',
+    a: `Peak Pedal is a UK specialist retailer of electric mountain bikes, stocking ${PRODUCTS.length} eMTBs from 16+ brands including Cube, Trek, Orbea, Santa Cruz, Specialized and Amflow. We offer expert advice, UK-wide delivery and a WhatsApp-first ordering process for riders who want to talk before they buy.`,
   },
   {
     q: 'Are electric mountain bikes legal in the UK?',

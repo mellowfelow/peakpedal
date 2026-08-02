@@ -89,9 +89,18 @@ export default async function ProductPage({ params }) {
             <h1>{product.name}</h1>
             {product.badge && <span className="badge">{product.badge}</span>}
             <p className="product-detail-price">
-              From {CONTACT.currencySymbol}
-              {product.priceLow.toLocaleString('en-GB')}–{CONTACT.currencySymbol}
-              {product.priceHigh.toLocaleString('en-GB')}
+              {product.priceLow === product.priceHigh ? (
+                <>
+                  {CONTACT.currencySymbol}
+                  {product.priceLow.toLocaleString('en-GB')}
+                </>
+              ) : (
+                <>
+                  From {CONTACT.currencySymbol}
+                  {product.priceLow.toLocaleString('en-GB')}–{CONTACT.currencySymbol}
+                  {product.priceHigh.toLocaleString('en-GB')}
+                </>
+              )}
             </p>
             <p>{product.description}</p>
 

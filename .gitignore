@@ -14,4 +14,6 @@ assets/brand-logos/*
 !assets/brand-logos/.gitkeep
 assets/category-photos/*
 !assets/category-photos/.gitkeep
+assets/unassigned-photos/*
+!assets/unassigned-photos/.gitkeep
 docs/_contact-sheet.png
