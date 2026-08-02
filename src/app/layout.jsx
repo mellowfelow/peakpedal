@@ -51,11 +51,12 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <a href="#main" className="skip-link">Skip to content</a>
         <div className="announce-bar">
           Free UK-wide delivery on every eMTB &middot; No minimum order &middot; Message us on WhatsApp for fast advice
         </div>
         <Nav />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
         <ChatHub />
       </body>
