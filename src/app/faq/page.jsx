@@ -4,6 +4,8 @@ export const metadata = {
   title: { absolute: `Electric Mountain Bike FAQ — ${SITE.name}` },
   description: 'Common questions about buying an electric mountain bike in the UK — legality, cost, motors, battery range and delivery, answered by Peak Pedal.',
   alternates: { canonical: `https://${SITE.domain}/faq/` },
+  openGraph: { url: `https://${SITE.domain}/faq/`, images: ['/images/placeholder.svg'] },
+  twitter: { card: 'summary_large_image', images: ['/images/placeholder.svg'] },
 };
 
 const faqSchema = {

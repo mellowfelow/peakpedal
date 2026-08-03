@@ -4,6 +4,8 @@ export const metadata = {
   title: 'Privacy Policy',
   description: 'How Peak Pedal collects, uses and protects your personal data.',
   alternates: { canonical: `https://${SITE.domain}/privacy/` },
+  openGraph: { url: `https://${SITE.domain}/privacy/`, images: ['/images/placeholder.svg'] },
+  twitter: { card: 'summary_large_image', images: ['/images/placeholder.svg'] },
 };
 
 export default function PrivacyPage() {

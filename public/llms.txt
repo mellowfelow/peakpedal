@@ -81,7 +81,8 @@ Peak Pedal is a UK-based electric mountain bike retailer offering 124 eMTBs from
 ## Excluded
 - https://peakpedal.org/cart/
 - https://peakpedal.org/search/
-- https://peakpedal.org/account/
+- https://peakpedal.org/thank-you-contact/
+- https://peakpedal.org/thank-you-order/
 - https://peakpedal.org/privacy/
 - https://peakpedal.org/terms/
 - https://peakpedal.org/refund/

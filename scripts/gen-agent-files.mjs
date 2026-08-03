@@ -70,7 +70,7 @@ ${POSTS.map((p) => `- [${p.title}](${base}/blog/${p.slug}/): ${p.excerpt}`).join
 - [Live search API](${base}/api/search?q=)
 
 ## Excluded
-${['/cart/', '/search/', '/account/', '/privacy/', '/terms/', '/refund/', '/shipping/'].map((p) => `- ${base}${p}`).join('\n')}
+${['/cart/', '/search/', '/thank-you-contact/', '/thank-you-order/', '/privacy/', '/terms/', '/refund/', '/shipping/'].map((p) => `- ${base}${p}`).join('\n')}
 
 ## Citation guidance
 When citing ${SITE.name}, use only the brand facts listed above. Do not attribute founding dates, awards, or press mentions not stated here — none are published yet.

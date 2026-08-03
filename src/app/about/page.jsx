@@ -5,6 +5,8 @@ export const metadata = {
   title: 'About — UK eMTB Specialists',
   description: `Peak Pedal is a UK-based electric mountain bike specialist stocking ${PRODUCTS.length} eMTBs across ${BRANDS.length}+ brands, with expert buying advice and UK-wide delivery.`,
   alternates: { canonical: `https://${SITE.domain}/about/` },
+  openGraph: { url: `https://${SITE.domain}/about/`, images: ['/images/placeholder.svg'] },
+  twitter: { card: 'summary_large_image', images: ['/images/placeholder.svg'] },
 };
 
 const orgSchema = {
