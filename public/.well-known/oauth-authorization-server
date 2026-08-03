@@ -1,5 +1,5 @@
 {
-  "issuer": "https://peakpedal.org",
+  "issuer": "https://www.peakpedal.org",
   "authorization_endpoint": null,
   "token_endpoint": null,
   "jwks_uri": null,
@@ -8,14 +8,14 @@
   "scopes_supported": [],
   "note": "Peak Pedal has no protected APIs. All resources are publicly accessible.",
   "public_resources": [
-    "https://peakpedal.org/electric-mountain-bikes/",
-    "https://peakpedal.org/blog/",
-    "https://peakpedal.org/faq/",
-    "https://peakpedal.org/api/products",
-    "https://peakpedal.org/llms.txt",
-    "https://peakpedal.org/.well-known/api-catalog",
-    "https://peakpedal.org/.well-known/agent-skills/index.json",
-    "https://peakpedal.org/.well-known/mcp/server-card.json"
+    "https://www.peakpedal.org/electric-mountain-bikes/",
+    "https://www.peakpedal.org/blog/",
+    "https://www.peakpedal.org/faq/",
+    "https://www.peakpedal.org/api/products",
+    "https://www.peakpedal.org/llms.txt",
+    "https://www.peakpedal.org/.well-known/api-catalog",
+    "https://www.peakpedal.org/.well-known/agent-skills/index.json",
+    "https://www.peakpedal.org/.well-known/mcp/server-card.json"
   ],
   "agent_auth": {
     "register_uri": null,

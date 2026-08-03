@@ -3,14 +3,14 @@
   "protocol_version": "1.0",
   "spec": "https://ucp.dev/specification/overview/",
   "schema": "https://ucp.dev/schema/v1.json",
-  "site": "https://peakpedal.org",
+  "site": "https://www.peakpedal.org",
   "name": "Peak Pedal",
   "description": "UK electric mountain bike specialists — 124 eMTBs from 16+ leading brands, expert advice, UK-wide delivery.",
   "services": [
     {
       "id": "product-catalog",
       "type": "catalog",
-      "url": "https://peakpedal.org/api/products",
+      "url": "https://www.peakpedal.org/api/products",
       "description": "Full product catalog (JSON)"
     },
     {
@@ -27,13 +27,13 @@
     "content"
   ],
   "endpoints": {
-    "catalog": "https://peakpedal.org/api/products",
-    "search": "https://peakpedal.org/api/search",
-    "contact": "https://peakpedal.org/contact/",
-    "agent_skills": "https://peakpedal.org/.well-known/agent-skills/index.json",
-    "mcp_server_card": "https://peakpedal.org/.well-known/mcp/server-card.json",
-    "api_catalog": "https://peakpedal.org/.well-known/api-catalog",
-    "llms_txt": "https://peakpedal.org/llms.txt"
+    "catalog": "https://www.peakpedal.org/api/products",
+    "search": "https://www.peakpedal.org/api/search",
+    "contact": "https://www.peakpedal.org/contact/",
+    "agent_skills": "https://www.peakpedal.org/.well-known/agent-skills/index.json",
+    "mcp_server_card": "https://www.peakpedal.org/.well-known/mcp/server-card.json",
+    "api_catalog": "https://www.peakpedal.org/.well-known/api-catalog",
+    "llms_txt": "https://www.peakpedal.org/llms.txt"
   },
   "currency": "GBP",
   "minimum_order_gbp": 0,

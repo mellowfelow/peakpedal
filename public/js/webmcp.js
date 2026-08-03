@@ -8,7 +8,7 @@
         description: 'Browse electric mountain bikes by category or brand',
         inputSchema: { type: 'object', properties: { category: { type: 'string', description: 'Category or brand slug' } } },
         execute: async ({ category }) => {
-          const url = category ? `https://peakpedal.org/${category}/` : `https://peakpedal.org/electric-mountain-bikes/`;
+          const url = category ? `https://www.peakpedal.org/${category}/` : `https://www.peakpedal.org/electric-mountain-bikes/`;
           window.location.href = url;
           return { url };
         },
@@ -30,8 +30,8 @@
         description: 'Get finance and Cycle to Work scheme information',
         inputSchema: { type: 'object', properties: {} },
         execute: async () => {
-          window.location.href = 'https://peakpedal.org/finance/';
-          return { url: 'https://peakpedal.org/finance/' };
+          window.location.href = 'https://www.peakpedal.org/finance/';
+          return { url: 'https://www.peakpedal.org/finance/' };
         },
       },
       {
@@ -39,8 +39,8 @@
         description: 'Contact for product questions or support',
         inputSchema: { type: 'object', properties: {} },
         execute: async () => {
-          window.location.href = 'https://peakpedal.org/contact/';
-          return { url: 'https://peakpedal.org/contact/' };
+          window.location.href = 'https://www.peakpedal.org/contact/';
+          return { url: 'https://www.peakpedal.org/contact/' };
         },
       },
     ],

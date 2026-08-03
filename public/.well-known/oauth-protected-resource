@@ -1,11 +1,11 @@
 {
-  "resource": "https://peakpedal.org",
+  "resource": "https://www.peakpedal.org",
   "resource_name": "Peak Pedal Public Catalog",
   "authorization_servers": [],
   "scopes_supported": [],
   "bearer_methods_supported": [],
-  "resource_documentation": "https://peakpedal.org/auth.md",
-  "resource_policy_uri": "https://peakpedal.org/terms/",
+  "resource_documentation": "https://www.peakpedal.org/auth.md",
+  "resource_policy_uri": "https://www.peakpedal.org/terms/",
   "tls_client_certificate_bound_access_tokens": false,
-  "note": "All resources on peakpedal.org are publicly accessible. No OAuth tokens are required."
+  "note": "All resources on www.peakpedal.org are publicly accessible. No OAuth tokens are required."
 }

@@ -4,7 +4,7 @@
     "name": "Peak Pedal",
     "version": "1.0.0",
     "description": "UK electric mountain bike specialists — 124 eMTBs from 16+ leading brands, expert advice, UK-wide delivery.",
-    "homepage": "https://peakpedal.org",
+    "homepage": "https://www.peakpedal.org",
     "contact": {
       "email": "info@peakpedal.org",
       "whatsapp": "+447838207659"
@@ -19,22 +19,22 @@
       {
         "name": "product-catalog",
         "description": "Full product catalog (JSON)",
-        "uri": "https://peakpedal.org/api/products"
+        "uri": "https://www.peakpedal.org/api/products"
       },
       {
         "name": "categories",
         "description": "Category and brand listing (JSON)",
-        "uri": "https://peakpedal.org/api/categories"
+        "uri": "https://www.peakpedal.org/api/categories"
       },
       {
         "name": "search",
         "description": "Search products and blog posts (JSON)",
-        "uri": "https://peakpedal.org/api/search"
+        "uri": "https://www.peakpedal.org/api/search"
       },
       {
         "name": "blog",
         "description": "Educational content",
-        "uri": "https://peakpedal.org/blog/"
+        "uri": "https://www.peakpedal.org/blog/"
       }
     ],
     "commerce": {

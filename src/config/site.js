@@ -7,7 +7,7 @@ export const SITE = {
   tagline: 'Ride Further. Climb Harder.',
   description:
     'UK electric mountain bike specialists — 124 eMTBs from 16+ leading brands, expert advice, UK-wide delivery.',
-  domain: 'peakpedal.org',
+  domain: 'www.peakpedal.org',
   target: 'vercel',
   colors: { primary: '#14432A', accent: '#A8FF3E', dark: '#14181C', bg: '#F7F8F5' },
   founding: {

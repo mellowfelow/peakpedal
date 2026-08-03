@@ -381,7 +381,7 @@ const vercelJson = {
   redirects: [
     {
       source: '/:path*',
-      has: [{ type: 'host', value: `www.${domain}` }],
+      has: [{ type: 'host', value: domain.replace(/^www\./, '') }],
       destination: `${base}/:path*`,
       permanent: true,
     },

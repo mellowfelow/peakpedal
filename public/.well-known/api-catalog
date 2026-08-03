@@ -1,31 +1,31 @@
 {
   "linkset": [
     {
-      "anchor": "https://peakpedal.org/",
+      "anchor": "https://www.peakpedal.org/",
       "https://www.iana.org/assignments/link-relations/service-doc": [
         {
-          "href": "https://peakpedal.org/faq/"
+          "href": "https://www.peakpedal.org/faq/"
         }
       ],
       "title": "Peak Pedal — Ride Further. Climb Harder."
     },
     {
-      "anchor": "https://peakpedal.org/electric-mountain-bikes/",
+      "anchor": "https://www.peakpedal.org/electric-mountain-bikes/",
       "type": "text/html",
       "title": "Peak Pedal Product Catalog"
     },
     {
-      "anchor": "https://peakpedal.org/api/products",
+      "anchor": "https://www.peakpedal.org/api/products",
       "type": "application/json",
       "title": "Peak Pedal Product API"
     },
     {
-      "anchor": "https://peakpedal.org/api/categories",
+      "anchor": "https://www.peakpedal.org/api/categories",
       "type": "application/json",
       "title": "Peak Pedal Category API"
     },
     {
-      "anchor": "https://peakpedal.org/api/search",
+      "anchor": "https://www.peakpedal.org/api/search",
       "type": "application/json",
       "title": "Peak Pedal Search API"
     }

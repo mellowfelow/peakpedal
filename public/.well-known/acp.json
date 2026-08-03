@@ -5,8 +5,8 @@
   },
   "name": "Peak Pedal",
   "description": "UK electric mountain bike specialists — 124 eMTBs from 16+ leading brands, expert advice, UK-wide delivery.",
-  "api_base_url": "https://peakpedal.org",
-  "homepage": "https://peakpedal.org",
+  "api_base_url": "https://www.peakpedal.org",
+  "homepage": "https://www.peakpedal.org",
   "transports": [
     "https"
   ],

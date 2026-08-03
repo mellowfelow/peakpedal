@@ -179,9 +179,9 @@ async function checkAgentFiles() {
     if (hasLink) pass('vercel.json has the agent-ready Link header on /(.*)');
     else fail('vercel.json is missing the agent-ready Link header on the root header rule');
 
-    const hasWwwRedirect = vercelJson.redirects?.some((r) => r.has?.some((h) => h.type === 'host' && String(h.value).startsWith('www.')));
-    if (hasWwwRedirect) pass('vercel.json has a www→apex redirect');
-    else warn('vercel.json has no www→apex redirect');
+    const hasDomainRedirect = vercelJson.redirects?.some((r) => r.has?.some((h) => h.type === 'host'));
+    if (hasDomainRedirect) pass('vercel.json has a domain redirect');
+    else warn('vercel.json has no domain redirect');
   } else {
     fail('Missing vercel.json at repo root');
   }
