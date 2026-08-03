@@ -1,18 +1,9 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import HeroSlider from '@/components/HeroSlider';
 import { SITE, CONTACT, PRODUCTS, BRANDS, HOME_FAQS, COMPLIANCE, HERO_SLIDES, CATEGORY_PAGES } from '@/config/site';
 
 const brandCount = new Set(PRODUCTS.map((p) => p.brand)).size;
-
-// Falls back to the shared placeholder until a real logo is supplied for a brand
-// (same convention as product photos — see README "Live placeholders").
-function brandLogoSrc(slug) {
-  const file = path.join(process.cwd(), 'public', 'images', 'brands', `${slug}.webp`);
-  return fs.existsSync(file) ? `/images/brands/${slug}.webp` : '/images/placeholder.svg';
-}
 
 export const metadata = {
   title: `Electric Mountain Bike Specialists UK — ${SITE.name} | ${PRODUCTS.length} eMTBs, ${brandCount} Brands`,
@@ -147,7 +138,7 @@ export default function HomePage() {
           {BRANDS.map((b) => (
             <Link key={b.slug} href={`/${b.slug}-electric-mountain-bikes/`} className="tile brand-tile">
               <span className="tile-photo">
-                <img src={brandLogoSrc(b.slug)} alt={`${b.name} logo`} width={400} height={200} loading="lazy" />
+                <img src={`/images/brands/${b.slug}.webp`} alt={`${b.name} logo`} width={400} height={200} loading="lazy" />
               </span>
               <span className="tile-body">
                 <strong className="tile-label">{b.name}</strong>
