@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: true,
-  images: { unoptimized: true },
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [360, 640, 768, 1024, 1280, 1920],
+    imageSizes: [128, 256, 384],
+  },
   async redirects() {
     return [
       // Bosch PowerMore and Kiox 300 moved from /products/ into the new

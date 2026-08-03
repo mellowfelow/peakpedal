@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { CONTACT } from '@/config/site';
 
@@ -16,13 +17,15 @@ export default function HeroSlider({ slides }) {
   return (
     <section className="hero hero-has-image">
       {slides.map((slide, i) => (
-        <img
+        <Image
           key={slide.image}
           src={slide.image}
           alt=""
+          fill
+          sizes="100vw"
+          quality={70}
+          priority={i === 0}
           className={`hero-bg ${i === active ? 'is-active' : ''}`}
-          loading={i === 0 ? 'eager' : 'lazy'}
-          fetchPriority={i === 0 ? 'high' : 'auto'}
           aria-hidden="true"
         />
       ))}

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ProductCard from '@/components/ProductCard';
 import ProductCardHome from '@/components/ProductCardHome';
 import FaqAccordion from '@/components/FaqAccordion';
@@ -106,7 +107,7 @@ export default function HomePage() {
           {TYPE_TILES.map(([label, href, sub, icon, image]) => (
             <Link key={href} href={href} className="tile">
               <span className="tile-photo tile-photo-cover">
-                <img src={image} alt={`${label} electric mountain bikes`} width={400} height={300} loading="lazy" />
+                <Image src={image} alt={`${label} electric mountain bikes`} fill sizes="(max-width: 700px) 50vw, 25vw" />
                 <span className="tile-icon-badge">{icon}</span>
               </span>
               <span className="tile-body">

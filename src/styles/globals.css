@@ -592,6 +592,7 @@ p {
 
 .tile-photo {
   position: relative;
+  width: 100%;
   background: #fff;
   aspect-ratio: 4 / 3;
   display: flex;
