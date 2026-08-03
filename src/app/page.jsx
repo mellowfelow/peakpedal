@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
+import ProductCardHome from '@/components/ProductCardHome';
+import FaqAccordion from '@/components/FaqAccordion';
 import HeroSlider from '@/components/HeroSlider';
 import { SITE, CONTACT, PRODUCTS, BRANDS, HOME_FAQS, COMPLIANCE, HERO_SLIDES, CATEGORY_PAGES } from '@/config/site';
 
@@ -121,7 +123,7 @@ export default function HomePage() {
         <h2>Featured Electric Mountain Bikes</h2>
         <div className="grid grid-4">
           {featured.map((p, i) => (
-            <ProductCard key={p.slug} product={p} eager={i === 0} />
+            <ProductCardHome key={p.slug} product={p} eager={i === 0} />
           ))}
         </div>
         <p className="text-center" style={{ marginTop: '1.5rem' }}>
@@ -175,14 +177,7 @@ export default function HomePage() {
       <section className="section container" style={{ maxWidth: 820 }}>
         <span className="section-eyebrow">Got Questions?</span>
         <h2>Frequently Asked Questions</h2>
-        <div className="stack">
-          {HOME_FAQS.map((f) => (
-            <div key={f.q} className="card">
-              <h3 style={{ marginBottom: '0.4rem' }}>{f.q}</h3>
-              <p style={{ marginBottom: 0 }}>{f.a}</p>
-            </div>
-          ))}
-        </div>
+        <FaqAccordion items={HOME_FAQS} />
       </section>
     </>
   );

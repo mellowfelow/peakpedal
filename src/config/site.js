@@ -70,7 +70,10 @@ export const FORMS = {
 };
 
 export const CHAT = {
-  channels: [{ type: 'whatsapp', value: '447838207659' }],
+  channels: [
+    { type: 'whatsapp', value: '447838207659' },
+    { type: 'tawk', value: '6a7098ad2539311d47e45524/1jv3t8ql0' },
+  ],
 };
 
 export const COMPLIANCE = {

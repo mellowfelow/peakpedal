@@ -21,7 +21,7 @@ export default function Footer() {
             <p style={{ fontSize: '0.85rem' }}>
               <span dangerouslySetInnerHTML={{ __html: encodeEmail(CONTACT.email) }} />
               <br />
-              WhatsApp: <a href={`https://wa.me/${CONTACT.whatsapp}`} style={{ color: '#b7bdb2' }}>Message us</a>
+              WhatsApp: <a href={`https://wa.me/${CONTACT.whatsapp}`} style={{ color: '#b7bdb2' }}>{CONTACT.phone}</a>
             </p>
             <div className="footer-payments">
               <span className="footer-payment-chip">Bank Transfer</span>

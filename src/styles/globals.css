@@ -880,6 +880,35 @@ p {
   transform: translateX(3px);
 }
 
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.product-card-actions .qty-stepper {
+  flex-shrink: 0;
+}
+
+.product-card-actions .btn {
+  flex: 1;
+}
+
+.btn-sm {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.8rem;
+}
+
 /* --- Product detail layout --- */
 .product-detail-grid {
   grid-template-columns: 1fr 1fr;
@@ -1014,7 +1043,6 @@ p {
 .chat-fab {
   position: fixed;
   bottom: 1.25rem;
-  right: 1.25rem;
   z-index: 50;
   width: 56px;
   height: 56px;
@@ -1028,6 +1056,85 @@ p {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   text-decoration: none;
+}
+
+.chat-fab-left {
+  left: 1.25rem;
+  right: auto;
+}
+
+/* --- FAQ accordion --- */
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq-item {
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+  background: var(--color-surface);
+}
+
+.faq-item:first-child {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.faq-item:last-child {
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.faq-item-open {
+  background: var(--color-bg);
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-dark);
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-trigger:hover {
+  color: var(--color-primary);
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.faq-chevron-open {
+  transform: rotate(180deg);
+}
+
+.faq-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 1.25rem;
+}
+
+.faq-panel-open {
+  max-height: 20rem;
+  padding: 0 1.25rem 1rem;
+}
+
+.faq-panel p {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.6;
 }
 
 /* --- Breadcrumbs --- */
