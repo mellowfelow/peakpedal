@@ -4,9 +4,7 @@ import { SITE, CONTACT } from '@/config/site';
 export const metadata = {
   title: 'Order',
   description: 'Place an order for your electric mountain bike by form, or message us on WhatsApp for a faster response.',
-  alternates: { canonical: `https://${SITE.domain}/order/` },
-  openGraph: { url: `https://${SITE.domain}/order/`, images: ['/images/placeholder.svg'] },
-  twitter: { card: 'summary_large_image', images: ['/images/placeholder.svg'] },
+  robots: { index: false, follow: true },
 };
 
 export default function OrderPage() {

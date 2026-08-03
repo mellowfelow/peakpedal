@@ -9,13 +9,11 @@ export default function sitemap() {
     { url: `${base}/about/`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${base}/contact/`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${base}/faq/`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${base}/order/`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${base}/blog/`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${base}/shipping/`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${base}/refund/`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${base}/privacy/`, lastModified: now, changeFrequency: 'yearly', priority: 0.2 },
     { url: `${base}/terms/`, lastModified: now, changeFrequency: 'yearly', priority: 0.2 },
-    { url: `${base}/search/`, lastModified: now, changeFrequency: 'yearly', priority: 0.2 },
     { url: `${base}/accessories/`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
   ];
 
