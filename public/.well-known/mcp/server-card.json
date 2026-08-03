@@ -11,8 +11,9 @@
     }
   },
   "transport": {
-    "type": "none",
-    "note": "No MCP JSON-RPC server is hosted yet — use the plain JSON REST endpoints listed under capabilities.resources instead."
+    "type": "http",
+    "endpoint": "https://www.peakpedal.org",
+    "note": "REST JSON endpoints — product catalog, categories, and search are live."
   },
   "capabilities": {
     "resources": [

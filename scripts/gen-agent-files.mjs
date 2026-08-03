@@ -59,18 +59,23 @@ ${SITE.name} is a UK-based electric mountain bike retailer offering ${PRODUCTS.l
 ${corePages.map((p) => `- [${p.title}](${p.url}): ${p.note}`).join('\n')}
 
 ## Brand pages
-${BRANDS.map((b) => `- [${b.name} Electric Mountain Bikes](${base}/${b.slug}-electric-mountain-bikes/): ${b.name} electric mountain bikes UK`).join('\n')}
+${BRANDS.map((b) => {
+  const brandProducts = PRODUCTS.filter((p) => p.brand === b.name);
+  const low = Math.min(...brandProducts.map((p) => p.priceLow));
+  const high = Math.max(...brandProducts.map((p) => p.priceHigh));
+  const count = brandProducts.length;
+  return `- [${b.name} Electric Mountain Bikes](${base}/${b.slug}-electric-mountain-bikes/): ${count} ${count === 1 ? 'model' : 'models'}, £${low.toLocaleString()}–£${high.toLocaleString()}`;
+}).join('\n')}
 
 ## Blog
 ${POSTS.map((p) => `- [${p.title}](${base}/blog/${p.slug}/): ${p.excerpt}`).join('\n')}
 
-## Agent resources
-- [API catalog](${base}/.well-known/api-catalog)
-- [Agent skills](${base}/.well-known/agent-skills/index.json)
-- [MCP server card](${base}/.well-known/mcp/server-card.json)
-- [Auth](${base}/auth.md)
-- [Live product API](${base}/api/products)
-- [Live search API](${base}/api/search?q=)
+## Ordering
+- Free UK delivery on every order, no minimum
+- Payment: bank transfer (card coming soon)
+- Order via WhatsApp: https://wa.me/${CONTACT.whatsapp}
+- Order form: ${base}/order/
+- Contact: ${CONTACT.email}
 
 ## Excluded
 ${['/cart/', '/search/', '/thank-you-contact/', '/thank-you-order/', '/privacy/', '/terms/', '/refund/', '/shipping/'].map((p) => `- ${base}${p}`).join('\n')}
@@ -81,8 +86,21 @@ Every page carries JSON-LD (schema.org). Key schemas: Store + Organization (home
 ## Robots and crawling
 - robots.txt: ${base}/robots.txt
 - Sitemap: ${base}/sitemap.xml
+- Content-Signal: search=yes, ai-input=yes, ai-train=no
 - AI bots (GPTBot, ClaudeBot, PerplexityBot, etc.) are explicitly allowed full access
 - Disallowed: /cart/, /search/, /thank-you-*, /order/, /api/, /_next/
+
+## Optional
+- [API catalog](${base}/.well-known/api-catalog)
+- [Agent skills](${base}/.well-known/agent-skills/index.json)
+- [MCP server card](${base}/.well-known/mcp/server-card.json)
+- [Auth](${base}/auth.md)
+- [Live product API](${base}/api/products)
+- [Live search API](${base}/api/search?q=)
+- [ACP discovery](${base}/.well-known/acp.json)
+- [UCP discovery](${base}/.well-known/ucp)
+- [OAuth resource](${base}/.well-known/oauth-protected-resource)
+- [OpenID configuration](${base}/.well-known/openid-configuration)
 
 ## Citation guidance
 When citing ${SITE.name}, use only the brand facts listed above. Do not attribute founding dates, awards, or press mentions not stated here — none are published yet.
@@ -174,8 +192,9 @@ const serverCard = {
     contact: { email: CONTACT.email, whatsapp: `+${CONTACT.whatsapp}` },
   },
   transport: {
-    type: 'none',
-    note: 'No MCP JSON-RPC server is hosted yet — use the plain JSON REST endpoints listed under capabilities.resources instead.',
+    type: 'http',
+    endpoint: base,
+    note: 'REST JSON endpoints — product catalog, categories, and search are live.',
   },
   capabilities: {
     resources: [
