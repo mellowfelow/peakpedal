@@ -1,27 +1,23 @@
 'use client';
 
-import { useEffect } from 'react';
+import Script from 'next/script';
 import { CHAT } from '@/config/site';
 
 export default function ChatHub() {
   const whatsapp = CHAT.channels.find((c) => c.type === 'whatsapp');
   const tawk = CHAT.channels.find((c) => c.type === 'tawk');
 
-  useEffect(() => {
-    if (!tawk) return;
-    if (document.querySelector(`script[src*="embed.tawk.to"]`)) return;
-    window.Tawk_API = window.Tawk_API || {};
-    window.Tawk_LoadStart = new Date();
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = `https://embed.tawk.to/${tawk.value}`;
-    s.charset = 'UTF-8';
-    s.setAttribute('crossorigin', '*');
-    document.head.appendChild(s);
-  }, [tawk]);
-
   return (
     <>
+      {tawk && (
+        <Script
+          id="tawk-script"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();(function(){var s=document.createElement("script");s.async=true;s.src="https://embed.tawk.to/${tawk.value}";s.charset="UTF-8";s.setAttribute("crossorigin","*");document.head.appendChild(s)})();`,
+          }}
+        />
+      )}
       {whatsapp && (
         <a
           className="chat-fab chat-fab-left"

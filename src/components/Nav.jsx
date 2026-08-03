@@ -47,9 +47,11 @@ export default function Nav() {
     readCart();
     window.addEventListener('storage', readCart);
     window.addEventListener('mm-cart-updated', readCart);
+    window.addEventListener('mm-cart-updated-silent', readCart);
     return () => {
       window.removeEventListener('storage', readCart);
       window.removeEventListener('mm-cart-updated', readCart);
+      window.removeEventListener('mm-cart-updated-silent', readCart);
     };
   }, []);
 

@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import ChatHub from '@/components/ChatHub';
+import CartDrawer from '@/components/CartDrawer';
 import { SITE } from '@/config/site';
 
 export const metadata = {
@@ -58,6 +59,7 @@ export default function RootLayout({ children }) {
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        <CartDrawer />
         <ChatHub />
       </body>
     </html>

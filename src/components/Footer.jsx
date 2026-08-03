@@ -19,7 +19,7 @@ export default function Footer() {
             </span>
             <p className="muted" style={{ color: '#b7bdb2', fontSize: '0.9rem' }}>{SITE.tagline}</p>
             <p style={{ fontSize: '0.85rem' }}>
-              <span dangerouslySetInnerHTML={{ __html: encodeEmail(CONTACT.email) }} />
+              <a href={`mailto:${CONTACT.email}`} style={{ color: '#b7bdb2' }} dangerouslySetInnerHTML={{ __html: encodeEmail(CONTACT.email) }} />
               <br />
               WhatsApp: <a href={`https://wa.me/${CONTACT.whatsapp}`} style={{ color: '#b7bdb2' }}>{CONTACT.phone}</a>
             </p>
