@@ -9,7 +9,7 @@ import { SITE, CONTACT, PRODUCTS, BRANDS, HOME_FAQS, COMPLIANCE, HERO_SLIDES, CA
 const brandCount = new Set(PRODUCTS.map((p) => p.brand)).size;
 
 export const metadata = {
-  title: `Electric Mountain Bike Specialists UK — ${SITE.name} | ${PRODUCTS.length} eMTBs, ${brandCount} Brands`,
+  title: `Electric Mountain Bikes UK — ${SITE.name} | ${PRODUCTS.length} eMTBs`,
   description: `Peak Pedal — UK electric mountain bike specialists stocking ${PRODUCTS.length} eMTBs from Cube, Trek, Orbea, Santa Cruz, Specialized, Canyon + 10 more brands. UK-wide delivery.`,
   alternates: { canonical: `https://${SITE.domain}/` },
   openGraph: { url: `https://${SITE.domain}/`, images: ['/images/placeholder.svg'] },

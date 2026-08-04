@@ -1,15 +1,15 @@
 # Peak Pedal — Project Record
 
 ## A — Identity
-- Domain: PENDING (placeholder `DOMAIN.com` used throughout; change `SITE.domain` in `src/config/site.js` once live)
+- Domain: `www.peakpedal.org` (live, apex `peakpedal.org` 308-redirects to `www` via `vercel.json`)
 - Site name: Peak Pedal
 - Tagline: "Ride Further. Climb Harder."
 - Favicon/logo: generated mark — mountain peak + wheel motif, forest green / volt lime (niche-appropriate, no client asset supplied)
 - Primary color: Forest Green `#14432A` · Accent: Volt Lime `#A8FF3E`
-- GSC verification code: PENDING (placeholder meta tag in layout)
+- GSC verification code: `gCKl261Iq-7m5qLR1DzHXCfKmkQv8gomq_a-u7jBv8s` (verified, sitemap submitted)
 
 ## B — Contact & Business
-- Email: placeholder `info@DOMAIN.com` (entity-encoded on site)
+- Email: `info@peakpedal.org` (entity-encoded on site)
 - Phone/WhatsApp: placeholder `+44 0000 000000`
 - Country: United Kingdom
 - Currency: GBP (£)
@@ -58,7 +58,7 @@ Full 78-SKU catalog supplied by client: `peakpedal-final-products.csv`, used ver
 
 ## L — Forms
 - Provider: `web3forms` (default), key PENDING — key-pending fallback active (forms redirect straight to thank-you page, no email sent yet). **Warn: no order/contact email will be delivered until a Web3Forms access key is set.**
-- Destination emails: placeholder `info@DOMAIN.com` for all three forms
+- Destination emails: `info@peakpedal.org` for all three forms
 - No Turnstile configured yet
 
 ## M — Hosting / Deploy Target

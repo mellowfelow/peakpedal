@@ -29,12 +29,14 @@ export const SITE = {
 export const HERO_SLIDES = [
   {
     image: '/images/hero-1.webp',
+    alt: 'Electric mountain bike on a UK trail — full-suspension eMTB riding through woodland',
     tag: 'UK eMTB Specialists',
     heading: 'Electric Mountain Bikes for Every Trail',
     body: `${SITE.description} From entry-level hardtails to premium enduro full-suspension builds — we'll help you find the right motor, travel and geometry for where you ride.`,
   },
   {
     image: '/images/hero-2.webp',
+    alt: 'Rider on an electric mountain bike climbing a steep UK hillside trail',
     tag: 'Ride With Confidence',
     heading: 'Built For Every Rider, Every Trail',
     body: `From first-timers to seasoned riders — 124 eMTBs across 16+ brands, matched to how and where you ride.`,

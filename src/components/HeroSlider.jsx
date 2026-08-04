@@ -20,13 +20,12 @@ export default function HeroSlider({ slides }) {
         <Image
           key={slide.image}
           src={slide.image}
-          alt=""
+          alt={slide.alt || ''}
           fill
           sizes="100vw"
           quality={70}
           priority={i === 0}
           className={`hero-bg ${i === active ? 'is-active' : ''}`}
-          aria-hidden="true"
         />
       ))}
       <div className="hero-overlay" />
