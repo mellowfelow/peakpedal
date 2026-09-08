@@ -16,7 +16,8 @@ export async function generateMetadata({ params }) {
     title: page.metaTitle,
     description: page.metaDescription,
     alternates: { canonical: `https://${SITE.domain}/${page.slug}/` },
-    openGraph: { url: `https://${SITE.domain}/${page.slug}/`, images: ['/images/placeholder.svg'] },
+    openGraph: { url: `https://${SITE.domain}/${page.slug}/`, images: ['/images/og-default.png'] },
+    twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },
   };
 }
 

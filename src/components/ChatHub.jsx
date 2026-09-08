@@ -12,7 +12,7 @@ export default function ChatHub() {
       {tawk && (
         <Script
           id="tawk-script"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src={`https://embed.tawk.to/${tawk.value}`}
           onLoad={() => {
             window.Tawk_API = window.Tawk_API || {};

@@ -16,8 +16,8 @@ export async function generateMetadata({ params }) {
     title: post.metaTitle,
     description: post.metaDescription,
     alternates: { canonical: `https://${SITE.domain}/blog/${post.slug}/` },
-    openGraph: { url: `https://${SITE.domain}/blog/${post.slug}/`, type: 'article', images: ['/images/placeholder.svg'] },
-    twitter: { card: 'summary_large_image', images: ['/images/placeholder.svg'] },
+    openGraph: { url: `https://${SITE.domain}/blog/${post.slug}/`, type: 'article', images: ['/images/og-default.png'] },
+    twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },
   };
 }
 

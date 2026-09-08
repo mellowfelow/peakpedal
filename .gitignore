@@ -17,3 +17,6 @@ assets/category-photos/*
 assets/unassigned-photos/*
 !assets/unassigned-photos/.gitkeep
 docs/_contact-sheet.png
+
+# local scratch
+files.zip

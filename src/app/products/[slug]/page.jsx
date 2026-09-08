@@ -13,7 +13,9 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const product = findProduct(slug);
   if (!product) return {};
-  const title = `${product.name} | ${product.brand} Electric Mountain Bike`;
+  // product.name already leads with the brand ("Trek Rail 5"), so no separate brand clause —
+  // the root layout template appends " | Peak Pedal". Keeps titles ~30–55 chars, under 60.
+  const title = `${product.name} eMTB`;
   const price = `${CONTACT.currencySymbol}${product.priceLow.toLocaleString('en-GB')}`;
   // Two candidate lengths (short/long delivery phrasing) — pick whichever lands closest to
   // the 130-155 char target. Model names/motors vary too widely for one fixed template to fit.
@@ -32,6 +34,7 @@ export async function generateMetadata({ params }) {
     description,
     alternates: { canonical: `https://${SITE.domain}/products/${product.slug}/` },
     openGraph: { url: `https://${SITE.domain}/products/${product.slug}/`, images: [product.images[0]] },
+    twitter: { card: 'summary_large_image', images: [product.images[0]] },
   };
 }
 
@@ -66,8 +69,26 @@ export default async function ProductPage({ params }) {
           url: `https://${SITE.domain}/products/${product.slug}/`,
           priceCurrency: CONTACT.currency,
           price: product.priceLow,
+          priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
           availability: 'https://schema.org/InStock',
           itemCondition: 'https://schema.org/NewCondition',
+          // Free UK shipping is a stated brand fact (ORDER_RULES). Delivery time is
+          // confirmed per-order, so it's deliberately not asserted here.
+          shippingDetails: {
+            '@type': 'OfferShippingDetails',
+            shippingRate: { '@type': 'MonetaryAmount', value: 0, currency: CONTACT.currency },
+            shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'GB' },
+          },
+          // Mirrors /refund/: 14-day cancellation under the Consumer Contracts
+          // Regulations 2013; change-of-mind return postage is the customer's.
+          hasMerchantReturnPolicy: {
+            '@type': 'MerchantReturnPolicy',
+            applicableCountry: 'GB',
+            returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+            merchantReturnDays: 14,
+            returnMethod: 'https://schema.org/ReturnByMail',
+            returnFees: 'https://schema.org/ReturnShippingFees',
+          },
         },
       },
     ],

@@ -29,14 +29,25 @@ export default function Footer() {
             </div>
           </div>
           <div className="footer-col">
-            <h4>Shop</h4>
+            <h4>Shop by Type</h4>
             <Link href="/electric-mountain-bikes/">All Electric Mountain Bikes</Link>
             <Link href="/full-suspension-electric-mountain-bikes/">Full Suspension</Link>
             <Link href="/hardtail-electric-mountain-bikes/">Hardtail</Link>
             <Link href="/lightweight-electric-mountain-bikes/">Lightweight SL</Link>
+            <Link href="/enduro-electric-mountain-bikes/">Enduro</Link>
+            <Link href="/off-road-electric-bikes/">Off-Road</Link>
             <Link href="/womens-electric-mountain-bikes/">Women's</Link>
             <Link href="/kids-electric-mountain-bike/">Kids & Teens</Link>
+          </div>
+          <div className="footer-col">
+            <h4>Shop by Motor &amp; Price</h4>
+            <Link href="/bosch-electric-mountain-bikes/">Bosch eMTBs</Link>
+            <Link href="/shimano-electric-mountain-bikes/">Shimano eMTBs</Link>
+            <Link href="/dji-avinox-electric-mountain-bikes/">DJI Avinox eMTBs</Link>
+            <Link href="/electric-mountain-bikes-under-2000/">Under £2,000</Link>
+            <Link href="/electric-mountain-bikes-under-3000/">Under £3,000</Link>
             <Link href="/electric-mountain-bike-deals/">Deals</Link>
+            <Link href="/electric-mountain-bike-sale/">Sale</Link>
             <Link href="/accessories/">Accessories</Link>
           </div>
           <div className="footer-col">

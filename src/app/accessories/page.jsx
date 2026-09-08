@@ -6,7 +6,8 @@ export const metadata = {
   title: 'eMTB Accessories UK | Batteries, Displays, Protection & More',
   description: `Shop ${ACCESSORIES.length} electric mountain bike accessories — batteries, chargers, displays, motor spares, protection, tools, tyres, storage, lighting and apparel.`,
   alternates: { canonical: `https://${SITE.domain}/accessories/` },
-  openGraph: { url: `https://${SITE.domain}/accessories/`, images: ['/images/placeholder.svg'] },
+  openGraph: { url: `https://${SITE.domain}/accessories/`, images: ['/images/og-default.png'] },
+  twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },
 };
 
 export default function AccessoriesHub() {

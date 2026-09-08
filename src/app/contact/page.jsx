@@ -5,8 +5,8 @@ export const metadata = {
   title: 'Contact — Expert eMTB Advice',
   description: 'Get in touch with Peak Pedal for expert advice on choosing an electric mountain bike, or to ask about a specific model.',
   alternates: { canonical: `https://${SITE.domain}/contact/` },
-  openGraph: { url: `https://${SITE.domain}/contact/`, images: ['/images/placeholder.svg'] },
-  twitter: { card: 'summary_large_image', images: ['/images/placeholder.svg'] },
+  openGraph: { url: `https://${SITE.domain}/contact/`, images: ['/images/og-default.png'] },
+  twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },
 };
 
 export default function ContactPage() {
