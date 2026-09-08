@@ -59,10 +59,16 @@ Catalog grew across content passes to **124 bike SKUs + 33 accessory SKUs** (see
 
 ## L — Forms
 - Provider: **`smtp`** (client's choice — Vercel Project Environment Variables, not Web3Forms). Contact + order forms POST same-origin to `/api/contact` → `nodemailer` → SMTP.
-- **Env vars (Vercel → peakpedal → Settings → Environment Variables, Production + Preview):** `SMTP_HOST`, `SMTP_PORT` (465 SSL / 587 STARTTLS), `SMTP_USER`, `SMTP_PASS` (app-specific password), optional `SMTP_FROM`. Not in the repo.
+- Mail provider: **Zoho** (custom domain). Env vars (Vercel → peakpedal → Settings → Environment Variables, Production + Preview):
+  - `SMTP_HOST` = `smtp.zoho.eu` or `smtp.zoho.com` (whichever data centre the account is in — check the Zoho Mail URL; try `smtppro.zoho.*` if plain `smtp` is rejected)
+  - `SMTP_PORT` = `465`
+  - `SMTP_USER` = `info@peakpedal.org`
+  - `SMTP_PASS` = Zoho **app-specific password** (accounts.zoho.* → Security → App Passwords; TFA must be on)
+  - `SMTP_FROM` — optional; only if a dedicated alias is created in Zoho first
+  - Needs SMTP access enabled on the Zoho plan (webmail-only free tiers won't work).
 - Until the env vars are set: forms show a visible "not configured — message us on WhatsApp" message and 503 (they do NOT silently discard).
 - Destination emails: `info@peakpedal.org` for both forms (`FORMS.destinations`).
-- `resendFrom: 'forms@peakpedal.org'` is the fallback "From" when `SMTP_FROM` is unset.
+- `resendFrom` = `info@peakpedal.org` (fallback "From"; matches SMTP_USER for Zoho).
 - No Turnstile configured yet.
 
 ## M — Hosting / Deploy Target

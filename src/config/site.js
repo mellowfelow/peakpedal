@@ -68,7 +68,11 @@ export const FORMS = {
   // 'web3forms' — client-side POST to api.web3forms.com (needs web3formsKey).
   provider: 'smtp',
   web3formsKey: '',
-  resendFrom: 'forms@peakpedal.org', // fallback "From" if SMTP_FROM env var is unset
+  // Fallback "From" when the SMTP_FROM env var is unset. Zoho (and most SMTP hosts)
+  // only let you send From the authenticated mailbox or a configured alias — so this
+  // matches SMTP_USER. Set SMTP_FROM to a dedicated alias (e.g. forms@) only if you
+  // create that alias in Zoho first.
+  resendFrom: 'info@peakpedal.org',
   turnstileSiteKey: '',
   destinations: {
     contact: 'info@peakpedal.org',
