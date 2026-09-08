@@ -1,8 +1,10 @@
 # Peak Pedal — Keyword → Page Map
 
 Source: `peakpedal-keyword-cluster-master.csv` (Semrush-verified) + Keyword Engine MODE A/B audit August 2026.
-Last updated: August 2026 | Version: Final (pre-launch)
+Last updated: 2026-09-08 (post-launch — reconciled to live state during the SEO audit; see `docs/audit-2026-09.md`).
 Tracks BUILT vs DEFERRED — each session pulls the next unused cluster.
+
+> **Live status (2026-09):** all Phase-1 pages shipped and indexing. The "on-page fixes required" below were completed pre-launch or in the 2026-09 audit. Current catalogue: **124 bike SKUs + 33 accessories = 157 product pages** (the "125" figures below are stale by one). Real blockers now: forms (Web3Forms key), thin product/accessory copy, and zero backlinks — not on-page basics.
 
 ---
 
@@ -10,8 +12,8 @@ Tracks BUILT vs DEFERRED — each session pulls the next unused cluster.
 
 | Page | URL | Primary keyword | Vol/mo | KD | Status |
 |---|---|---|---|---|---|
-| Homepage | `/` | electric mountain bike | 12,100 | 29 | ✅ Built — title + meta fix required |
-| Main shop | `/electric-mountain-bikes/` | electric mountain bikes for sale | 880 | 25 | ✅ Built — H1 + meta fix required |
+| Homepage | `/` | electric mountain bike | 12,100 | 29 | ✅ Live |
+| Main shop | `/electric-mountain-bikes/` | electric mountain bikes for sale | 880 | 25 | ✅ Live |
 | Full suspension | `/full-suspension-electric-mountain-bikes/` | full suspension electric mountain bike | 2,400 | 22 | ✅ Built |
 | Hardtail | `/hardtail-electric-mountain-bikes/` | hardtail electric mountain bike | 320 | 14 | ✅ Built |
 | Lightweight SL | `/lightweight-electric-mountain-bikes/` | lightweight electric mountain bike | 170 | 17 | ✅ Built |

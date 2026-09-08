@@ -1105,6 +1105,13 @@ export const FAQ_PAGE_FAQS = [
 // Content lives in src/content/posts/*.js as { title, excerpt, body } modules,
 // referenced here by slug so this file stays a manageable index.
 // ---------------------------------------------------------------------------
+
+// Blog dates for Article schema + og:updated_time. The Phase-1 set was all
+// written 2026-07-17..19 (git history). Override per post with `datePublished` /
+// `dateModified` on the entry below when a post is genuinely revised.
+export const POST_PUBLISHED_DEFAULT = '2026-07-18';
+export const POST_MODIFIED_DEFAULT = '2026-09-08';
+
 export const POSTS = [
   {
     slug: 'best-electric-mountain-bikes-uk',

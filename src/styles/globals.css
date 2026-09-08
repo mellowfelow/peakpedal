@@ -1457,3 +1457,8 @@ td {
     scroll-behavior: auto !important;
   }
 }
+
+.post-meta {
+  font-size: 0.85rem;
+  margin: -0.25rem 0 1.75rem;
+}
