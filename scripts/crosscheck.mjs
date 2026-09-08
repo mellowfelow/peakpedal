@@ -93,14 +93,23 @@ async function checkConfig() {
   }
   pass('All referenced accessory image files exist on disk');
 
-  if (FORMS.provider === 'resend') {
-    fail('FORMS.provider is "resend" but this build has no static-export constraint check — confirm /api/contact exists (Vercel only).');
+  if (FORMS.provider === 'smtp' || FORMS.provider === 'resend') {
+    const routeExists = await exists(path.join(ROOT, 'src', 'app', 'api', 'contact', 'route.js'));
+    if (routeExists) {
+      pass(`Forms provider is "${FORMS.provider}" and src/app/api/contact/route.js exists`);
+      warn(
+        `FORMS.provider is "${FORMS.provider}" — forms fail visibly (with a WhatsApp fallback) until the SMTP_* / RESEND_API_KEY env vars are set in Vercel Project Settings. This is expected pre-launch.`
+      );
+    } else {
+      fail(`FORMS.provider is "${FORMS.provider}" but src/app/api/contact/route.js does not exist — every form would 404.`);
+    }
+  } else if (FORMS.provider === 'web3forms') {
+    pass('Forms provider is "web3forms"');
+    if (!FORMS.web3formsKey || FORMS.web3formsKey.startsWith('YOUR-')) {
+      warn('FORMS.web3formsKey is empty — forms will redirect to the thank-you page without sending any email. Set this before real launch.');
+    }
   } else {
-    pass(`Forms provider is "${FORMS.provider}"`);
-  }
-
-  if (!FORMS.web3formsKey || FORMS.web3formsKey.startsWith('YOUR-') || FORMS.web3formsKey === '') {
-    warn('FORMS.web3formsKey is empty — forms will redirect to the thank-you page without sending any email. Set this before real launch.');
+    fail(`Unknown FORMS.provider "${FORMS.provider}" — expected "smtp", "resend" or "web3forms".`);
   }
 
   if (SITE.domain === 'DOMAIN.com') {

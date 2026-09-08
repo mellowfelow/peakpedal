@@ -61,9 +61,14 @@ export const ORDER_RULES = {
 };
 
 export const FORMS = {
-  provider: 'web3forms', // works on Vercel + Cloudflare, needs only an email address
-  web3formsKey: '', // PENDING — empty triggers the key-pending fallback (redirect only, no email sent)
-  resendFrom: '',
+  // 'smtp'  — forms POST same-origin to /api/contact, which sends via nodemailer.
+  //           Credentials are Vercel Project Environment Variables (never the repo):
+  //           SMTP_HOST, SMTP_PORT (465 or 587), SMTP_USER, SMTP_PASS (app password),
+  //           optional SMTP_FROM. See README "Live placeholders".
+  // 'web3forms' — client-side POST to api.web3forms.com (needs web3formsKey).
+  provider: 'smtp',
+  web3formsKey: '',
+  resendFrom: 'forms@peakpedal.org', // fallback "From" if SMTP_FROM env var is unset
   turnstileSiteKey: '',
   destinations: {
     contact: 'info@peakpedal.org',
