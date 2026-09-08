@@ -878,7 +878,7 @@ export const CATEGORY_PAGES = [
     slug: 'womens-electric-mountain-bikes',
     kind: 'guidance',
     keyword: 'womens electric mountain bikes',
-    metaTitle: "Women's Electric Mountain Bikes UK — Sizing & Fit Guide",
+    metaTitle: "Women's Electric Mountain Bikes UK — Fit Guide",
     metaDescription: "Buying an electric mountain bike as a woman? Our range is unisex with adjustable geometry — here's how to get the frame size and fit right.",
     h1: "Electric Mountain Bikes for Women",
     intro: 'Our eMTB range is unisex — every model is available across multiple frame sizes, and several (Orbea, Whyte, Trek) offer a smaller-frame option down to XS. The right size comes down to standover height and reach rather than a separate "women’s" model — get in touch and we’ll help you match a frame to your height.',
@@ -908,7 +908,7 @@ export const CATEGORY_PAGES = [
     slug: 'electric-mountain-bike-deals',
     kind: 'value',
     keyword: 'electric mountain bike deals',
-    metaTitle: 'Electric Mountain Bike Deals & Best-Value Picks UK',
+    metaTitle: 'Electric Mountain Bike Deals UK',
     metaDescription: 'Our best-value electric mountain bikes right now, ranked by price-to-spec — no gimmicks, just the strongest picks in the range.',
     h1: 'Electric Mountain Bike Deals — Best-Value Picks',
     intro: 'Rather than a rotating "sale" of arbitrary discounts, this page lists the strongest price-to-spec picks currently in our range — get in touch for the latest availability.',
@@ -918,7 +918,7 @@ export const CATEGORY_PAGES = [
     slug: 'electric-mountain-bike-sale',
     kind: 'value',
     keyword: 'electric mountain bike sale',
-    metaTitle: 'Electric Mountain Bike Sale — Best-Value Prices UK',
+    metaTitle: 'Electric Mountain Bike Sale UK',
     metaDescription: 'Browse our current best-value electric mountain bikes, ordered by price. Entry-level hardtails from under £2,200.',
     h1: 'Electric Mountain Bike Sale',
     intro: 'These are our lowest-priced, best-value electric mountain bikes right now — sorted from most to least affordable.',
@@ -1005,7 +1005,7 @@ export const CATEGORY_PAGES = [
     keyword: brand.keyword,
     // metaTitle/metaDescription/h1 default to the generic formula but can be overridden
     // per-brand (see Scott/Canyon, which have client-specified copy).
-    metaTitle: brand.metaTitle || `${brand.name} Electric Mountain Bikes UK — Full Range`,
+    metaTitle: brand.metaTitle || `${brand.name} Electric Mountain Bikes UK`,
     metaDescription: brand.metaDescription || `Shop the full ${brand.name} electric mountain bike range at Peak Pedal, with UK-wide delivery and expert buying advice.`,
     h1: brand.h1 || `${brand.name} Electric Mountain Bikes`,
     intro: brand.description,
@@ -1040,7 +1040,7 @@ export const HOME_FAQS = [
   },
   {
     q: 'Can I buy an electric mountain bike on finance?',
-    a: 'Finance options for electric mountain bikes are coming soon at Peak Pedal. In the meantime, the Cycle to Work scheme can reduce the purchase cost of an eligible eMTB by 25–47% through salary sacrifice — see our Cycle to Work guide for details.',
+    a: 'Yes — get in touch and our team will talk you through the finance options available for the bike you want; exact rates and terms depend on the model and provider, so we confirm those directly. The Cycle to Work scheme is also an option, reducing the cost of an eligible eMTB by 25–47% through salary sacrifice.',
   },
   {
     q: 'Who are electric mountain bikes suitable for?',
@@ -1116,7 +1116,7 @@ export const POSTS = [
   {
     slug: 'best-electric-mountain-bikes-uk',
     title: 'Best Electric Mountain Bikes UK 2026 — Compared by Spec',
-    metaTitle: 'Best Electric Mountain Bikes UK 2026 — Compared by Spec',
+    metaTitle: 'Best Electric Mountain Bikes UK 2026',
     metaDescription: 'The best electric mountain bikes UK riders can buy in 2026, compared by motor, travel and price across 8 standout models from entry-level to premium picks.',
     keyword: 'best electric mountain bikes uk',
     excerpt: 'The best electric mountain bikes UK riders can buy right now, compared by motor, travel and price-to-spec — not marketing claims.',
@@ -1164,7 +1164,7 @@ export const POSTS = [
   {
     slug: 'amflow-dji-avinox-review',
     title: 'Amflow PL Carbon Review — DJI Avinox eMTB',
-    metaTitle: 'Amflow PL Carbon Review — DJI Avinox eMTB Spec Breakdown',
+    metaTitle: 'Amflow PL Carbon Review — DJI Avinox eMTB',
     metaDescription: 'Our Amflow PL Carbon review: ride impressions, DJI Avinox motor performance, who it suits, and how its pricing compares to established rival eMTBs.',
     keyword: 'amflow pl carbon review',
     excerpt: 'DJI’s Avinox motor system is new to eMTBs — here’s how the Amflow PL Carbon’s spec sheet compares to the established players.',
@@ -1204,7 +1204,7 @@ export const POSTS = [
   {
     slug: 'trek-fuel-exe-review',
     title: 'Trek Fuel EXe Review — Which Model Should You Buy?',
-    metaTitle: 'Trek Fuel EXe Review — Which Model Should You Buy?',
+    metaTitle: 'Trek Fuel EXe Review — Which Model to Buy',
     metaDescription: 'Our Trek Fuel EXe review compares all 6 models we stock, from the 5 to the 9.9, on motor, weight, spec and price to help you pick the right one for you.',
     keyword: 'trek fuel exe',
     excerpt: 'Trek’s TQ-powered lightweight SL platform, compared across all six models we stock.',
@@ -1212,7 +1212,7 @@ export const POSTS = [
   {
     slug: 'trek-powerfly-review',
     title: 'Trek Powerfly Review — Full-Suspension Trail eMTBs',
-    metaTitle: 'Trek Powerfly Review — Full-Suspension Trail eMTBs',
+    metaTitle: 'Trek Powerfly Review — Trail eMTB',
     metaDescription: 'Our Trek Powerfly review covers both models in our range, their Bosch motors, geometry and who each one suits versus the pricier Rail range instead.',
     keyword: 'trek powerfly',
     excerpt: 'Trek’s more affordable full-suspension trail platform, and how it compares to the Rail range.',
@@ -1228,7 +1228,7 @@ export const POSTS = [
   {
     slug: 'whyte-rheo-review',
     title: 'Whyte Rheo Review — UK-Designed Full Suspension eMTB',
-    metaTitle: 'Whyte Rheo Review — UK-Designed Full Suspension eMTB',
+    metaTitle: 'Whyte Rheo Review — UK Full-Suspension eMTB',
     metaDescription: 'Our Whyte Rheo review: full spec breakdown, how it compares to the Kado and E-160 RSX, and who this UK-designed full-suspension trail eMTB actually suits best.',
     keyword: 'whyte rheo',
     excerpt: 'Whyte’s newest full-suspension trail platform, compared against the rest of the Whyte range.',
@@ -1236,7 +1236,7 @@ export const POSTS = [
   {
     slug: 'haibike-allmtn-vs-alltrail-vs-alltrack',
     title: 'Haibike AllMtn vs AllTrail vs AllTrack — Explained',
-    metaTitle: 'Haibike AllMtn vs AllTrail vs AllTrack — Explained',
+    metaTitle: 'Haibike AllMtn vs AllTrail vs AllTrack',
     metaDescription: 'Confused by Haibike’s range? We explain the real differences between AllMtn, AllTrail and AllTrack, with every current model compared by spec and price.',
     keyword: 'haibike allmtn',
     excerpt: 'Three Haibike families, one clear explanation of which is which — and which one fits your riding.',

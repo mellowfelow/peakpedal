@@ -223,16 +223,36 @@ async function checkBuildOutput() {
   let jsonLdFails = 0;
   let metaFails = 0;
   let domainPlaceholderCount = 0;
+  let titleFails = 0;
+  let svgOgCount = 0;
+  const allHtml = []; // {rel, html} — reused for the orphan scan below
 
   for (const file of files) {
     const html = await readFile(file, 'utf8');
     const rel = path.relative(appDir, file);
+    allHtml.push({ rel, html });
 
     const h1Count = (html.match(/<h1[\s>]/g) || []).length;
     if (h1Count !== 1) {
       h1Fails++;
       fail(`${rel}: expected exactly 1 <h1>, found ${h1Count}`);
     }
+
+    const titleMatch = html.match(/<title>([^<]*)<\/title>/);
+    if (titleMatch) {
+      const decoded = titleMatch[1]
+        .replace(/&amp;/g, '&')
+        .replace(/&#x27;|&#39;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>');
+      if (decoded.length > 62) {
+        titleFails++;
+        warn(`${rel}: <title> is ${decoded.length} chars (target <=60) — "${decoded}"`);
+      }
+    }
+
+    if (/<meta property="og:image" content="[^"]*\.svg"/.test(html)) svgOgCount++;
 
     const ldBlocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
     for (const [, json] of ldBlocks) {
@@ -259,6 +279,25 @@ async function checkBuildOutput() {
   if (h1Fails === 0) pass(`All ${files.length} prerendered pages have exactly one <h1>`);
   if (jsonLdFails === 0) pass('All JSON-LD blocks across prerendered pages are valid JSON');
   if (metaFails === 0) pass('All meta descriptions are within the target length band');
+  if (titleFails === 0) pass('All <title> tags are <=62 chars (entity-decoded)');
+  if (svgOgCount === 0) pass('No page uses an SVG as its og:image');
+  else warn(`${svgOgCount} page(s) still use an SVG og:image — social cards need a raster (PNG/JPG) 1200x630`);
+
+  // Orphan scan: every CATEGORY_PAGES slug should be linked from somewhere other
+  // than its own page + the sitemap (i.e. reachable via nav/footer/body copy).
+  const orphans = [];
+  for (const c of CATEGORY_PAGES) {
+    const needle = `/${c.slug}/`;
+    const linkedElsewhere = allHtml.some(
+      ({ rel, html }) =>
+        !rel.startsWith(`${c.slug}${path.sep}`) &&
+        rel !== 'sitemap.xml' &&
+        html.includes(`href="${needle}"`)
+    );
+    if (!linkedElsewhere) orphans.push(c.slug);
+  }
+  if (orphans.length === 0) pass('Every category/brand page is internally linked (no orphans)');
+  else warn(`Orphaned category page(s) — no internal link outside their own page: ${orphans.join(', ')}`);
 
   if (domainPlaceholderCount > 0) {
     warn(`"DOMAIN.com" placeholder appears in ${domainPlaceholderCount} prerendered page(s) — expected while the domain is pending (see docs/PROJECT.md). This becomes a blocking failure once a real domain is set and this is flagged as a production deploy.`);

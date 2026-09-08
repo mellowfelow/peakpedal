@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
 import AddToCartButton from '@/components/AddToCartButton';
@@ -102,7 +103,18 @@ export default async function ProductPage({ params }) {
         <div className="grid product-detail-grid">
           <div>
             <div className="gallery-main">
-              <img src={product.images[0]} alt={product.imageAlt} width={800} height={600} loading="eager" />
+              {product.images[0].endsWith('.svg') ? (
+                <img src={product.images[0]} alt={product.imageAlt} width={800} height={600} loading="eager" />
+              ) : (
+                <Image
+                  src={product.images[0]}
+                  alt={product.imageAlt}
+                  width={800}
+                  height={600}
+                  priority
+                  sizes="(max-width: 900px) 100vw, 460px"
+                />
+              )}
             </div>
           </div>
           <div>

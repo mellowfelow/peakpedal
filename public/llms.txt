@@ -85,10 +85,7 @@ Peak Pedal is a UK-based electric mountain bike retailer offering 124 eMTBs from
 - https://www.peakpedal.org/search/
 - https://www.peakpedal.org/thank-you-contact/
 - https://www.peakpedal.org/thank-you-order/
-- https://www.peakpedal.org/privacy/
-- https://www.peakpedal.org/terms/
-- https://www.peakpedal.org/refund/
-- https://www.peakpedal.org/shipping/
+- https://www.peakpedal.org/order/
 
 ## Structured data
 Every page carries JSON-LD (schema.org). Key schemas: Store + Organization (homepage), Product (each product page), FAQPage (category and FAQ pages), WebSite with SearchAction (sitewide), BreadcrumbList (product pages), SpeakableSpecification (homepage, FAQ page).
