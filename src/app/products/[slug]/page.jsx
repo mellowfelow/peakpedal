@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
 import AddToCartButton from '@/components/AddToCartButton';
 import Breadcrumbs, { breadcrumbSchema } from '@/components/Breadcrumbs';
+import { renderInline } from '@/components/PostBody';
 import { SITE, CONTACT, PRODUCTS, findProduct, relatedProducts } from '@/config/site';
 
 export function generateStaticParams() {
@@ -92,6 +93,18 @@ export default async function ProductPage({ params }) {
           },
         },
       },
+      ...(product.faqs?.length
+        ? [
+            {
+              '@type': 'FAQPage',
+              mainEntity: product.faqs.map((f) => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 
@@ -135,7 +148,7 @@ export default async function ProductPage({ params }) {
                 </>
               )}
             </p>
-            <p>{product.description}</p>
+            <p>{product.longCopy[0]}</p>
 
             <div className="table-wrap product-spec-table">
               <table>
@@ -162,6 +175,27 @@ export default async function ProductPage({ params }) {
             </div>
           </div>
         </div>
+
+        <div style={{ maxWidth: 760, marginTop: '2.5rem' }}>
+          <h2>About the {product.name}</h2>
+          {product.longCopy.slice(1).map((para, i) => (
+            <p key={i}>{renderInline(para)}</p>
+          ))}
+        </div>
+
+        {product.faqs?.length > 0 && (
+          <div style={{ maxWidth: 760, marginTop: '2rem' }}>
+            <h2>{product.name} — Common Questions</h2>
+            <div className="stack">
+              {product.faqs.map((f) => (
+                <div key={f.q} className="card">
+                  <h3 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>{f.q}</h3>
+                  <p style={{ marginBottom: 0 }}>{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
       {related.length > 0 && (

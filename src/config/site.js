@@ -514,23 +514,116 @@ function describe(name, brand, category, type, motor, travel) {
   return `The ${name} is a ${categoryText} ${type.toLowerCase()} eMTB from ${brand}, running a ${motor} motor${travelText}.`;
 }
 
+// --- Per-product long copy + FAQs -----------------------------------------
+// Every sentence below is derived from this product's own data fields or from
+// general (non-model-specific) eMTB knowledge — travel brackets, motor-family
+// characteristics, category trade-offs. No weights, battery capacities,
+// geometry figures or componentry are asserted (CLAUDE.md: never invent specs).
+
+const MOTOR_FAMILY = [
+  [/Bosch Performance CX|Bosch Performance Line CX/, 'Bosch’s flagship mid-drive, the most widely serviced eMTB motor in the UK and a safe default for demanding terrain'],
+  [/Bosch Performance Line(?! CX)|Bosch Active Line/, 'a lighter-duty Bosch unit — less outright torque than the Performance CX, but quieter and well suited to trail-centre riding'],
+  [/Bosch Performance SX/, 'Bosch’s compact SX motor, built for lightweight full-power-adjacent builds with a more natural ride feel'],
+  [/Shimano EP801-RS/, 'Shimano’s lightweight EP801-RS — reduced weight and torque for an SL-style ride that still climbs well'],
+  [/Shimano EP8|Shimano EP801/, 'Shimano’s EP8-series mid-drive — quieter and lighter-feeling than a full-power Bosch, with a wide UK dealer network'],
+  [/Yamaha/, 'a Yamaha SyncDrive / PW-series motor — the platform Giant and Haibike have used and supported for years'],
+  [/DJI Avinox/, 'DJI’s Avinox system — a newer platform with strong peak torque and smart features, though with a shorter UK service history than Bosch or Shimano'],
+  [/TQ HPR50/, 'the TQ HPR50 — a compact, near-silent SL motor tuned for a ride close to an unassisted bike'],
+  [/Pinion MGU/, 'the Pinion MGU — a gearbox-and-motor unit that moves shifting into the drive unit itself'],
+  [/Fazua/, 'a Fazua Ride 60 — a light, low-profile SL system'],
+  [/Mahle/, 'a Mahle X20 — one of the lightest SL drive units available'],
+  [/Specialized S3 Full Power/, 'Specialized’s own S3 Full Power motor, tuned specifically for the frame rather than adapted to fit'],
+  [/Specialized SL 1\.1/, 'Specialized’s SL 1.1 motor — the lighter, lower-torque unit behind the Turbo Levo SL'],
+];
+
+function motorFamilyBlurb(motor) {
+  if (!motor) return '';
+  const hit = MOTOR_FAMILY.find(([re]) => re.test(motor));
+  return hit ? hit[1] : `the ${motor}`;
+}
+
+function travelBlurb(category, type, travel) {
+  if (category === 'Hardtail') return 'A hardtail frame keeps weight and maintenance down and rewards efficient, seated climbing — a sensible first eMTB and a strong trail-centre and fire-road bike.';
+  if (category === 'Lightweight SL') return 'As a lightweight SL build it trades some outright motor torque for a lighter, more natural-handling bike that’s easier to place on technical singletrack and to lift onto a rack.';
+  const mm = travel ? parseInt(travel, 10) : 0;
+  if (mm >= 170) return 'That much travel puts it firmly in gravity / enduro-race territory — built to be ridden hard on the roughest descents rather than optimised for all-day efficiency.';
+  if (mm >= 150) return 'That travel bracket handles technical enduro terrain and steeper descents while still climbing efficiently under power — the most versatile band for capable UK trail riding.';
+  if (mm >= 120) return 'That travel suits trail and all-mountain riding on typical UK singletrack — enough compliance for rough ground without the weight of a long-travel enduro build.';
+  return 'It sits at the shorter-travel, trail-focused end of the range.';
+}
+
+function pricePositionBlurb(brand, priceLow, byBrand) {
+  const prices = byBrand[brand];
+  if (!prices || prices.length < 3) return `At £${priceLow.toLocaleString('en-GB')}, it comes with free UK delivery.`;
+  const min = Math.min(...prices);
+  const max = Math.max(...prices);
+  const where = priceLow <= min + (max - min) * 0.25 ? `among the more accessible ${brand} eMTBs we stock`
+    : priceLow >= max - (max - min) * 0.25 ? `near the top of the ${brand} range at Peak Pedal`
+      : `in the middle of the ${brand} line-up at Peak Pedal`;
+  return `At £${priceLow.toLocaleString('en-GB')} it sits ${where}, and ships free UK-wide.`;
+}
+
+function productLongCopy(p, byBrand) {
+  const typeSlug =
+    p.category === 'Hardtail' ? 'hardtail-electric-mountain-bikes'
+      : p.category === 'Lightweight SL' ? 'lightweight-electric-mountain-bikes'
+        : p.type === 'Enduro' ? 'enduro-electric-mountain-bikes'
+          : 'full-suspension-electric-mountain-bikes';
+  const brandSlug = `${p.brand.toLowerCase().replace(/\s+/g, '-')}-electric-mountain-bikes`;
+  return [
+    `${describe(p.name, p.brand, p.category, p.type, p.motor, p.travel)} ${travelBlurb(p.category, p.type, p.travel)}`,
+    `Its ${p.motor} motor is ${motorFamilyBlurb(p.motor)}. ${pricePositionBlurb(p.brand, p.priceLow, byBrand)}`,
+    `Not sure whether the ${p.name}’s setup fits how and where you ride? Compare it against the rest of our [${p.category === 'Hardtail' ? 'hardtail' : p.category === 'Lightweight SL' ? 'lightweight SL' : p.type === 'Enduro' ? 'enduro' : 'full-suspension'} range](/${typeSlug}/) or the full [${p.brand} line-up](/${brandSlug}/), or message us and we’ll talk it through.`,
+  ];
+}
+
+function productFaqs(p, byBrand) {
+  const catAnswer = p.category === 'Hardtail'
+    ? `The ${p.name} is a hardtail — front suspension only. That keeps it lighter, lower-maintenance and more affordable than an equivalent full-suspension eMTB, at the cost of some comfort and grip on rough ground.`
+    : p.category === 'Lightweight SL'
+      ? `The ${p.name} is a lightweight SL (Super Light) eMTB — full suspension, but with a smaller, lighter motor and battery for a ride feel closer to an unassisted bike.`
+      : `The ${p.name} is a full-suspension eMTB with ${p.travel} of travel, front and rear.`;
+  const prices = byBrand[p.brand] || [];
+  const cheapest = prices.length ? Math.min(...prices) : p.priceLow;
+  const priceAnswer = p.priceLow === cheapest && prices.length > 1
+    ? `The ${p.name} is £${p.priceLow.toLocaleString('en-GB')} — currently the most affordable ${p.brand} eMTB at Peak Pedal — with free UK delivery. Finance and Cycle to Work are available.`
+    : `The ${p.name} is £${p.priceLow.toLocaleString('en-GB')} with free UK delivery. Finance and Cycle to Work are available.`;
+  return [
+    { q: `Is the ${p.name} a full-suspension or hardtail electric mountain bike?`, a: catAnswer },
+    { q: `What motor does the ${p.name} use?`, a: `The ${p.name} runs a ${p.motor} — ${motorFamilyBlurb(p.motor)}.` },
+    { q: `How much is the ${p.name} and do you deliver UK-wide?`, a: priceAnswer },
+  ];
+}
+
+const PRICES_BY_BRAND = RAW_PRODUCTS.reduce((acc, r) => {
+  (acc[r[1]] ||= []).push(r[4]);
+  return acc;
+}, {});
+
 export const PRODUCTS = RAW_PRODUCTS.map(
-  ([name, brand, category, type, priceLow, priceHigh, motor, travel, slug, badge]) => ({
-    name,
-    brand,
-    category,
-    type,
-    priceLow,
-    priceHigh,
-    motor,
-    travel,
-    slug,
-    featured: Boolean(badge),
-    badge,
-    description: describe(name, brand, category, type, motor, travel),
-    imageAlt: `${name} electric mountain bike${motor ? ` — ${motor}` : ''}`,
-    images: [PRODUCT_IMAGES[slug] || '/images/placeholder.svg'],
-  })
+  ([name, brand, category, type, priceLow, priceHigh, motor, travel, slug, badge]) => {
+    const base = {
+      name,
+      brand,
+      category,
+      type,
+      priceLow,
+      priceHigh,
+      motor,
+      travel,
+      slug,
+      featured: Boolean(badge),
+      badge,
+      description: describe(name, brand, category, type, motor, travel),
+      imageAlt: `${name} electric mountain bike${motor ? ` — ${motor}` : ''}`,
+      images: [PRODUCT_IMAGES[slug] || '/images/placeholder.svg'],
+    };
+    return {
+      ...base,
+      longCopy: productLongCopy(base, PRICES_BY_BRAND),
+      faqs: productFaqs(base, PRICES_BY_BRAND),
+    };
+  }
 );
 
 // ---------------------------------------------------------------------------
