@@ -1462,3 +1462,25 @@ td {
   font-size: 0.85rem;
   margin: -0.25rem 0 1.75rem;
 }
+
+/* --- Checkout --- */
+.checkout-summary {
+  margin-top: 1rem;
+}
+.checkout-summary-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.checkout-edit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+.checkout-summary table tfoot th {
+  border-top: 2px solid var(--color-border);
+  font-weight: 700;
+}

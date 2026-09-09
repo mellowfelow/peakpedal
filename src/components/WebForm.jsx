@@ -8,7 +8,15 @@ const PROVIDER = FORMS.provider; // 'smtp' (Vercel env vars) | 'web3forms'
 const WEB3FORMS_KEY_PENDING =
   PROVIDER === 'web3forms' && (!FORMS.web3formsKey || FORMS.web3formsKey.startsWith('YOUR-'));
 
-export default function WebForm({ formName, subject, thankYouPath, children }) {
+export default function WebForm({
+  formName,
+  subject,
+  thankYouPath,
+  children,
+  extraFields, // object merged into the POST payload (smtp provider) — e.g. the cart
+  onSuccess, // called right before redirect (e.g. to clear the cart)
+  submitLabel = 'Send',
+}) {
   const router = useRouter();
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -24,40 +32,41 @@ export default function WebForm({ formName, subject, thankYouPath, children }) {
     setError(message || 'Something went wrong sending your message. Please message us directly on WhatsApp.');
   }
 
+  function done() {
+    onSuccess?.();
+    router.push(thankYouPath);
+  }
+
   async function onSubmit(e) {
     e.preventDefault();
     setError('');
     const form = e.target;
 
-    // web3forms: silently succeed while the key is still pending (never dead-end an order).
     if (WEB3FORMS_KEY_PENDING) {
-      router.push(thankYouPath);
+      done();
       return;
     }
 
     setSubmitting(true);
     try {
       if (PROVIDER === 'smtp') {
-        // Same-origin JSON POST to our own API route — no CORS constraints.
         const fields = Object.fromEntries(new FormData(form).entries());
-        // Trailing slash matches next.config `trailingSlash: true` — avoids a 308 on POST.
         const res = await fetch('/api/contact/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...fields, formName, subject }),
+          body: JSON.stringify({ ...fields, ...extraFields, formName, subject }),
         });
         const data = await res.json().catch(() => ({}));
-        if (res.ok && data.success) router.push(thankYouPath);
+        if (res.ok && data.success) done();
         else fail(data.message);
       } else {
-        // web3forms: the exact CORS-safe method — FormData body, Accept header only.
         const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { Accept: 'application/json' },
           body: new FormData(form),
         });
         const data = await res.json();
-        if (res.status === 200 && data.success) router.push(thankYouPath);
+        if (res.status === 200 && data.success) done();
         else fail(data.message);
       }
     } catch {
@@ -88,7 +97,7 @@ export default function WebForm({ formName, subject, thankYouPath, children }) {
       <input type="checkbox" name="botcheck" className="sr-only" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       {children}
       <button type="submit" className="btn btn-primary btn-block" disabled={submitting}>
-        {submitting ? 'Sending…' : 'Send'}
+        {submitting ? 'Sending…' : submitLabel}
       </button>
       {WEB3FORMS_KEY_PENDING && (
         <p className="muted" style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>
