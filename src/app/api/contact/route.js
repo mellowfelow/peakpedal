@@ -186,8 +186,9 @@ export async function POST(req) {
 
   const to = FORMS.destinations[isOrder ? 'order' : 'contact'] || FORMS.destinations.contact || CONTACT.email;
   const from = process.env.SMTP_FROM || FORMS.resendFrom || process.env.SMTP_USER;
+  const name = String(body.name || '').trim();
   const subject = isOrder
-    ? `New order${body.name ? ` — ${String(body.name).trim()}` : ` — ${SITE.name}`}`
+    ? `New order — from ${money(subtotal)}${name ? ` — ${name}` : ''}`
     : body.subject || `New enquiry — ${SITE.name}`;
 
   const payload = { isOrder, fields: body, items, subtotal, when };
