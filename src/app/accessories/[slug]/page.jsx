@@ -15,11 +15,14 @@ export async function generateMetadata({ params }) {
   const accessory = findAccessory(slug);
   if (!accessory) return {};
   const description = `${accessory.name} — ${accessory.keyword}, from ${CONTACT.currencySymbol}${accessory.price.toLocaleString('en-GB')}. UK-wide delivery, expert advice.`;
+  const ogImage = accessory.images[0].endsWith('.svg') ? '/images/og-default.png' : accessory.images[0];
   return {
-    title: `${accessory.name} | ${accessory.category}`,
+    // accessory.name leads with the brand; layout template appends " | Peak Pedal".
+    title: accessory.name,
     description,
     alternates: { canonical: `https://${SITE.domain}/accessories/${accessory.slug}/` },
-    openGraph: { url: `https://${SITE.domain}/accessories/${accessory.slug}/`, images: [accessory.images[0]] },
+    openGraph: { url: `https://${SITE.domain}/accessories/${accessory.slug}/`, images: [ogImage] },
+    twitter: { card: 'summary_large_image', images: [ogImage] },
   };
 }
 

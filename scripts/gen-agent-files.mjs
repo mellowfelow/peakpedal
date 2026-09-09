@@ -78,7 +78,7 @@ ${POSTS.map((p) => `- [${p.title}](${base}/blog/${p.slug}/): ${p.excerpt}`).join
 - Contact: ${CONTACT.email}
 
 ## Excluded
-${['/cart/', '/search/', '/thank-you-contact/', '/thank-you-order/', '/privacy/', '/terms/', '/refund/', '/shipping/'].map((p) => `- ${base}${p}`).join('\n')}
+${['/cart/', '/search/', '/thank-you-contact/', '/thank-you-order/', '/order/'].map((p) => `- ${base}${p}`).join('\n')}
 
 ## Structured data
 Every page carries JSON-LD (schema.org). Key schemas: Store + Organization (homepage), Product (each product page), FAQPage (category and FAQ pages), WebSite with SearchAction (sitewide), BreadcrumbList (product pages), SpeakableSpecification (homepage, FAQ page).
@@ -414,7 +414,7 @@ const vercelJson = {
       source: '/:path*',
       has: [{ type: 'host', value: domain.replace(/^www\./, '') }],
       destination: `${base}/:path*`,
-      permanent: true,
+      statusCode: 301,
     },
   ],
   headers: [
@@ -425,10 +425,11 @@ const vercelJson = {
         { key: 'X-Content-Type-Options', value: 'nosniff' },
         { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
         { key: 'Permissions-Policy', value: 'geolocation=(), microphone=(), camera=()' },
+        { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains' },
         {
           key: 'Content-Security-Policy',
           value:
-            "default-src 'self'; img-src 'self' data: https://*.tawk.to; script-src 'self' 'unsafe-inline' https://embed.tawk.to https://*.tawk.to; style-src 'self' 'unsafe-inline' https://*.tawk.to; font-src 'self' data: https://*.tawk.to; connect-src 'self' https://api.web3forms.com https://wa.me https://*.tawk.to wss://*.tawk.to; frame-src 'self' https://*.tawk.to; media-src 'self' https://*.tawk.to; frame-ancestors 'self';",
+            "default-src 'self'; img-src 'self' data: https://*.tawk.to; script-src 'self' 'unsafe-inline' https://embed.tawk.to https://*.tawk.to; style-src 'self' 'unsafe-inline' https://*.tawk.to; font-src 'self' data: https://*.tawk.to; connect-src 'self' https://*.tawk.to wss://*.tawk.to; frame-src 'self' https://*.tawk.to; media-src 'self' https://*.tawk.to; frame-ancestors 'self';",
         },
         { key: 'Link', value: linkHeader },
       ],

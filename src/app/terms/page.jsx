@@ -4,8 +4,8 @@ export const metadata = {
   title: 'Terms & Conditions',
   description: 'Terms and conditions for purchasing an electric mountain bike from Peak Pedal.',
   alternates: { canonical: `https://${SITE.domain}/terms/` },
-  openGraph: { url: `https://${SITE.domain}/terms/`, images: ['/images/placeholder.svg'] },
-  twitter: { card: 'summary_large_image', images: ['/images/placeholder.svg'] },
+  openGraph: { url: `https://${SITE.domain}/terms/`, images: ['/images/og-default.png'] },
+  twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },
 };
 
 export default function TermsPage() {

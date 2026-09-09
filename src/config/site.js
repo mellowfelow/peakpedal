@@ -61,9 +61,18 @@ export const ORDER_RULES = {
 };
 
 export const FORMS = {
-  provider: 'web3forms', // works on Vercel + Cloudflare, needs only an email address
-  web3formsKey: '', // PENDING — empty triggers the key-pending fallback (redirect only, no email sent)
-  resendFrom: '',
+  // 'smtp'  — forms POST same-origin to /api/contact, which sends via nodemailer.
+  //           Credentials are Vercel Project Environment Variables (never the repo):
+  //           SMTP_HOST, SMTP_PORT (465 or 587), SMTP_USER, SMTP_PASS (app password),
+  //           optional SMTP_FROM. See README "Live placeholders".
+  // 'web3forms' — client-side POST to api.web3forms.com (needs web3formsKey).
+  provider: 'smtp',
+  web3formsKey: '',
+  // Fallback "From" when the SMTP_FROM env var is unset. Zoho (and most SMTP hosts)
+  // only let you send From the authenticated mailbox or a configured alias — so this
+  // matches SMTP_USER. Set SMTP_FROM to a dedicated alias (e.g. forms@) only if you
+  // create that alias in Zoho first.
+  resendFrom: 'info@peakpedal.org',
   turnstileSiteKey: '',
   destinations: {
     contact: 'info@peakpedal.org',
@@ -514,23 +523,116 @@ function describe(name, brand, category, type, motor, travel) {
   return `The ${name} is a ${categoryText} ${type.toLowerCase()} eMTB from ${brand}, running a ${motor} motor${travelText}.`;
 }
 
+// --- Per-product long copy + FAQs -----------------------------------------
+// Every sentence below is derived from this product's own data fields or from
+// general (non-model-specific) eMTB knowledge — travel brackets, motor-family
+// characteristics, category trade-offs. No weights, battery capacities,
+// geometry figures or componentry are asserted (CLAUDE.md: never invent specs).
+
+const MOTOR_FAMILY = [
+  [/Bosch Performance CX|Bosch Performance Line CX/, 'Bosch’s flagship mid-drive, the most widely serviced eMTB motor in the UK and a safe default for demanding terrain'],
+  [/Bosch Performance Line(?! CX)|Bosch Active Line/, 'a lighter-duty Bosch unit — less outright torque than the Performance CX, but quieter and well suited to trail-centre riding'],
+  [/Bosch Performance SX/, 'Bosch’s compact SX motor, built for lightweight full-power-adjacent builds with a more natural ride feel'],
+  [/Shimano EP801-RS/, 'Shimano’s lightweight EP801-RS — reduced weight and torque for an SL-style ride that still climbs well'],
+  [/Shimano EP8|Shimano EP801/, 'Shimano’s EP8-series mid-drive — quieter and lighter-feeling than a full-power Bosch, with a wide UK dealer network'],
+  [/Yamaha/, 'a Yamaha SyncDrive / PW-series motor — the platform Giant and Haibike have used and supported for years'],
+  [/DJI Avinox/, 'DJI’s Avinox system — a newer platform with strong peak torque and smart features, though with a shorter UK service history than Bosch or Shimano'],
+  [/TQ HPR50/, 'the TQ HPR50 — a compact, near-silent SL motor tuned for a ride close to an unassisted bike'],
+  [/Pinion MGU/, 'the Pinion MGU — a gearbox-and-motor unit that moves shifting into the drive unit itself'],
+  [/Fazua/, 'a Fazua Ride 60 — a light, low-profile SL system'],
+  [/Mahle/, 'a Mahle X20 — one of the lightest SL drive units available'],
+  [/Specialized S3 Full Power/, 'Specialized’s own S3 Full Power motor, tuned specifically for the frame rather than adapted to fit'],
+  [/Specialized SL 1\.1/, 'Specialized’s SL 1.1 motor — the lighter, lower-torque unit behind the Turbo Levo SL'],
+];
+
+function motorFamilyBlurb(motor) {
+  if (!motor) return '';
+  const hit = MOTOR_FAMILY.find(([re]) => re.test(motor));
+  return hit ? hit[1] : `the ${motor}`;
+}
+
+function travelBlurb(category, type, travel) {
+  if (category === 'Hardtail') return 'A hardtail frame keeps weight and maintenance down and rewards efficient, seated climbing — a sensible first eMTB and a strong trail-centre and fire-road bike.';
+  if (category === 'Lightweight SL') return 'As a lightweight SL build it trades some outright motor torque for a lighter, more natural-handling bike that’s easier to place on technical singletrack and to lift onto a rack.';
+  const mm = travel ? parseInt(travel, 10) : 0;
+  if (mm >= 170) return 'That much travel puts it firmly in gravity / enduro-race territory — built to be ridden hard on the roughest descents rather than optimised for all-day efficiency.';
+  if (mm >= 150) return 'That travel bracket handles technical enduro terrain and steeper descents while still climbing efficiently under power — the most versatile band for capable UK trail riding.';
+  if (mm >= 120) return 'That travel suits trail and all-mountain riding on typical UK singletrack — enough compliance for rough ground without the weight of a long-travel enduro build.';
+  return 'It sits at the shorter-travel, trail-focused end of the range.';
+}
+
+function pricePositionBlurb(brand, priceLow, byBrand) {
+  const prices = byBrand[brand];
+  if (!prices || prices.length < 3) return `At £${priceLow.toLocaleString('en-GB')}, it comes with free UK delivery.`;
+  const min = Math.min(...prices);
+  const max = Math.max(...prices);
+  const where = priceLow <= min + (max - min) * 0.25 ? `among the more accessible ${brand} eMTBs we stock`
+    : priceLow >= max - (max - min) * 0.25 ? `near the top of the ${brand} range at Peak Pedal`
+      : `in the middle of the ${brand} line-up at Peak Pedal`;
+  return `At £${priceLow.toLocaleString('en-GB')} it sits ${where}, and ships free UK-wide.`;
+}
+
+function productLongCopy(p, byBrand) {
+  const typeSlug =
+    p.category === 'Hardtail' ? 'hardtail-electric-mountain-bikes'
+      : p.category === 'Lightweight SL' ? 'lightweight-electric-mountain-bikes'
+        : p.type === 'Enduro' ? 'enduro-electric-mountain-bikes'
+          : 'full-suspension-electric-mountain-bikes';
+  const brandSlug = `${p.brand.toLowerCase().replace(/\s+/g, '-')}-electric-mountain-bikes`;
+  return [
+    `${describe(p.name, p.brand, p.category, p.type, p.motor, p.travel)} ${travelBlurb(p.category, p.type, p.travel)}`,
+    `Its ${p.motor} motor is ${motorFamilyBlurb(p.motor)}. ${pricePositionBlurb(p.brand, p.priceLow, byBrand)}`,
+    `Not sure whether the ${p.name}’s setup fits how and where you ride? Compare it against the rest of our [${p.category === 'Hardtail' ? 'hardtail' : p.category === 'Lightweight SL' ? 'lightweight SL' : p.type === 'Enduro' ? 'enduro' : 'full-suspension'} range](/${typeSlug}/) or the full [${p.brand} line-up](/${brandSlug}/), or message us and we’ll talk it through.`,
+  ];
+}
+
+function productFaqs(p, byBrand) {
+  const catAnswer = p.category === 'Hardtail'
+    ? `The ${p.name} is a hardtail — front suspension only. That keeps it lighter, lower-maintenance and more affordable than an equivalent full-suspension eMTB, at the cost of some comfort and grip on rough ground.`
+    : p.category === 'Lightweight SL'
+      ? `The ${p.name} is a lightweight SL (Super Light) eMTB — full suspension, but with a smaller, lighter motor and battery for a ride feel closer to an unassisted bike.`
+      : `The ${p.name} is a full-suspension eMTB with ${p.travel} of travel, front and rear.`;
+  const prices = byBrand[p.brand] || [];
+  const cheapest = prices.length ? Math.min(...prices) : p.priceLow;
+  const priceAnswer = p.priceLow === cheapest && prices.length > 1
+    ? `The ${p.name} is £${p.priceLow.toLocaleString('en-GB')} — currently the most affordable ${p.brand} eMTB at Peak Pedal — with free UK delivery. Finance and Cycle to Work are available.`
+    : `The ${p.name} is £${p.priceLow.toLocaleString('en-GB')} with free UK delivery. Finance and Cycle to Work are available.`;
+  return [
+    { q: `Is the ${p.name} a full-suspension or hardtail electric mountain bike?`, a: catAnswer },
+    { q: `What motor does the ${p.name} use?`, a: `The ${p.name} runs a ${p.motor} — ${motorFamilyBlurb(p.motor)}.` },
+    { q: `How much is the ${p.name} and do you deliver UK-wide?`, a: priceAnswer },
+  ];
+}
+
+const PRICES_BY_BRAND = RAW_PRODUCTS.reduce((acc, r) => {
+  (acc[r[1]] ||= []).push(r[4]);
+  return acc;
+}, {});
+
 export const PRODUCTS = RAW_PRODUCTS.map(
-  ([name, brand, category, type, priceLow, priceHigh, motor, travel, slug, badge]) => ({
-    name,
-    brand,
-    category,
-    type,
-    priceLow,
-    priceHigh,
-    motor,
-    travel,
-    slug,
-    featured: Boolean(badge),
-    badge,
-    description: describe(name, brand, category, type, motor, travel),
-    imageAlt: `${name} electric mountain bike${motor ? ` — ${motor}` : ''}`,
-    images: [PRODUCT_IMAGES[slug] || '/images/placeholder.svg'],
-  })
+  ([name, brand, category, type, priceLow, priceHigh, motor, travel, slug, badge]) => {
+    const base = {
+      name,
+      brand,
+      category,
+      type,
+      priceLow,
+      priceHigh,
+      motor,
+      travel,
+      slug,
+      featured: Boolean(badge),
+      badge,
+      description: describe(name, brand, category, type, motor, travel),
+      imageAlt: `${name} electric mountain bike${motor ? ` — ${motor}` : ''}`,
+      images: [PRODUCT_IMAGES[slug] || '/images/placeholder.svg'],
+    };
+    return {
+      ...base,
+      longCopy: productLongCopy(base, PRICES_BY_BRAND),
+      faqs: productFaqs(base, PRICES_BY_BRAND),
+    };
+  }
 );
 
 // ---------------------------------------------------------------------------
@@ -878,7 +980,7 @@ export const CATEGORY_PAGES = [
     slug: 'womens-electric-mountain-bikes',
     kind: 'guidance',
     keyword: 'womens electric mountain bikes',
-    metaTitle: "Women's Electric Mountain Bikes UK — Sizing & Fit Guide",
+    metaTitle: "Women's Electric Mountain Bikes UK — Fit Guide",
     metaDescription: "Buying an electric mountain bike as a woman? Our range is unisex with adjustable geometry — here's how to get the frame size and fit right.",
     h1: "Electric Mountain Bikes for Women",
     intro: 'Our eMTB range is unisex — every model is available across multiple frame sizes, and several (Orbea, Whyte, Trek) offer a smaller-frame option down to XS. The right size comes down to standover height and reach rather than a separate "women’s" model — get in touch and we’ll help you match a frame to your height.',
@@ -908,7 +1010,7 @@ export const CATEGORY_PAGES = [
     slug: 'electric-mountain-bike-deals',
     kind: 'value',
     keyword: 'electric mountain bike deals',
-    metaTitle: 'Electric Mountain Bike Deals & Best-Value Picks UK',
+    metaTitle: 'Electric Mountain Bike Deals UK',
     metaDescription: 'Our best-value electric mountain bikes right now, ranked by price-to-spec — no gimmicks, just the strongest picks in the range.',
     h1: 'Electric Mountain Bike Deals — Best-Value Picks',
     intro: 'Rather than a rotating "sale" of arbitrary discounts, this page lists the strongest price-to-spec picks currently in our range — get in touch for the latest availability.',
@@ -918,7 +1020,7 @@ export const CATEGORY_PAGES = [
     slug: 'electric-mountain-bike-sale',
     kind: 'value',
     keyword: 'electric mountain bike sale',
-    metaTitle: 'Electric Mountain Bike Sale — Best-Value Prices UK',
+    metaTitle: 'Electric Mountain Bike Sale UK',
     metaDescription: 'Browse our current best-value electric mountain bikes, ordered by price. Entry-level hardtails from under £2,200.',
     h1: 'Electric Mountain Bike Sale',
     intro: 'These are our lowest-priced, best-value electric mountain bikes right now — sorted from most to least affordable.',
@@ -1005,7 +1107,7 @@ export const CATEGORY_PAGES = [
     keyword: brand.keyword,
     // metaTitle/metaDescription/h1 default to the generic formula but can be overridden
     // per-brand (see Scott/Canyon, which have client-specified copy).
-    metaTitle: brand.metaTitle || `${brand.name} Electric Mountain Bikes UK — Full Range`,
+    metaTitle: brand.metaTitle || `${brand.name} Electric Mountain Bikes UK`,
     metaDescription: brand.metaDescription || `Shop the full ${brand.name} electric mountain bike range at Peak Pedal, with UK-wide delivery and expert buying advice.`,
     h1: brand.h1 || `${brand.name} Electric Mountain Bikes`,
     intro: brand.description,
@@ -1040,7 +1142,7 @@ export const HOME_FAQS = [
   },
   {
     q: 'Can I buy an electric mountain bike on finance?',
-    a: 'Finance options for electric mountain bikes are coming soon at Peak Pedal. In the meantime, the Cycle to Work scheme can reduce the purchase cost of an eligible eMTB by 25–47% through salary sacrifice — see our Cycle to Work guide for details.',
+    a: 'Yes — get in touch and our team will talk you through the finance options available for the bike you want; exact rates and terms depend on the model and provider, so we confirm those directly. The Cycle to Work scheme is also an option, reducing the cost of an eligible eMTB by 25–47% through salary sacrifice.',
   },
   {
     q: 'Who are electric mountain bikes suitable for?',
@@ -1105,11 +1207,18 @@ export const FAQ_PAGE_FAQS = [
 // Content lives in src/content/posts/*.js as { title, excerpt, body } modules,
 // referenced here by slug so this file stays a manageable index.
 // ---------------------------------------------------------------------------
+
+// Blog dates for Article schema + og:updated_time. The Phase-1 set was all
+// written 2026-07-17..19 (git history). Override per post with `datePublished` /
+// `dateModified` on the entry below when a post is genuinely revised.
+export const POST_PUBLISHED_DEFAULT = '2026-07-18';
+export const POST_MODIFIED_DEFAULT = '2026-09-08';
+
 export const POSTS = [
   {
     slug: 'best-electric-mountain-bikes-uk',
     title: 'Best Electric Mountain Bikes UK 2026 — Compared by Spec',
-    metaTitle: 'Best Electric Mountain Bikes UK 2026 — Compared by Spec',
+    metaTitle: 'Best Electric Mountain Bikes UK 2026',
     metaDescription: 'The best electric mountain bikes UK riders can buy in 2026, compared by motor, travel and price across 8 standout models from entry-level to premium picks.',
     keyword: 'best electric mountain bikes uk',
     excerpt: 'The best electric mountain bikes UK riders can buy right now, compared by motor, travel and price-to-spec — not marketing claims.',
@@ -1157,7 +1266,7 @@ export const POSTS = [
   {
     slug: 'amflow-dji-avinox-review',
     title: 'Amflow PL Carbon Review — DJI Avinox eMTB',
-    metaTitle: 'Amflow PL Carbon Review — DJI Avinox eMTB Spec Breakdown',
+    metaTitle: 'Amflow PL Carbon Review — DJI Avinox eMTB',
     metaDescription: 'Our Amflow PL Carbon review: ride impressions, DJI Avinox motor performance, who it suits, and how its pricing compares to established rival eMTBs.',
     keyword: 'amflow pl carbon review',
     excerpt: 'DJI’s Avinox motor system is new to eMTBs — here’s how the Amflow PL Carbon’s spec sheet compares to the established players.',
@@ -1197,7 +1306,7 @@ export const POSTS = [
   {
     slug: 'trek-fuel-exe-review',
     title: 'Trek Fuel EXe Review — Which Model Should You Buy?',
-    metaTitle: 'Trek Fuel EXe Review — Which Model Should You Buy?',
+    metaTitle: 'Trek Fuel EXe Review — Which Model to Buy',
     metaDescription: 'Our Trek Fuel EXe review compares all 6 models we stock, from the 5 to the 9.9, on motor, weight, spec and price to help you pick the right one for you.',
     keyword: 'trek fuel exe',
     excerpt: 'Trek’s TQ-powered lightweight SL platform, compared across all six models we stock.',
@@ -1205,7 +1314,7 @@ export const POSTS = [
   {
     slug: 'trek-powerfly-review',
     title: 'Trek Powerfly Review — Full-Suspension Trail eMTBs',
-    metaTitle: 'Trek Powerfly Review — Full-Suspension Trail eMTBs',
+    metaTitle: 'Trek Powerfly Review — Trail eMTB',
     metaDescription: 'Our Trek Powerfly review covers both models in our range, their Bosch motors, geometry and who each one suits versus the pricier Rail range instead.',
     keyword: 'trek powerfly',
     excerpt: 'Trek’s more affordable full-suspension trail platform, and how it compares to the Rail range.',
@@ -1221,7 +1330,7 @@ export const POSTS = [
   {
     slug: 'whyte-rheo-review',
     title: 'Whyte Rheo Review — UK-Designed Full Suspension eMTB',
-    metaTitle: 'Whyte Rheo Review — UK-Designed Full Suspension eMTB',
+    metaTitle: 'Whyte Rheo Review — UK Full-Suspension eMTB',
     metaDescription: 'Our Whyte Rheo review: full spec breakdown, how it compares to the Kado and E-160 RSX, and who this UK-designed full-suspension trail eMTB actually suits best.',
     keyword: 'whyte rheo',
     excerpt: 'Whyte’s newest full-suspension trail platform, compared against the rest of the Whyte range.',
@@ -1229,7 +1338,7 @@ export const POSTS = [
   {
     slug: 'haibike-allmtn-vs-alltrail-vs-alltrack',
     title: 'Haibike AllMtn vs AllTrail vs AllTrack — Explained',
-    metaTitle: 'Haibike AllMtn vs AllTrail vs AllTrack — Explained',
+    metaTitle: 'Haibike AllMtn vs AllTrail vs AllTrack',
     metaDescription: 'Confused by Haibike’s range? We explain the real differences between AllMtn, AllTrail and AllTrack, with every current model compared by spec and price.',
     keyword: 'haibike allmtn',
     excerpt: 'Three Haibike families, one clear explanation of which is which — and which one fits your riding.',

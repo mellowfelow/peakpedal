@@ -13,17 +13,17 @@ export const metadata = {
   },
   description: SITE.description,
   verification: { google: SITE.gscCode },
+  // Only defaults here — NO title/description, so each page's own title/description
+  // flows through to og:/twitter: instead of being pinned to the site tagline.
   openGraph: {
     type: 'website',
     siteName: SITE.name,
-    title: `${SITE.name} | ${SITE.tagline}`,
-    description: SITE.description,
     url: `https://${SITE.domain}`,
+    images: ['/images/og-default.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE.name} | ${SITE.tagline}`,
-    description: SITE.description,
+    images: ['/images/og-default.png'],
   },
 };
 

@@ -12,7 +12,8 @@ export const metadata = {
   title: `Electric Mountain Bikes UK — ${SITE.name} | ${PRODUCTS.length} eMTBs`,
   description: `Peak Pedal — UK electric mountain bike specialists stocking ${PRODUCTS.length} eMTBs from Cube, Trek, Orbea, Santa Cruz, Specialized, Canyon + 10 more brands. UK-wide delivery.`,
   alternates: { canonical: `https://${SITE.domain}/` },
-  openGraph: { url: `https://${SITE.domain}/`, images: ['/images/placeholder.svg'] },
+  openGraph: { url: `https://${SITE.domain}/`, images: ['/images/og-default.png'] },
+  twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },
 };
 
 // Real category lifestyle photos, supplied by the client and processed via
@@ -31,8 +32,22 @@ const storeSchema = {
   description:
     "Peak Pedal is a UK-based electric mountain bike retailer offering a curated range of eMTBs from leading brands including Cube, Trek, Orbea, Santa Cruz, Whyte and Amflow. Peak Pedal ships UK-wide and specializes in full-suspension, hardtail and lightweight SL electric mountain bikes built around Bosch, Shimano, Yamaha and DJI Avinox motor platforms.",
   url: `https://${SITE.domain}`,
-  areaServed: 'GB',
+  logo: `https://${SITE.domain}/images/logo.png`,
+  image: `https://${SITE.domain}/images/og-default.png`,
+  telephone: CONTACT.phone,
+  areaServed: { '@type': 'Country', name: 'United Kingdom' },
   address: { '@type': 'PostalAddress', addressCountry: 'GB' },
+  foundingLocation: { '@type': 'Country', name: 'United Kingdom' },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    telephone: CONTACT.phone,
+    // email intentionally omitted from JSON-LD — CLAUDE.md requires entity-encoding
+    // emails everywhere, and an encoded string here would be malformed data for
+    // schema consumers. Phone + the contact form/WhatsApp cover the contact path.
+    areaServed: 'GB',
+    availableLanguage: 'English',
+  },
   numberOfItems: PRODUCTS.length,
   // knowsAbout merged with docs/keyword-map.md's Organization schema section (same entity —
   // kept as one combined Store/Organization block rather than a second, competing Organization
@@ -52,7 +67,7 @@ const storeSchema = {
     'Lightweight SL eMTB',
   ],
   priceRange: '££-£££',
-  sameAs: SITE.social.sameAs,
+  ...(SITE.social.sameAs.length ? { sameAs: SITE.social.sameAs } : {}),
   makesOffer: {
     '@type': 'AggregateOffer',
     priceCurrency: CONTACT.currency,
@@ -107,7 +122,13 @@ export default function HomePage() {
           {TYPE_TILES.map(([label, href, sub, icon, image]) => (
             <Link key={href} href={href} className="tile">
               <span className="tile-photo tile-photo-cover">
-                <Image src={image} alt={`${label} electric mountain bikes`} fill sizes="(max-width: 700px) 50vw, 25vw" />
+                <Image
+                  src={image}
+                  alt={`${label} electric mountain bikes`}
+                  fill
+                  sizes="(max-width: 700px) 50vw, 25vw"
+                  unoptimized
+                />
                 <span className="tile-icon-badge">{icon}</span>
               </span>
               <span className="tile-body">
@@ -123,8 +144,8 @@ export default function HomePage() {
         <span className="section-eyebrow">Best Sellers</span>
         <h2>Featured Electric Mountain Bikes</h2>
         <div className="grid grid-4">
-          {featured.map((p, i) => (
-            <ProductCardHome key={p.slug} product={p} eager={i === 0} />
+          {featured.map((p) => (
+            <ProductCardHome key={p.slug} product={p} />
           ))}
         </div>
         <p className="text-center" style={{ marginTop: '1.5rem' }}>

@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
 import AddToCartButton from '@/components/AddToCartButton';
 import Breadcrumbs, { breadcrumbSchema } from '@/components/Breadcrumbs';
+import { renderInline } from '@/components/PostBody';
 import { SITE, CONTACT, PRODUCTS, findProduct, relatedProducts } from '@/config/site';
 
 export function generateStaticParams() {
@@ -13,7 +15,9 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const product = findProduct(slug);
   if (!product) return {};
-  const title = `${product.name} | ${product.brand} Electric Mountain Bike`;
+  // product.name already leads with the brand ("Trek Rail 5"), so no separate brand clause —
+  // the root layout template appends " | Peak Pedal". Keeps titles ~30–55 chars, under 60.
+  const title = `${product.name} eMTB`;
   const price = `${CONTACT.currencySymbol}${product.priceLow.toLocaleString('en-GB')}`;
   // Two candidate lengths (short/long delivery phrasing) — pick whichever lands closest to
   // the 130-155 char target. Model names/motors vary too widely for one fixed template to fit.
@@ -32,6 +36,7 @@ export async function generateMetadata({ params }) {
     description,
     alternates: { canonical: `https://${SITE.domain}/products/${product.slug}/` },
     openGraph: { url: `https://${SITE.domain}/products/${product.slug}/`, images: [product.images[0]] },
+    twitter: { card: 'summary_large_image', images: [product.images[0]] },
   };
 }
 
@@ -66,10 +71,40 @@ export default async function ProductPage({ params }) {
           url: `https://${SITE.domain}/products/${product.slug}/`,
           priceCurrency: CONTACT.currency,
           price: product.priceLow,
+          priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
           availability: 'https://schema.org/InStock',
           itemCondition: 'https://schema.org/NewCondition',
+          // Free UK shipping is a stated brand fact (ORDER_RULES). Delivery time is
+          // confirmed per-order, so it's deliberately not asserted here.
+          shippingDetails: {
+            '@type': 'OfferShippingDetails',
+            shippingRate: { '@type': 'MonetaryAmount', value: 0, currency: CONTACT.currency },
+            shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'GB' },
+          },
+          // Mirrors /refund/: 14-day cancellation under the Consumer Contracts
+          // Regulations 2013; change-of-mind return postage is the customer's.
+          hasMerchantReturnPolicy: {
+            '@type': 'MerchantReturnPolicy',
+            applicableCountry: 'GB',
+            returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+            merchantReturnDays: 14,
+            returnMethod: 'https://schema.org/ReturnByMail',
+            returnFees: 'https://schema.org/ReturnShippingFees',
+          },
         },
       },
+      ...(product.faqs?.length
+        ? [
+            {
+              '@type': 'FAQPage',
+              mainEntity: product.faqs.map((f) => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 
@@ -81,7 +116,18 @@ export default async function ProductPage({ params }) {
         <div className="grid product-detail-grid">
           <div>
             <div className="gallery-main">
-              <img src={product.images[0]} alt={product.imageAlt} width={800} height={600} loading="eager" />
+              {product.images[0].endsWith('.svg') ? (
+                <img src={product.images[0]} alt={product.imageAlt} width={800} height={600} loading="eager" />
+              ) : (
+                <Image
+                  src={product.images[0]}
+                  alt={product.imageAlt}
+                  width={800}
+                  height={600}
+                  priority
+                  sizes="(max-width: 900px) 100vw, 460px"
+                />
+              )}
             </div>
           </div>
           <div>
@@ -102,7 +148,7 @@ export default async function ProductPage({ params }) {
                 </>
               )}
             </p>
-            <p>{product.description}</p>
+            <p>{product.longCopy[0]}</p>
 
             <div className="table-wrap product-spec-table">
               <table>
@@ -129,6 +175,27 @@ export default async function ProductPage({ params }) {
             </div>
           </div>
         </div>
+
+        <div style={{ maxWidth: 760, marginTop: '2.5rem' }}>
+          <h2>About the {product.name}</h2>
+          {product.longCopy.slice(1).map((para, i) => (
+            <p key={i}>{renderInline(para)}</p>
+          ))}
+        </div>
+
+        {product.faqs?.length > 0 && (
+          <div style={{ maxWidth: 760, marginTop: '2rem' }}>
+            <h2>{product.name} — Common Questions</h2>
+            <div className="stack">
+              {product.faqs.map((f) => (
+                <div key={f.q} className="card">
+                  <h3 style={{ fontSize: '1rem', marginBottom: '0.4rem' }}>{f.q}</h3>
+                  <p style={{ marginBottom: 0 }}>{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
       {related.length > 0 && (

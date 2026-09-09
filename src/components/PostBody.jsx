@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 // Minimal inline-link parser: [label](/path/) -> <Link>. Kept deliberately
 // simple (no other markdown) since post content is authored, not user input.
-function renderInline(text) {
+export function renderInline(text) {
   const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
   const parts = [];
   let lastIndex = 0;

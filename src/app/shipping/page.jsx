@@ -4,8 +4,8 @@ export const metadata = {
   title: 'Shipping',
   description: 'Delivery information for electric mountain bike orders from Peak Pedal.',
   alternates: { canonical: `https://${SITE.domain}/shipping/` },
-  openGraph: { url: `https://${SITE.domain}/shipping/`, images: ['/images/placeholder.svg'] },
-  twitter: { card: 'summary_large_image', images: ['/images/placeholder.svg'] },
+  openGraph: { url: `https://${SITE.domain}/shipping/`, images: ['/images/og-default.png'] },
+  twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },
 };
 
 export default function ShippingPage() {

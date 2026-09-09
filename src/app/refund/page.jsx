@@ -4,8 +4,8 @@ export const metadata = {
   title: 'Returns & Refunds',
   description: 'Returns and refund policy for electric mountain bike orders from Peak Pedal, including your UK statutory cooling-off rights.',
   alternates: { canonical: `https://${SITE.domain}/refund/` },
-  openGraph: { url: `https://${SITE.domain}/refund/`, images: ['/images/placeholder.svg'] },
-  twitter: { card: 'summary_large_image', images: ['/images/placeholder.svg'] },
+  openGraph: { url: `https://${SITE.domain}/refund/`, images: ['/images/og-default.png'] },
+  twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },
 };
 
 export default function RefundPage() {

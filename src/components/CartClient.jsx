@@ -72,7 +72,7 @@ export default function CartClient() {
           {ORDER_RULES.freeShippingThreshold === 0 ? ' Free UK delivery on every order.' : ''}
         </p>
         <Link href="/order/" className="btn btn-primary btn-block">
-          Proceed to Order
+          Proceed to Checkout
         </Link>
       </div>
     </section>

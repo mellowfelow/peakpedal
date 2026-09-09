@@ -7,13 +7,16 @@
     "dev": "next dev",
     "prebuild": "node scripts/gen-agent-files.mjs",
     "build": "next build",
+    "postbuild": "node scripts/indexnow-submit.mjs",
     "start": "next start",
+    "indexnow": "node scripts/indexnow-submit.mjs --force",
     "images": "node scripts/images.mjs",
     "images:brand-assets": "node scripts/brand-assets.mjs",
     "crosscheck": "node scripts/crosscheck.mjs"
   },
   "dependencies": {
     "next": "^15.1.0",
+    "nodemailer": "^10.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

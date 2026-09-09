@@ -24,10 +24,9 @@ export function GET() {
 
   const lines = [
     'User-agent: *',
+    'Content-Signal: search=yes, ai-input=yes, ai-train=no',
     'Allow: /',
     disallowBlock,
-    '',
-    'Content-Signal: search=yes, ai-input=yes, ai-train=no',
     '',
     '# Search engine crawlers',
     ...SEARCH_BOTS.map((bot) => [`User-agent: ${bot}`, 'Allow: /', disallowBlock, ''].flat()).flat(),

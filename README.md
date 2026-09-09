@@ -23,7 +23,7 @@ npm run images       # process assets/product-photos/* into public/images/*.webp
 |---|---|---|
 | `DOMAIN.com` | `src/config/site.js` → `SITE.domain` | Canonicals, sitemap, OG tags, all `.well-known/*`, `llms.txt` point at a fake domain. Change this ONE line, rebuild, push — never find-and-replace across files. |
 | GSC verification code | `src/config/site.js` → `SITE.gscCode` | Can't verify domain in Google Search Console |
-| Web3Forms access key | `src/config/site.js` → `FORMS.web3formsKey` | Contact/order forms redirect to the thank-you page but **no email is sent anywhere**. WhatsApp is the only live order channel until this is set. |
+| SMTP credentials (Vercel env vars) | Vercel → project **peakpedal** → Settings → Environment Variables | `FORMS.provider` is `smtp`: the contact/order forms POST to `/api/contact`, which sends via `nodemailer`. Set `SMTP_HOST`, `SMTP_PORT` (465 or 587), `SMTP_USER`, `SMTP_PASS` (an **app-specific password**, not the main account password), optionally `SMTP_FROM`. Add for **Production** (and **Preview** to test on branch deploys), then redeploy. Until set, forms show "email delivery isn't configured — message us on WhatsApp" and don't dead-end. |
 | Phone / WhatsApp number | `src/config/site.js` → `SITE.contact` | Chat button and `wa.me` links point at a placeholder number |
 | Contact email | `src/config/site.js` → `SITE.contact.email` | Shown as `info@DOMAIN.com` sitewide |
 | Founding year / brand story | `docs/PROJECT.md` Section N, then `src/config/site.js` | About page and homepage authority section stay generic until real facts are supplied — never invent these |

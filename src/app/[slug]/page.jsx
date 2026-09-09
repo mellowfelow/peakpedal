@@ -16,7 +16,8 @@ export async function generateMetadata({ params }) {
     title: page.metaTitle,
     description: page.metaDescription,
     alternates: { canonical: `https://${SITE.domain}/${page.slug}/` },
-    openGraph: { url: `https://${SITE.domain}/${page.slug}/`, images: ['/images/placeholder.svg'] },
+    openGraph: { url: `https://${SITE.domain}/${page.slug}/`, images: ['/images/og-default.png'] },
+    twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },
   };
 }
 
@@ -40,6 +41,22 @@ export default async function CategoryPage({ params }) {
     '@context': 'https://schema.org',
     '@graph': [
       breadcrumbSchema(breadcrumbItems, SITE.domain),
+      ...(products.length > 0
+        ? [
+            {
+              '@type': 'ItemList',
+              name: page.h1,
+              numberOfItems: products.length,
+              itemListOrder: 'https://schema.org/ItemListUnordered',
+              itemListElement: products.slice(0, 30).map((p, i) => ({
+                '@type': 'ListItem',
+                position: i + 1,
+                url: `https://${SITE.domain}/products/${p.slug}/`,
+                name: p.name,
+              })),
+            },
+          ]
+        : []),
       ...(page.faqs
         ? [
             {

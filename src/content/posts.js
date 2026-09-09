@@ -312,6 +312,7 @@ export const POST_BODIES = {
         heading: 'Our Closest Option: Trek Marlin+ 6',
         paragraphs: [
           "The [Trek Marlin+ 6](/products/trek-marlin-plus-6/) starts at around £2,100 — the nearest we get to this budget. It runs a Bosch Active Line Plus motor (a lighter-duty version of the Performance Line CX used elsewhere in our range) on a simple 100mm-travel hardtail frame. It's a genuinely capable entry point, not a compromised one — Trek doesn't cut corners on frame quality just because it's the cheapest model in the range, and you still get full Bosch warranty support and UK dealer servicing.",
+          "Our [electric mountain bikes under £2,000](/electric-mountain-bikes-under-2000/) filter shows everything in the range at or near this mark with live pricing, so you can see the full picture rather than a single pick.",
         ],
       },
       {
@@ -359,7 +360,7 @@ export const POST_BODIES = {
       {
         heading: 'Is It Worth Waiting for a Sale?',
         paragraphs: [
-          'Established bike brands do periodically discount older model years as new ones arrive, so if your budget is genuinely tight and timing is flexible, it can be worth asking us whether a previous model year of any bike in our range is available at a reduced price, rather than assuming list price is the only option.',
+          'Established bike brands do periodically discount older model years as new ones arrive, so if your budget is genuinely tight and timing is flexible, it can be worth asking us whether a previous model year of any bike in our range is available at a reduced price, rather than assuming list price is the only option. Our [electric mountain bike sale](/electric-mountain-bike-sale/) page lists the best-value picks in the range right now, sorted by price.',
         ],
       },
       {
@@ -728,7 +729,7 @@ export const POST_BODIES = {
       {
         heading: 'How This Review Fits Into Our Wider Motor Coverage',
         paragraphs: [
-          'We\'ve covered the more established Bosch and Shimano platforms in detail in our [Bosch vs Shimano](/blog/bosch-vs-shimano-emtb-motor/) comparison, and this Amflow review is intentionally more cautious in tone — not because the DJI Avinox system is inferior, but because we simply have less real-world UK data to draw on for a launch-year platform than for motors with a decade or more of service history behind them.',
+          'We\'ve covered the more established Bosch and Shimano platforms in detail in our [Bosch vs Shimano](/blog/bosch-vs-shimano-emtb-motor/) comparison, and this Amflow review is intentionally more cautious in tone — not because the DJI Avinox system is inferior, but because we simply have less real-world UK data to draw on for a launch-year platform than for motors with a decade or more of service history behind them. Both Amflow models we stock are listed on our [DJI Avinox electric mountain bikes](/dji-avinox-electric-mountain-bikes/) page.',
         ],
       },
       {
