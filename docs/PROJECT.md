@@ -59,6 +59,9 @@ Catalog grew across content passes to **124 bike SKUs + 33 accessory SKUs** (see
 
 ## L — Forms
 - Provider: **`smtp`** (client's choice — Vercel Project Environment Variables, not Web3Forms). Contact + order forms POST same-origin to `/api/contact` → `nodemailer` → SMTP.
+- Flow: cart (`/cart/`) → **Checkout** (`/order/`, `CheckoutClient`) reads `mm-cart` from localStorage, shows a read-only order summary, carries the cart into the submission, clears it on success. WooCommerce-style.
+- Contact form: `/contact/` → same `/api/contact/` route, `formName: contact`.
+- Order email: subject `New order — <name>`; HTML (with plain-text fallback) — brand header + order-summary table + customer-details table + Reply-To = customer.
 - Mail provider: **Zoho** (custom domain). Env vars (Vercel → peakpedal → Settings → Environment Variables, Production + Preview):
   - `SMTP_HOST` = `smtp.zoho.com` (account is on the .com data centre; try `smtppro.zoho.com` if plain `smtp` is rejected)
   - `SMTP_PORT` = `465`
