@@ -27,7 +27,10 @@ export default function HeroSlider({ slides }) {
           alt={slide.alt || ''}
           fill
           sizes="100vw"
-          quality={70}
+          // Small pre-optimised webp (~250KB, sits behind a heavy scrim) — served
+          // straight from the CDN with no on-request transform, which was the
+          // source of the slow first paint on the low-traffic Hobby plan.
+          unoptimized
           priority={i === 0}
           className={`hero-bg ${i === active ? 'is-active' : ''}`}
         />

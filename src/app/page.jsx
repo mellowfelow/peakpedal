@@ -122,7 +122,13 @@ export default function HomePage() {
           {TYPE_TILES.map(([label, href, sub, icon, image]) => (
             <Link key={href} href={href} className="tile">
               <span className="tile-photo tile-photo-cover">
-                <Image src={image} alt={`${label} electric mountain bikes`} fill sizes="(max-width: 700px) 50vw, 25vw" />
+                <Image
+                  src={image}
+                  alt={`${label} electric mountain bikes`}
+                  fill
+                  sizes="(max-width: 700px) 50vw, 25vw"
+                  unoptimized
+                />
                 <span className="tile-icon-badge">{icon}</span>
               </span>
               <span className="tile-body">
