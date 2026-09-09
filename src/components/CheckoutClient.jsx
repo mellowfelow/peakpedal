@@ -68,7 +68,7 @@ export default function CheckoutClient() {
         <div className="table-wrap">
           <table>
             <thead>
-              <tr><th>Model</th><th>Qty</th><th style={{ textAlign: 'right' }}>From</th></tr>
+              <tr><th>Model</th><th>Qty</th><th style={{ textAlign: 'right' }}>Price</th></tr>
             </thead>
             <tbody>
               {cart.map((item) => (
@@ -81,14 +81,14 @@ export default function CheckoutClient() {
             </tbody>
             <tfoot>
               <tr>
-                <th colSpan={2}>Subtotal (from)</th>
+                <th colSpan={2}>Order total</th>
                 <th style={{ textAlign: 'right' }}>{money(subtotal)}</th>
               </tr>
             </tfoot>
           </table>
         </div>
         <p className="muted" style={{ fontSize: '0.8rem', margin: '0.5rem 0 0' }}>
-          Starting prices per model — final price depends on spec and colour.
+          Prices are a guide — we’ll confirm final spec, colour and price by email before payment.
           {ORDER_RULES.freeShippingThreshold === 0 ? ' Free UK delivery.' : ''}
         </p>
       </div>

@@ -58,9 +58,9 @@ function textBody({ isOrder, fields, items, subtotal, when }) {
   if (items.length) {
     out.push('ORDER');
     out.push('-----');
-    for (const it of items) out.push(`  ${it.qty} x ${it.name}  —  from ${money(it.each * it.qty)}`);
-    out.push(`  Subtotal (from): ${money(subtotal)}`);
-    out.push('  (Starting prices — final price depends on spec/colour. Free UK delivery.)');
+    for (const it of items) out.push(`  ${it.qty} x ${it.name}  —  ${money(it.each * it.qty)}`);
+    out.push(`  Order total: ${money(subtotal)}`);
+    out.push('  (Prices are a guide — confirm final spec, colour and price with the customer. Free UK delivery.)');
     out.push('');
   }
   out.push('CUSTOMER');
@@ -103,7 +103,7 @@ function htmlBody({ isOrder, fields, items, subtotal, when }) {
       <tr style="background:${GREEN};color:#fff;">
         <th align="left" style="padding:10px 12px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;">Model</th>
         <th align="center" style="padding:10px 12px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;">Qty</th>
-        <th align="right" style="padding:10px 12px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;">From</th>
+        <th align="right" style="padding:10px 12px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;">Price</th>
       </tr>
       ${items
         .map(
@@ -115,11 +115,11 @@ function htmlBody({ isOrder, fields, items, subtotal, when }) {
         )
         .join('')}
       <tr style="background:#eef2ea;">
-        <td colspan="2" style="padding:10px 12px;font-size:14px;font-weight:700;color:${INK};">Subtotal (from)</td>
+        <td colspan="2" style="padding:10px 12px;font-size:14px;font-weight:700;color:${INK};">Order total</td>
         <td align="right" style="padding:10px 12px;font-size:14px;font-weight:700;color:${INK};">${money(subtotal)}</td>
       </tr>
     </table>
-    <p style="margin:8px 0 0;font-size:12px;color:${MUTED};">Starting prices per model — final price depends on spec and colour.${ORDER_RULES.freeShippingThreshold === 0 ? ' Free UK delivery.' : ''}</p>`
+    <p style="margin:8px 0 0;font-size:12px;color:${MUTED};">Prices are a guide — confirm final spec, colour and price with the customer.${ORDER_RULES.freeShippingThreshold === 0 ? ' Free UK delivery.' : ''}</p>`
     : '';
 
   return `<!doctype html><html><body style="margin:0;background:#f2f4f0;padding:24px 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
@@ -188,7 +188,7 @@ export async function POST(req) {
   const from = process.env.SMTP_FROM || FORMS.resendFrom || process.env.SMTP_USER;
   const name = String(body.name || '').trim();
   const subject = isOrder
-    ? `New order — from ${money(subtotal)}${name ? ` — ${name}` : ''}`
+    ? `New order — ${money(subtotal)}${name ? ` — ${name}` : ''}`
     : body.subject || `New enquiry — ${SITE.name}`;
 
   const payload = { isOrder, fields: body, items, subtotal, when };
