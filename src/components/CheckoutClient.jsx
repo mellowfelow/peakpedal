@@ -7,9 +7,26 @@ import { SITE, CONTACT, ORDER_RULES } from '@/config/site';
 
 const money = (n) => `${CONTACT.currencySymbol}${Number(n).toLocaleString('en-GB')}`;
 
+// Short, unambiguous order reference — "PP-" + a time-ordered chunk + 2 random.
+// e.g. PP-1K7QXM. No backend, so this is generated client-side at checkout.
+function makeOrderNo() {
+  const t = Date.now().toString(36).toUpperCase().slice(-4);
+  const alph = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const bytes =
+    typeof crypto !== 'undefined' && crypto.getRandomValues
+      ? crypto.getRandomValues(new Uint8Array(2))
+      : [Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)];
+  let r = '';
+  for (const b of bytes) r += alph[b % alph.length];
+  return `PP-${t}${r}`;
+}
+
 export default function CheckoutClient() {
   const [cart, setCart] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  // Generated client-side only (Date.now + crypto) — never during SSR, so no
+  // hydration mismatch. Set before the form is shown (same effect as the cart).
+  const [orderNo, setOrderNo] = useState('');
 
   useEffect(() => {
     try {
@@ -17,12 +34,14 @@ export default function CheckoutClient() {
     } catch {
       setCart([]);
     }
+    setOrderNo(makeOrderNo());
     setLoaded(true);
   }, []);
 
-  function clearCart() {
+  function onOrderPlaced() {
     try {
       localStorage.setItem('mm-cart', '[]');
+      sessionStorage.setItem('pp-last-order', orderNo);
     } catch {}
     window.dispatchEvent(new Event('mm-cart-updated-silent'));
   }
@@ -65,6 +84,9 @@ export default function CheckoutClient() {
           <strong>Your order ({itemCount} {itemCount === 1 ? 'item' : 'items'})</strong>
           <Link href="/cart/" className="checkout-edit">Edit cart</Link>
         </div>
+        <p className="muted" style={{ fontSize: '0.8rem', margin: '0 0 0.5rem' }}>
+          Order ref <strong>{orderNo}</strong>
+        </p>
         <div className="table-wrap">
           <table>
             <thead>
@@ -96,11 +118,11 @@ export default function CheckoutClient() {
       <h2 style={{ marginTop: '2rem' }}>Your details</h2>
       <WebForm
         formName="order"
-        subject={`New order — ${SITE.name}`}
+        subject={`New order ${orderNo} — ${SITE.name}`}
         thankYouPath="/thank-you-order/"
         submitLabel="Place order"
-        extraFields={{ cart }}
-        onSuccess={clearCart}
+        extraFields={{ cart, orderNo }}
+        onSuccess={onOrderPlaced}
       >
         <div className="form-field">
           <label htmlFor="name">Full name</label>

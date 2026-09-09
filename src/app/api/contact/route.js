@@ -50,9 +50,10 @@ function cartLines(cart) {
 }
 
 // ---- plain-text version (deliverability + non-HTML clients) -----------------
-function textBody({ isOrder, fields, items, subtotal, when }) {
+function textBody({ isOrder, fields, items, subtotal, when, orderNo }) {
   const out = [];
   out.push(isOrder ? `NEW ORDER — ${SITE.name}` : `NEW ENQUIRY — ${SITE.name}`);
+  if (isOrder && orderNo) out.push(`Order ref: ${orderNo}`);
   out.push(when);
   out.push('');
   if (items.length) {
@@ -74,7 +75,7 @@ function textBody({ isOrder, fields, items, subtotal, when }) {
 }
 
 // ---- HTML version ----------------------------------------------------------
-function htmlBody({ isOrder, fields, items, subtotal, when }) {
+function htmlBody({ isOrder, fields, items, subtotal, when, orderNo }) {
   const GREEN = SITE.colors.primary;
   const LIME = SITE.colors.accent;
   const INK = '#1b2320';
@@ -127,11 +128,12 @@ function htmlBody({ isOrder, fields, items, subtotal, when }) {
     <tr><td style="background:${GREEN};padding:22px 28px;border-radius:12px 12px 0 0;">
       <span style="color:#fff;font-size:20px;font-weight:800;">${esc(SITE.name)}</span>
       <span style="display:block;color:${LIME};font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:2px;">
-        ${isOrder ? 'New order' : 'New website enquiry'}
+        ${isOrder ? 'New order' : 'New website enquiry'}${isOrder && orderNo ? ` &nbsp;·&nbsp; ${esc(orderNo)}` : ''}
       </span>
     </td></tr>
     <tr><td style="background:#fff;padding:24px 28px;border:1px solid ${BORDER};border-top:0;border-radius:0 0 12px 12px;">
       <p style="margin:0 0 4px;font-size:13px;color:${MUTED};">${esc(when)}</p>
+      ${isOrder && orderNo ? `<p style="margin:0 0 12px;font-size:15px;color:${INK};">Order reference <strong>${esc(orderNo)}</strong></p>` : ''}
       ${orderTable}
       <h2 style="margin:24px 0 8px;font-size:15px;color:${INK};">Customer details</h2>
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border:1px solid ${BORDER};border-radius:8px;overflow:hidden;">
@@ -187,11 +189,12 @@ export async function POST(req) {
   const to = FORMS.destinations[isOrder ? 'order' : 'contact'] || FORMS.destinations.contact || CONTACT.email;
   const from = process.env.SMTP_FROM || FORMS.resendFrom || process.env.SMTP_USER;
   const name = String(body.name || '').trim();
+  const orderNo = String(body.orderNo || '').trim().slice(0, 20);
   const subject = isOrder
-    ? `New order — ${money(subtotal)}${name ? ` — ${name}` : ''}`
+    ? `New order${orderNo ? ` ${orderNo}` : ''} — ${money(subtotal)}${name ? ` — ${name}` : ''}`
     : body.subject || `New enquiry — ${SITE.name}`;
 
-  const payload = { isOrder, fields: body, items, subtotal, when };
+  const payload = { isOrder, fields: body, items, subtotal, when, orderNo };
 
   try {
     await transporter().sendMail({
