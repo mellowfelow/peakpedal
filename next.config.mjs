@@ -1,10 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: true,
+  // Vercel's Image Optimization is disabled: the Hobby plan's monthly transform
+  // quota runs out and then every `next/image` returns HTTP 402 with a blank
+  // image (which is exactly what happened in production). This is a small catalog
+  // of already-web-sized webp files, so serving them straight from the CDN —
+  // no optimizer, no quota — is the right call. Source images are kept small by
+  // scripts/images.mjs + scripts/gen-brand-images.mjs.
   images: {
-    formats: ['image/avif', 'image/webp'],
-    deviceSizes: [360, 640, 768, 1024, 1280, 1920],
-    imageSizes: [128, 256, 384],
+    unoptimized: true,
   },
   async redirects() {
     return [
