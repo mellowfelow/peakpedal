@@ -1,8 +1,5 @@
 import '../styles/globals.css';
-import Nav from '@/components/Nav';
-import Footer from '@/components/Footer';
-import ChatHub from '@/components/ChatHub';
-import CartDrawer from '@/components/CartDrawer';
+import SiteChrome from '@/components/SiteChrome';
 import { SITE } from '@/config/site';
 
 export const metadata = {
@@ -53,14 +50,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <a href="#main" className="skip-link">Skip to content</a>
-        <div className="announce-bar">
-          Free UK-wide delivery on every eMTB &middot; No minimum order &middot; Message us on WhatsApp for fast advice
-        </div>
-        <Nav />
-        <main id="main">{children}</main>
-        <Footer />
-        <CartDrawer />
-        <ChatHub />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

@@ -15,7 +15,7 @@ const AI_BOTS = [
 
 const DISALLOW = [
   '/cart/', '/search/', '/thank-you-contact/', '/thank-you-order/',
-  '/order/', '/api/', '/_next/',
+  '/order/', '/api/', '/_next/', '/admin/',
 ];
 
 export function GET() {

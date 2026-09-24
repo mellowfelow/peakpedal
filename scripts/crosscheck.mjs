@@ -241,8 +241,13 @@ async function checkBuildOutput() {
     const rel = path.relative(appDir, file);
     allHtml.push({ rel, html });
 
+    // /admin/* is the Reply Portal — passcode-gated, noindex, client-rendered
+    // (the real page only paints after PasscodeGate reads localStorage), so
+    // it's outside the SEO surface these checks are protecting.
+    const isAdminPage = rel === 'admin.html' || rel.startsWith(`admin${path.sep}`);
+
     const h1Count = (html.match(/<h1[\s>]/g) || []).length;
-    if (h1Count !== 1) {
+    if (h1Count !== 1 && !isAdminPage) {
       h1Fails++;
       fail(`${rel}: expected exactly 1 <h1>, found ${h1Count}`);
     }

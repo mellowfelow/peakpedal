@@ -444,6 +444,8 @@ const vercelJson = {
     { source: '/.well-known/ucp', headers: [{ key: 'Content-Type', value: 'application/json' }, { key: 'Access-Control-Allow-Origin', value: '*' }] },
     { source: '/auth.md', headers: [{ key: 'Content-Type', value: 'text/markdown; charset=utf-8' }, { key: 'Access-Control-Allow-Origin', value: '*' }] },
     { source: '/llms.txt', headers: [{ key: 'Content-Type', value: 'text/plain; charset=utf-8' }, { key: 'Access-Control-Allow-Origin', value: '*' }] },
+    // Reply Portal admin dashboard — never cached, never indexed.
+    { source: '/admin/(.*)', headers: [{ key: 'Cache-Control', value: 'no-store' }, { key: 'X-Robots-Tag', value: 'noindex, nofollow' }] },
   ],
 };
 await writeRoot('vercel.json', JSON.stringify(vercelJson, null, 2) + '\n');

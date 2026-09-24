@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer';
 import { FORMS, CONTACT, SITE, ORDER_RULES } from '@/config/site';
+import { saveOrder, isOrderStoreConfigured } from '@/lib/orderStore';
+import { saveEnquiry, isEnquiryStoreConfigured } from '@/lib/enquiryStore';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -195,6 +197,36 @@ export async function POST(req) {
     : body.subject || `New enquiry — ${SITE.name}`;
 
   const payload = { isOrder, fields: body, items, subtotal, when, orderNo };
+
+  // Best-effort save to the admin dashboard — never blocks email delivery.
+  // Orders need an orderNo (generated client-side at checkout); a submission
+  // without one is treated as a plain enquiry even if items are attached.
+  try {
+    if (isOrder && orderNo && isOrderStoreConfigured()) {
+      await saveOrder({
+        orderNumber: orderNo,
+        customerName: name,
+        customerEmail: body.email,
+        customerPhone: body.phone,
+        address: body.address,
+        notes: body.notes,
+        items: items.map((it) => ({ name: it.name, qty: it.qty, priceLow: it.each })),
+        amountDue: subtotal,
+        channel: 'email',
+      });
+    } else if (!isOrder && isEnquiryStoreConfigured()) {
+      await saveEnquiry({
+        type: body.formName === 'wholesale' ? 'wholesale' : 'contact',
+        name,
+        email: body.email,
+        phone: body.phone,
+        message: body.message,
+        meta: { subject: body.subject },
+      });
+    }
+  } catch (err) {
+    console.error('Dashboard save failed:', err?.message);
+  }
 
   try {
     await transporter().sendMail({

@@ -80,6 +80,25 @@ export const FORMS = {
   },
 };
 
+// Reply Portal (admin dashboard) config — payment-method framing text only.
+// {amount} and {ref} tokens are filled in at send time. The actual bank
+// details are never stored here (Peak Pedal has none on file yet) — the
+// admin pastes them per order in the send-payment-email composer.
+export const REPLY = {
+  channels: { email: CONTACT.email, whatsapp: CONTACT.whatsapp },
+  currency: { symbol: CONTACT.currencySymbol, code: CONTACT.currency },
+  deadlineHours: 48,
+  dispatchLine: "We'll confirm your dispatch date once payment is received.",
+  paymentMethods: [
+    {
+      id: 'bank-transfer',
+      label: 'Bank transfer',
+      opening: 'Please transfer {amount} to complete order {ref}:',
+      closing: "Once you've paid, reply to this email or message us on WhatsApp and we'll confirm your order.",
+    },
+  ],
+};
+
 export const CHAT = {
   channels: [
     { type: 'whatsapp', value: '447838207659' },
