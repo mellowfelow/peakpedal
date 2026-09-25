@@ -58,26 +58,29 @@ export function paymentTermsHtml(ref) {
     .join('');
 }
 
-// The fixed set of bank-transfer fields the admin fills in per order. Kept
-// as a function (not static data) so a future second payment method can
-// define its own field set without touching the composer/email code that
-// consumes it — everything downstream just iterates `fields`.
-export function paymentFieldsFor(methodId) {
-  if (methodId === 'bank-transfer') {
-    return [
-      { key: 'accountName', label: 'Account name' },
-      { key: 'sortCode', label: 'Sort code' },
-      { key: 'accountNumber', label: 'Account number' },
-      { key: 'reference', label: 'Reference' },
-    ];
-  }
-  return [];
-}
+/**
+ * Splits one pasted payment-detail blob into individually-copyable fields —
+ * this is what lets the admin keep pasting one block of text (works for any
+ * payment method: bank transfer, a crypto wallet address, a PayPal.me link,
+ * anything) while the customer still gets each real component as its own
+ * copy button. One line = one field. "Label: value" becomes {label, value};
+ * a line with no colon becomes a field labelled "Detail" (numbered if there's
+ * more than one), so an admin who just pastes a single wallet address with
+ * no label still gets a working copy button rather than nothing at all.
+ */
+export function parsePaymentDetail(text) {
+  const lines = String(text || '')
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean);
 
-// values: { accountName, sortCode, accountNumber, reference } -> [{label,value}]
-// dropping any the admin left blank, so an unused field never shows as empty.
-export function resolvePaymentFields(methodId, values) {
-  return paymentFieldsFor(methodId)
-    .map((f) => ({ label: f.label, value: String(values?.[f.key] || '').trim() }))
-    .filter((f) => f.value);
+  let unlabeled = 0;
+  return lines.map((line) => {
+    const i = line.indexOf(':');
+    if (i > 0 && i < line.length - 1) {
+      return { label: line.slice(0, i).trim(), value: line.slice(i + 1).trim() };
+    }
+    unlabeled += 1;
+    return { label: unlabeled > 1 ? `Detail ${unlabeled}` : 'Detail', value: line };
+  });
 }

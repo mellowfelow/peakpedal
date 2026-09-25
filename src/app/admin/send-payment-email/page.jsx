@@ -7,7 +7,7 @@ import { CheckCircle2, ArrowLeft } from 'lucide-react';
 import { useAdminContextPasscode } from '@/components/admin/AdminPasscodeContext';
 import { WhatsAppSendPanel } from '@/components/admin/WhatsAppSendPanel';
 import { REPLY } from '@/config/site';
-import { money, paymentMethodParts, paymentTermsLines, paymentFieldsFor, resolvePaymentFields } from '@/lib/order';
+import { money, paymentMethodParts, paymentTermsLines, parsePaymentDetail } from '@/lib/order';
 import { waPaymentDetailsLink, waPaymentDetailsMessage } from '@/lib/whatsapp';
 
 function Composer() {
@@ -18,7 +18,7 @@ function Composer() {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [methodId, setMethodId] = useState(REPLY.paymentMethods[0]?.id || '');
-  const [values, setValues] = useState({});
+  const [detail, setDetail] = useState('');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
@@ -38,18 +38,11 @@ function Composer() {
       .finally(() => setLoading(false));
   }, [id, passcode]);
 
-  // Reference field defaults to the order number — the admin can override it,
-  // but shouldn't have to type it every time.
-  useEffect(() => {
-    if (order) setValues((v) => ({ ...v, reference: v.reference ?? order.orderNumber }));
-  }, [order]);
-
-  const fieldDefs = paymentFieldsFor(methodId);
-  const resolvedFields = resolvePaymentFields(methodId, values);
+  const parsedFields = parsePaymentDetail(detail);
 
   const send = async () => {
-    if (resolvedFields.length === 0) {
-      setError('Fill in at least one payment field before sending.');
+    if (parsedFields.length === 0) {
+      setError('Paste the payment detail (wallet address, bank transfer details, etc.) before sending.');
       return;
     }
     setSending(true);
@@ -58,7 +51,7 @@ function Composer() {
       const res = await fetch('/api/admin/send-payment-email/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-passcode': passcode },
-        body: JSON.stringify({ orderNumber: order.orderNumber, methodId, fields: values }),
+        body: JSON.stringify({ orderNumber: order.orderNumber, methodId, detail }),
       });
       const data = await res.json();
       if (data.ok) setSent(true);
@@ -95,7 +88,7 @@ function Composer() {
         <div className="success-box">
           <CheckCircle2 size={32} />
           <p>Payment details sent to {order.customerEmail}.</p>
-          <p className="sub">They'll see each field with its own copy button at the link in the email.</p>
+          <p className="sub">Each line you pasted becomes its own copy button for the customer.</p>
         </div>
       ) : (
         <div>
@@ -108,29 +101,29 @@ function Composer() {
             </select>
           </div>
 
-          {fieldDefs.map((f) => (
-            <div className="form-group" key={f.key}>
-              <label htmlFor={f.key}>{f.label}</label>
-              <input
-                id={f.key}
-                type="text"
-                className="mono"
-                value={values[f.key] || ''}
-                onChange={(e) => setValues((v) => ({ ...v, [f.key]: e.target.value }))}
-                placeholder={`This order's real ${f.label.toLowerCase()}…`}
-              />
-            </div>
-          ))}
+          <div className="form-group">
+            <label>Payment detail</label>
+            <textarea
+              value={detail}
+              onChange={(e) => setDetail(e.target.value)}
+              rows={6}
+              placeholder={'Paste the real details for this order, one per line, e.g.:\nAccount name: Peak Pedal Ltd\nSort code: 12-34-56\nAccount number: 12345678\nReference: ' + order.orderNumber}
+              className="mono"
+            />
+            <p style={{ fontSize: 11, color: 'var(--admin-text-faint)', marginTop: 6 }}>
+              One field per line. "Label: value" gives the customer a labelled copy button for that line — works for bank transfer, a wallet address, a payment link, anything.
+            </p>
+          </div>
 
           <div className="email-preview">
             <div className="email-preview-label">Email + copy-link preview</div>
             <p>{opening}</p>
-            {resolvedFields.length === 0 ? (
-              <pre>(fill in the fields above to preview)</pre>
+            {parsedFields.length === 0 ? (
+              <pre>(paste the details above to preview)</pre>
             ) : (
-              <div className="payment-fields-list" style={{ margin: '8px 0' }}>
-                {resolvedFields.map((f) => (
-                  <div key={f.label} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 13, padding: '6px 0', borderBottom: '1px solid #e2e5df' }}>
+              <div style={{ margin: '8px 0' }}>
+                {parsedFields.map((f, i) => (
+                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 13, padding: '6px 0', borderBottom: '1px solid #e2e5df' }}>
                     <span style={{ color: '#6a746e', fontWeight: 700 }}>{f.label}</span>
                     <span style={{ fontFamily: "'SF Mono','Fira Code',monospace" }}>{f.value}</span>
                   </div>
@@ -159,14 +152,14 @@ function Composer() {
           link={waPaymentDetailsLink(order.customerPhone, {
             orderNumber: order.orderNumber,
             amountDue: order.amountDue,
-            fields: resolvedFields,
+            fields: parsedFields,
             opening,
             closing,
           })}
           messageLines={waPaymentDetailsMessage({
             orderNumber: order.orderNumber,
             amountDue: order.amountDue,
-            fields: resolvedFields,
+            fields: parsedFields,
             opening,
             closing,
           })}
