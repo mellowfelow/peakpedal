@@ -53,7 +53,7 @@ function cartLines(cart) {
 }
 
 // ---- plain-text version (deliverability + non-HTML clients) -----------------
-function textBody({ isOrder, fields, items, subtotal, when, orderNo }) {
+function textBody({ isOrder, fields, items, subtotal, when, orderNo, dashboardUrl }) {
   const out = [];
   out.push(isOrder ? `NEW ORDER — ${SITE.name}` : `NEW ENQUIRY — ${SITE.name}`);
   if (isOrder && orderNo) out.push(`Order ref: ${orderNo}`);
@@ -73,12 +73,13 @@ function textBody({ isOrder, fields, items, subtotal, when, orderNo }) {
     if (fields[key]) out.push(`  ${label}: ${String(fields[key]).replace(/\s*\n\s*/g, ', ')}`);
   }
   out.push('');
+  if (dashboardUrl) out.push(`Reply in Dashboard: ${dashboardUrl}`);
   out.push('Reply to this email to respond — the customer address is set as Reply-To.');
   return out.join('\n');
 }
 
 // ---- HTML version ----------------------------------------------------------
-function htmlBody({ isOrder, fields, items, subtotal, when, orderNo }) {
+function htmlBody({ isOrder, fields, items, subtotal, when, orderNo, dashboardUrl }) {
   const GREEN = SITE.colors.primary;
   const LIME = SITE.colors.accent;
   const INK = '#1b2320';
@@ -142,7 +143,8 @@ function htmlBody({ isOrder, fields, items, subtotal, when, orderNo }) {
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border:1px solid ${BORDER};border-radius:8px;overflow:hidden;">
         ${rows}
       </table>
-      <p style="margin:20px 0 0;font-size:13px;color:${MUTED};">
+      ${dashboardUrl ? `<p style="margin:20px 0 0;"><a href="${esc(dashboardUrl)}" style="display:inline-block;background:${GREEN};color:#fff;font-size:13px;font-weight:700;text-decoration:none;padding:10px 20px;border-radius:8px;">Reply in Dashboard &rarr;</a></p>` : ''}
+      <p style="margin:${dashboardUrl ? '12px' : '20px'} 0 0;font-size:13px;color:${MUTED};">
         Reply directly to this email to respond — the customer’s address is set as <strong>Reply-To</strong>.
       </p>
     </td></tr>
@@ -193,11 +195,20 @@ export async function POST(req) {
   const from = process.env.SMTP_FROM || FORMS.resendFrom || process.env.SMTP_USER;
   const name = String(body.name || '').trim();
   const orderNo = String(body.orderNo || '').trim().slice(0, 20);
+  const enquiryId = !isOrder ? generateEnquiryId() : '';
   const subject = isOrder
     ? `New order${orderNo ? ` ${orderNo}` : ''} — ${money(subtotal)}${name ? ` — ${name}` : ''}`
     : body.subject || `New enquiry — ${SITE.name}`;
 
-  const payload = { isOrder, fields: body, items, subtotal, when, orderNo };
+  const dashboardUrl = isOrder
+    ? orderNo && isOrderStoreConfigured()
+      ? `https://${SITE.domain}/admin/orders/${encodeURIComponent(orderNo)}/`
+      : ''
+    : isEnquiryStoreConfigured()
+      ? `https://${SITE.domain}/admin/enquiries/${encodeURIComponent(enquiryId)}/`
+      : '';
+
+  const payload = { isOrder, fields: body, items, subtotal, when, orderNo, dashboardUrl };
 
   // Best-effort save to the admin dashboard — never blocks email delivery.
   // Orders need an orderNo (generated client-side at checkout); a submission
@@ -220,7 +231,7 @@ export async function POST(req) {
       });
     } else if (!isOrder && isEnquiryStoreConfigured()) {
       await saveEnquiry({
-        id: generateEnquiryId(),
+        id: enquiryId,
         type: body.formName === 'wholesale' ? 'wholesale' : 'contact',
         name,
         email: body.email,
