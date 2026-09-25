@@ -151,6 +151,77 @@ export function paymentDetailsEmail({ orderNumber, amountDue, customerName, inst
   };
 }
 
+/* -------------------------- ORDER CONFIRMATION (checkout, customer-facing) -------------------------- */
+
+/**
+ * Sent immediately on checkout, alongside (not instead of) the shop's
+ * internal notification. Carries no payment routing details — those go out
+ * separately once the shop confirms the order via the Reply Portal — it
+ * exists so the customer has an immediate receipt instead of no record at
+ * all that the order was received.
+ */
+export function orderConfirmationEmail({ orderNumber, items, subtotal, customerName }) {
+  const ts = stamp();
+  const units = items.reduce((n, i) => n + (i.quantity || 1), 0);
+
+  const rows = items
+    .map(
+      (i) => `<tr>
+      <td style="padding:12px 0;border-bottom:1px solid ${C.rule};font-family:${SANS};font-size:14px;line-height:1.4;color:${C.ink};">${esc(i.name)}</td>
+      <td align="center" style="padding:12px 10px;border-bottom:1px solid ${C.rule};font-family:${SANS};font-size:13px;color:${C.soft};white-space:nowrap;">&times;${i.quantity}</td>
+      <td align="right" style="padding:12px 0;border-bottom:1px solid ${C.rule};font-family:${SERIF};font-size:14px;color:${C.ink};white-space:nowrap;">${money(i.lineTotal)}</td>
+    </tr>`
+    )
+    .join('');
+
+  const body = `
+  ${callout(
+    `<strong style="font-family:${SANS};">Thanks, ${esc(customerName || 'there')} — we've received your order.</strong> Keep this email as your reference. You'll receive a second email shortly with payment details; once that's confirmed we'll finalise your order for dispatch.`
+  )}
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+    ${rows}
+  </table>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:10px;">
+    <tr>
+      <td align="right" style="padding:13px 16px 4px 0;font-family:${SANS};font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:${C.soft};border-top:2px solid ${C.head};">Total</td>
+      <td align="right" width="118" style="padding:13px 0 4px;font-family:${SERIF};font-size:20px;color:${C.goldInk};white-space:nowrap;border-top:2px solid ${C.head};">${money(subtotal)}</td>
+    </tr>
+  </table>
+
+  ${divider}
+
+  ${callout(
+    `<strong style="font-family:${SANS};">Before delivery</strong>
+     <ul style="margin:10px 0 0;padding-left:18px;">${paymentTermsHtml(orderNumber)}</ul>`
+  )}
+
+  <div>${button(`mailto:${CONTACT.email}?subject=${encodeURIComponent(`Question about order ${orderNumber}`)}`, 'Contact us')}</div>
+  `;
+
+  const text =
+    `ORDER RECEIVED — ${orderNumber}\n${ts}\n\n` +
+    `Thanks, ${customerName || 'there'} — we've received your order. You'll get a second email shortly with payment details.\n\n` +
+    `ITEMS\n${items.map((i) => `  ${i.name}  x${i.quantity}  ${money(i.lineTotal)}`).join('\n')}\n\n` +
+    `TOTAL  ${money(subtotal)}\n\n` +
+    paymentTermsLines(orderNumber)
+      .map((l) => `- ${l}`)
+      .join('\n') +
+    '\n';
+
+  return {
+    subject: `Order received — ${orderNumber} · ${money(subtotal)} · ${SITE.name}`,
+    text,
+    html: shell({
+      eyebrow: 'Order received',
+      title: `Hi ${customerName || 'there'}`,
+      meta: `${ts} · ${units} unit${units === 1 ? '' : 's'} · ${orderNumber}`,
+      body,
+    }),
+  };
+}
+
 /* -------------------------- ENQUIRY REPLY (Reply Portal, customer-facing) -------------------------- */
 
 export function enquiryReplyEmail({ customerName, originalSubject, replyHtml }) {

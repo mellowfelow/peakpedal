@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 import { FORMS, CONTACT, SITE, ORDER_RULES } from '@/config/site';
 import { saveOrder, isOrderStoreConfigured } from '@/lib/orderStore';
 import { saveEnquiry, isEnquiryStoreConfigured, generateEnquiryId } from '@/lib/enquiryStore';
+import { orderConfirmationEmail } from '@/utils/emailTemplates';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -243,7 +244,6 @@ export async function POST(req) {
       text: textBody(payload),
       html: htmlBody(payload),
     });
-    return Response.json({ success: true });
   } catch (err) {
     console.error('SMTP send failed:', err?.message);
     return Response.json(
@@ -251,4 +251,30 @@ export async function POST(req) {
       { status: 502 }
     );
   }
+
+  // Customer-facing receipt — separate from the shop notification above, and
+  // never allowed to fail the checkout response (the order already saved and
+  // the shop was already notified by this point).
+  if (isOrder && orderNo) {
+    try {
+      const confirmation = orderConfirmationEmail({
+        orderNumber: orderNo,
+        items: items.map((it) => ({ name: it.name, quantity: it.qty, lineTotal: it.each * it.qty })),
+        subtotal,
+        customerName: name,
+      });
+      await transporter().sendMail({
+        from: `${SITE.name} <${from}>`,
+        to: body.email,
+        replyTo: CONTACT.email,
+        subject: confirmation.subject,
+        text: confirmation.text,
+        html: confirmation.html,
+      });
+    } catch (err) {
+      console.error('Order confirmation email failed:', err?.message);
+    }
+  }
+
+  return Response.json({ success: true });
 }
