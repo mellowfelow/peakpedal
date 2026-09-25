@@ -264,7 +264,7 @@ Tracks BUILT vs DEFERRED — each session pulls the next unused cluster.
 
 ---
 
-## Built — Phase 1 blog posts (17 confirmed live)
+## Built — Phase 1 + Phase 3 blog posts (27 confirmed live)
 
 | Post | URL | Primary keyword | Vol/mo | KD |
 |---|---|---|---|---|
@@ -285,6 +285,16 @@ Tracks BUILT vs DEFERRED — each session pulls the next unused cluster.
 | Whyte Rheo review | `/blog/whyte-rheo-review/` | whyte rheo review | 110 | 16 |
 | Haibike AllMtn guide | `/blog/haibike-allmtn-vs-alltrail-vs-alltrack/` | haibike allmtn vs alltrail | 140 | 14 |
 | Womens eMTB guide | `/blog/womens-electric-mountain-bike-buying-guide/` | womens electric mountain bike buying guide | 90 | 14 |
+| Best under £4,000 | `/blog/best-electric-mountain-bikes-under-4000/` | best electric mountain bike under 4000 | 170 | 14 |
+| Motor comparison pillar | `/blog/electric-mountain-bike-motor-comparison/` | electric mountain bike motor comparison | 170 | 14 |
+| What is an eMTB pillar | `/blog/what-is-an-emtb/` | what is an emtb | 170 | 18 |
+| Are eMTBs legal UK | `/blog/electric-mountain-bikes-legal-uk/` | are electric mountain bikes legal uk | 170 | 12 |
+| Cube Stereo Hybrid review | `/blog/cube-stereo-hybrid-review/` | cube stereo hybrid review | 390 | 22 |
+| Specialized Turbo Levo review | `/blog/specialized-turbo-levo-review/` | specialized turbo levo review | 480 | 24 |
+| Giant Trance X E+ review | `/blog/giant-trance-x-e-plus-review/` | giant trance x e plus review | 170 | 16 |
+| Best eMTB for beginners UK | `/blog/best-electric-mountain-bikes-beginners/` | best electric mountain bikes for beginners uk | 170 | 14 |
+| eMTB battery range guide | `/blog/emtb-battery-range-guide/` | emtb battery range uk | 110 | 16 |
+| eMTB vs mountain bike | `/blog/emtb-vs-regular-mountain-bike/` | emtb vs regular mountain bike | 170 | 20 |
 
 ---
 
@@ -391,18 +401,22 @@ Tracks BUILT vs DEFERRED — each session pulls the next unused cluster.
 ## Deferred — Phase 3 blog calendar
 
 Use `keyword-cluster-final.txt` — pull next `[UNUSED]` post, mark `[USED]` after each build.
-Total: 17 live + 58 planned = 75 posts.
+Total: 27 live + 48 planned = 75 posts. (2026-09-25: the "Next 10 posts" batch below is now built and marked `[USED]` in `keyword-cluster-final.txt` — see the Built table above.)
 
-### Next 10 posts (priority order)
+### Next 10 posts (priority order — first 10 `[UNUSED]` clusters after line 43)
 
 | Post | URL | Primary keyword | Vol | KD |
 |---|---|---|---|---|
-| Best under £4,000 | `/blog/best-electric-mountain-bikes-under-4000/` | best electric mountain bike under 4000 | 170 | 14 |
-| Motor comparison pillar | `/blog/electric-mountain-bike-motor-comparison/` | electric mountain bike motor comparison | 170 | 14 |
-| What is an eMTB pillar | `/blog/what-is-an-emtb/` | what is an emtb | 170 | 18 |
-| Are eMTBs legal UK | `/blog/electric-mountain-bikes-legal-uk/` | are electric mountain bikes legal uk | 170 | 12 |
-| Cube Stereo Hybrid review | `/blog/cube-stereo-hybrid-review/` | cube stereo hybrid review | 390 | 22 |
-| Specialized Turbo Levo review | `/blog/specialized-turbo-levo-review/` | specialized turbo levo review | 480 | 24 |
+| Bosch Performance CX vs Active Line | `/blog/bosch-performance-cx-vs-active-line/` | bosch performance cx vs active line | 1800w | — |
+| DJI Avinox vs Bosch Performance CX | `/blog/dji-avinox-vs-bosch-performance-cx/` | dji avinox vs bosch performance cx | 2000w | — |
+| Shimano EP801 vs EP8 | `/blog/shimano-ep801-vs-ep8/` | shimano ep801 vs ep8 | 1500w | — |
+| TQ HPR50 guide | `/blog/tq-hpr50-emtb-guide/` | tq hpr50 electric mountain bike guide | 1500w | — |
+| Bosch Performance SX guide | `/blog/bosch-performance-sx-guide/` | bosch performance sx guide | 1500w | — |
+| eMTB trail vs enduro | `/blog/emtb-trail-vs-enduro/` | emtb trail vs enduro | 1800w | — |
+| Finance guide | `/blog/electric-mountain-bike-finance-guide/` | electric mountain bike finance uk | 1500w | — |
+| eMTB cost guide | `/blog/electric-mountain-bike-cost-uk/` | how much does an electric mountain bike cost uk | 1800w | — |
+| Orbea Rise LT review | `/blog/orbea-rise-lt-review/` | orbea rise lt review | 1800w | — |
+| Orbea Wild review | `/blog/orbea-wild-review/` | orbea wild review | 1800w | — |
 | Giant Trance X E+ review | `/blog/giant-trance-x-e-plus-review/` | giant trance x e plus review | 170 | 16 |
 | Best eMTB for beginners UK | `/blog/best-electric-mountain-bikes-beginners/` | best electric mountain bikes for beginners uk | 170 | 14 |
 | eMTB battery range guide | `/blog/emtb-battery-range-guide/` | emtb battery range uk | 110 | 16 |

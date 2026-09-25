@@ -27,16 +27,16 @@
 # ─────────────────────────────────────────────────────────────────
 # PRIORITY 1 — Build first (highest volume + product now live)
 # ─────────────────────────────────────────────────────────────────
-[UNUSED]	best electric mountain bike under 4000	/blog/best-electric-mountain-bikes-under-4000/	Commercial	T1	2000w	Article+FAQPage
-[UNUSED]	electric mountain bike motor comparison	/blog/electric-mountain-bike-motor-comparison/	Informational	T1	3500w	Article+FAQPage
-[UNUSED]	what is an emtb	/blog/what-is-an-emtb/	Informational	T1	3000w	Article+FAQPage
-[UNUSED]	are electric mountain bikes legal uk	/blog/electric-mountain-bikes-legal-uk/	Informational	T1	1500w	Article+FAQPage
-[UNUSED]	cube stereo hybrid review	/blog/cube-stereo-hybrid-review/	Commercial	T1	2200w	Article+Review+FAQPage
-[UNUSED]	specialized turbo levo review	/blog/specialized-turbo-levo-review/	Commercial	T1	2200w	Article+Review+FAQPage
-[UNUSED]	giant trance x e plus review	/blog/giant-trance-x-e-plus-review/	Commercial	T1	2000w	Article+Review+FAQPage
-[UNUSED]	best electric mountain bikes for beginners uk	/blog/best-electric-mountain-bikes-beginners/	Commercial	T1	2000w	Article+FAQPage
-[UNUSED]	emtb battery range uk	/blog/emtb-battery-range-guide/	Informational	T1	1800w	Article+FAQPage
-[UNUSED]	emtb vs regular mountain bike	/blog/emtb-vs-regular-mountain-bike/	Commercial	T1	2000w	Article+FAQPage
+[USED]	best electric mountain bike under 4000	/blog/best-electric-mountain-bikes-under-4000/	Commercial	T1	2000w	Article+FAQPage
+[USED]	electric mountain bike motor comparison	/blog/electric-mountain-bike-motor-comparison/	Informational	T1	3500w	Article+FAQPage
+[USED]	what is an emtb	/blog/what-is-an-emtb/	Informational	T1	3000w	Article+FAQPage
+[USED]	are electric mountain bikes legal uk	/blog/electric-mountain-bikes-legal-uk/	Informational	T1	1500w	Article+FAQPage
+[USED]	cube stereo hybrid review	/blog/cube-stereo-hybrid-review/	Commercial	T1	2200w	Article+Review+FAQPage
+[USED]	specialized turbo levo review	/blog/specialized-turbo-levo-review/	Commercial	T1	2200w	Article+Review+FAQPage
+[USED]	giant trance x e plus review	/blog/giant-trance-x-e-plus-review/	Commercial	T1	2000w	Article+Review+FAQPage
+[USED]	best electric mountain bikes for beginners uk	/blog/best-electric-mountain-bikes-beginners/	Commercial	T1	2000w	Article+FAQPage
+[USED]	emtb battery range uk	/blog/emtb-battery-range-guide/	Informational	T1	1800w	Article+FAQPage
+[USED]	emtb vs regular mountain bike	/blog/emtb-vs-regular-mountain-bike/	Commercial	T1	2000w	Article+FAQPage
 
 # ─────────────────────────────────────────────────────────────────
 # PRIORITY 2 — Motor comparisons + finance + legal

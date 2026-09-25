@@ -2058,4 +2058,461 @@ export const POST_BODIES = {
     closing:
       "See our full [women's electric mountain bikes](/womens-electric-mountain-bikes/) sizing page, or [message us on WhatsApp](https://wa.me/447838207659) with your height and we'll help you find the right frame size.",
   },
+
+  'best-electric-mountain-bikes-under-4000': {
+    intro:
+      "£4,000 is a genuine inflection point in the eMTB market — it's where you stop trading down on suspension travel or motor platform just to hit a budget, and start getting bikes that would be entirely at home on demanding UK trails. Below this line you're often choosing between a full-featured hardtail and a compromised full-suspension build; at £4,000 you can usually have a proper full-suspension trail or enduro bike with a mainstream motor and no obvious corners cut. Here's what that budget actually buys across our range, from a lightweight SL option to a long-travel enduro build, all genuinely priced at or under £4,000.",
+    sections: [
+      {
+        heading: 'Full-Suspension Trail: The Sweet Spot',
+        paragraphs: [
+          'The [Cube Stereo Hybrid ONE44 Race](/products/cube-stereo-hybrid-one44-race/) (£3,200) is the strongest all-rounder in this bracket — a Bosch Performance CX motor, 140/140mm of travel, and a frame that doesn\'t feel like a budget build in hand. It sits comfortably under £4,000 with room to spare for accessories, and covers the vast majority of UK trail-centre and singletrack riding without compromise.',
+          'The [Giant Trance X E+ 2](/products/giant-trance-x-e-plus-2/) (£3,500) is a close alternative, running a Yamaha SyncDrive Sport motor on similar 150/140mm travel. Giant\'s scale means consistent build quality even at this price, and the Trance X E+ platform is well regarded for balanced trail handling rather than being tuned toward either climbing or descending specifically.',
+        ],
+      },
+      {
+        heading: 'Best Enduro-Capable Pick Under £4,000',
+        paragraphs: [
+          'If you ride steeper, rougher terrain more often than not, the [Orbea Wild H10](/products/orbea-wild-h10/) (£3,500) runs 160/150mm of enduro-oriented travel on a Bosch Performance CX motor — genuinely more capable on descents than the trail bikes above, without stepping past £4,000. It\'s the closest thing in this budget bracket to a bike built specifically for bigger terrain rather than all-round trail riding.',
+          'The [Cube Stereo Hybrid 160 HPC Race](/products/cube-stereo-hybrid-160-hpc-race/) (£3,800) is a similar proposition — 160/160mm travel on the same Bosch Performance CX platform, at the very top of this budget bracket. Between the two, the choice usually comes down to frame material and geometry preference rather than one being objectively better.',
+        ],
+      },
+      {
+        heading: 'Lightweight SL Under £4,000',
+        paragraphs: [
+          'For riders who want a lighter, more natural-feeling bike rather than outright climbing torque, the [Specialized Turbo Levo SL Comp Alloy](/products/specialized-turbo-levo-sl-comp-alloy/) (£4,000) runs Specialized\'s own SL 1.1 motor on 150/160mm of travel — right at the ceiling of this budget, but a genuinely different riding experience to the full-power bikes above. The [Orbea Rise LT H10](/products/orbea-rise-lt-h10/) (£3,500) offers a similar lightweight SL proposition on a Shimano EP801-RS motor for slightly less.',
+        ],
+      },
+      {
+        heading: 'Comparison Table: Best Under £4,000',
+        paragraphs: ['Five strong picks across trail, enduro and lightweight SL, all genuinely under £4,000.'],
+        table: {
+          headers: ['Bike', 'Category', 'Motor', 'Travel', 'From'],
+          rows: [
+            ['[Cube Stereo Hybrid ONE44 Race](/products/cube-stereo-hybrid-one44-race/)', 'Full Suspension / Trail', 'Bosch Performance CX', '140/140mm', '£3,200'],
+            ['[Giant Trance X E+ 2](/products/giant-trance-x-e-plus-2/)', 'Full Suspension / Trail', 'Yamaha SyncDrive Sport', '150/140mm', '£3,500'],
+            ['[Orbea Wild H10](/products/orbea-wild-h10/)', 'Full Suspension / Enduro', 'Bosch Performance CX', '160/150mm', '£3,500'],
+            ['[Orbea Rise LT H10](/products/orbea-rise-lt-h10/)', 'Lightweight SL', 'Shimano EP801-RS', '150/160mm', '£3,500'],
+            ['[Cube Stereo Hybrid 160 HPC Race](/products/cube-stereo-hybrid-160-hpc-race/)', 'Full Suspension / Enduro', 'Bosch Performance CX', '160/160mm', '£3,800'],
+          ],
+        },
+      },
+    ],
+    faqs: [
+      { q: 'Is £4,000 enough for a genuinely good eMTB?', a: 'Yes — at this budget you can get a proper full-suspension trail or entry-enduro bike on a mainstream Bosch, Shimano or Yamaha motor with no obvious spec compromises, as the picks above show.' },
+      { q: 'Should I spend closer to £3,000 or closer to £4,000 in this bracket?', a: 'Closer to £4,000 typically buys more travel and a more enduro-capable frame; closer to £3,000 is plenty if your riding is mostly trail-centre and rolling singletrack rather than steep, technical descents.' },
+      { q: 'Do bikes under £4,000 use lower-tier motors?', a: 'Not necessarily — several bikes in this bracket, including the Cube Stereo Hybrid range, use the same Bosch Performance CX motor found on bikes costing considerably more.' },
+    ],
+    closing:
+      'Browse the full range under this budget on our [electric mountain bikes under £3,000](/electric-mountain-bikes-under-3000/) filter, or [message us on WhatsApp](https://wa.me/447838207659) and we\'ll help you find the best spec for your budget and terrain.',
+  },
+
+  'electric-mountain-bike-motor-comparison': {
+    intro:
+      'Every eMTB in our range uses a mid-drive motor, but which platform it runs makes a real difference to how the bike climbs, sounds and feels — and the differences are bigger than most spec sheets let on. This is a full comparison of the six motor platforms we sell across our range: Bosch, Shimano, Yamaha, DJI Avinox, TQ and Specialized\'s own in-house units. We\'re not going to tell you one is definitively "best" — each is tuned for a different priority, and the right one depends on whether you value outright torque, weight, quiet running, or UK dealer support most.',
+    sections: [
+      {
+        heading: 'Bosch — The Default Choice for a Reason',
+        paragraphs: [
+          'Bosch Performance CX is the most widely used motor across our range and, more broadly, the most widely serviced eMTB motor in the UK — a genuinely safe default if you want strong torque and straightforward servicing wherever you ride. It\'s used across the [Cube](/cube-electric-mountain-bikes/), [Orbea](/orbea-electric-mountain-bikes/) and [Trek](/trek-electric-mountain-bikes/) ranges we stock, among others.',
+          'Bosch also makes lighter-duty units — Performance Line and Active Line Plus — used on some of our entry hardtails, trading outright torque for quieter running and lower weight. And Performance SX is Bosch\'s compact, lightweight-adjacent unit, built for a more natural ride feel without going fully into SL territory.',
+        ],
+      },
+      {
+        heading: 'Shimano — Quiet, Light, Widely Supported',
+        paragraphs: [
+          'Shimano\'s EP8 and EP801 motors are quieter and generally lighter-feeling than a full-power Bosch unit, with a wide UK dealer network of their own. You\'ll find EP801 across several [Trek Fuel EXe](/blog/trek-fuel-exe-review/) and Canyon models in our range. Shimano\'s EP801-RS is a lightweight variant, reducing weight and torque for an SL-style ride that still climbs competently — used on the Orbea Rise LT range.',
+        ],
+      },
+      {
+        heading: 'Yamaha — Giant and Haibike\'s Long-Standing Platform',
+        paragraphs: [
+          'Yamaha\'s SyncDrive and PW-series motors are the platform [Giant](/giant-electric-mountain-bikes/) and [Haibike](/haibike-electric-mountain-bikes/) have used and supported for years, across SyncDrive Sport, Pro and Pro2 tiers offering progressively more torque. It\'s a mature, well-proven system rather than a newer entrant, which counts for something if long-term reliability data matters to your decision.',
+        ],
+      },
+      {
+        heading: 'DJI Avinox — The New Challenger',
+        paragraphs: [
+          'DJI\'s Avinox system, found on our [Amflow](/amflow-electric-mountain-bikes/) range, is a newer platform with strong peak torque and smart features drawing on DJI\'s drone and camera-gimbal engineering background. It has a shorter UK service history than Bosch or Shimano, which is worth weighing if you prioritise a long-established dealer network over the newest tech — see our full [Amflow PL Carbon review](/blog/amflow-dji-avinox-review/) for more detail.',
+        ],
+      },
+      {
+        heading: 'TQ and Specialized — The Lightweight Specialists',
+        paragraphs: [
+          'The TQ HPR50, used on Trek\'s Fuel EXe SL variants and Scott\'s Lumen eRide, is a compact, near-silent unit tuned for a ride close to an unassisted bike — the quietest motor we stock. Specialized builds its own units in-house: the S3 Full Power motor on the [Turbo Levo](/blog/specialized-turbo-levo-review/) range, tuned specifically for that frame rather than adapted to fit, and the lighter SL 1.1 motor on the Levo SL and Kenevo SL.',
+        ],
+      },
+      {
+        heading: 'Comparison Table',
+        paragraphs: ['A quick reference across the platforms we stock — see individual bikes for exact torque figures.'],
+        table: {
+          headers: ['Motor', 'Character', 'Found On', 'Best For'],
+          rows: [
+            ['Bosch Performance CX', 'Strong torque, mature platform', 'Cube, Orbea, Trek Rail', 'Climbing power, wide UK support'],
+            ['Shimano EP801', 'Quieter, lighter feel', 'Trek Fuel EXe, Canyon', 'Balanced trail riding'],
+            ['Yamaha SyncDrive', 'Proven, tiered torque', 'Giant, Haibike', 'Long-standing reliability'],
+            ['DJI Avinox', 'High peak torque, smart features', 'Amflow', 'Latest tech, strong torque'],
+            ['TQ HPR50', 'Near-silent, low weight', 'Trek Fuel EXe SL, Scott Lumen', 'Natural, unassisted-feel ride'],
+            ['Specialized S3 / SL 1.1', 'Frame-tuned, full power or SL', 'Specialized Turbo Levo', 'Levo-specific tuning'],
+          ],
+        },
+      },
+    ],
+    faqs: [
+      { q: 'Which eMTB motor has the most torque?', a: 'Full-power platforms like Bosch Performance CX, Shimano EP8/EP801 and DJI Avinox generally offer the strongest climbing torque, ahead of the lightweight SL-focused units like TQ HPR50 and Specialized SL 1.1.' },
+      { q: 'Is a newer motor platform like DJI Avinox worth the risk?', a: 'It depends on your priorities — Avinox offers genuinely strong performance, but Bosch and Shimano have longer UK service track records if that matters more to you than having the newest system.' },
+      { q: 'Do all our bikes let you compare motors before buying?', a: 'Yes — every product page lists the exact motor, and you can filter or ask us directly if you want bikes on a specific platform compared side by side.' },
+    ],
+    closing:
+      'Not sure which motor suits your riding? [Message us on WhatsApp](https://wa.me/447838207659) and we\'ll talk through torque, weight and servicing trade-offs based on where and how often you ride, or browse the full [electric mountain bikes](/electric-mountain-bikes/) range filtered by motor.',
+  },
+
+  'what-is-an-emtb': {
+    intro:
+      'An eMTB — electric mountain bike — is a mountain bike with a motor that assists your own pedalling, rather than a bike you can ride on a throttle alone. It\'s a simple idea that gets muddled by marketing, so this guide explains exactly what makes a bike an eMTB, how the assistance actually works, and where UK law draws the line between a legal eMTB and something that legally isn\'t a bicycle at all.',
+    sections: [
+      {
+        heading: 'The Basic Definition',
+        paragraphs: [
+          'An eMTB is a mountain bike — full-suspension, hardtail or lightweight SL — fitted with a mid-drive motor mounted at the pedals, a battery, and a torque sensor that detects how hard you\'re pedalling. The motor adds power proportional to your own effort; stop pedalling and the assistance stops too. That distinction is what separates a legal UK eMTB from a throttle-controlled e-bike or moped, which is a completely different vehicle category under UK law.',
+          'Every bike in our range works this way. See our full [electric mountain bike buying guide](/blog/electric-mountain-bike-buying-guide/) for how the motor, battery and frame choices interact when you\'re choosing a bike.',
+        ],
+      },
+      {
+        heading: 'How the Motor Actually Works',
+        paragraphs: [
+          'A torque sensor at the bottom bracket measures how much force you\'re putting through the pedals, and the motor adds proportional assistance — harder pedalling gets more help, easing off gets less. You control the overall assistance level through a handlebar or top-tube display, typically offering several modes from maximum range (lower assistance) to maximum climbing power (higher assistance, faster battery drain).',
+          'This is fundamentally different from a throttle e-bike, where power is available without pedalling at all. See our full [motor comparison](/blog/electric-mountain-bike-motor-comparison/) for how the different platforms we stock — Bosch, Shimano, Yamaha, DJI Avinox, TQ and Specialized — implement this.',
+        ],
+      },
+      {
+        heading: 'What Makes It Street-Legal in the UK',
+        paragraphs: [
+          'UK law classes a pedal-assist bike as an "Electrically Assisted Pedal Cycle" (EAPC) — legally a normal bicycle, not a motor vehicle — provided it meets three conditions: motor power capped at 250W continuous, assistance cutting out at 15.5mph, and a minimum rider age of 14. Every bike we stock meets these limits.',
+          'That means no licence, no insurance requirement, no vehicle tax and no helmet law beyond the same rules that apply to a normal pedal bike. See our full [are electric mountain bikes legal UK](/blog/electric-mountain-bikes-legal-uk/) guide for the complete legal picture, including where these rules stop applying — for example, on private land where the landowner sets their own terms.',
+        ],
+      },
+      {
+        heading: 'eMTB vs a Regular Mountain Bike',
+        paragraphs: [
+          'The core trade-off is weight and cost against climbing assistance and range: an eMTB carries a motor and battery, adding weight and roughly £1,000-2,000 over an equivalent unassisted bike, in exchange for genuinely easier climbing and the ability to cover more ground in a ride. See our full [eMTB vs regular mountain bike](/blog/emtb-vs-regular-mountain-bike/) comparison for who each one actually suits.',
+        ],
+      },
+    ],
+    faqs: [
+      { q: 'Is an eMTB the same as an electric bike?', a: 'An eMTB is a specific type of electric bike — one built for off-road mountain biking, with suspension and geometry designed for trails rather than road or commuter riding.' },
+      { q: 'Do I need a licence to ride an eMTB in the UK?', a: 'No — provided it meets EAPC rules (250W motor, 15.5mph assist cutoff, minimum age 14), it is legally a bicycle and needs no licence, insurance or registration.' },
+      { q: 'Can an eMTB go faster than 15.5mph?', a: 'Yes, under your own pedalling power with no motor assistance above that speed — the cutoff applies only to the motor, not to how fast you can physically pedal.' },
+    ],
+    closing:
+      'Ready to see real eMTBs rather than just the theory? Browse our full [electric mountain bikes](/electric-mountain-bikes/) range, or [message us on WhatsApp](https://wa.me/447838207659) with any questions before you buy.',
+  },
+
+  'electric-mountain-bikes-legal-uk': {
+    intro:
+      'Yes — electric mountain bikes are legal in the UK, provided they meet the legal definition of an "Electrically Assisted Pedal Cycle" (EAPC) under the Electrically Assisted Pedal Cycles Regulations 1983 (as amended 2015). Every bike we sell meets these rules. This guide covers exactly what those rules require, what they mean in practice, and where they stop applying.',
+    sections: [
+      {
+        heading: 'The Three EAPC Rules',
+        paragraphs: [
+          'To count as an EAPC — and therefore be treated as an ordinary bicycle rather than a motor vehicle — a bike must meet three limits: a motor rated at no more than 250W continuous power, assistance that cuts out once you reach 15.5mph (25km/h), and a minimum rider age of 14. All three apply together, and every eMTB we stock is built to meet them.',
+          'If a bike exceeds any of these — a more powerful motor, no speed cutoff, or a throttle that works without pedalling — it legally becomes a moped or motorcycle, requiring registration, a licence, insurance and tax. That is a completely different vehicle category to anything we sell.',
+        ],
+      },
+      {
+        heading: 'What You Don\'t Need',
+        paragraphs: [
+          'Because an EAPC counts as a normal pedal cycle, you don\'t need a driving licence, motor insurance, road tax, or vehicle registration to ride one. The same general cycling rules that apply to a normal bike apply here too — no legal requirement for a helmet (though we\'d always recommend wearing one for mountain biking specifically, given the terrain), and no minimum age beyond the EAPC\'s own 14-year threshold.',
+        ],
+      },
+      {
+        heading: 'Where You Can Actually Ride One',
+        paragraphs: [
+          'An EAPC can be ridden anywhere a normal bicycle can: on public roads, cycle paths, and any off-road trail or bridleway where cycling is already permitted. It does not grant any additional access — if a footpath doesn\'t allow bicycles, it doesn\'t allow eMTBs either, and the same trail-access rules that apply to unassisted mountain bikes apply equally here.',
+          'On private land — bike parks, trail centres with their own rules, or privately owned trails — the landowner or operator sets their own terms, which occasionally restrict e-bikes specifically regardless of their legal EAPC status elsewhere. Always check locally if you\'re unsure.',
+        ],
+      },
+      {
+        heading: 'Insurance: Not Required, But Worth Considering',
+        paragraphs: [
+          'There\'s no legal requirement to insure an EAPC, but given the value of most eMTBs — several hundred to several thousand pounds — many riders choose personal bike insurance covering theft and accidental damage, similar to home contents cover for a high-value bicycle. This is a personal choice rather than a legal obligation.',
+        ],
+      },
+    ],
+    faqs: [
+      { q: 'Do I need insurance for an electric mountain bike in the UK?', a: 'No, it is not a legal requirement for an EAPC, though many riders choose voluntary bike insurance given the value of most eMTBs.' },
+      { q: 'What happens if a bike exceeds the 250W or 15.5mph limits?', a: 'It legally stops being an EAPC and becomes classed as a motor vehicle, requiring registration, a licence, insurance and tax — none of the bikes we sell exceed these limits.' },
+      { q: 'Is there a minimum age to ride an electric mountain bike in the UK?', a: 'Yes — 14 years old is the minimum age under EAPC regulations, the same age limit that applies to every eMTB we stock.' },
+    ],
+    closing:
+      'Every bike on our [electric mountain bikes](/electric-mountain-bikes/) page meets these EAPC rules. If you have any questions about legality before you buy, [message us on WhatsApp](https://wa.me/447838207659) and we\'ll give you a straight answer.',
+  },
+
+  'cube-stereo-hybrid-review': {
+    intro:
+      'The Cube Stereo Hybrid is a Bosch-powered full-suspension range spanning five models in our current line-up, from a £2,800 entry build to a £5,000 range-topper. All five share the same Bosch Performance CX motor, so the real differences between them come down to travel, frame spec and price — this review breaks down exactly what separates each one.',
+    sections: [
+      {
+        heading: 'ONE44 Race 625 — The Entry Point',
+        paragraphs: [
+          'The [Cube Stereo Hybrid ONE44 Race 625](/products/cube-stereo-hybrid-one44-race-625/) (£2,800) is the most affordable full-suspension Stereo Hybrid we stock, running 140/140mm of travel on the same Bosch Performance CX motor as the rest of the range. If budget is the main constraint but you want full suspension rather than a hardtail, this is where to start.',
+        ],
+      },
+      {
+        heading: 'ONE44 Race and SLX — The Trail Mainstays',
+        paragraphs: [
+          'The [ONE44 Race](/products/cube-stereo-hybrid-one44-race/) (£3,200) is our best-selling Stereo Hybrid, and for good reason — same 140/140mm travel, same Bosch Performance CX motor, with a spec bump over the 625 that justifies the price step for most riders. The [ONE44 SLX](/products/cube-stereo-hybrid-one44-slx/) (£4,200) goes further again, with a higher-spec build for riders who want the same travel bracket but a more refined component set.',
+        ],
+      },
+      {
+        heading: '160 HPC Race and SLX — Stepping Up to Enduro',
+        paragraphs: [
+          'The [160 HPC Race](/products/cube-stereo-hybrid-160-hpc-race/) (£3,800) moves into enduro territory with 160/160mm of travel, still on the familiar Bosch Performance CX motor — a genuine step up in descending capability over the ONE44 models above. The [160 HPC SLX](/products/cube-stereo-hybrid-160-hpc-slx/) (£5,000) is the range-topper, same travel bracket with a premium build for riders who want the most capable Stereo Hybrid we stock.',
+        ],
+      },
+      {
+        heading: 'Which Stereo Hybrid Should You Buy?',
+        paragraphs: [
+          'If your riding is mostly trail-centre and rolling singletrack, the ONE44 Race at £3,200 is the sensible middle ground — enough bike for the vast majority of UK riding without paying for capability you won\'t use. If you regularly ride steeper, rougher terrain, the 160 HPC Race justifies its higher travel and price. The 625 and SLX variants sit at either end for buyers prioritising budget or spec respectively.',
+        ],
+      },
+      {
+        heading: 'Comparison Table: All 5 Stereo Hybrid Models',
+        paragraphs: ['Every Stereo Hybrid we stock, compared by travel and price.'],
+        table: {
+          headers: ['Model', 'Type', 'Travel', 'Motor', 'From'],
+          rows: [
+            ['[ONE44 Race 625](/products/cube-stereo-hybrid-one44-race-625/)', 'Trail', '140/140mm', 'Bosch Performance CX', '£2,800'],
+            ['[ONE44 Race](/products/cube-stereo-hybrid-one44-race/)', 'Trail', '140/140mm', 'Bosch Performance CX', '£3,200'],
+            ['[160 HPC Race](/products/cube-stereo-hybrid-160-hpc-race/)', 'Enduro', '160/160mm', 'Bosch Performance CX', '£3,800'],
+            ['[ONE44 SLX](/products/cube-stereo-hybrid-one44-slx/)', 'Trail', '140/140mm', 'Bosch Performance CX', '£4,200'],
+            ['[160 HPC SLX](/products/cube-stereo-hybrid-160-hpc-slx/)', 'Enduro', '160/160mm', 'Bosch Performance CX', '£5,000'],
+          ],
+        },
+      },
+    ],
+    faqs: [
+      { q: 'What is the difference between the Cube Stereo Hybrid ONE44 and 160 HPC?', a: 'The ONE44 runs 140/140mm of trail-focused travel, while the 160 HPC steps up to 160/160mm for more enduro-capable, descent-focused riding — both use the same Bosch Performance CX motor.' },
+      { q: 'Which Cube Stereo Hybrid is the best value?', a: 'The ONE44 Race at £3,200 is our best-seller and the strongest all-round value in the range, covering the vast majority of UK trail riding without paying for a higher-spec build you may not need.' },
+      { q: 'Do all Cube Stereo Hybrid models use the same motor?', a: 'Yes — all five models we stock use the Bosch Performance CX motor, so the real differences between them are travel, frame spec and componentry rather than motor performance.' },
+    ],
+    closing:
+      'See the full [Cube electric mountain bike](/cube-electric-mountain-bikes/) range to compare all Cube models we stock, or [message us on WhatsApp](https://wa.me/447838207659) if you\'d like help choosing between them.',
+  },
+
+  'specialized-turbo-levo-review': {
+    intro:
+      'The Specialized Turbo Levo is one of the best-known eMTB platforms, and our range covers three distinct versions: the full-power Turbo Levo 4 on Specialized\'s own S3 Full Power motor, the lighter Turbo Levo SL on the SL 1.1 motor, and the enduro-focused Turbo Kenevo SL. All three share 150-170mm of travel but are tuned for genuinely different riding styles — here\'s how they compare.',
+    sections: [
+      {
+        heading: 'Turbo Levo 4 — Full Power',
+        paragraphs: [
+          'The [Turbo Levo 4 Alloy](/products/specialized-turbo-levo-4-alloy/) (£3,500) is the entry point into full-power Levo ownership, running Specialized\'s own S3 Full Power motor on 150/160mm of travel — a motor built specifically for this frame rather than a third-party unit adapted to fit. The [Turbo Levo 4 Comp Alloy](/products/specialized-turbo-levo-4-comp-alloy/) (£4,500) is one of our best-selling models, stepping up the spec on the same motor and travel. At the top, the [Turbo Levo 4 Expert Carbon](/products/specialized-turbo-levo-4-expert-carbon/) (£7,000) adds a carbon frame and premium build.',
+        ],
+      },
+      {
+        heading: 'Turbo Levo SL — Lightweight Without Losing Levo Handling',
+        paragraphs: [
+          'The Turbo Levo SL swaps the S3 Full Power motor for Specialized\'s lighter SL 1.1 unit, trading some outright torque for a noticeably lighter overall bike and a ride feel closer to an unassisted mountain bike. The [Turbo Levo SL Comp Alloy](/products/specialized-turbo-levo-sl-comp-alloy/) (£4,000) is the entry point, the [Turbo Levo SL Comp Carbon](/products/specialized-turbo-levo-sl-comp-carbon/) (£5,000) adds a carbon frame, and the [Turbo Levo SL Expert](/products/specialized-turbo-levo-sl-expert/) (£6,500) tops the SL range with a premium spec.',
+        ],
+      },
+      {
+        heading: 'Turbo Kenevo SL — Enduro, Lightened',
+        paragraphs: [
+          'The [Turbo Kenevo SL 2 Expert](/products/specialized-turbo-kenevo-sl-2-expert/) (£7,000) applies the SL 1.1 motor to a longer-travel, 170/170mm enduro frame — a genuinely unusual combination of enduro-level travel and SL-level weight, for riders who want a lighter bike without giving up descending capability on rough terrain.',
+        ],
+      },
+      {
+        heading: 'Full Power or SL — Which Turbo Levo Should You Buy?',
+        paragraphs: [
+          'If outright climbing torque matters most, the full-power Turbo Levo 4 range is the better fit. If you\'d rather have a lighter bike that feels closer to an unassisted mountain bike, with slightly less torque in exchange, the Turbo Levo SL range is worth the trade-off — particularly on technical, twisty singletrack where a lighter front end is easier to place. See our full [electric mountain bike motor comparison](/blog/electric-mountain-bike-motor-comparison/) for more on how Specialized\'s motors compare to other platforms we stock.',
+        ],
+      },
+      {
+        heading: 'Comparison Table: The Full Turbo Levo Range',
+        paragraphs: ['All 7 Specialized models we stock, compared by motor, travel and price.'],
+        table: {
+          headers: ['Model', 'Motor', 'Travel', 'From'],
+          rows: [
+            ['[Turbo Levo 4 Alloy](/products/specialized-turbo-levo-4-alloy/)', 'S3 Full Power', '150/160mm', '£3,500'],
+            ['[Turbo Levo SL Comp Alloy](/products/specialized-turbo-levo-sl-comp-alloy/)', 'SL 1.1', '150/160mm', '£4,000'],
+            ['[Turbo Levo 4 Comp Alloy](/products/specialized-turbo-levo-4-comp-alloy/)', 'S3 Full Power', '150/160mm', '£4,500'],
+            ['[Turbo Levo SL Comp Carbon](/products/specialized-turbo-levo-sl-comp-carbon/)', 'SL 1.1', '150/160mm', '£5,000'],
+            ['[Turbo Levo SL Expert](/products/specialized-turbo-levo-sl-expert/)', 'SL 1.1', '150/160mm', '£6,500'],
+            ['[Turbo Levo 4 Expert Carbon](/products/specialized-turbo-levo-4-expert-carbon/)', 'S3 Full Power', '150/160mm', '£7,000'],
+            ['[Turbo Kenevo SL 2 Expert](/products/specialized-turbo-kenevo-sl-2-expert/)', 'SL 1.1', '170/170mm', '£7,000'],
+          ],
+        },
+      },
+    ],
+    faqs: [
+      { q: 'What is the difference between the Specialized Turbo Levo and Turbo Levo SL?', a: 'The Turbo Levo runs Specialized\'s full-power S3 motor for maximum torque, while the Levo SL uses the lighter SL 1.1 motor for a lighter overall bike with a more natural ride feel, at the cost of some outright climbing power.' },
+      { q: 'Is the Specialized Turbo Kenevo SL an enduro bike?', a: 'Yes — it combines 170/170mm of enduro-level travel with the lightweight SL 1.1 motor, an unusual pairing built for riders who want a lighter bike without giving up descending capability.' },
+      { q: 'Which Specialized Turbo Levo is the best value?', a: 'The Turbo Levo 4 Comp Alloy at £4,500 is one of our best-selling eMTBs and the strongest balance of spec and price in the full-power range.' },
+    ],
+    closing:
+      'See the complete [Specialized electric mountain bike](/specialized-electric-mountain-bikes/) range, or [message us on WhatsApp](https://wa.me/447838207659) if you\'d like help choosing between the full-power and SL versions.',
+  },
+
+  'giant-trance-x-e-plus-review': {
+    intro:
+      'The Giant Trance X E+ is a mid-travel trail eMTB built around Yamaha\'s SyncDrive motor family, and we stock three versions across the SyncDrive Sport, Pro and Pro2 tiers — same 150/140mm travel throughout, with motor torque and spec increasing as you move up the range. This review compares all three to help you decide which tier is worth paying for.',
+    sections: [
+      {
+        heading: 'Trance X E+ 2 — The Entry Point',
+        paragraphs: [
+          'The [Giant Trance X E+ 2](/products/giant-trance-x-e-plus-2/) (£3,500) runs Yamaha\'s SyncDrive Sport motor — the lightest-duty tier in Yamaha\'s range, adequate for the majority of UK trail-centre riding without the torque or price of the higher tiers. It shares the same 150/140mm travel and frame as the rest of the Trance X E+ line, so you\'re not sacrificing capability, just motor output.',
+        ],
+      },
+      {
+        heading: 'Trance X E+ 1 — The Middle Ground',
+        paragraphs: [
+          'The [Giant Trance X E+ 1](/products/giant-trance-x-e-plus-1/) (£4,500) steps up to Yamaha\'s SyncDrive Pro motor, offering noticeably more climbing torque than the E+ 2 for riders who tackle steeper, longer ascents regularly. It\'s the same frame and travel as the E+ 2, so the extra spend goes entirely into motor performance and componentry.',
+        ],
+      },
+      {
+        heading: 'Trance X E+ 0 Elite — The Range-Topper',
+        paragraphs: [
+          'The [Giant Trance X E+ 0 Elite](/products/giant-trance-x-e-plus-0-elite/) (£6,500) tops the range with Yamaha\'s SyncDrive Pro2 motor — the strongest torque tier Yamaha offers, paired with the highest-spec build in the Trance X E+ line. This is the pick for riders who want the most capable version of this platform rather than the best value.',
+        ],
+      },
+      {
+        heading: 'Which Trance X E+ Should You Buy?',
+        paragraphs: [
+          'If your riding is mostly rolling trail-centre terrain, the E+ 2 covers it comfortably and represents the strongest value in the range. If you regularly climb steep, sustained ascents and feel the difference in motor torque matters to your riding, the E+ 1 is worth the step up. The E+ 0 Elite is for riders prioritising outright capability and spec over value.',
+        ],
+      },
+      {
+        heading: 'Comparison Table: All 3 Trance X E+ Models',
+        paragraphs: ['Same frame and travel throughout — the difference is entirely motor tier and spec.'],
+        table: {
+          headers: ['Model', 'Motor', 'Travel', 'From'],
+          rows: [
+            ['[Trance X E+ 2](/products/giant-trance-x-e-plus-2/)', 'Yamaha SyncDrive Sport', '150/140mm', '£3,500'],
+            ['[Trance X E+ 1](/products/giant-trance-x-e-plus-1/)', 'Yamaha SyncDrive Pro', '150/140mm', '£4,500'],
+            ['[Trance X E+ 0 Elite](/products/giant-trance-x-e-plus-0-elite/)', 'Yamaha SyncDrive Pro2', '150/140mm', '£6,500'],
+          ],
+        },
+      },
+    ],
+    faqs: [
+      { q: 'What is the difference between the Giant Trance X E+ models?', a: 'All three share the same frame and 150/140mm travel — the difference is entirely the Yamaha motor tier (Sport, Pro or Pro2) and the component spec built around it.' },
+      { q: 'Is the Giant Trance X E+ 2 underpowered?', a: 'No — the SyncDrive Sport motor is adequate for the vast majority of UK trail riding; the higher tiers add torque mainly noticeable on steep, sustained climbs.' },
+      { q: 'How does the Trance X E+ compare to the Giant Stance E+?', a: 'The Trance X E+ has more travel (150/140mm vs 140/130mm) and is the more trail-capable of the two — see our full [Giant electric mountain bike](/giant-electric-mountain-bikes/) range for the complete line-up.' },
+    ],
+    closing:
+      'Compare the full [Giant electric mountain bike](/giant-electric-mountain-bikes/) range, or [message us on WhatsApp](https://wa.me/447838207659) if you\'re unsure which Trance X E+ motor tier is worth paying for.',
+  },
+
+  'best-electric-mountain-bikes-beginners': {
+    intro:
+      'The best eMTB for a beginner isn\'t necessarily the cheapest or the most capable — it\'s the one that\'s easiest to learn on, simplest to maintain, and forgiving if you make mistakes while you\'re still building confidence. That generally means a hardtail or a shorter-travel full-suspension bike on a well-supported motor platform, not a long-travel enduro build. Here\'s what we\'d actually recommend to a first-time buyer.',
+    sections: [
+      {
+        heading: 'Why a Hardtail Is Often the Smartest Start',
+        paragraphs: [
+          'A hardtail has fewer moving parts than a full-suspension bike, which means less to service and less that can go wrong while you\'re still learning how a mountain bike handles. The [Trek Marlin+ 6](/products/trek-marlin-plus-6/) (£2,100) is the most affordable option in our range, running a Bosch Active Line Plus motor — plenty for trail-centre riding and fire roads, which is where most beginners spend their first season.',
+          'The [Giant Talon E+ 2](/products/giant-talon-e-plus-2/) (£2,500) is a similar proposition on a Yamaha SyncDrive Sport motor, and the [Whyte Karve 150](/products/whyte-karve-150/) (£2,500) offers a UK-designed alternative on Bosch Performance CX if you want more torque from the outset.',
+        ],
+      },
+      {
+        heading: 'A Forgiving Full-Suspension Option',
+        paragraphs: [
+          'If you\'d rather start with full suspension for the extra comfort and grip, the [Giant Stance E+ 2](/products/giant-stance-e-plus-2/) (£2,800) is a genuinely beginner-friendly choice — 140/130mm of travel, a Yamaha SyncDrive Sport motor, and a well-mannered, balanced ride that doesn\'t punish small mistakes the way a longer-travel enduro bike can.',
+        ],
+      },
+      {
+        heading: 'What to Avoid as a First eMTB',
+        paragraphs: [
+          'We\'d steer most first-time buyers away from long-travel enduro bikes and lightweight SL bikes as a starting point — enduro geometry is built for confident, aggressive riding on rough terrain, which can feel unwieldy before you\'ve built that confidence, and SL bikes trade away some of the climbing assistance that makes the learning curve easier in the first place. Both are excellent second bikes once you know what you actually want.',
+        ],
+      },
+      {
+        heading: 'Getting the Size Right as a Beginner',
+        paragraphs: [
+          'Frame size matters more for a beginner than for an experienced rider, since an ill-fitting bike makes everything harder to learn. See our full [electric mountain bike buying guide](/blog/electric-mountain-bike-buying-guide/) for sizing guidance, or [message us on WhatsApp](https://wa.me/447838207659) with your height and we\'ll recommend a size directly.',
+        ],
+      },
+    ],
+    faqs: [
+      { q: 'Should a beginner buy a hardtail or full-suspension eMTB?', a: 'A hardtail is often the simpler, lower-maintenance start, but a shorter-travel full-suspension bike like the Giant Stance E+ 2 is also genuinely beginner-friendly if you prefer the extra comfort.' },
+      { q: 'What is the cheapest good beginner eMTB in your range?', a: 'The Trek Marlin+ 6 at £2,100 is our most affordable hardtail and a sensible, low-risk way into electric mountain biking.' },
+      { q: 'Should a beginner avoid enduro eMTBs?', a: 'Generally yes at first — enduro geometry rewards confident, aggressive riding, and is easier to appreciate once you\'ve built skill on a more forgiving trail bike or hardtail.' },
+    ],
+    closing:
+      'Browse beginner-friendly picks on our [hardtail electric mountain bikes](/hardtail-electric-mountain-bikes/) page, or [message us on WhatsApp](https://wa.me/447838207659) and tell us about your riding — we\'ll point you to the right first bike rather than the most expensive one.',
+  },
+
+  'emtb-battery-range-guide': {
+    intro:
+      'The range figure on a spec sheet is a best-case number, not a realistic average — actual range depends heavily on assistance level, terrain, rider weight, tyre pressure and even temperature. This guide explains what genuinely affects how far your battery takes you, so you can plan rides realistically rather than being caught out by an optimistic manufacturer claim.',
+    sections: [
+      {
+        heading: 'What Actually Determines Range',
+        paragraphs: [
+          'Assistance level is the single biggest factor — riding on maximum support climbs faster but drains the battery considerably quicker than a lower setting, sometimes by a factor of two or more over the same ride. Terrain matters almost as much: sustained climbing draws far more power than rolling or flat trails, so a hilly ride and a flat ride of the same distance can use very different amounts of battery.',
+          'Rider and bike weight, tyre pressure, and even cold weather all reduce range meaningfully — lithium batteries lose some capacity in low temperatures, which is worth knowing if you ride through a UK winter. None of these factors are unique to any one bike; they apply across every motor platform we stock.',
+        ],
+      },
+      {
+        heading: 'Realistic Range Expectations',
+        paragraphs: [
+          'Battery capacity across our range typically runs in the 500-800Wh bracket depending on motor platform and frame size — check the specific product page for the exact figure on a given model. In real-world terms, that generally translates to somewhere between 30-50km of assisted riding on higher support settings, or considerably further on lower assistance, though the factors above mean this varies ride to ride rather than being a fixed number.',
+          'If you\'re planning a longer day out, it\'s worth erring toward a lower assistance setting for the first half of the ride and reserving higher support for when you actually need it on climbs, rather than running maximum assistance throughout and risking running out before you\'re back.',
+        ],
+      },
+      {
+        heading: 'Extending Your Range',
+        paragraphs: [
+          'If range is a genuine concern for the rides you have planned, a range-extender like the [Bosch PowerMore 250Wh](/accessories/bosch-powermore-250-range-extender/) bolts onto compatible Bosch-motor bikes for meaningful extra capacity on longer days, without needing to carry a second full battery. Ask us which specific models in our range support the largest available battery option if maximum range is your priority when choosing a bike.',
+        ],
+      },
+    ],
+    faqs: [
+      { q: 'How far can an eMTB actually go on one charge?', a: 'Typically 30-50km on higher assistance settings, or considerably further on lower support — the exact figure depends heavily on terrain, assistance level and rider weight rather than being fixed.' },
+      { q: 'Does cold weather affect eMTB battery range?', a: 'Yes — lithium batteries lose some capacity in low temperatures, so expect somewhat reduced range on cold UK winter rides compared to summer.' },
+      { q: 'Can I extend my eMTB\'s range with an accessory?', a: 'Yes — range extenders like the Bosch PowerMore 250Wh bolt onto compatible bikes for extra capacity without carrying a spare battery; ask us which of our bikes support this.' },
+    ],
+    closing:
+      'Ask us about real-world range on any specific bike before you buy — [message us on WhatsApp](https://wa.me/447838207659) — or browse [accessories](/accessories/) including range extenders for longer days out.',
+  },
+
+  'emtb-vs-regular-mountain-bike': {
+    intro:
+      'Neither an eMTB nor a regular mountain bike is objectively better — they suit different riders and different priorities, and the honest answer to which you should buy depends on what you actually want from your riding. This comparison covers the real trade-offs: cost, weight, maintenance and who each one genuinely suits, without pretending the assisted bike is a universal upgrade.',
+    sections: [
+      {
+        heading: 'Cost',
+        paragraphs: [
+          'An eMTB typically costs £1,000-2,000 more than an equivalent unassisted mountain bike, reflecting the motor, battery and reinforced frame required to carry them. Our range starts from around £1,900 for an entry hardtail, rising well beyond £7,000 for premium full-suspension and enduro builds — broadly £1,000-2,000 more at each spec tier than the unassisted equivalent would cost.',
+        ],
+      },
+      {
+        heading: 'Weight',
+        paragraphs: [
+          'An eMTB is meaningfully heavier than a regular mountain bike — typically 4-9kg more, depending on motor and battery size — which affects how the bike feels when lifting it over obstacles, loading it onto a car rack, or carrying it up unrideable sections. Lightweight SL eMTBs narrow this gap considerably by using a smaller motor and battery, at the cost of some outright climbing torque; see our full [motor comparison](/blog/electric-mountain-bike-motor-comparison/) for how the platforms differ.',
+        ],
+      },
+      {
+        heading: 'Maintenance',
+        paragraphs: [
+          'A regular mountain bike has fewer components to service — no motor, no battery, no electronics — which generally means lower running costs and simpler home maintenance. An eMTB\'s motor and battery need occasional professional servicing, and the added weight and torque can wear drivetrain components faster than an unassisted bike under similar riding.',
+        ],
+      },
+      {
+        heading: 'Who Actually Suits Each One',
+        paragraphs: [
+          'An eMTB makes the most sense if you want to ride further, climb terrain you couldn\'t manage unassisted, keep pace with fitter riding partners, or simply enjoy more time on the bike without the physical toll of a fully unassisted ride. A regular mountain bike suits riders who want the lowest weight and running cost, value the pure physical workout, or ride terrain where the extra weight of a motor and battery is a genuine disadvantage — technical, highly technical singletrack with a lot of lifting and carrying, for example.',
+          'Many riders end up owning both for different days and different moods — there\'s no rule that says you have to pick permanently. See our full [electric mountain bike buying guide](/blog/electric-mountain-bike-buying-guide/) if you\'ve decided an eMTB is the right direction and want help choosing a specific model.',
+        ],
+      },
+    ],
+    faqs: [
+      { q: 'Is an eMTB just a mountain bike for lazy riders?', a: 'No — you still have to pedal for the motor to assist at all, and many eMTB riders report longer, more frequent rides than they managed unassisted, simply because the assistance removes some of the physical barrier to riding further or more often.' },
+      { q: 'How much heavier is an eMTB than a regular mountain bike?', a: 'Typically 4-9kg more, depending on motor and battery size — lightweight SL eMTBs narrow this gap considerably at the cost of some climbing torque.' },
+      { q: 'Should I buy an eMTB or a regular mountain bike as my only bike?', a: 'It depends on your priorities — an eMTB suits riders who want to cover more ground or climb harder terrain, while a regular bike suits those prioritising lowest weight, cost and the pure physical challenge.' },
+    ],
+    closing:
+      'Still deciding? [Message us on WhatsApp](https://wa.me/447838207659) and tell us how you actually ride — we\'ll give you a straight opinion rather than a generic answer, or browse our full [electric mountain bikes](/electric-mountain-bikes/) range to see what an eMTB gets you at every price point.',
+  },
 };
