@@ -32,10 +32,14 @@ export async function getOrder(orderNumber) {
   return typeof raw === 'string' ? JSON.parse(raw) : raw;
 }
 
-export async function markOrderSent(orderNumber) {
+// paymentDetails: { methodId, fields: [{label, value}], sentAt } — stored so
+// the customer's payment-details link (/order/payment-details/?id=) can
+// still render the same fields if they come back to it later.
+export async function markOrderSent(orderNumber, paymentDetails) {
   const order = await getOrder(orderNumber);
   if (!order) return;
   order.status = 'payment-sent';
+  if (paymentDetails) order.paymentDetails = paymentDetails;
   await saveOrder(order);
 }
 

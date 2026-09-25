@@ -11,11 +11,14 @@ import CartDrawer from '@/components/CartDrawer';
 // footer, cart drawer and chat widget entirely.
 export default function SiteChrome({ children }) {
   const pathname = usePathname();
-  // The admin dashboard and its standalone customer-facing payment-confirmation
-  // page are internal-tool pages, not storefront pages — they get their own
-  // dark shell and skip the public announce bar, main nav, footer, cart
-  // drawer and chat widget entirely.
-  const isStandalone = pathname?.startsWith('/admin') || pathname?.startsWith('/order/confirm-payment');
+  // The admin dashboard and its standalone customer-facing payment pages
+  // (confirm-payment upload, payment-details copy view) are internal-tool
+  // pages, not storefront pages — they get their own dark shell and skip the
+  // public announce bar, main nav, footer, cart drawer and chat widget entirely.
+  const isStandalone =
+    pathname?.startsWith('/admin') ||
+    pathname?.startsWith('/order/confirm-payment') ||
+    pathname?.startsWith('/order/payment-details');
 
   if (isStandalone) return <main id="main">{children}</main>;
 

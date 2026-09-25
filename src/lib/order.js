@@ -58,12 +58,26 @@ export function paymentTermsHtml(ref) {
     .join('');
 }
 
-/**
- * Wraps a pasted payment-detail snippet with the standard opening/closing
- * framing for the chosen payment method, so the admin only ever types the
- * one real, order-specific thing: the bank transfer details.
- */
-export function instructionsParts(methodId, amount, ref, pastedDetail) {
-  const { opening, closing } = paymentMethodParts(methodId, amount, ref);
-  return [opening, '', pastedDetail.trim(), '', closing].join('\n');
+// The fixed set of bank-transfer fields the admin fills in per order. Kept
+// as a function (not static data) so a future second payment method can
+// define its own field set without touching the composer/email code that
+// consumes it — everything downstream just iterates `fields`.
+export function paymentFieldsFor(methodId) {
+  if (methodId === 'bank-transfer') {
+    return [
+      { key: 'accountName', label: 'Account name' },
+      { key: 'sortCode', label: 'Sort code' },
+      { key: 'accountNumber', label: 'Account number' },
+      { key: 'reference', label: 'Reference' },
+    ];
+  }
+  return [];
+}
+
+// values: { accountName, sortCode, accountNumber, reference } -> [{label,value}]
+// dropping any the admin left blank, so an unused field never shows as empty.
+export function resolvePaymentFields(methodId, values) {
+  return paymentFieldsFor(methodId)
+    .map((f) => ({ label: f.label, value: String(values?.[f.key] || '').trim() }))
+    .filter((f) => f.value);
 }

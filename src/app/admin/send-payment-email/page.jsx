@@ -7,7 +7,7 @@ import { CheckCircle2, ArrowLeft } from 'lucide-react';
 import { useAdminContextPasscode } from '@/components/admin/AdminPasscodeContext';
 import { WhatsAppSendPanel } from '@/components/admin/WhatsAppSendPanel';
 import { REPLY } from '@/config/site';
-import { money, paymentMethodParts, paymentTermsLines } from '@/lib/order';
+import { money, paymentMethodParts, paymentTermsLines, paymentFieldsFor, resolvePaymentFields } from '@/lib/order';
 import { waPaymentDetailsLink, waPaymentDetailsMessage } from '@/lib/whatsapp';
 
 function Composer() {
@@ -18,7 +18,7 @@ function Composer() {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [methodId, setMethodId] = useState(REPLY.paymentMethods[0]?.id || '');
-  const [detail, setDetail] = useState('');
+  const [values, setValues] = useState({});
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
@@ -38,9 +38,18 @@ function Composer() {
       .finally(() => setLoading(false));
   }, [id, passcode]);
 
+  // Reference field defaults to the order number — the admin can override it,
+  // but shouldn't have to type it every time.
+  useEffect(() => {
+    if (order) setValues((v) => ({ ...v, reference: v.reference ?? order.orderNumber }));
+  }, [order]);
+
+  const fieldDefs = paymentFieldsFor(methodId);
+  const resolvedFields = resolvePaymentFields(methodId, values);
+
   const send = async () => {
-    if (!order || !detail.trim()) {
-      setError('Paste the payment detail (bank transfer details) before sending.');
+    if (resolvedFields.length === 0) {
+      setError('Fill in at least one payment field before sending.');
       return;
     }
     setSending(true);
@@ -49,7 +58,7 @@ function Composer() {
       const res = await fetch('/api/admin/send-payment-email/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-passcode': passcode },
-        body: JSON.stringify({ orderNumber: order.orderNumber, methodId, detail }),
+        body: JSON.stringify({ orderNumber: order.orderNumber, methodId, fields: values }),
       });
       const data = await res.json();
       if (data.ok) setSent(true);
@@ -86,6 +95,7 @@ function Composer() {
         <div className="success-box">
           <CheckCircle2 size={32} />
           <p>Payment details sent to {order.customerEmail}.</p>
+          <p className="sub">They'll see each field with its own copy button at the link in the email.</p>
         </div>
       ) : (
         <div>
@@ -98,21 +108,35 @@ function Composer() {
             </select>
           </div>
 
-          <div className="form-group">
-            <label>Payment detail — bank transfer details for this order</label>
-            <textarea
-              value={detail}
-              onChange={(e) => setDetail(e.target.value)}
-              rows={5}
-              placeholder="Paste the real bank transfer details for this order…"
-              className="mono"
-            />
-          </div>
+          {fieldDefs.map((f) => (
+            <div className="form-group" key={f.key}>
+              <label htmlFor={f.key}>{f.label}</label>
+              <input
+                id={f.key}
+                type="text"
+                className="mono"
+                value={values[f.key] || ''}
+                onChange={(e) => setValues((v) => ({ ...v, [f.key]: e.target.value }))}
+                placeholder={`This order's real ${f.label.toLowerCase()}…`}
+              />
+            </div>
+          ))}
 
           <div className="email-preview">
-            <div className="email-preview-label">Email preview</div>
+            <div className="email-preview-label">Email + copy-link preview</div>
             <p>{opening}</p>
-            <pre>{detail || '(paste detail above to preview)'}</pre>
+            {resolvedFields.length === 0 ? (
+              <pre>(fill in the fields above to preview)</pre>
+            ) : (
+              <div className="payment-fields-list" style={{ margin: '8px 0' }}>
+                {resolvedFields.map((f) => (
+                  <div key={f.label} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, fontSize: 13, padding: '6px 0', borderBottom: '1px solid #e2e5df' }}>
+                    <span style={{ color: '#6a746e', fontWeight: 700 }}>{f.label}</span>
+                    <span style={{ fontFamily: "'SF Mono','Fira Code',monospace" }}>{f.value}</span>
+                  </div>
+                ))}
+              </div>
+            )}
             <p>{closing}</p>
             <ul style={{ margin: '8px 0 0', paddingLeft: 18, fontSize: 12 }}>
               {paymentTermsLines(order.orderNumber).map((l, i) => (
@@ -135,12 +159,16 @@ function Composer() {
           link={waPaymentDetailsLink(order.customerPhone, {
             orderNumber: order.orderNumber,
             amountDue: order.amountDue,
-            instructions: `${opening}\n\n${detail || '(add payment detail above first)'}\n\n${closing}`,
+            fields: resolvedFields,
+            opening,
+            closing,
           })}
           messageLines={waPaymentDetailsMessage({
             orderNumber: order.orderNumber,
             amountDue: order.amountDue,
-            instructions: `${opening}\n\n${detail || '(add payment detail above first)'}\n\n${closing}`,
+            fields: resolvedFields,
+            opening,
+            closing,
           })}
         />
       </div>

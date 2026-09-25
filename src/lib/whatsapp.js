@@ -26,14 +26,18 @@ export function waLinkTo(phone, body) {
   return `https://wa.me/${number}?text=${encodeURIComponent(buildText(body))}`;
 }
 
-// Admin -> customer: pre-filled payment-details message for the WA reply panel.
-export function waPaymentDetailsMessage({ orderNumber, amountDue, instructions }) {
+// Admin -> customer: pre-filled payment-details message for the WA reply
+// panel. `fields` is [{label,value}] — WhatsApp has no copy buttons either,
+// but each field on its own line is still easy to long-press-copy in the app.
+export function waPaymentDetailsMessage({ orderNumber, amountDue, fields = [], opening, closing }) {
   const { symbol } = REPLY.currency;
   const terms = paymentTermsLines(orderNumber).map((l) => `✅ ${l}`);
   return [
     `Payment details for order ${orderNumber} — ${symbol}${Number(amountDue).toLocaleString('en-GB')} due.`,
     '',
-    instructions.trim(),
+    ...(opening ? [opening, ''] : []),
+    ...fields.map((f) => `${f.label}: ${f.value}`),
+    ...(closing ? ['', closing] : []),
     '',
     ...terms,
   ];

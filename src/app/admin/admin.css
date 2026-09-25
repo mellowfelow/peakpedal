@@ -651,6 +651,51 @@
 .upload-drop:hover { border-color: var(--admin-accent); }
 .upload-drop .filename { color: var(--admin-text-soft); font-size: 13px; text-transform: none; }
 .upload-drop .hint { font-size: 11px; color: var(--admin-text-faint); text-transform: none; }
+/* Copyable payment-detail rows (/order/payment-details/) */
+.payment-fields-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+.copy-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--admin-border);
+  background: #0f1215;
+  color: var(--admin-text);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+.copy-field:hover { border-color: var(--admin-accent); }
+.copy-field-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--admin-text-faint);
+  flex-shrink: 0;
+  width: 120px;
+}
+.copy-field-value {
+  flex: 1;
+  min-width: 0;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 15px;
+  color: var(--admin-text);
+  overflow-wrap: anywhere;
+}
+.copy-field-icon {
+  flex-shrink: 0;
+  color: var(--admin-accent);
+  display: flex;
+  align-items: center;
+}
 .sr-only {
   position: absolute;
   width: 1px; height: 1px;

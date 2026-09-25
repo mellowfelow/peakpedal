@@ -30,6 +30,7 @@ const C = {
 
 const SANS = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 const SERIF = "Georgia, 'Times New Roman', serif";
+const MONO = "SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace";
 
 export const escapeHtml = (s) =>
   String(s ?? '')
@@ -113,14 +114,29 @@ const mailLink = (e) => `<a href="mailto:${esc(e)}" style="color:${C.goldInk};te
 
 /* -------------------------- PAYMENT DETAILS (Reply Portal, customer-facing) -------------------------- */
 
-export function paymentDetailsEmail({ orderNumber, amountDue, customerName, instructionsHtml }) {
+// fields: [{label, value}] — e.g. Account name / Sort code / Account number /
+// Reference. Email clients strip all JavaScript, so a real click-to-copy
+// button cannot work inside the email itself (no email provider supports
+// this — it's not a Peak Pedal limitation). Each field still renders on its
+// own monospace line here for easy manual copying, and the email links
+// through to a live page (/order/payment-details/) with real copy buttons,
+// the same pattern banks and payment processors use for exactly this reason.
+export function paymentDetailsEmail({ orderNumber, amountDue, customerName, opening, closing, fields = [] }) {
   const ts = stamp();
+  const detailsUrl = `https://${SITE.domain}/order/payment-details/?id=${encodeURIComponent(orderNumber)}`;
+
+  const fieldRows = fields
+    .map((f) => field(f.label, `<span style="font-family:${MONO};">${esc(f.value)}</span>`, 12))
+    .join('');
 
   const body = `
   ${field('Order', `<strong>${esc(orderNumber)}</strong>`, 14)}
   ${field('Amount due', `<span style="font-family:${SERIF};font-size:20px;color:${C.goldInk};">${money(amountDue)}</span>`, 20)}
   ${divider}
-  <div style="font-family:${SANS};font-size:14px;line-height:1.7;color:${C.ink};margin-bottom:20px;">${instructionsHtml}</div>
+  ${opening ? `<p style="font-family:${SANS};font-size:14px;line-height:1.7;color:${C.ink};margin:0 0 14px;">${esc(opening)}</p>` : ''}
+  ${fieldRows}
+  ${closing ? `<p style="font-family:${SANS};font-size:14px;line-height:1.7;color:${C.ink};margin:14px 0 20px;">${esc(closing)}</p>` : ''}
+  <div style="margin:4px 0 20px;">${button(detailsUrl, 'View & Copy Payment Details')}</div>
   ${callout(
     `<strong style="font-family:${SANS};">Before your order ships</strong>
      <ul style="margin:10px 0 0;padding-left:18px;">${paymentTermsHtml(orderNumber)}</ul>`
@@ -137,7 +153,10 @@ export function paymentDetailsEmail({ orderNumber, amountDue, customerName, inst
   const text =
     `PAYMENT DETAILS — ${orderNumber}\n${ts}\n\n` +
     `Amount due: ${money(amountDue)}\n\n` +
-    `${instructionsHtml.replace(/<[^>]+>/g, '')}\n\n` +
+    (opening ? `${opening}\n\n` : '') +
+    fields.map((f) => `${f.label}: ${f.value}`).join('\n') +
+    (closing ? `\n\n${closing}` : '') +
+    `\n\nView with copy buttons: ${detailsUrl}\n\n` +
     paymentTermsLines(orderNumber)
       .map((l) => `- ${l}`)
       .join('\n') +
