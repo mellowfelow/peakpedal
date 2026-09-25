@@ -58,15 +58,63 @@ export function paymentTermsHtml(ref) {
     .join('');
 }
 
+// Common payment-detail label words, covering every method the site
+// currently offers plus the obvious ones a future method would add (crypto,
+// PayPal, a payment link) — used only as a fallback for lines with no colon,
+// so the copy button never carries the label baked into the value. Longest
+// phrases first so e.g. "account number" wins over a bare "account".
+const KNOWN_LABELS = [
+  'account name',
+  'account number',
+  'sort code',
+  'bank name',
+  'branch code',
+  'routing number',
+  'beneficiary name',
+  'beneficiary',
+  'swift code',
+  'swift',
+  'bic code',
+  'bic',
+  'iban',
+  'wallet address',
+  'wallet',
+  'network',
+  'memo',
+  'destination tag',
+  'tag',
+  'paypal email',
+  'paypal.me',
+  'paypal',
+  'payment link',
+  'reference',
+].sort((a, b) => b.length - a.length);
+
+const LABEL_PATTERN = new RegExp(
+  `^(${KNOWN_LABELS.map((l) => l.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})\\s*[:\\-]?\\s+(.+)$`,
+  'i'
+);
+
+function titleCase(s) {
+  return s.replace(/\S+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase());
+}
+
 /**
  * Splits one pasted payment-detail blob into individually-copyable fields —
  * this is what lets the admin keep pasting one block of text (works for any
  * payment method: bank transfer, a crypto wallet address, a PayPal.me link,
- * anything) while the customer still gets each real component as its own
- * copy button. One line = one field. "Label: value" becomes {label, value};
- * a line with no colon becomes a field labelled "Detail" (numbered if there's
- * more than one), so an admin who just pastes a single wallet address with
- * no label still gets a working copy button rather than nothing at all.
+ * anything, current or future) while the customer still gets each real
+ * component as its own copy button, carrying only the value, not the label.
+ *
+ * Three tiers, in order:
+ *  1. "Label: value" on a line — the fully general case. Any label works
+ *     here, including ones not in KNOWN_LABELS, so a brand-new payment
+ *     method needs no code change as long as the admin uses a colon.
+ *  2. No colon, but the line starts with a recognised label word (e.g.
+ *     "Sort code 00-00-00") — split there so the value alone gets copied.
+ *  3. No colon and no recognised label — the whole line becomes one field
+ *     labelled "Detail" (numbered if there's more than one), so a bare
+ *     wallet address with nothing else still gets a working copy button.
  */
 export function parsePaymentDetail(text) {
   const lines = String(text || '')
@@ -76,9 +124,13 @@ export function parsePaymentDetail(text) {
 
   let unlabeled = 0;
   return lines.map((line) => {
-    const i = line.indexOf(':');
-    if (i > 0 && i < line.length - 1) {
-      return { label: line.slice(0, i).trim(), value: line.slice(i + 1).trim() };
+    const colonIdx = line.indexOf(':');
+    if (colonIdx > 0 && colonIdx < line.length - 1) {
+      return { label: line.slice(0, colonIdx).trim(), value: line.slice(colonIdx + 1).trim() };
+    }
+    const match = line.match(LABEL_PATTERN);
+    if (match) {
+      return { label: titleCase(match[1]), value: match[2].trim() };
     }
     unlabeled += 1;
     return { label: unlabeled > 1 ? `Detail ${unlabeled}` : 'Detail', value: line };
