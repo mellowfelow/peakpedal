@@ -8,8 +8,8 @@ export async function GET(request, { params }) {
   const denied = checkAdminPasscode(request);
   if (denied) return denied;
   const { id } = await params;
-  const enquiry = await getEnquiry(id);
-  if (!enquiry) return Response.json({ ok: false, error: 'not-found' }, { status: 404 });
+  const enquiry = await getEnquiry(decodeURIComponent(id));
+  if (!enquiry) return Response.json({ ok: false, error: 'Not found' }, { status: 404 });
   return Response.json({ ok: true, enquiry });
 }
 
@@ -17,6 +17,6 @@ export async function DELETE(request, { params }) {
   const denied = checkAdminPasscode(request);
   if (denied) return denied;
   const { id } = await params;
-  await deleteEnquiry(id);
+  await deleteEnquiry(decodeURIComponent(id));
   return Response.json({ ok: true });
 }

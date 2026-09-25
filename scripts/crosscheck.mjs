@@ -243,8 +243,14 @@ async function checkBuildOutput() {
 
     // /admin/* is the Reply Portal — passcode-gated, noindex, client-rendered
     // (the real page only paints after PasscodeGate reads localStorage), so
-    // it's outside the SEO surface these checks are protecting.
-    const isAdminPage = rel === 'admin.html' || rel.startsWith(`admin${path.sep}`);
+    // it's outside the SEO surface these checks are protecting. Its public
+    // counterpart, /order/confirm-payment/, is the same standalone
+    // client-rendered shell (reached only via a link in a transactional
+    // email, already noindexed under the /order/ disallow).
+    const isAdminPage =
+      rel === 'admin.html' ||
+      rel.startsWith(`admin${path.sep}`) ||
+      rel === path.join('order', 'confirm-payment.html');
 
     const h1Count = (html.match(/<h1[\s>]/g) || []).length;
     if (h1Count !== 1 && !isAdminPage) {

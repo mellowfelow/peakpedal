@@ -1,29 +1,34 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { MessageCircle, Copy, Check } from 'lucide-react';
+import { waMessageText } from '@/lib/whatsapp';
 
-// Pre-filled wa.me link the admin clicks to open WhatsApp with the message
-// ready to send — plus a "copy message" fallback for desktop/manual paste.
-export default function WhatsAppSendPanel({ link, messageText }) {
+export function WhatsAppSendPanel({ phone, link, messageLines }) {
   const [copied, setCopied] = useState(false);
 
-  async function copyMessage() {
+  const copyMessage = async () => {
     try {
-      await navigator.clipboard.writeText(messageText);
+      await navigator.clipboard.writeText(waMessageText(messageLines));
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch {}
-  }
+    } catch {
+      /* ignore */
+    }
+  };
 
   return (
     <div className="wa-panel">
-      <strong>Or reply on WhatsApp</strong>
-      <p style={{ fontSize: '0.85rem', color: '#166534', margin: '4px 0 12px' }}>
-        Opens WhatsApp with the message pre-filled — just press send.
-      </p>
-      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-        <a href={link} target="_blank" rel="noopener noreferrer" className="btn-primary">Open WhatsApp</a>
-        <button type="button" className="btn-sm" onClick={copyMessage}>{copied ? 'Copied!' : 'Copy message'}</button>
+      <div className="wa-panel-title">
+        <MessageCircle size={16} /> WhatsApp reply — {phone}
+      </div>
+      <p className="wa-panel-sub">Opens WhatsApp with the message pre-filled — just press Send.</p>
+      <div className="wa-panel-actions">
+        <a href={link} target="_blank" rel="noopener noreferrer" className="btn-primary">Open in WhatsApp</a>
+        <button type="button" onClick={copyMessage} className="btn-sm">
+          {copied ? <Check size={14} /> : <Copy size={14} />}
+          {copied ? 'Copied' : 'Copy message'}
+        </button>
       </div>
     </div>
   );

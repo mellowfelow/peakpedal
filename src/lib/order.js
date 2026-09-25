@@ -1,8 +1,8 @@
-// Payment-method framing + standing terms — one source, rendered to email
-// HTML, WhatsApp text and JSX preview. Everything reads from REPLY (site.js).
 import { REPLY } from '@/config/site';
-import { escapeHtml } from '@/lib/emailTemplate';
 
+// GBP whole-pound formatting (matches how prices render everywhere else on
+// the site) rather than forcing cents — the aged & amber original uses
+// toFixed(2) for USD spirits pricing, not appropriate for £-thousands bikes.
 export function money(n) {
   const { symbol } = REPLY.currency;
   return `${symbol}${Number(n || 0).toLocaleString('en-GB')}`;
@@ -28,25 +28,42 @@ export function paymentMethodParts(methodId, amount, ref) {
   };
 }
 
-// Standing terms appended to every payment email + WhatsApp message.
+/**
+ * Standing terms appended to every payment-details email and WA message.
+ * Single source — the email, the WA text, and the composer preview all read
+ * from this function so the three render paths can never drift apart.
+ */
 export function paymentTermsLines(ref) {
-  const wa = REPLY.channels.whatsapp;
   return [
-    `Complete payment within ${REPLY.deadlineHours}h to hold this price.`,
-    `Use your order number — ${ref} — as the payment reference.`,
+    'This order is confirmed once payment is received — it is not yet final.',
+    ref ? `Use your order number — ${ref} — as the payment reference.` : 'Use your order number as the payment reference.',
     REPLY.dispatchLine,
-    `Once paid, let us know at ${REPLY.channels.email}${wa ? ` or WhatsApp` : ''} so we can confirm your order.`,
   ].filter(Boolean);
 }
 
-export function paymentTermsHtml(ref) {
-  const items = paymentTermsLines(ref)
-    .map((l) => `<li style="margin:0 0 6px;">${escapeHtml(l)}</li>`)
-    .join('');
-  return `<ul style="margin:6px 0 0;padding-left:18px;">${items}</ul>`;
+function escapeHtmlLocal(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
-// opening + admin's pasted variable detail + closing, blank-line joined.
-export function instructionsParts(opening, detail, closing) {
-  return [opening, detail, closing].filter(Boolean).join('\n\n');
+export function paymentTermsHtml(ref) {
+  return paymentTermsLines(ref)
+    .map(
+      (line) =>
+        `<li style="margin:0 0 8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:#1B2320;">${escapeHtmlLocal(line)}</li>`
+    )
+    .join('');
+}
+
+/**
+ * Wraps a pasted payment-detail snippet with the standard opening/closing
+ * framing for the chosen payment method, so the admin only ever types the
+ * one real, order-specific thing: the bank transfer details.
+ */
+export function instructionsParts(methodId, amount, ref, pastedDetail) {
+  const { opening, closing } = paymentMethodParts(methodId, amount, ref);
+  return [opening, '', pastedDetail.trim(), '', closing].join('\n');
 }

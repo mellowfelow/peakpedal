@@ -1,8 +1,22 @@
-import PasscodeGate from '@/components/admin/PasscodeGate';
+'use client';
+
+import React from 'react';
+import { PasscodeGate } from '@/components/admin/PasscodeGate';
+import { AdminNav } from '@/components/admin/AdminNav';
+import { AdminPasscodeProvider } from '@/components/admin/AdminPasscodeContext';
 import './admin.css';
 
-export const metadata = { title: 'Admin — Peak Pedal', robots: { index: false, follow: false } };
-
 export default function AdminLayout({ children }) {
-  return <PasscodeGate>{children}</PasscodeGate>;
+  return (
+    <PasscodeGate>
+      {(passcode, signOut) => (
+        <div className="admin-shell">
+          <AdminNav onSignOut={signOut} />
+          <div className="admin-content">
+            <AdminPasscodeProvider passcode={passcode}>{children}</AdminPasscodeProvider>
+          </div>
+        </div>
+      )}
+    </PasscodeGate>
+  );
 }

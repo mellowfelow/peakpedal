@@ -85,16 +85,25 @@ export const FORMS = {
 // details are never stored here (Peak Pedal has none on file yet) — the
 // admin pastes them per order in the send-payment-email composer.
 export const REPLY = {
+  brand: {
+    primary: SITE.colors.accent, // lime — accent used across admin UI + emails
+    headerDark: SITE.colors.dark, // near-black — email header band / admin shell
+  },
   channels: { email: CONTACT.email, whatsapp: CONTACT.whatsapp },
   currency: { symbol: CONTACT.currencySymbol, code: CONTACT.currency },
-  deadlineHours: 48,
+  headerTagline: SITE.tagline,
   dispatchLine: "We'll confirm your dispatch date once payment is received.",
+  // Payment-method registry — data, not code. opening/closing accept
+  // {amount}/{ref} tokens. Text only, never routing numbers/wallet addresses —
+  // those are real secrets the admin pastes per order in the
+  // send-payment-email composer (never fabricate).
   paymentMethods: [
     {
       id: 'bank-transfer',
       label: 'Bank transfer',
-      opening: 'Please transfer {amount} to complete order {ref}:',
-      closing: "Once you've paid, reply to this email or message us on WhatsApp and we'll confirm your order.",
+      opening: 'Please transfer {amount} to complete order {ref} using the details below.',
+      closing:
+        "Once sent, use the button below to upload a screenshot of your payment (or reply to this email / send it on WhatsApp) so we can confirm and dispatch your order.",
     },
   ],
 };

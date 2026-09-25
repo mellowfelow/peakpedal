@@ -1,125 +1,148 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useAdminPasscode } from '@/lib/useAdminPasscode';
-import { REPLY, CONTACT } from '@/config/site';
-import { waPaymentDetailsLink, waPaymentDetailsMessage, waMessageText } from '@/lib/whatsapp';
-import WhatsAppSendPanel from '@/components/admin/WhatsAppSendPanel';
+import { CheckCircle2, ArrowLeft } from 'lucide-react';
+import { useAdminContextPasscode } from '@/components/admin/AdminPasscodeContext';
+import { WhatsAppSendPanel } from '@/components/admin/WhatsAppSendPanel';
+import { REPLY } from '@/config/site';
+import { money, paymentMethodParts, paymentTermsLines } from '@/lib/order';
+import { waPaymentDetailsLink, waPaymentDetailsMessage } from '@/lib/whatsapp';
 
-const money = (n) => `${CONTACT.currencySymbol}${Number(n || 0).toLocaleString('en-GB')}`;
-
-function SendPaymentEmailInner() {
-  const { passcode } = useAdminPasscode();
-  const searchParams = useSearchParams();
-  const orderId = searchParams.get('id') || '';
+function Composer() {
+  const passcode = useAdminContextPasscode();
+  const params = useSearchParams();
+  const id = params.get('id') || '';
 
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [methodId, setMethodId] = useState(REPLY.paymentMethods[0]?.id || '');
   const [detail, setDetail] = useState('');
   const [sending, setSending] = useState(false);
-  const [result, setResult] = useState(null);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    if (!passcode || !orderId) {
+    if (!id) {
       setLoading(false);
       return;
     }
-    fetch(`/api/admin/orders/${encodeURIComponent(orderId)}/`, { headers: { 'x-admin-passcode': passcode } })
+    fetch(`/api/admin/orders/${encodeURIComponent(id)}/`, { headers: { 'x-admin-passcode': passcode } })
       .then((r) => r.json())
       .then((d) => {
         setOrder(d.order || null);
-        setLoading(false);
+        const matched = REPLY.paymentMethods.find((m) => m.label === d.order?.paymentMethod);
+        if (matched) setMethodId(matched.id);
       })
-      .catch(() => setLoading(false));
-  }, [passcode, orderId]);
+      .finally(() => setLoading(false));
+  }, [id, passcode]);
 
-  async function handleSend(e) {
-    e.preventDefault();
+  const send = async () => {
+    if (!order || !detail.trim()) {
+      setError('Paste the payment detail (bank transfer details) before sending.');
+      return;
+    }
     setSending(true);
-    setResult(null);
+    setError('');
     try {
       const res = await fetch('/api/admin/send-payment-email/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-passcode': passcode },
-        body: JSON.stringify({ orderId, methodId, detail }),
+        body: JSON.stringify({ orderNumber: order.orderNumber, methodId, detail }),
       });
       const data = await res.json();
-      if (data.ok && data.sent) setResult({ type: 'success', text: 'Payment email sent.' });
-      else if (data.ok) setResult({ type: 'warning', text: `Not emailed: ${data.reason || 'SMTP not configured'} — use WhatsApp instead.` });
-      else setResult({ type: 'error', text: data.error || 'Failed to send.' });
+      if (data.ok) setSent(true);
+      else setError(data.error || 'Send failed.');
     } catch {
-      setResult({ type: 'error', text: 'Network error — try again.' });
+      setError('Send failed — check your connection and try again.');
+    } finally {
+      setSending(false);
     }
-    setSending(false);
-  }
+  };
 
-  if (loading) return <p style={{ padding: 24, color: '#888' }}>Loading order…</p>;
+  if (loading) return <p className="empty-state">Loading…</p>;
   if (!order) {
     return (
-      <div className="empty-state">
-        <p>Order not found.</p>
-        <a href="/admin/orders/" className="btn-sm" style={{ marginTop: 12, display: 'inline-block' }}>Back to orders</a>
+      <div>
+        <p className="empty-state" style={{ marginBottom: 16 }}>{id ? `Order ${id} not found.` : 'Open this page from an order.'}</p>
+        <Link href="/admin/orders/" className="back-link"><ArrowLeft size={14} /> Back to orders</Link>
       </div>
     );
   }
 
-  const waLink = order.customerPhone
-    ? waPaymentDetailsLink(order.customerPhone, { orderNumber: order.orderNumber, amountDue: order.amountDue, methodId, detail })
-    : '';
-  const waText = waMessageText(
-    waPaymentDetailsMessage({ orderNumber: order.orderNumber, amountDue: order.amountDue, methodId, detail })
-  );
+  const { opening, closing } = paymentMethodParts(methodId, order.amountDue, order.orderNumber);
 
   return (
     <div style={{ maxWidth: 640 }}>
-      <div className="detail-header">
-        <h1>Send payment details</h1>
-        <p className="detail-meta">
-          Order <strong>{order.orderNumber}</strong> — {order.customerName} ({order.customerEmail || 'no email'}) — {money(order.amountDue)}
-        </p>
-      </div>
+      <Link href={`/admin/orders/${encodeURIComponent(order.orderNumber)}/`} className="back-link"><ArrowLeft size={14} /> Back to order</Link>
 
-      <form onSubmit={handleSend}>
-        <div className="form-group">
-          <label className="form-label">Payment method</label>
-          <select value={methodId} onChange={(e) => setMethodId(e.target.value)} className="form-select">
-            {REPLY.paymentMethods.map((m) => (
-              <option key={m.id} value={m.id}>{m.label}</option>
-            ))}
-          </select>
+      <h1 className="admin-page-title" style={{ marginBottom: 4 }}>Send Payment Details</h1>
+      <p className="detail-meta" style={{ marginBottom: 24 }}>
+        {order.orderNumber} · {order.customerName} · {order.customerEmail} · <strong style={{ color: 'var(--admin-accent)' }}>{money(order.amountDue)}</strong>
+      </p>
+
+      {sent ? (
+        <div className="success-box">
+          <CheckCircle2 size={32} />
+          <p>Payment details sent to {order.customerEmail}.</p>
         </div>
-
-        <div className="form-group">
-          <label className="form-label">Payment details</label>
-          <textarea
-            value={detail}
-            onChange={(e) => setDetail(e.target.value)}
-            required
-            rows={6}
-            placeholder="Paste the bank transfer details for this order here."
-            className="form-textarea mono"
-          />
-        </div>
-
-        {result && <div className={`alert alert-${result.type}`}>{result.text}</div>}
-
-        <button type="submit" disabled={sending || !order.customerEmail} className="btn-primary">
-          {sending ? 'Sending…' : `Email ${order.customerEmail || '(no email on file)'}`}
-        </button>
-      </form>
-
-      {waLink && <WhatsAppSendPanel link={waLink} messageText={waText} />}
-
-      <div className="item-list">
-        <h2 className="section-title">Order items</h2>
-        {(order.items || []).map((item, i) => (
-          <div key={i} className="item-row">
-            <span>{item.qty} × {item.name}</span>
-            <span>{money(item.priceLow * (item.qty || 1))}</span>
+      ) : (
+        <div>
+          <div className="form-group">
+            <label>Payment method</label>
+            <select value={methodId} onChange={(e) => setMethodId(e.target.value)}>
+              {REPLY.paymentMethods.map((m) => (
+                <option key={m.id} value={m.id}>{m.label}</option>
+              ))}
+            </select>
           </div>
-        ))}
+
+          <div className="form-group">
+            <label>Payment detail — bank transfer details for this order</label>
+            <textarea
+              value={detail}
+              onChange={(e) => setDetail(e.target.value)}
+              rows={5}
+              placeholder="Paste the real bank transfer details for this order…"
+              className="mono"
+            />
+          </div>
+
+          <div className="email-preview">
+            <div className="email-preview-label">Email preview</div>
+            <p>{opening}</p>
+            <pre>{detail || '(paste detail above to preview)'}</pre>
+            <p>{closing}</p>
+            <ul style={{ margin: '8px 0 0', paddingLeft: 18, fontSize: 12 }}>
+              {paymentTermsLines(order.orderNumber).map((l, i) => (
+                <li key={i}>{l}</li>
+              ))}
+            </ul>
+          </div>
+
+          {error && <p className="error-text">{error}</p>}
+
+          <button onClick={send} disabled={sending} className="btn-primary" style={{ width: '100%' }}>
+            {sending ? 'Sending…' : `Email payment details to ${order.customerEmail}`}
+          </button>
+        </div>
+      )}
+
+      <div style={{ paddingTop: 24, marginTop: 24, borderTop: '1px solid var(--admin-border)' }}>
+        <WhatsAppSendPanel
+          phone={order.customerPhone}
+          link={waPaymentDetailsLink(order.customerPhone, {
+            orderNumber: order.orderNumber,
+            amountDue: order.amountDue,
+            instructions: `${opening}\n\n${detail || '(add payment detail above first)'}\n\n${closing}`,
+          })}
+          messageLines={waPaymentDetailsMessage({
+            orderNumber: order.orderNumber,
+            amountDue: order.amountDue,
+            instructions: `${opening}\n\n${detail || '(add payment detail above first)'}\n\n${closing}`,
+          })}
+        />
       </div>
     </div>
   );
@@ -127,8 +150,8 @@ function SendPaymentEmailInner() {
 
 export default function SendPaymentEmailPage() {
   return (
-    <Suspense fallback={<p style={{ padding: 24, color: '#888' }}>Loading…</p>}>
-      <SendPaymentEmailInner />
+    <Suspense fallback={<p className="empty-state">Loading…</p>}>
+      <Composer />
     </Suspense>
   );
 }

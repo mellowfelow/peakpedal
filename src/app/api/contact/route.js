@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import { FORMS, CONTACT, SITE, ORDER_RULES } from '@/config/site';
 import { saveOrder, isOrderStoreConfigured } from '@/lib/orderStore';
-import { saveEnquiry, isEnquiryStoreConfigured } from '@/lib/enquiryStore';
+import { saveEnquiry, isEnquiryStoreConfigured, generateEnquiryId } from '@/lib/enquiryStore';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -210,17 +210,23 @@ export async function POST(req) {
         customerPhone: body.phone,
         address: body.address,
         notes: body.notes,
-        items: items.map((it) => ({ name: it.name, qty: it.qty, priceLow: it.each })),
+        items: items.map((it) => ({ name: it.name, quantity: it.qty, lineTotal: it.each * it.qty })),
         amountDue: subtotal,
+        paymentMethod: body.payment || '',
+        status: 'pending',
         channel: 'email',
+        createdAt: new Date().toISOString(),
       });
     } else if (!isOrder && isEnquiryStoreConfigured()) {
       await saveEnquiry({
+        id: generateEnquiryId(),
         type: body.formName === 'wholesale' ? 'wholesale' : 'contact',
         name,
         email: body.email,
         phone: body.phone,
         message: body.message,
+        status: 'new',
+        createdAt: new Date().toISOString(),
         meta: { subject: body.subject },
       });
     }

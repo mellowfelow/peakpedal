@@ -1,66 +1,93 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useAdminPasscode } from '@/lib/useAdminPasscode';
-import { CONTACT } from '@/config/site';
-
-const money = (n) => `${CONTACT.currencySymbol}${Number(n || 0).toLocaleString('en-GB')}`;
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { Trash2, MessageCircle, Mail } from 'lucide-react';
+import { useAdminContextPasscode } from '@/components/admin/AdminPasscodeContext';
+import { OrderStatusBadge } from '@/components/admin/StatusBadge';
+import { money } from '@/lib/order';
 
 export default function OrdersPage() {
-  const { passcode } = useAdminPasscode();
+  const passcode = useAdminContextPasscode();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (!passcode) return;
+  const load = () => {
+    setLoading(true);
     fetch('/api/admin/orders/', { headers: { 'x-admin-passcode': passcode } })
       .then((r) => r.json())
-      .then((d) => {
-        setOrders(d.orders || []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [passcode]);
+      .then((d) => setOrders(d.orders || []))
+      .finally(() => setLoading(false));
+  };
 
-  async function handleDelete(ref) {
-    if (!confirm(`Delete order ${ref}?`)) return;
-    await fetch(`/api/admin/orders/${encodeURIComponent(ref)}/`, { method: 'DELETE', headers: { 'x-admin-passcode': passcode } });
-    setOrders((prev) => prev.filter((o) => o.orderNumber !== ref));
-  }
+  useEffect(load, [passcode]);
 
-  if (loading) return <p style={{ padding: 24, color: '#888' }}>Loading orders…</p>;
+  const deleteOrder = async (orderNumber, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!confirm(`Delete order ${orderNumber}? This can't be undone.`)) return;
+    await fetch(`/api/admin/orders/${encodeURIComponent(orderNumber)}/`, {
+      method: 'DELETE',
+      headers: { 'x-admin-passcode': passcode },
+    });
+    load();
+  };
+
+  const deleteAll = async () => {
+    if (!confirm(`Delete all ${orders.length} orders? This can't be undone.`)) return;
+    await Promise.all(
+      orders.map((o) =>
+        fetch(`/api/admin/orders/${encodeURIComponent(o.orderNumber)}/`, {
+          method: 'DELETE',
+          headers: { 'x-admin-passcode': passcode },
+        })
+      )
+    );
+    load();
+  };
 
   return (
     <div>
       <h1 className="admin-page-title">Orders</h1>
-      {orders.length === 0 ? (
-        <div className="empty-state"><p>No orders yet.</p></div>
+
+      {loading ? (
+        <p className="empty-state">Loading…</p>
+      ) : orders.length === 0 ? (
+        <p className="empty-state">No orders yet.</p>
       ) : (
-        <div>
-          {orders.map((o) => {
-            const date = o.createdAt ? new Date(o.createdAt).toLocaleDateString('en-GB', { month: 'short', day: 'numeric', year: 'numeric' }) : '—';
-            return (
-              <div key={o.orderNumber} className="item-card">
-                <div className="item-card-header">
-                  <a href={`/admin/orders/${encodeURIComponent(o.orderNumber)}/`} className="mono" style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-primary, #14432a)', textDecoration: 'none' }}>
-                    {o.orderNumber}
-                  </a>
-                  <span className={`status-badge status-${o.status}`}>{o.status === 'payment-sent' ? 'Sent' : 'Pending'}</span>
-                  <span className={`status-badge status-${o.channel}`}>{o.channel}</span>
-                </div>
-                <div className="item-card-name">{o.customerName}</div>
-                <div className="item-card-meta">{o.customerEmail || o.customerPhone || 'No contact'} · {date}</div>
-                <div className="item-card-footer">
-                  <span className="item-card-amount">{money(o.amountDue)}</span>
-                  <div className="action-row">
-                    <a href={`/admin/orders/${encodeURIComponent(o.orderNumber)}/`} className="btn-sm">View</a>
-                    <button onClick={() => handleDelete(o.orderNumber)} className="btn-danger">Delete</button>
+        <>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 12 }}>
+            <button onClick={deleteAll} className="btn-danger">
+              <Trash2 size={14} /> Delete all
+            </button>
+          </div>
+          <div className="list-rows">
+            {orders.map((o) => (
+              <div key={o.orderNumber} className="list-row">
+                <Link href={`/admin/orders/${encodeURIComponent(o.orderNumber)}/`} className="list-row-link">
+                  <div>
+                    <div className="row-title">{o.orderNumber}</div>
+                    <div className="row-meta">{new Date(o.createdAt).toLocaleString('en-GB')}</div>
                   </div>
-                </div>
+                  <div className="row-truncate">
+                    {o.customerName}
+                    <div className="row-meta row-truncate">{o.customerEmail}</div>
+                  </div>
+                  <div className="row-amount">{money(o.amountDue)}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <OrderStatusBadge status={o.status} />
+                    <span className="row-channel" title={o.channel}>
+                      {o.channel === 'whatsapp' ? <MessageCircle size={14} /> : <Mail size={14} />}
+                    </span>
+                  </div>
+                </Link>
+                <button onClick={(e) => deleteOrder(o.orderNumber, e)} className="icon-btn" aria-label={`Delete order ${o.orderNumber}`}>
+                  <Trash2 size={16} />
+                </button>
               </div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

@@ -1,106 +1,112 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useAdminPasscode } from '@/lib/useAdminPasscode';
+import { CheckCircle2, ArrowLeft } from 'lucide-react';
+import { useAdminContextPasscode } from '@/components/admin/AdminPasscodeContext';
 
-function ReplyEnquiryInner() {
-  const { passcode } = useAdminPasscode();
-  const searchParams = useSearchParams();
-  const enquiryId = searchParams.get('id') || '';
+function Composer() {
+  const passcode = useAdminContextPasscode();
+  const params = useSearchParams();
+  const id = params.get('id') || '';
 
   const [enquiry, setEnquiry] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
+  const [reply, setReply] = useState('');
   const [sending, setSending] = useState(false);
-  const [result, setResult] = useState(null);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    if (!passcode || !enquiryId) {
+    if (!id) {
       setLoading(false);
       return;
     }
-    fetch(`/api/admin/enquiries/${encodeURIComponent(enquiryId)}/`, { headers: { 'x-admin-passcode': passcode } })
+    fetch(`/api/admin/enquiries/${encodeURIComponent(id)}/`, { headers: { 'x-admin-passcode': passcode } })
       .then((r) => r.json())
-      .then((d) => {
-        setEnquiry(d.enquiry || null);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [passcode, enquiryId]);
+      .then((d) => setEnquiry(d.enquiry || null))
+      .finally(() => setLoading(false));
+  }, [id, passcode]);
 
-  async function handleSend(e) {
-    e.preventDefault();
+  const send = async () => {
+    if (!enquiry || !reply.trim()) {
+      setError('Write a reply before sending.');
+      return;
+    }
     setSending(true);
-    setResult(null);
+    setError('');
     try {
       const res = await fetch('/api/admin/reply-enquiry/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-passcode': passcode },
-        body: JSON.stringify({ enquiryId, subject, message }),
+        body: JSON.stringify({ id: enquiry.id, reply, replyIsHtml: false }),
       });
       const data = await res.json();
-      if (data.ok && data.sent) setResult({ type: 'success', text: 'Reply sent.' });
-      else if (data.ok) setResult({ type: 'warning', text: `Not emailed: ${data.reason || 'SMTP not configured'}` });
-      else setResult({ type: 'error', text: data.error || 'Failed to send.' });
+      if (data.ok) setSent(true);
+      else setError(data.error || 'Send failed.');
     } catch {
-      setResult({ type: 'error', text: 'Network error — try again.' });
+      setError('Send failed — check your connection and try again.');
+    } finally {
+      setSending(false);
     }
-    setSending(false);
-  }
+  };
 
-  if (loading) return <p style={{ padding: 24, color: '#888' }}>Loading enquiry…</p>;
+  if (loading) return <p className="empty-state">Loading…</p>;
   if (!enquiry) {
     return (
-      <div className="empty-state">
-        <p>Enquiry not found.</p>
-        <a href="/admin/enquiries/" className="btn-sm" style={{ marginTop: 12, display: 'inline-block' }}>Back to enquiries</a>
+      <div>
+        <p className="empty-state" style={{ marginBottom: 16 }}>
+          {id ? `Enquiry ${id} not found.` : 'Open this page from a row in Enquiries.'}
+        </p>
+        <Link href="/admin/enquiries/" className="back-link"><ArrowLeft size={14} /> Back to enquiries</Link>
       </div>
     );
   }
 
   return (
     <div style={{ maxWidth: 640 }}>
-      <div className="detail-header">
-        <h1>Reply to enquiry</h1>
-        <p className="detail-meta">{enquiry.name} ({enquiry.email}) — {enquiry.type}</p>
+      <Link href={`/admin/enquiries/${encodeURIComponent(enquiry.id)}/`} className="back-link"><ArrowLeft size={14} /> Back to enquiry</Link>
+
+      <h1 className="admin-page-title">Reply to Enquiry</h1>
+
+      <div className="detail-card" style={{ marginBottom: 24 }}>
+        <div className="detail-value-strong" style={{ textTransform: 'capitalize' }}>{enquiry.type} · {enquiry.name}</div>
+        <div className="detail-value">{enquiry.email}</div>
+        <p style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid var(--admin-border)', whiteSpace: 'pre-wrap', fontSize: 14 }}>{enquiry.message}</p>
       </div>
 
-      <div className="detail-card">{enquiry.message}</div>
-
-      <form onSubmit={handleSend}>
-        <div className="form-group">
-          <label className="form-label">Subject (optional)</label>
-          <input value={subject} onChange={(e) => setSubject(e.target.value)} placeholder="Re: Your enquiry" className="form-input" />
+      {sent ? (
+        <div className="success-box">
+          <CheckCircle2 size={32} />
+          <p>Reply sent to {enquiry.email}.</p>
         </div>
-
-        <div className="form-group">
-          <label className="form-label">Reply message</label>
-          <textarea value={message} onChange={(e) => setMessage(e.target.value)} required rows={8} placeholder="Type your reply…" className="form-textarea" />
-        </div>
-
-        {message && (
-          <div className="detail-card" style={{ marginBottom: 20 }}>
-            <div className="detail-card-label">Preview</div>
-            {message}
+      ) : (
+        <div>
+          <div className="form-group">
+            <label>Your reply</label>
+            <textarea value={reply} onChange={(e) => setReply(e.target.value)} rows={7} placeholder="Write your reply…" />
           </div>
-        )}
 
-        {result && <div className={`alert alert-${result.type}`}>{result.text}</div>}
+          {reply && (
+            <div className="email-preview" style={{ whiteSpace: 'pre-wrap' }}>{reply}</div>
+          )}
 
-        <button type="submit" disabled={sending || !enquiry.email} className="btn-primary">
-          {sending ? 'Sending…' : `Email ${enquiry.email || '(no email on file)'}`}
-        </button>
-      </form>
+          {error && <p className="error-text">{error}</p>}
+
+          <button onClick={send} disabled={sending} className="btn-primary" style={{ width: '100%' }}>
+            {sending ? 'Sending…' : `Send reply to ${enquiry.email}`}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
 export default function ReplyEnquiryPage() {
   return (
-    <Suspense fallback={<p style={{ padding: 24, color: '#888' }}>Loading…</p>}>
-      <ReplyEnquiryInner />
+    <Suspense fallback={<p className="empty-state">Loading…</p>}>
+      <Composer />
     </Suspense>
   );
 }

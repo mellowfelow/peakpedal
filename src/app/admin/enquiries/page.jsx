@@ -1,75 +1,82 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
-import { useAdminPasscode } from '@/lib/useAdminPasscode';
+import React, { useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
+import { Trash2 } from 'lucide-react';
+import { useAdminContextPasscode } from '@/components/admin/AdminPasscodeContext';
 
-const TABS = ['all', 'contact', 'wholesale', 'new', 'replied'];
+const FILTERS = ['all', 'contact', 'wholesale', 'new', 'replied'];
 
 export default function EnquiriesPage() {
-  const { passcode } = useAdminPasscode();
+  const passcode = useAdminContextPasscode();
   const [enquiries, setEnquiries] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState('all');
+  const [filter, setFilter] = useState('all');
 
-  useEffect(() => {
-    if (!passcode) return;
+  const load = () => {
+    setLoading(true);
     fetch('/api/admin/enquiries/', { headers: { 'x-admin-passcode': passcode } })
       .then((r) => r.json())
-      .then((d) => {
-        setEnquiries(d.enquiries || []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [passcode]);
+      .then((d) => setEnquiries(d.enquiries || []))
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(load, [passcode]);
 
   const filtered = useMemo(() => {
-    if (tab === 'all') return enquiries;
-    if (tab === 'new' || tab === 'replied') return enquiries.filter((e) => e.status === tab);
-    return enquiries.filter((e) => e.type === tab);
-  }, [enquiries, tab]);
+    if (filter === 'all') return enquiries;
+    if (filter === 'new' || filter === 'replied') return enquiries.filter((e) => e.status === filter);
+    return enquiries.filter((e) => e.type === filter);
+  }, [enquiries, filter]);
 
-  async function handleDelete(id) {
-    if (!confirm(`Delete enquiry ${id}?`)) return;
-    await fetch(`/api/admin/enquiries/${encodeURIComponent(id)}/`, { method: 'DELETE', headers: { 'x-admin-passcode': passcode } });
-    setEnquiries((prev) => prev.filter((e) => e.id !== id));
-  }
-
-  if (loading) return <p style={{ padding: 24, color: '#888' }}>Loading enquiries…</p>;
+  const deleteEnquiry = async (id, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!confirm("Delete this enquiry? This can't be undone.")) return;
+    await fetch(`/api/admin/enquiries/${encodeURIComponent(id)}/`, {
+      method: 'DELETE',
+      headers: { 'x-admin-passcode': passcode },
+    });
+    load();
+  };
 
   return (
     <div>
       <h1 className="admin-page-title">Enquiries</h1>
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
-        {TABS.map((t) => (
-          <button key={t} type="button" className={`btn-sm ${tab === t ? 'active' : ''}`} onClick={() => setTab(t)}>
-            {t[0].toUpperCase() + t.slice(1)}
+
+      <div className="filter-pills">
+        {FILTERS.map((f) => (
+          <button key={f} onClick={() => setFilter(f)} className={`filter-pill ${filter === f ? 'active' : ''}`}>
+            {f}
           </button>
         ))}
       </div>
-      {filtered.length === 0 ? (
-        <div className="empty-state"><p>No enquiries here.</p></div>
+
+      {loading ? (
+        <p className="empty-state">Loading…</p>
+      ) : filtered.length === 0 ? (
+        <p className="empty-state">No enquiries match this filter.</p>
       ) : (
-        <div>
-          {filtered.map((e) => {
-            const date = e.createdAt ? new Date(e.createdAt).toLocaleDateString('en-GB', { month: 'short', day: 'numeric', year: 'numeric' }) : '—';
-            return (
-              <div key={e.id} className="item-card">
-                <div className="item-card-header">
-                  <span className="status-badge status-email" style={{ textTransform: 'capitalize' }}>{e.type}</span>
-                  <span className={`status-badge status-${e.status}`}>{e.status}</span>
+        <div className="list-rows">
+          {filtered.map((e) => (
+            <div key={e.id} className="list-row">
+              <Link href={`/admin/enquiries/${encodeURIComponent(e.id)}/`} className="list-row-link">
+                <div>
+                  <div className="row-title" style={{ textTransform: 'capitalize' }}>{e.type}</div>
+                  <div className="row-meta">{new Date(e.createdAt).toLocaleString('en-GB')}</div>
                 </div>
-                <div className="item-card-name">{e.name || e.email}</div>
-                <div className="item-card-meta">{e.email} · {date}</div>
-                {e.message && <p className="item-card-preview">{e.message}</p>}
-                <div className="item-card-footer">
-                  <a href={`/admin/enquiries/${encodeURIComponent(e.id)}/`} className="btn-sm">View</a>
-                  <div className="action-row">
-                    <button onClick={() => handleDelete(e.id)} className="btn-danger">Delete</button>
-                  </div>
+                <div className="row-truncate">
+                  {e.name}
+                  <div className="row-meta row-truncate">{e.email}</div>
                 </div>
-              </div>
-            );
-          })}
+                <div className="row-truncate">{e.message}</div>
+                <span className={`status-badge status-${e.status === 'new' ? 'new' : 'replied'}`}>{e.status}</span>
+              </Link>
+              <button onClick={(ev) => deleteEnquiry(e.id, ev)} className="icon-btn" aria-label="Delete enquiry">
+                <Trash2 size={16} />
+              </button>
+            </div>
+          ))}
         </div>
       )}
     </div>

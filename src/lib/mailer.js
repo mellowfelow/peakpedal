@@ -18,7 +18,7 @@ function transporter() {
   });
 }
 
-export async function sendMail({ to, subject, html, text, replyTo, from }) {
+export async function sendMail({ to, subject, html, text, replyTo, from, attachments }) {
   if (!isMailerConfigured()) return { sent: false, reason: 'not-configured' };
   await transporter().sendMail({
     from,
@@ -27,6 +27,7 @@ export async function sendMail({ to, subject, html, text, replyTo, from }) {
     subject,
     text,
     html,
+    ...(attachments ? { attachments } : {}),
   });
   return { sent: true };
 }

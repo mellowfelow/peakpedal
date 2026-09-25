@@ -1,84 +1,88 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import { useAdminPasscode } from '@/lib/useAdminPasscode';
+import { Trash2, ArrowLeft } from 'lucide-react';
+import { useAdminContextPasscode } from '@/components/admin/AdminPasscodeContext';
 
 export default function EnquiryDetailPage() {
-  const { passcode } = useAdminPasscode();
-  const { id } = useParams();
+  const passcode = useAdminContextPasscode();
+  const params = useParams();
   const router = useRouter();
+  const id = decodeURIComponent(String(params.id || ''));
+
   const [enquiry, setEnquiry] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!passcode || !id) {
-      setLoading(false);
-      return;
-    }
+    if (!id) return;
     fetch(`/api/admin/enquiries/${encodeURIComponent(id)}/`, { headers: { 'x-admin-passcode': passcode } })
       .then((r) => r.json())
-      .then((d) => {
-        setEnquiry(d.enquiry || null);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [passcode, id]);
+      .then((d) => setEnquiry(d.enquiry || null))
+      .finally(() => setLoading(false));
+  }, [id, passcode]);
 
-  async function handleDelete() {
-    if (!confirm(`Delete enquiry ${id}? This cannot be undone.`)) return;
+  const handleDelete = async () => {
+    if (!confirm("Delete this enquiry? This can't be undone.")) return;
     await fetch(`/api/admin/enquiries/${encodeURIComponent(id)}/`, { method: 'DELETE', headers: { 'x-admin-passcode': passcode } });
     router.push('/admin/enquiries/');
-  }
+  };
 
-  if (loading) return <p style={{ padding: 24, color: '#888' }}>Loading enquiry…</p>;
+  if (loading) return <p className="empty-state">Loading…</p>;
   if (!enquiry) {
     return (
-      <div className="empty-state">
-        <p>Enquiry not found.</p>
-        <a href="/admin/enquiries/" className="btn-sm" style={{ marginTop: 12, display: 'inline-block' }}>Back to enquiries</a>
+      <div>
+        <p className="empty-state" style={{ marginBottom: 16 }}>Enquiry not found.</p>
+        <Link href="/admin/enquiries/" className="back-link"><ArrowLeft size={14} /> Back to enquiries</Link>
       </div>
     );
   }
 
-  const created = enquiry.createdAt ? new Date(enquiry.createdAt) : null;
-
   return (
-    <div style={{ maxWidth: 720 }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 8 }}>
+    <div style={{ maxWidth: 640 }}>
+      <Link href="/admin/enquiries/" className="back-link"><ArrowLeft size={14} /> Back to enquiries</Link>
+
+      <div className="detail-head">
         <div>
-          <h1 className="admin-page-title" style={{ marginBottom: 4 }}>Enquiry from {enquiry.name || enquiry.email}</h1>
-          <p className="detail-meta">
-            {created ? created.toLocaleDateString('en-GB', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—'}
-            {' · '}
-            <span className={`status-badge status-${enquiry.status}`}>{enquiry.status}</span>
-          </p>
+          <h1 style={{ textTransform: 'capitalize' }}>{enquiry.type} enquiry</h1>
+          <div className="detail-meta">
+            {new Date(enquiry.createdAt).toLocaleString('en-GB')}
+            <span className={`status-badge status-${enquiry.status === 'new' ? 'new' : 'replied'}`}>{enquiry.status}</span>
+          </div>
         </div>
-        <button onClick={handleDelete} className="btn-danger" style={{ fontSize: 14 }}>Delete enquiry</button>
+        <button onClick={handleDelete} className="icon-btn" aria-label="Delete enquiry">
+          <Trash2 size={16} />
+        </button>
       </div>
 
-      <div className="detail-grid">
-        <div className="detail-card">
-          <div className="detail-card-label">Contact</div>
-          <div style={{ fontWeight: 600, marginBottom: 4 }}>{enquiry.name}</div>
-          <div style={{ marginBottom: 4 }}>{enquiry.email}</div>
-          {enquiry.phone && <div>{enquiry.phone}</div>}
-        </div>
-        <div className="detail-card">
-          <div className="detail-card-label">Type</div>
-          <div style={{ fontWeight: 600, textTransform: 'capitalize' }}>{enquiry.type}</div>
-        </div>
+      <div className="detail-card" style={{ marginBottom: 24 }}>
+        <div className="detail-label">Contact</div>
+        <div className="detail-value-strong">{enquiry.name}</div>
+        <div className="detail-value">{enquiry.email}</div>
+        {enquiry.phone && <div className="detail-value">{enquiry.phone}</div>}
       </div>
 
-      <h2 className="section-title">Message</h2>
-      <div className="detail-card">{enquiry.message}</div>
+      {enquiry.meta && Object.keys(enquiry.meta).length > 0 && (
+        <div className="detail-card" style={{ marginBottom: 24 }}>
+          <div className="detail-label">Details</div>
+          {Object.entries(enquiry.meta).map(([k, v]) => (
+            <div key={k} style={{ display: 'flex', justifyContent: 'space-between', gap: 16, fontSize: 14, marginTop: 6 }}>
+              <span className="row-meta" style={{ textTransform: 'capitalize' }}>{k.replace(/([A-Z])/g, ' $1')}</span>
+              <span>{v}</span>
+            </div>
+          ))}
+        </div>
+      )}
 
-      <div className="action-row" style={{ marginTop: 24 }}>
-        <a href={`/admin/reply-enquiry/?id=${encodeURIComponent(enquiry.id)}`} className="btn-primary">
-          {enquiry.status === 'replied' ? 'Send another reply' : 'Reply'}
-        </a>
-        <a href="/admin/enquiries/" className="btn-sm">Back to enquiries</a>
+      <div style={{ marginBottom: 24 }}>
+        <div className="detail-label" style={{ marginBottom: 8 }}>Message</div>
+        <div className="detail-card" style={{ whiteSpace: 'pre-wrap' }}>{enquiry.message}</div>
       </div>
+
+      <Link href={`/admin/reply-enquiry/?id=${encodeURIComponent(enquiry.id)}`} className="btn-primary">
+        {enquiry.status === 'replied' ? 'Send another reply' : 'Reply'}
+      </Link>
     </div>
   );
 }
