@@ -82,6 +82,7 @@ Catalog grew across content passes to **124 bike SKUs + 33 accessory SKUs** (see
 - Differentiator: curated range across 16 established eMTB brands with a UK focus, WhatsApp-first buying help.
 - No named individuals, awards, or partnerships claimed — none were supplied.
 - Off-site: **0 backlinks** as of the 2026-09 audit — this is the primary ranking constraint. See `docs/audit-2026-09.md`.
+- **Reviews (2026-09-25):** `src/content/reviews.js` (TrustScore 4.8, 2,418 reviews) and the individual reviews rendered by `TrustpilotReviews.jsx` on the homepage are migrated from the client's prior website, which was lost — this is the stated reason for moving to the current Peak Pedal build. Client confirmed this directly; treated as real per WebForge Rule 5 (migrated real facts are preserved, not stripped). Source: client-supplied migration package (`peak-pedal migration.zip`), not independently verified against a live Trustpilot profile — if a real Trustpilot business account exists, swapping this static dataset for the live embed widget would remove any residual doubt.
 
 ## O — Client Backend
 **No.** Pure static Next.js site, no `/admin`, no D1/R2.

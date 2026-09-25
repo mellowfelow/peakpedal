@@ -4,7 +4,9 @@ import ProductCard from '@/components/ProductCard';
 import ProductCardHome from '@/components/ProductCardHome';
 import FaqAccordion from '@/components/FaqAccordion';
 import HeroSlider from '@/components/HeroSlider';
+import TrustpilotReviews from '@/components/TrustpilotReviews';
 import { SITE, CONTACT, PRODUCTS, BRANDS, HOME_FAQS, COMPLIANCE, HERO_SLIDES, CATEGORY_PAGES } from '@/config/site';
+import { REVIEW_STATS } from '@/content/reviews';
 
 const brandCount = new Set(PRODUCTS.map((p) => p.brand)).size;
 
@@ -67,6 +69,16 @@ const storeSchema = {
     'Lightweight SL eMTB',
   ],
   priceRange: '££-£££',
+  // Real rating/review count migrated from the client's prior website (theirs
+  // was lost) — see docs/PROJECT.md for provenance. Never hand-edit these
+  // numbers; they come from src/content/reviews.js (REVIEW_STATS).
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: String(REVIEW_STATS.trustScore),
+    reviewCount: String(REVIEW_STATS.totalReviews),
+    bestRating: '5',
+    worstRating: '1',
+  },
   ...(SITE.social.sameAs.length ? { sameAs: SITE.social.sameAs } : {}),
   makesOffer: {
     '@type': 'AggregateOffer',
@@ -172,6 +184,8 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      <TrustpilotReviews />
 
       <section className="section section-dark">
         <div className="container" style={{ maxWidth: 820 }}>
