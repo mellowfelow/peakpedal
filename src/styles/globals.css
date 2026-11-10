@@ -1602,7 +1602,7 @@ td {
 
 .tp-badge-pill {
   font-size: 0.82rem;
-  color: #4b5563;
+  color: #6b7280;
   background: #f3f4f6;
   padding: 0.3rem 0.65rem;
   border-radius: 999px;
@@ -1877,29 +1877,20 @@ td {
   flex-wrap: wrap;
 }
 
-/* 24x24 hit area (WCAG 2.5.8); the visible dot is drawn by ::before */
 .tp-dot {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  background: transparent;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d1d5db;
   border: none;
   cursor: pointer;
   padding: 0;
-}
-
-.tp-dot::before {
-  content: '';
-  position: absolute;
-  inset: 7px;
-  border-radius: 50%;
-  background: #d1d5db;
   transition: all 0.2s ease;
 }
 
-.tp-dot.active::before {
+.tp-dot.active {
   background: #00b67a;
-  inset: 7px 0;
+  width: 24px;
   border-radius: 999px;
 }
 
@@ -2010,7 +2001,7 @@ td {
 
 .tp-card-date {
   font-size: 0.78rem;
-  color: #4b5563;
+  color: #9ca3af;
 }
 
 .tp-card-product {

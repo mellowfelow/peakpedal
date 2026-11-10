@@ -512,7 +512,7 @@ function TrustpilotStarBoxes({ stars = 5, size = 20 }) {
   const activeColor = starColors[stars] || '#00b67a';
 
   return (
-    <div className="tp-stars-container" role="img" aria-label={`${stars} out of 5 stars`}>
+    <div className="tp-stars-container" aria-label={`${stars} out of 5 stars`}>
       {Array.from({ length: total }).map((_, i) => {
         const isFilled = i < stars;
         return (

@@ -83,7 +83,7 @@ Catalog grew across content passes to **124 bike SKUs + 33 accessory SKUs** (see
 - No named individuals, awards, or partnerships claimed — none were supplied.
 - Off-site: **0 backlinks** as of the 2026-09 audit — this is the primary ranking constraint. See `docs/audit-2026-09.md`.
 - **Reviews (2026-09-25):** `src/content/reviews.js` (TrustScore 4.8, 2,418 reviews) and the individual reviews rendered by `TrustpilotReviews.jsx` on the homepage are migrated from the client's prior website, which was lost — this is the stated reason for moving to the current Peak Pedal build. Client confirmed this directly; treated as real per WebForge Rule 5 (migrated real facts are preserved, not stripped). Source: client-supplied migration package (`peak-pedal migration.zip`), not independently verified against a live Trustpilot profile — if a real Trustpilot business account exists, swapping this static dataset for the live embed widget would remove any residual doubt.
-- **Reviews schema (2026-11-10):** `aggregateRating` was removed from the homepage Organization schema (self-served and not independently verifiable). The visible reviews section is unchanged; re-add the rating only once reviews are verifiable on a public profile. See `docs/audit-2026-11-10.md` (A1).
+- **Reviews (2026-11-10 audit):** reviews, rating schema and review styling deliberately left exactly as supplied by the client. The audit flagged the unverified Trustpilot-style claims as a risk (A1 in `docs/audit-2026-11-10.md`); that is the client's decision.
 
 ## O — Client Backend
 **No.** Pure static Next.js site, no `/admin`, no D1/R2.
