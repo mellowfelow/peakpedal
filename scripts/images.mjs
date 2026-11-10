@@ -1,5 +1,5 @@
 // Processes assets/product-photos/<slug>[-N].(jpg|png|webp) into public/images/<slug>[-N].webp:
-// trims uniform borders, contain-fits onto a white 1600x1200 (4:3) canvas at 96% fill, WebP q86.
+// trims uniform borders, contain-fits onto a white 1200x900 (4:3) canvas at 96% fill, WebP q80.
 // Run after dropping real product photos in: npm run images
 import { readdir, mkdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -8,8 +8,8 @@ import sharp from 'sharp';
 const ROOT = path.resolve(import.meta.dirname, '..');
 const SRC = path.join(ROOT, 'assets', 'product-photos');
 const OUT = path.join(ROOT, 'public', 'images');
-const CANVAS_W = 1600;
-const CANVAS_H = 1200;
+const CANVAS_W = 1200;
+const CANVAS_H = 900;
 const FILL = 0.96;
 
 async function main() {
@@ -44,7 +44,7 @@ async function main() {
       create: { width: CANVAS_W, height: CANVAS_H, channels: 3, background: '#ffffff' },
     })
       .composite([{ input: await sharp(trimmed).resize(resizedW, resizedH).toBuffer(), gravity: 'center' }])
-      .webp({ quality: 86 })
+      .webp({ quality: 80, effort: 5 })
       .toFile(out);
 
     console.log(`  ${file} -> images/${slug}.webp (${CANVAS_W}x${CANVAS_H}, contain-fit ${Math.round(FILL * 100)}%)`);

@@ -9,7 +9,7 @@ Peak Pedal is a UK-based electric mountain bike retailer offering 124 eMTBs from
 - 124 electric mountain bikes across brands: Cube, Trek, Haibike, Giant, Orbea, Merida, Mondraker, Santa Cruz, Cannondale, Scott, Whyte, Amflow, Lapierre, Specialized, Canyon, Transition
 - Every bike is a legal UK electrically assisted pedal cycle (EAPC): max 250W motor, assistance cuts at 15.5mph, minimum rider age 14
 - Payment: bank transfer (card coming soon)
-- Contact: info@peakpedal.org / WhatsApp
+- Contact: https://www.peakpedal.org/contact/ / WhatsApp
 
 ## Core pages
 - [Home](https://www.peakpedal.org/): Electric mountain bike specialists UK
@@ -88,7 +88,7 @@ Peak Pedal is a UK-based electric mountain bike retailer offering 124 eMTBs from
 - Payment: bank transfer (card coming soon)
 - Order via WhatsApp: https://wa.me/447838207659
 - Order form: https://www.peakpedal.org/order/
-- Contact: info@peakpedal.org
+- Contact: https://www.peakpedal.org/contact/
 
 ## Excluded
 - https://www.peakpedal.org/cart/

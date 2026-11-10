@@ -14,11 +14,27 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const accessory = findAccessory(slug);
   if (!accessory) return {};
-  const description = `${accessory.name} — ${accessory.keyword}, from ${CONTACT.currencySymbol}${accessory.price.toLocaleString('en-GB')}. UK-wide delivery, expert advice.`;
+  const price = `${CONTACT.currencySymbol}${accessory.price.toLocaleString('en-GB')}`;
+  // Candidates from richest to leanest; take the first that lands in the 125–158 char band,
+  // otherwise the longest that still fits under 158.
+  const candidates = [
+    `${accessory.name} — ${accessory.keyword}, from ${price}. Free UK delivery, fitment checks and expert advice from Peak Pedal. No minimum order.`,
+    `${accessory.name} — ${accessory.keyword}, from ${price}. Free UK delivery, fitment checks and expert advice from Peak Pedal.`,
+    `${accessory.name} — ${accessory.keyword}, from ${price}. Free UK delivery and expert fitment advice from Peak Pedal.`,
+    `${accessory.name} — ${accessory.keyword}, from ${price}. Free UK delivery and expert advice from Peak Pedal.`,
+  ];
+  const lastResort = candidates[candidates.length - 1];
+  const description =
+    candidates.find((c) => c.length >= 125 && c.length <= 158) ||
+    candidates.filter((c) => c.length <= 158).sort((a, b) => b.length - a.length)[0] ||
+    lastResort;
   const ogImage = accessory.images[0].endsWith('.svg') ? '/images/og-default.png' : accessory.images[0];
+  // accessory.name leads with the brand; layout template appends " | Peak Pedal" (13 chars).
+  // Add a short qualifier so brief names ("MTB Gloves") are not under-length, never past 60.
+  const qualifier = /e(mtb|bike)/i.test(accessory.name) ? ' UK' : ' — eMTB Accessory';
+  const title = accessory.name.length + qualifier.length + 13 <= 60 ? `${accessory.name}${qualifier}` : accessory.name;
   return {
-    // accessory.name leads with the brand; layout template appends " | Peak Pedal".
-    title: accessory.name,
+    title,
     description,
     alternates: { canonical: `https://${SITE.domain}/accessories/${accessory.slug}/` },
     openGraph: { url: `https://${SITE.domain}/accessories/${accessory.slug}/`, images: [ogImage] },

@@ -19,7 +19,11 @@ export default function Footer() {
             </span>
             <p className="muted" style={{ color: '#b7bdb2', fontSize: '0.9rem' }}>{SITE.tagline}</p>
             <p style={{ fontSize: '0.85rem' }}>
-              <a href={`mailto:${CONTACT.email}`} style={{ color: '#b7bdb2' }} dangerouslySetInnerHTML={{ __html: encodeEmail(CONTACT.email) }} />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: `<a href="mailto:${encodeEmail(CONTACT.email)}" style="color:#b7bdb2">${encodeEmail(CONTACT.email)}</a>`,
+                }}
+              />
               <br />
               WhatsApp: <a href={`https://wa.me/${CONTACT.whatsapp}`} style={{ color: '#b7bdb2' }}>{CONTACT.phone}</a>
             </p>
@@ -29,7 +33,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="footer-col">
-            <h4>Shop by Type</h4>
+            <p className="footer-heading">Shop by Type</p>
             <Link href="/electric-mountain-bikes/">All Electric Mountain Bikes</Link>
             <Link href="/full-suspension-electric-mountain-bikes/">Full Suspension</Link>
             <Link href="/hardtail-electric-mountain-bikes/">Hardtail</Link>
@@ -40,7 +44,7 @@ export default function Footer() {
             <Link href="/kids-electric-mountain-bike/">Kids & Teens</Link>
           </div>
           <div className="footer-col">
-            <h4>Shop by Motor &amp; Price</h4>
+            <p className="footer-heading">Shop by Motor &amp; Price</p>
             <Link href="/bosch-electric-mountain-bikes/">Bosch eMTBs</Link>
             <Link href="/shimano-electric-mountain-bikes/">Shimano eMTBs</Link>
             <Link href="/dji-avinox-electric-mountain-bikes/">DJI Avinox eMTBs</Link>
@@ -51,7 +55,7 @@ export default function Footer() {
             <Link href="/accessories/">Accessories</Link>
           </div>
           <div className="footer-col">
-            <h4>Company</h4>
+            <p className="footer-heading">Company</p>
             <Link href="/about/">About</Link>
             <Link href="/blog/">Blog</Link>
             <Link href="/finance/">Finance</Link>
@@ -60,7 +64,7 @@ export default function Footer() {
             <Link href="/faq/">FAQ</Link>
           </div>
           <div className="footer-col">
-            <h4>Legal</h4>
+            <p className="footer-heading">Legal</p>
             <Link href="/shipping/">Shipping</Link>
             <Link href="/refund/">Returns</Link>
             <Link href="/privacy/">Privacy Policy</Link>

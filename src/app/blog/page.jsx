@@ -3,7 +3,7 @@ import { SITE, POSTS } from '@/config/site';
 
 export const metadata = {
   title: 'Electric Mountain Bike Guides & Reviews',
-  description: "Electric mountain bike guides, motor comparisons and honest reviews from Peak Pedal's UK eMTB specialists.",
+  description: "Electric mountain bike guides, motor comparisons, buying advice and honest model reviews from Peak Pedal's UK eMTB specialists.",
   alternates: { canonical: `https://${SITE.domain}/blog/` },
   openGraph: { url: `https://${SITE.domain}/blog/`, images: ['/images/og-default.png'] },
   twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },

@@ -922,7 +922,7 @@ export const CATEGORY_PAGES = [
     slug: 'electric-mountain-bikes',
     kind: 'main',
     keyword: 'electric mountain bikes',
-    metaTitle: 'Electric Mountain Bikes UK | Shop the Full Range',
+    metaTitle: 'Electric Mountain Bikes UK — Full Range',
     metaDescription: `Browse ${PRODUCTS.length} electric mountain bikes — full suspension, hardtail and lightweight SL from Cube, Trek, Orbea, Canyon, Specialized +11 more brands. UK-wide delivery.`,
     h1: 'Electric Mountain Bikes UK — Full Range',
     intro: `Browse Peak Pedal's full range of ${PRODUCTS.length} electric mountain bikes — full suspension, hardtail and lightweight SL, from Bosch, Shimano, Yamaha and DJI Avinox-powered platforms.`,
@@ -967,7 +967,7 @@ export const CATEGORY_PAGES = [
     slug: 'lightweight-electric-mountain-bikes',
     kind: 'type',
     keyword: 'lightweight electric mountain bike',
-    metaTitle: 'Lightweight Electric Mountain Bikes UK — SL eMTBs',
+    metaTitle: 'Lightweight Electric Mountain Bikes UK (SL)',
     metaDescription: 'Lightweight SL electric mountain bikes with smaller, lighter motor systems for a more natural ride feel — from Orbea Rise to Specialized Turbo Levo SL.',
     h1: 'Lightweight Electric Mountain Bikes (SL)',
     intro: 'Lightweight SL eMTBs use smaller, lighter motor and battery systems for a ride feel closer to an unassisted mountain bike, while still giving you assistance on the climbs.',
@@ -1049,7 +1049,7 @@ export const CATEGORY_PAGES = [
     kind: 'value',
     keyword: 'electric mountain bike sale',
     metaTitle: 'Electric Mountain Bike Sale UK',
-    metaDescription: 'Browse our current best-value electric mountain bikes, ordered by price. Entry-level hardtails from under £2,200.',
+    metaDescription: 'Browse our current best-value electric mountain bikes, ordered by price from the lowest. Entry-level hardtails from under £2,200 with free UK delivery.',
     h1: 'Electric Mountain Bike Sale',
     intro: 'These are our lowest-priced, best-value electric mountain bikes right now — sorted from most to least affordable.',
     filter: () => true,
@@ -1063,6 +1063,11 @@ export const CATEGORY_PAGES = [
     metaDescription: 'The most affordable electric mountain bikes in our range, starting under £2,200 — entry-level hardtails from Trek and Orbea.',
     h1: 'Electric Mountain Bikes Under £2,000',
     intro: 'Our most affordable entry point is the Trek Marlin+ 6 at around £2,100. Here’s everything in our range at or near the £2,000 mark.',
+    extraHeading: 'What to Expect From an eMTB Around £2,000',
+    extraParagraphs: [
+      'At this budget you are choosing a hardtail: a front-suspension bike with a proper mid-drive motor, simpler to maintain and lighter on the wallet than a full-suspension build. The bikes on this page pair a Bosch or Shimano mid-drive motor with a hardtail frame, which suits trail centres, fire roads and tracks where you want assistance on the climbs without the cost of rear suspension.',
+      'We will be upfront that nothing in our range, or realistically from an established brand, offers genuine full suspension and a mid-drive motor at this price. If you want a full-suspension bike, our electric mountain bikes under £3,000 page is the next step up, and our hardtail electric mountain bikes page lists every hardtail we stock. Not sure which is right for you? Get in touch and we will help you compare.',
+    ],
     filter: (p) => p.priceLow < 2200,
   },
   {
@@ -1070,7 +1075,7 @@ export const CATEGORY_PAGES = [
     kind: 'budget',
     keyword: 'best electric mountain bike under 3000 uk',
     metaTitle: 'Best Electric Mountain Bikes Under £3000 UK',
-    metaDescription: 'Electric mountain bikes under £3,000 — the sweet spot for a first full-suspension or well-specced hardtail eMTB.',
+    metaDescription: 'Electric mountain bikes under £3,000 — the sweet spot for a first full-suspension or well-specced hardtail eMTB, with free UK delivery from Peak Pedal.',
     h1: 'Electric Mountain Bikes Under £3,000',
     intro: 'Under £3,000 covers most of our hardtail range and a handful of entry-level full-suspension and lightweight SL options.',
     filter: (p) => p.priceLow < 3000,
@@ -1080,9 +1085,14 @@ export const CATEGORY_PAGES = [
     kind: 'info',
     keyword: 'electric mountain bike finance',
     metaTitle: 'Electric Mountain Bike Finance UK',
-    metaDescription: 'Spread the cost of your electric mountain bike. Get in touch to discuss finance options for any bike in our range.',
+    metaDescription: 'Spread the cost of your electric mountain bike. Get in touch to discuss finance options for any bike in our range, and how to compare the total cost.',
     h1: 'Electric Mountain Bike Finance',
     intro: 'We know an eMTB is a significant purchase. Get in touch and our team will talk you through the finance options available for the bike you’re interested in — we’ll confirm exact rates and terms directly, as these depend on the specific bike and provider at the time.',
+    extraHeading: 'Before You Take Out Finance on an eMTB',
+    extraParagraphs: [
+      'Whatever route you choose, it helps to look at the total amount you will repay rather than just the monthly figure, and to check the deposit, the length of the agreement, the interest rate and any fees. Only borrow what you can comfortably afford, and read the agreement carefully before you sign.',
+      'Our bikes range from entry-level hardtails to premium full-suspension builds, so the cost of financing varies a lot. Browse electric mountain bikes under £2,000 or under £3,000 if you want to keep the overall cost down, or ask us about the Cycle to Work scheme as an alternative way to spread the cost through your employer. Contact us with the bike you have in mind and we will confirm what is available.',
+    ],
     filter: () => false,
   },
   {
@@ -1093,6 +1103,11 @@ export const CATEGORY_PAGES = [
     metaDescription: 'Buy an electric mountain bike through your employer’s Cycle to Work scheme. Get in touch to check eligibility and current scheme partners.',
     h1: 'Cycle to Work Scheme',
     intro: 'Many UK employers run a Cycle to Work scheme that lets you buy a bike — including eMTBs — through salary sacrifice. Scheme rules, price caps and provider lists vary by employer, so get in touch and we’ll help you check what’s possible with yours.',
+    extraHeading: 'How Cycle to Work Works for an Electric Mountain Bike',
+    extraParagraphs: [
+      'In a typical Cycle to Work arrangement, your employer arranges the bike through a scheme provider and you repay the cost from your gross salary over an agreed period, which can reduce the tax and National Insurance you pay. The saving depends on your tax bracket, and the details, including how long the agreement runs and what happens at the end, are set by your employer and the scheme provider.',
+      'Not every employer or provider treats eMTBs the same way, and price limits can differ, so check with your employer before you choose a bike. Once you know what your scheme allows, browse our electric mountain bikes under £3,000 or the full range, and read our blog guide to the Cycle to Work scheme for eMTBs. Contact us with the bike you are considering and we will help you work out the next steps.',
+    ],
     filter: () => false,
   },
   {
@@ -1127,6 +1142,11 @@ export const CATEGORY_PAGES = [
     metaDescription: 'Electric mountain bikes powered by DJI’s Avinox motor system, currently exclusive to the Amflow PL Carbon and PX Carbon.',
     h1: 'DJI Avinox Electric Mountain Bikes',
     intro: 'DJI’s Avinox motor system is a newer entrant to the eMTB motor market, currently available in our range through Amflow’s PL Carbon and PX Carbon.',
+    extraHeading: 'Amflow PL Carbon and PX Carbon: Which DJI Avinox eMTB?',
+    extraParagraphs: [
+      'Both Avinox bikes here come from Amflow. The PL Carbon pairs the DJI Avinox M1 motor with 140/130mm of travel in a lightweight full-suspension platform, from £5,500. The PX Carbon steps up to the Avinox M2S with 150/160mm of travel for harder, more aggressive riding, from £7,500. If your riding is mostly trail and all-day rides, the PL Carbon is the natural fit; if you want more travel for steeper, rougher descents, look at the PX Carbon.',
+      'Avinox is a newer platform than Bosch or Shimano, with a shorter UK service history, so it is worth asking us about spares and servicing before you buy. We stock the DJI Avinox 800Wh battery and the DJI Avinox fast charger in our accessories range, and you can read our Amflow and DJI Avinox review in the blog for a deeper comparison of the two models.',
+    ],
     filter: (p) => Boolean(p.motor) && p.motor.includes('DJI'),
   },
   ...BRANDS.map((brand) => ({
@@ -1136,7 +1156,12 @@ export const CATEGORY_PAGES = [
     // metaTitle/metaDescription/h1 default to the generic formula but can be overridden
     // per-brand (see Scott/Canyon, which have client-specified copy).
     metaTitle: brand.metaTitle || `${brand.name} Electric Mountain Bikes UK`,
-    metaDescription: brand.metaDescription || `Shop the full ${brand.name} electric mountain bike range at Peak Pedal, with UK-wide delivery and expert buying advice.`,
+    metaDescription:
+      brand.metaDescription ||
+      (() => {
+        const n = PRODUCTS.filter((p) => p.brand === brand.name).length;
+        return `Shop the full ${brand.name} electric mountain bike range at Peak Pedal — ${n} ${n === 1 ? 'model' : 'models'} with free UK delivery, no minimum order and expert advice.`;
+      })(),
     h1: brand.h1 || `${brand.name} Electric Mountain Bikes`,
     intro: brand.description,
     extraHeading: brand.extraHeading,
@@ -1239,6 +1264,9 @@ export const FAQ_PAGE_FAQS = [
 // Blog dates for Article schema + og:updated_time. The Phase-1 set was all
 // written 2026-07-17..19 (git history). Override per post with `datePublished` /
 // `dateModified` on the entry below when a post is genuinely revised.
+// Date of the last substantive content change to the shop/category/product pages — bump when
+// catalogue or page copy is updated; used for sitemap <lastmod> instead of the build time.
+export const CONTENT_MODIFIED = '2026-11-10';
 export const POST_PUBLISHED_DEFAULT = '2026-07-18';
 export const POST_MODIFIED_DEFAULT = '2026-09-08';
 
@@ -1286,7 +1314,7 @@ export const POSTS = [
   {
     slug: 'cycle-to-work-scheme-emtb',
     title: 'Cycle to Work Scheme for Electric Mountain Bikes',
-    metaTitle: 'Cycle to Work Scheme for Electric Mountain Bikes',
+    metaTitle: 'Cycle to Work Scheme for eMTBs — UK Guide',
     metaDescription: 'How the cycle to work scheme emtb rules actually work in the UK — savings by tax bracket, the £5,000+ cap question, and which bikes fit under it easily.',
     keyword: 'cycle to work scheme emtb',
     excerpt: 'How salary-sacrifice cycle schemes apply to higher-value eMTBs, and what to check with your employer first.',
@@ -1350,7 +1378,7 @@ export const POSTS = [
   {
     slug: 'santa-cruz-electric-mountain-bike-range-explained',
     title: 'Santa Cruz Electric Mountain Bike Range Explained',
-    metaTitle: 'Santa Cruz Electric Mountain Bike Range Explained',
+    metaTitle: 'Santa Cruz Electric Mountain Bikes Explained',
     metaDescription: 'Every santa cruz electric mountain bike we stock explained in detail — Vala, Bullit and Heckler SL compared by travel, motor, price and who each model suits.',
     keyword: 'santa cruz electric mountain bike',
     excerpt: 'Vala, Bullit and Heckler SL compared — Santa Cruz’s full eMTB range, explained.',
@@ -1414,7 +1442,7 @@ export const POSTS = [
   {
     slug: 'cube-stereo-hybrid-review',
     title: 'Cube Stereo Hybrid Review — Every Model Compared',
-    metaTitle: 'Cube Stereo Hybrid Review — Every Model Compared',
+    metaTitle: 'Cube Stereo Hybrid Review — All Models Compared',
     metaDescription: 'Our Cube Stereo Hybrid review compares all 5 models we stock, from the 625 entry build to the 160 HPC SLX, on travel, motor and price to help you choose.',
     keyword: 'cube stereo hybrid review',
     excerpt: 'Cube’s Bosch-powered full-suspension range, compared across all five models we stock.',
@@ -1487,8 +1515,57 @@ export function findPost(slug) {
   return POSTS.find((p) => p.slug === slug);
 }
 
+// Same-brand siblings first, then same-category, each walked cyclically from the current
+// product's position — so every product is linked from a few others (spreading internal
+// links evenly) rather than the first four catalogue entries absorbing all of them.
 export function relatedProducts(product, limit = 4) {
-  return PRODUCTS.filter(
-    (p) => p.slug !== product.slug && (p.brand === product.brand || p.category === product.category)
-  ).slice(0, limit);
+  const i = PRODUCTS.findIndex((p) => p.slug === product.slug);
+  const cyc = PRODUCTS.map((_, k) => PRODUCTS[(i + 1 + k) % PRODUCTS.length]).filter((p) => p.slug !== product.slug);
+  const picked = [];
+  const add = (list) => list.forEach((p) => picked.length < limit && !picked.includes(p) && picked.push(p));
+  add(cyc.filter((p) => p.brand === product.brand));
+  add(cyc.filter((p) => p.category === product.category));
+  return picked;
+}
+
+const POST_STOPWORDS = new Set(['electric', 'mountain', 'bikes', 'bike', 'best', 'guide', 'review', 'compared', 'explained', 'emtb', 'emtbs', 'under', 'with', 'from', 'what', 'vs']);
+const postTokens = (post) =>
+  `${post.slug} ${post.keyword || ''}`
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((t) => t.length > 2 && !POST_STOPWORDS.has(t));
+
+// Other guides most relevant to this one (shared brand/model/topic words), padded with the
+// next posts in the list so no guide is ever without outbound links.
+export function relatedPosts(post, limit = 3) {
+  const i = POSTS.findIndex((p) => p.slug === post.slug);
+  const mine = new Set(postTokens(post));
+  const others = POSTS.map((_, k) => POSTS[(i + 1 + k) % POSTS.length]).filter((p) => p.slug !== post.slug);
+  return others
+    .map((p, idx) => ({ p, score: postTokens(p).filter((t) => mine.has(t)).length, idx }))
+    .sort((a, b) => b.score - a.score || a.idx - b.idx)
+    .slice(0, limit)
+    .map((x) => x.p);
+}
+
+// Bikes a guide is about: products of any brand named in the post, preferring models whose
+// name words also appear in the post slug (e.g. "whyte-rheo-review" -> Whyte Rheo models).
+export function postBikes(post, limit = 4) {
+  const text = `${post.slug.replace(/-/g, ' ')} ${(post.keyword || '').toLowerCase()}`;
+  const brands = BRANDS.filter((b) => text.includes(b.name.toLowerCase()));
+  const pool = PRODUCTS.filter((p) => brands.some((b) => b.name === p.brand));
+  const score = (p) => p.name.toLowerCase().split(/[^a-z0-9]+/).filter((t) => t.length > 2 && text.includes(t)).length;
+  return pool
+    .map((p, idx) => ({ p, s: score(p), idx }))
+    .sort((a, b) => b.s - a.s || a.idx - b.idx)
+    .slice(0, limit)
+    .map((x) => x.p);
+}
+
+// Guides to link from a product page: ones that name its brand, else the two general guides.
+export function postsForProduct(product, limit = 2) {
+  const brand = product.brand.toLowerCase();
+  const named = POSTS.filter((p) => `${p.slug.replace(/-/g, ' ')} ${p.keyword || ''}`.toLowerCase().includes(brand));
+  const general = ['electric-mountain-bike-buying-guide', 'best-electric-mountain-bikes-uk'].map(findPost).filter(Boolean);
+  return [...named, ...general].filter((p, k, a) => a.indexOf(p) === k).slice(0, limit);
 }

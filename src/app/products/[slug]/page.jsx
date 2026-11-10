@@ -5,7 +5,7 @@ import ProductCard from '@/components/ProductCard';
 import AddToCartButton from '@/components/AddToCartButton';
 import Breadcrumbs, { breadcrumbSchema } from '@/components/Breadcrumbs';
 import { renderInline } from '@/components/PostBody';
-import { SITE, CONTACT, PRODUCTS, findProduct, relatedProducts } from '@/config/site';
+import { SITE, CONTACT, PRODUCTS, findProduct, relatedProducts, postsForProduct } from '@/config/site';
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -16,8 +16,11 @@ export async function generateMetadata({ params }) {
   const product = findProduct(slug);
   if (!product) return {};
   // product.name already leads with the brand ("Trek Rail 5"), so no separate brand clause —
-  // the root layout template appends " | Peak Pedal". Keeps titles ~30–55 chars, under 60.
-  const title = `${product.name} eMTB`;
+  // the root layout template appends " | Peak Pedal" (13 chars). Prefer the full keyword
+  // phrase; fall back to "eMTB" when the long form would push the final title past 60.
+  const TITLE_SUFFIX_LEN = 13;
+  const longTitle = `${product.name} Electric Mountain Bike`;
+  const title = longTitle.length + TITLE_SUFFIX_LEN <= 60 ? longTitle : `${product.name} eMTB`;
   const price = `${CONTACT.currencySymbol}${product.priceLow.toLocaleString('en-GB')}`;
   // Two candidate lengths (short/long delivery phrasing) — pick whichever lands closest to
   // the 130-155 char target. Model names/motors vary too widely for one fixed template to fit.
@@ -182,6 +185,19 @@ export default async function ProductPage({ params }) {
             <p key={i}>{renderInline(para)}</p>
           ))}
         </div>
+
+        {postsForProduct(product).length > 0 && (
+          <div style={{ maxWidth: 760, marginTop: '2rem' }}>
+            <h2>Buying Guides</h2>
+            <ul>
+              {postsForProduct(product).map((p) => (
+                <li key={p.slug}>
+                  <Link href={`/blog/${p.slug}/`}>{p.title}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {product.faqs?.length > 0 && (
           <div style={{ maxWidth: 760, marginTop: '2rem' }}>

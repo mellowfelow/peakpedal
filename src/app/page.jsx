@@ -5,14 +5,24 @@ import ProductCardHome from '@/components/ProductCardHome';
 import FaqAccordion from '@/components/FaqAccordion';
 import HeroSlider from '@/components/HeroSlider';
 import TrustpilotReviews from '@/components/TrustpilotReviews';
-import { SITE, CONTACT, PRODUCTS, BRANDS, HOME_FAQS, COMPLIANCE, HERO_SLIDES, CATEGORY_PAGES } from '@/config/site';
-import { REVIEW_STATS } from '@/content/reviews';
+import { SITE, CONTACT, PRODUCTS, BRANDS, POSTS, HOME_FAQS, COMPLIANCE, HERO_SLIDES, CATEGORY_PAGES } from '@/config/site';
 
 const brandCount = new Set(PRODUCTS.map((p) => p.brand)).size;
 
+// Evergreen guides surfaced on the homepage so they sit one click from the strongest page.
+const HOME_GUIDE_SLUGS = [
+  'what-is-an-emtb',
+  'electric-mountain-bike-buying-guide',
+  'emtb-vs-regular-mountain-bike',
+  'best-electric-mountain-bikes-beginners',
+  'emtb-battery-range-guide',
+  'bosch-vs-shimano-emtb-motor',
+];
+const HOME_GUIDES = HOME_GUIDE_SLUGS.map((s) => POSTS.find((p) => p.slug === s)).filter(Boolean);
+
 export const metadata = {
   title: `Electric Mountain Bikes UK — ${SITE.name} | ${PRODUCTS.length} eMTBs`,
-  description: `Peak Pedal — UK electric mountain bike specialists stocking ${PRODUCTS.length} eMTBs from Cube, Trek, Orbea, Santa Cruz, Specialized, Canyon + 10 more brands. UK-wide delivery.`,
+  description: `UK electric mountain bike specialists stocking ${PRODUCTS.length} eMTBs from Cube, Trek, Orbea, Santa Cruz, Specialized, Canyon + 10 more brands. UK-wide delivery.`,
   alternates: { canonical: `https://${SITE.domain}/` },
   openGraph: { url: `https://${SITE.domain}/`, images: ['/images/og-default.png'] },
   twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },
@@ -69,16 +79,10 @@ const storeSchema = {
     'Lightweight SL eMTB',
   ],
   priceRange: '££-£££',
-  // Real rating/review count migrated from the client's prior website (theirs
-  // was lost) — see docs/PROJECT.md for provenance. Never hand-edit these
-  // numbers; they come from src/content/reviews.js (REVIEW_STATS).
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: String(REVIEW_STATS.trustScore),
-    reviewCount: String(REVIEW_STATS.totalReviews),
-    bestRating: '5',
-    worstRating: '1',
-  },
+  // No aggregateRating here: the migrated review set (src/content/reviews.js) is not
+  // independently verifiable on a third-party profile, and Google does not show self-served
+  // organisation ratings as rich results anyway. Re-add only once reviews are verifiable
+  // (see docs/PROJECT.md and docs/audit-2026-11-10.md, A1).
   ...(SITE.social.sameAs.length ? { sameAs: SITE.social.sameAs } : {}),
   makesOffer: {
     '@type': 'AggregateOffer',
@@ -186,6 +190,22 @@ export default function HomePage() {
       </section>
 
       <TrustpilotReviews />
+
+      <section className="section container">
+        <span className="section-eyebrow">eMTB Buying Guides</span>
+        <h2>Guides to Help You Choose</h2>
+        <div className="grid grid-3">
+          {HOME_GUIDES.map((post) => (
+            <Link key={post.slug} href={`/blog/${post.slug}/`} className="card">
+              <strong>{post.title}</strong>
+              <p style={{ marginBottom: 0 }}>{post.excerpt}</p>
+            </Link>
+          ))}
+        </div>
+        <p style={{ marginTop: '1.25rem' }}>
+          <Link href="/blog/">Browse all electric mountain bike guides &rarr;</Link>
+        </p>
+      </section>
 
       <section className="section section-dark">
         <div className="container" style={{ maxWidth: 820 }}>

@@ -2,7 +2,7 @@ import { SITE, CONTACT } from '@/config/site';
 
 export const metadata = {
   title: 'Privacy Policy',
-  description: 'How Peak Pedal collects, uses and protects your personal data.',
+  description: 'How Peak Pedal collects, uses and protects your personal data when you browse our electric mountain bike store, enquire or place an order.',
   alternates: { canonical: `https://${SITE.domain}/privacy/` },
   openGraph: { url: `https://${SITE.domain}/privacy/`, images: ['/images/og-default.png'] },
   twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },

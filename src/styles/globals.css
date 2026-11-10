@@ -482,6 +482,17 @@ p {
   display: none;
 }
 
+/* The slide holding the page <h1> stays in the accessibility tree while another slide is showing. */
+.hero-slide-text.is-sr-only {
+  display: block;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .hero-slide-text.is-active {
   display: block;
   animation: hero-fade-in 0.5s ease;
@@ -1047,7 +1058,7 @@ p {
   justify-content: space-between;
 }
 
-.footer-col h4 {
+.footer-col .footer-heading {
   color: #fff;
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -1591,7 +1602,7 @@ td {
 
 .tp-badge-pill {
   font-size: 0.82rem;
-  color: #6b7280;
+  color: #4b5563;
   background: #f3f4f6;
   padding: 0.3rem 0.65rem;
   border-radius: 999px;
@@ -1866,20 +1877,29 @@ td {
   flex-wrap: wrap;
 }
 
+/* 24x24 hit area (WCAG 2.5.8); the visible dot is drawn by ::before */
 .tp-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #d1d5db;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
+}
+
+.tp-dot::before {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: #d1d5db;
   transition: all 0.2s ease;
 }
 
-.tp-dot.active {
+.tp-dot.active::before {
   background: #00b67a;
-  width: 24px;
+  inset: 7px 0;
   border-radius: 999px;
 }
 
@@ -1990,7 +2010,7 @@ td {
 
 .tp-card-date {
   font-size: 0.78rem;
-  color: #9ca3af;
+  color: #4b5563;
 }
 
 .tp-card-product {

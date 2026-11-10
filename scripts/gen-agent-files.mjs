@@ -53,7 +53,7 @@ ${SITE.name} is a UK-based electric mountain bike retailer offering ${PRODUCTS.l
 - ${PRODUCTS.length} electric mountain bikes across brands: ${[...new Set(PRODUCTS.map((p) => p.brand))].join(', ')}
 - Every bike is a legal UK electrically assisted pedal cycle (EAPC): max ${COMPLIANCE.eapc.maxPowerWatts}W motor, assistance cuts at ${COMPLIANCE.eapc.maxAssistSpeedMph}mph, minimum rider age ${COMPLIANCE.eapc.minRiderAge}
 - Payment: bank transfer (card coming soon)
-- Contact: ${CONTACT.email} / WhatsApp
+- Contact: ${base}/contact/ / WhatsApp
 
 ## Core pages
 ${corePages.map((p) => `- [${p.title}](${p.url}): ${p.note}`).join('\n')}
@@ -75,7 +75,7 @@ ${POSTS.map((p) => `- [${p.title}](${base}/blog/${p.slug}/): ${p.excerpt}`).join
 - Payment: bank transfer (card coming soon)
 - Order via WhatsApp: https://wa.me/${CONTACT.whatsapp}
 - Order form: ${base}/order/
-- Contact: ${CONTACT.email}
+- Contact: ${base}/contact/
 
 ## Excluded
 ${['/cart/', '/search/', '/thank-you-contact/', '/thank-you-order/', '/order/'].map((p) => `- ${base}${p}`).join('\n')}
@@ -189,7 +189,7 @@ const serverCard = {
     version: '1.0.0',
     description: SITE.description,
     homepage: base,
-    contact: { email: CONTACT.email, whatsapp: `+${CONTACT.whatsapp}` },
+    contact: { url: `${base}/contact/`, whatsapp: `+${CONTACT.whatsapp}` },
   },
   transport: {
     type: 'http',
@@ -296,7 +296,7 @@ const acp = {
     minimum_order_gbp: ORDER_RULES.minimumOrder,
     free_shipping_threshold_gbp: 0,
   },
-  contact: { whatsapp: `https://wa.me/${CONTACT.whatsapp}`, email: CONTACT.email },
+  contact: { whatsapp: `https://wa.me/${CONTACT.whatsapp}`, url: `${base}/contact/` },
   legal: {
     age_restriction: 'none (min rider age 14 under UK EAPC law)',
     region: 'GB',

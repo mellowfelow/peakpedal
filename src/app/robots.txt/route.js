@@ -7,10 +7,10 @@ const SEARCH_BOTS = [
 
 const AI_BOTS = [
   'GPTBot', 'OAI-SearchBot', 'ChatGPT-User',
-  'ClaudeBot', 'Claude-Web', 'anthropic-ai',
-  'PerplexityBot', 'YouBot', 'Bytespider', 'CCBot',
-  'Google-Extended', 'GoogleOther',
-  'Meta-ExternalAgent', 'Meta-ExternalFetcher', 'cohere-ai',
+  'ClaudeBot', 'Claude-User', 'Claude-SearchBot', 'anthropic-ai',
+  'PerplexityBot', 'Perplexity-User', 'YouBot', 'Bytespider', 'CCBot',
+  'MistralAI-User', 'Google-Extended', 'GoogleOther',
+  'Meta-ExternalAgent', 'Meta-ExternalFetcher', 'Meta-WebIndexer', 'cohere-ai',
 ];
 
 const DISALLOW = [

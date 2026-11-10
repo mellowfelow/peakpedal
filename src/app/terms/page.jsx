@@ -2,7 +2,7 @@ import { SITE, ORDER_RULES } from '@/config/site';
 
 export const metadata = {
   title: 'Terms & Conditions',
-  description: 'Terms and conditions for purchasing an electric mountain bike from Peak Pedal.',
+  description: 'Terms and conditions for buying an electric mountain bike or accessory from Peak Pedal, including ordering, payment, delivery and returns.',
   alternates: { canonical: `https://${SITE.domain}/terms/` },
   openGraph: { url: `https://${SITE.domain}/terms/`, images: ['/images/og-default.png'] },
   twitter: { card: 'summary_large_image', images: ['/images/og-default.png'] },

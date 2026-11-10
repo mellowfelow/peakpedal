@@ -1,7 +1,8 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Breadcrumbs, { breadcrumbSchema } from '@/components/Breadcrumbs';
 import PostBody, { postFaqSchema } from '@/components/PostBody';
-import { SITE, POSTS, findPost, POST_PUBLISHED_DEFAULT, POST_MODIFIED_DEFAULT } from '@/config/site';
+import { SITE, POSTS, findPost, relatedPosts, postBikes, POST_PUBLISHED_DEFAULT, POST_MODIFIED_DEFAULT } from '@/config/site';
 import { POST_BODIES } from '@/content/posts';
 
 const LONG_DATE = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -84,6 +85,28 @@ export default async function BlogPost({ params }) {
           )}
         </p>
         <PostBody body={body} />
+        {postBikes(post).length > 0 && (
+          <section style={{ marginTop: '2.5rem' }}>
+            <h2>Bikes Mentioned in This Guide</h2>
+            <ul>
+              {postBikes(post).map((p) => (
+                <li key={p.slug}>
+                  <Link href={`/products/${p.slug}/`}>{p.name}</Link> — {p.travel} {p.type} eMTB, {p.motor}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        <section style={{ marginTop: '2.5rem' }}>
+          <h2>Related Guides</h2>
+          <ul>
+            {relatedPosts(post).map((p) => (
+              <li key={p.slug}>
+                <Link href={`/blog/${p.slug}/`}>{p.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
       </article>
     </>
   );

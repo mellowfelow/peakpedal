@@ -8,6 +8,14 @@ import { CONTACT } from '@/config/site';
 export default function HeroSlider({ slides }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  // Only slide 1's image is needed for first paint; load the rest once the page has settled so
+  // they don't compete with the LCP image for bandwidth.
+  const [loadRest, setLoadRest] = useState(false);
+
+  useEffect(() => {
+    const id = setTimeout(() => setLoadRest(true), 2500);
+    return () => clearTimeout(id);
+  }, []);
 
   useEffect(() => {
     if (slides.length < 2 || paused) return;
@@ -20,7 +28,7 @@ export default function HeroSlider({ slides }) {
 
   return (
     <section className="hero hero-has-image">
-      {slides.map((slide, i) => (
+      {slides.map((slide, i) => (i > 0 && !loadRest ? null : (
         <Image
           key={slide.image}
           src={slide.image}
@@ -34,12 +42,12 @@ export default function HeroSlider({ slides }) {
           priority={i === 0}
           className={`hero-bg ${i === active ? 'is-active' : ''}`}
         />
-      ))}
+      )))}
       <div className="hero-overlay" />
       <div className="container hero-inner">
         <div>
           {slides.map((slide, i) => (
-            <div key={slide.heading} className={`hero-slide-text ${i === active ? 'is-active' : ''}`} aria-hidden={i !== active}>
+            <div key={slide.heading} className={`hero-slide-text ${i === active ? 'is-active' : i === 0 ? 'is-sr-only' : ''}`} aria-hidden={i !== 0 && i !== active}>
               <span className="hero-tag">{slide.tag}</span>
               {i === 0 ? <h1>{slide.heading}</h1> : <p className="hero-heading-fake">{slide.heading}</p>}
               <p style={{ fontSize: '1.1rem', maxWidth: 640 }}>{slide.body}</p>

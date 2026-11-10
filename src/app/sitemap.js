@@ -1,10 +1,11 @@
-import { SITE, CATEGORY_PAGES, PRODUCTS, POSTS, ACCESSORIES, POST_MODIFIED_DEFAULT } from '@/config/site';
+import { SITE, CATEGORY_PAGES, PRODUCTS, POSTS, ACCESSORIES, POST_MODIFIED_DEFAULT, CONTENT_MODIFIED } from '@/config/site';
 
 // Single sitemap at /sitemap.xml (217 URLs — well under the 50k split threshold).
 // Product + accessory entries carry <image:image> via the `images` field.
 export default function sitemap() {
   const base = `https://${SITE.domain}`;
-  const now = new Date();
+  // Real content-change date (not the build time) so <lastmod> doesn't overstate freshness.
+  const now = new Date(CONTENT_MODIFIED);
 
   const staticPages = [
     { url: `${base}/`, lastModified: now, changeFrequency: 'daily', priority: 1 },
