@@ -1602,7 +1602,7 @@ td {
 
 .tp-badge-pill {
   font-size: 0.82rem;
-  color: #6b7280;
+  color: #4b5563;
   background: #f3f4f6;
   padding: 0.3rem 0.65rem;
   border-radius: 999px;
@@ -1878,19 +1878,32 @@ td {
 }
 
 .tp-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #d1d5db;
+  /* 24px hit area (WCAG 2.5.8); the visible 10px dot is drawn by ::before */
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
+}
+
+.tp-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #d1d5db;
   transition: all 0.2s ease;
 }
 
-.tp-dot.active {
+.tp-dot.active::before {
   background: #00b67a;
-  width: 24px;
+  width: 20px;
   border-radius: 999px;
 }
 
