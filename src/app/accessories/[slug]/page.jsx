@@ -18,6 +18,7 @@ export async function generateMetadata({ params }) {
   // Candidates from richest to leanest; take the first that lands in the 125–158 char band,
   // otherwise the longest that still fits under 158.
   const candidates = [
+    `${accessory.name} — ${accessory.keyword}, from ${price}. Free UK delivery, fitment checks and expert advice from Peak Pedal. No minimum order. Ships UK-wide.`,
     `${accessory.name} — ${accessory.keyword}, from ${price}. Free UK delivery, fitment checks and expert advice from Peak Pedal. No minimum order.`,
     `${accessory.name} — ${accessory.keyword}, from ${price}. Free UK delivery, fitment checks and expert advice from Peak Pedal.`,
     `${accessory.name} — ${accessory.keyword}, from ${price}. Free UK delivery and expert fitment advice from Peak Pedal.`,
